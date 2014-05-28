@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <title>{% block title  %}navi.loevdal {% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <div class="navbar navbar-default navbar-static-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">loevdal.net</a>
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Hjem</a></li>
+                            <li><a href="#">Derp</a></li>
+                            <li><a href="#">Herp</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </div>
+        </header>
+        <div class="container">
+            <div class="col-md-8">
+            {% block content %}
+
+            {% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Om meg</h3>
+                    </div>
+                    <div class="panel-body about">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="/static/images/me.jpg" title="It's me, Mario..." class="img-thumbnail">
+                            </div>
+                            <div class="col-md-6">
+                                <p>Informatiker</p>
+                                <p>Student</p>
+                                <p>Helt sjef</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-md-offset-2">
+                                <div class="btn-group">
+                                <a class="btn btn-social-icon btn-facebook">
+                                    <i class="fa fa-facebook fa-2x"></i>
+                                </a>
+                                 <a class="btn btn-social-icon btn-twitter">
+                                    <i class="fa fa-twitter fa-2x"></i>
+                                </a>
+                                 <a class="btn btn-social-icon btn-github">
+                                    <i class="fa fa-github fa-2x"></i>
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+        </footer>    
+        <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-51194516-1', 'loevdal.net');
+        ga('send', 'pageview');
+
+        </script>
+    </body>
+</html>

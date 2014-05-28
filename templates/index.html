@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}
+&ndash; test
+{% endblock %}
+
+{% block content %}
+<div class="blog-header">
+    <h1 class="blog-title">Blogg</h1>
+    <p class="lead blog-description">Woopedy woop woop</p>
+</div>
+<div class="container">
+    {% if posts %}
+        {% for post in posts %}
+            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+            <h6>{{ post.posted }}</h6>
+            <p>{{ post.ingress }}<p>
+        {% endfor %}
+    {% else %}
+        <h3>Ingen har skrevet noe enda..</h3>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}
+&ndash; {{ post.title }}
+{% endblock %}
+
+{% block content %}
+    {% if post %}
+        <h1>{{ post.title }}</h1>
+        <h6>{{ post.posted }}</h6>
+        <div class="well">
+            <p>{{ post.text }}</p>
+        </div>
+    {% else %}
+        <h1>Finnes ikke...</h1>
+    {% endif%}
+    
+{% endblock %}
