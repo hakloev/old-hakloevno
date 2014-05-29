@@ -5,13 +5,13 @@
 &ndash; blogg
 {% endblock %}
 
-{% block content %}
+{% block body_block %}
     {% if posts %}
         {% for post in posts %}
-            <h1>{{ post.title }}</h1>
-            <h6>{{ post.posted }}</h6>
+        <h1><a href={{ post.get_absolute_url }}>{{ post.title }}</a></h1>
+            <h6>Skrevet den {{ post.posted|date:'d.m.Y' }}</h6>
             <div class="well">
-               <p>{{ post.text }}</p>
+               <p>{{ post.ingress|safe }}</p>
             </div>       
         {% endfor %}
     {% else %}

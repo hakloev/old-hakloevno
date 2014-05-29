@@ -5,6 +5,10 @@
 &ndash; ny post
 {% endblock %}
 
-{% block content %}
+{% block body_block %}
+{% if user.is_authenticated %}
 <h1>LAG NY POST</h1>
+{% else %}
+<h1>IKKE TILGANG</h1>
+{% endif %}
 {% endblock %}

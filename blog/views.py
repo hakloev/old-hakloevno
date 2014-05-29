@@ -5,8 +5,9 @@ from blog.models import Blogpost, Category
 
 def index(request):
     context = {}
+    context['request'] = request
     context['categories'] = Category.objects.all()
-    context['posts'] = Blogpost.objects.all()
+    context['posts'] = Blogpost.objects.order_by('-posted')
     return render(request, u'blog/blog.html', context)
 
 def newpost(request):
@@ -19,4 +20,5 @@ def post_by_slug(request, slug):
     #context['categories'] = Category.objects.all()
     #context['post'] = Blogpost.objects.filter(slug=slug)
     context['post'] = post
+    context['request'] = request
     return render(request, u'blog/article.html', context)

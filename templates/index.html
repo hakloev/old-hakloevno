@@ -5,20 +5,21 @@
 &ndash; test
 {% endblock %}
 
-{% block content %}
-<div class="blog-header">
-    <h1 class="blog-title">Blogg</h1>
-    <p class="lead blog-description">Woopedy woop woop</p>
-</div>
-<div class="container">
-    {% if posts %}
-        {% for post in posts %}
-            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-            <h6>{{ post.posted }}</h6>
-            <p>{{ post.ingress }}<p>
-        {% endfor %}
+{% block body_block %}
+    {% if post %}
+        <div class="jumbotron">
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.ingress }}</p>
+            <p><a class="btn btn-primary btn-lg" role="button" href="{{ post.get_absolute_url }}">Les mer</a> </p>
+        </div>
     {% else %}
-        <h3>Ingen har skrevet noe enda..</h3>
+        <div class="jumbotron">
+            <h1>Ingen innlegg skrevet...</h1>
+            <p>Noen burde piske meg til å skrive et innlegg...</p>
+        </div>
     {% endif %}
-</div>
+
+{% if user.is_authenticated %}
+<h1>Hei {{ user.username }}</h1>
+{% endif %}
 {% endblock %}
