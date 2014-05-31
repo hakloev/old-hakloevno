@@ -17,7 +17,7 @@
             </ul>
             <div class="navbar-inner navbar-right">
             {% if user.is_authenticated %}
-                <p class="navbar-text">Hei, {{ user.username }}</p>
+                <p class="navbar-text">Hei, {{ user.first_name }}!</p>
                 <ul class="nav navbar-nav">
                     <li><a href="/admin/">Admin</a></li>
                     <li><a href="{% url 'auth_logout_next' request.path %}">Logg ut</a></li>

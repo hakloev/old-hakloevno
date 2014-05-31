@@ -9,17 +9,12 @@
 <div class="row">
     <div class="col-md-8">
     {% if post %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                {{ post.title }}
-            </div>
-            <div class="panel-body">
-                {{ post.text|safe }}
-            </div>
-            <div class="panel-footer">
-                Skrevet den {{ post.posted|date:'d.m.Y' }}
-            </div>
+        <div class="page-header">
+            <h1>{{ post.title }} <small> &dash; {{ post.posted|date:'d.m.Y'}}</small></h1>
         </div>
+        <h4>{{ post.ingress }}</h4>
+        <hr>
+        {{ post.text|safe }}
     {% else %}
         <h1>Finnes ikke...</h1>
     {% endif%}
