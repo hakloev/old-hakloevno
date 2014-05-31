@@ -1,0 +1,44 @@
+header {
+    margin-bottom: 50px; /* height of navbar++ */
+    vertical-align: middle;
+}
+
+.picture-header {
+    height: 400px;
+    background: url(/static/images/picture-header.png) center center no-repeat;
+    background-size: cover;
+}
+
+.tagline {
+    color: #fff;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.navbar-nav li {
+    padding-top: 5px;
+}
+
+.navbar-nav li:hover {
+    background: #ccc;
+}
+
+.navbar-nav li a {
+    display: block;
+}
+
+.navbar-nav>li>a:hover {
+    background: #101010 !important;
+}
+
+.navbar-brand {
+    padding-top: 20px;
+    color: #fff !important;
+}
+
+
+.navbar-text {
+    padding-top: 5px;
+}

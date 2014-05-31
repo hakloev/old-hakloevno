@@ -7,7 +7,7 @@ from django.template.defaultfilters import slugify
 class Blogpost(models.Model):
     title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(unique=True, db_index=True)
-    ingress = models.CharField(max_length=100)
+    ingress = models.CharField(max_length=200)
     text = models.TextField()
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
     category = models.ForeignKey('blog.Category')

@@ -2,13 +2,61 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ny post
+&ndash; blogg &ndash; ny post
 {% endblock %}
 
 {% block body_block %}
+{{ block.super }}
 {% if user.is_authenticated %}
-<h1>LAG NY POST</h1>
+<div class="row">
+    <div class="col-md-8">
+        <form class="form-horizontal" role="form" method="post" action="/blog/newpost/">
+            {% csrf_token %}
+            <fieldset>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="title">Tittel</label>  
+                <div class="col-md-11">
+                    <input id="title" name="title" type="text" placeholder="tittel" class="form-control input-md" required="">
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="ingress">Ingress</label>  
+                <div class="col-md-11">
+                    <input id="ingress" name="ingress" type="text" placeholder="ingress" class="form-control input-md" required="">
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="text">Innlegg</label>
+                <div class="col-md-11">                     
+                    <textarea class="form-control" id="text" name="text" rows="15">{{ text }}</textarea>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="createpost"></label>
+                <div class="col-md-4">
+                      <button id="createpost" name="createpost" class="btn btn-success">Lag post</button>
+                </div>
+            </div>
+        </fieldset>
+    </form> 
+    </div>
+    <div class="col-md-4">
+        {% if errors %}
+            {% for error in errors %}
+            <h4>{{ error }}</h4>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
 {% else %}
-<h1>IKKE TILGANG</h1>
+    <h1>IKKE TILGANG</h1>
 {% endif %}
 {% endblock %}

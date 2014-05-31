@@ -7,13 +7,21 @@
 
 {% block body_block %}
     {% if posts %}
-        {% for post in posts %}
-        <h1><a href={{ post.get_absolute_url }}>{{ post.title }}</a></h1>
-            <h6>Skrevet den {{ post.posted|date:'d.m.Y' }}</h6>
-            <div class="well">
-               <p>{{ post.ingress|safe }}</p>
-            </div>       
-        {% endfor %}
+    <div class="row">
+        <div class="col-md-8">
+            <section class="main">
+            {% for post in posts %}
+               <div class="post">
+                    <h1><a href={{ post.get_absolute_url }}>{{ post.title }}</a></h1>
+                    <h6>Skrevet den {{ post.posted|date:'d.m.Y' }}</h6>
+               <div class="well">
+                   <p>{{ post.ingress|safe }}</p>
+               </div>
+           </div>
+           {% endfor %}
+           </section>
+       </div>
+    </div>
     {% else %}
         <h3>Ingen har skrevet noe i denne bloggen..</h3>
     {% endif %}

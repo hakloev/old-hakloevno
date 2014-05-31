@@ -2,24 +2,37 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; test
+&ndash; hjem
+{% endblock %}
+
+{% block picture_block %}
+    <div class="picture-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="tagline">Tagline skal være her</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block body_block %}
-    {% if post %}
-        <div class="jumbotron">
-            <h1>{{ post.title }}</h1>
-            <p>{{ post.ingress }}</p>
-            <p><a class="btn btn-primary btn-lg" role="button" href="{{ post.get_absolute_url }}">Les mer</a> </p>
-        </div>
-    {% else %}
-        <div class="jumbotron">
-            <h1>Ingen innlegg skrevet...</h1>
-            <p>Noen burde piske meg til å skrive et innlegg...</p>
-        </div>
-    {% endif %}
-
-{% if user.is_authenticated %}
-<h1>Hei {{ user.username }}</h1>
+{% if posts %}
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-4">
+                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                <p>{{ post.ingress }}</p>     
+                <small>{{ post.posted|date:"d.m.Y" }}</small>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="jumbotron">
+        <h1>Det er jo ikke skrevet noe innlegg...</h1>
+        <p>Må skjerpe meg og sette igang...</p>
+    </div>
 {% endif %}
+
 {% endblock %}

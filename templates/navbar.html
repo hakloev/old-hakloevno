@@ -1,38 +1,33 @@
-<div class="container">
-    <div class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">loevdal.net</a>
-            </div>
-            <div class="navbar-collapse collapse">
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">loevdal.net</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li {% if request.path = '/' %}class="active"{% endif %}><a href="/">Hjem</a></li>
+                <li {% if '/blog/' in request.path %}class="active"{% endif %}><a href="/blog/">Blogg</a></li> 
+                <li><a href="#">CV</a></li>
+                <li><a href="#">Om meg</a></li>
+            </ul>
+            <div class="navbar-inner navbar-right">
+            {% if user.is_authenticated %}
+                <p class="navbar-text">Hei, {{ user.username }}</p>
                 <ul class="nav navbar-nav">
-                    <li {% if request.path = '/' %}class="active"{% endif %}><a href="/">Hjem</a></li>
-                    <li {% if '/blog/' in request.path %}class="active"{% endif %}><a href="/blog/posts/">Blogg</a></li> 
-                    <li><a href="#">51</a></li>
-                    <li><a href="#">Beer</a></li>
-                    <li><a href="#">CV</a></li>
-                    <li><a href="#">Om meg</a></li>
+                    <li><a href="/admin/">Admin</a></li>
+                    <li><a href="{% url 'auth_logout_next' request.path %}">Logg ut</a></li>
                 </ul>
-                <div class="navbar-inner navbar-right">
-                {% if user.is_authenticated %}
-                    <p class="navbar-text">Logget inn som {{ user.username }}</p>
-                    <ul class="nav navbar-nav">
-                        <li><a href="/admin/">Admin</a></li>
-                        <li><a href="/logout/">Logg ut</a></li>
-                    </ul>
-                {% else %}
-                    <ul class="nav navbar-nav">
-                        <li><a href="/login/">Logg inn</a></li>
-                    </ul>
-                {% endif %}
-                </div>
-            </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-    </div>
-</div>
-
+            {% else %}
+                <ul class="nav navbar-nav">
+                    <li><a href="/accounts/login/?next={{ request.path }}">Logg inn</a></li>
+                </ul>
+            {% endif %}
+            </div>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
