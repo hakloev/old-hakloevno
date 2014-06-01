@@ -10,6 +10,9 @@
         <div class="col-md-8">
             <div class="page-header">
                 <h1>Innlegg <small>&dash; weee</small></h1>
+                {% if user.is_authenticated %}
+                <a href="/blog/newpost/" class="btn btn-sm btn-primary">Skriv nytt innlegg</a> 
+                {% endif %}
             </div>
                 {% if posts %}
                     <section class="main">

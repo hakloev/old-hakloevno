@@ -17,28 +17,6 @@ footer {
     margin: 50px 0;
 }
 
-.navbar-nav li {
-    padding-top: 5px;
-}
-
-.navbar-nav li:hover {
-    background: #ccc;
-}
-
-.navbar-nav li a {
-    display: block;
-}
-
-.navbar-nav>li>a:hover {
-    background: #101010 !important;
-}
-
-.navbar-brand {
-    padding-top: 20px;
-    color: #fff !important;
-}
-
-
-.navbar-text {
-    padding-top: 5px;
+.page-header {
+    margin-top: -25px;
 }
