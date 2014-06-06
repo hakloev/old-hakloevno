@@ -2,8 +2,21 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import permalink
 
 # Create your models here.
+
+class TastingEvent(models.Model):
+    name = models.CharField(max_length=50, blank=False, unique=True)
+    date = models.DateTimeField(auto_now_add=True)
+    finished = models.BooleanField()
+
+    def __unicode__(self):
+        return self.name
+
+    @permalink
+    def get_absolute_url(self):
+        return ('event_by_slug', None, { 'id': self.id })
 
 class Beer(models.Model):
     name = models.CharField(max_length=50)
@@ -18,8 +31,10 @@ class Beer(models.Model):
 class BeerRating(models.Model):
     beer = models.ForeignKey('beertasting.Beer')
     user = models.ForeignKey(User)
+    event = models.ForeignKey('beertasting.TastingEvent')
     rating = models.FloatField()
     comment = models.TextField()
+    rated = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return (u'Bruker: %s, Øl: %s, Karakter: %s' % (self.user, self.beer, self.rating))

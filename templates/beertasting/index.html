@@ -11,6 +11,18 @@
             <div class="page-header">
                 <h1>Ølsmaking <small>&dash; weee</small></h1>
             </div>
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        {% if ratings %}
+        {% for beer in ratings %}
+            <p>{{ beer.beer }}</p>
+            <p>{{ beer.rating }}</p>
+            {% endfor %}
+        {% else %}
+        <p>ingen ratings</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
