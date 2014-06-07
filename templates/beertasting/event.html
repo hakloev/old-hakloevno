@@ -2,25 +2,27 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking
+&ndash; ølsmaking &ndash; {% if event %}{{ event.name }}{% else %}smaksevent{% endif %}
 {% endblock %}
 
 {% block body_block %}
  <div class="row">
         <div class="col-md-8">
             <div class="page-header">
-                <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% endif %}</small></h1>
+                <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
             </div>
         </div>
 </div>
 <div class="row">
     <div class="col-md-8">
         {% if beers %}
+            <h3>Oversikt:</h3>
             {% for beer in beers.all %}
-            <p>Øl: {{ beer.id }} ({{ beer.name }})</p>
+            <p><a href="{{ beer.get_absolute_url }}">Øl: {{ beer.id }}</a></p>
             {% endfor %}
         {% endif %}
         {% if ratings %}
+            <h3>Resultat:</h3>
             {% for rating in ratings %}
                 <p>{{ rating.beer }}</p>
                 <p>{{ rating.user }}</p>

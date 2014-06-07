@@ -24,7 +24,7 @@ def event_by_id(request, id):
     if event.finished:
         ratings = BeerRating.objects.filter(event=id)
         context['ratings'] = ratings
-    if not event.finished:
+    else:
         context['beers'] = event.beers
     return render(request, u'beertasting/event.html', context)
 
