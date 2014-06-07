@@ -40,10 +40,6 @@ class BeerRating(models.Model):
     def __unicode__(self):
         return (u'Bruker: %s, Øl: %s, Karakter: %s' % (self.user, self.beer, self.rating))
 
-    @permalink
-    def get_absolute_url(self):
-        return('rating_by_id', None, {'eid': self.event.id, 'rid': self.id })
-
 class Style(models.Model):
     style = models.CharField(max_length=50)
 

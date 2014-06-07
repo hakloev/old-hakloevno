@@ -18,7 +18,7 @@
         {% if beers %}
             <h3>Oversikt:</h3>
             {% for beer in beers.all %}
-            <p><a href="{{ beer.get_absolute_url }}">Øl: {{ beer.id }}</a></p>
+                <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.id }}</a></p>
             {% endfor %}
         {% endif %}
         {% if ratings %}

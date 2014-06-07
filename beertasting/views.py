@@ -28,9 +28,7 @@ def event_by_id(request, id):
         context['beers'] = event.beers
     return render(request, u'beertasting/event.html', context)
 
-def rating_by_id(request, eid, rid):
+
+def beer_rating(request, eid, bid):
     context = {}
-    context['request'] = request
-    rating = BeerRating.objects.get(event_id=eid, id=rid)
-    context['rating'] = rating
-    return render(request, u'beertasting/rating.html', context)
+    return render(request, u'beertasting/ratebeer.html', context)
