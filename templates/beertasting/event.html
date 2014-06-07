@@ -15,10 +15,12 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        {% if events %}
-        {% for event in events %}
-            <p>ID: {{ event.id }}, Navn: {{ event.name }},  Ferdig: {{ event.finished}}</p>
-            <p><a href="{{ event.get_absolute_url }}">Link</a></p>
+        {% if ratings %}
+        {% for rating in ratings %}
+            <p>{{ rating.id }}</p>
+            <p>{{ rating.beer }}</p>
+            <p>{{ rating.comment }}</p>
+            <p><a href="{{ rating.get_absolute_url }}">link</a></p>
             {% endfor %}
         {% else %}
         <p>ingen ratings</p>

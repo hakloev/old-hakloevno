@@ -16,7 +16,7 @@ class TastingEvent(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('event_by_slug', None, { 'id': self.id })
+        return ('event_by_id', None, { 'id': self.id })
 
 class Beer(models.Model):
     name = models.CharField(max_length=50)
@@ -38,6 +38,10 @@ class BeerRating(models.Model):
 
     def __unicode__(self):
         return (u'Bruker: %s, Øl: %s, Karakter: %s' % (self.user, self.beer, self.rating))
+
+    @permalink
+    def get_absolute_url(self):
+        return('rating_by_id', None, {'eid': self.event.id, 'rid': self.id })
 
 class Style(models.Model):
     style = models.CharField(max_length=50)
