@@ -9,21 +9,23 @@
  <div class="row">
         <div class="col-md-8">
             <div class="page-header">
-                <h1>Ølsmaking <small>&dash; let it rain</small></h1>
+                <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% endif %}</small></h1>
             </div>
         </div>
 </div>
 <div class="row">
     <div class="col-md-8">
-        {% if ratings %}
-        {% for rating in ratings %}
-            <p>{{ rating.id }}</p>
-            <p>{{ rating.beer }}</p>
-            <p>{{ rating.comment }}</p>
-            <p><a href="{{ rating.get_absolute_url }}">link</a></p>
+        {% if beers %}
+            {% for beer in beers.all %}
+            <p>Øl: {{ beer.id }} ({{ beer.name }})</p>
             {% endfor %}
-        {% else %}
-        <p>ingen ratings</p>
+        {% endif %}
+        {% if ratings %}
+            {% for rating in ratings %}
+                <p>{{ rating.beer }}</p>
+                <p>{{ rating.user }}</p>
+                <p>{{ rating.comment }}</p>
+            {% endfor %}
         {% endif %}
     </div>
 </div>

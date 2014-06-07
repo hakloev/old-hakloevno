@@ -9,20 +9,34 @@
  <div class="row">
         <div class="col-md-8">
             <div class="page-header">
-                <h1>Ølsmaking <small>&dash; let it rain</small></h1>
+                <h1>Ølsmaking <small>&dash; let the beer flow</small></h1>
             </div>
         </div>
 </div>
 <div class="row">
     <div class="col-md-8">
-        {% if events %}
-        {% for event in events %}
-            <p>ID: {{ event.id }}, Navn: {{ event.name }},  Ferdig: {{ event.finished}}</p>
-            <p><a href="{{ event.get_absolute_url }}">Link</a></p>
-            {% endfor %}
-        {% else %}
-        <p>ingen ratings</p>
-        {% endif %}
+        {% if user.is_authenticated %}
+            {% if latestevents  %}
+                <h4>Pågående event(s):</h4>
+                {% for latest in latestevents %}
+                    <p>{{ latest.name }} Pågående: {{ latest.finished }}</p>
+                    <p><a href="{{ latest.get_absolute_url }}">Link</a></p>
+                {% endfor %}
+            {% else %}
+                <h4>Ingen pågående event...</h4>
+            {% endif %}
+            {% if events %}
+                <h4>Ferdige events:</h4>
+                {% for event in events %}
+                    <p>ID: {{ event.id }}, Navn: {{ event.name }},  Ferdig: {{ event.finished}}</p>
+                    <p><a href="{{ event.get_absolute_url }}">Link</a></p>
+                {% endfor %}
+            {% else %}
+                <h4>Ingen eldre events</h4>
+                {% endif %}
+         {% else %}       
+            <h4>Vennligst logg inn</h4>
+         {% endif %}
     </div>
 </div>
 {% endblock %}

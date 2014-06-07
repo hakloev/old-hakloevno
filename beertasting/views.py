@@ -7,15 +7,25 @@ import datetime
 def index(request):
     context = {}
     context['request'] = request
-    events = TastingEvent.objects.all()
-    context['events'] = events
+    try:
+        latestevents = TastingEvent.objects.filter(finished=False).order_by('id')
+        context['latestevents'] = latestevents
+        events = TastingEvent.objects.filter(finished=True).order_by('-id')
+        context['events'] = events
+    except:
+        pass
     return render(request, u'beertasting/index.html', context)
 
 def event_by_id(request, id):
     context = {}
     context['request'] = request
-    ratings = BeerRating.objects.filter(event=id)
-    context['ratings'] = ratings
+    event = TastingEvent.objects.get(id=id)
+    context['event'] = event
+    if event.finished:
+        ratings = BeerRating.objects.filter(event=id)
+        context['ratings'] = ratings
+    if not event.finished:
+        context['beers'] = event.beers
     return render(request, u'beertasting/event.html', context)
 
 def rating_by_id(request, eid, rid):

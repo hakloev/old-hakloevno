@@ -6,18 +6,6 @@ from django.db.models import permalink
 
 # Create your models here.
 
-class TastingEvent(models.Model):
-    name = models.CharField(max_length=50, blank=False, unique=True)
-    date = models.DateTimeField(auto_now_add=True)
-    finished = models.BooleanField()
-
-    def __unicode__(self):
-        return self.name
-
-    @permalink
-    def get_absolute_url(self):
-        return ('event_by_id', None, { 'id': self.id })
-
 class Beer(models.Model):
     name = models.CharField(max_length=50)
     ibu = models.IntegerField()
@@ -27,6 +15,19 @@ class Beer(models.Model):
 
     def __unicode__(self):
         return (u'%s av %s' % (self.name, self.brewery ))
+
+class TastingEvent(models.Model):
+    name = models.CharField(max_length=50, blank=False, unique=True)
+    date = models.DateTimeField(auto_now_add=True)
+    beers = models.ManyToManyField('beertasting.Beer', null=True, blank=True)
+    finished = models.BooleanField()
+
+    def __unicode__(self):
+        return self.name
+
+    @permalink
+    def get_absolute_url(self):
+        return ('event_by_id', None, { 'id': self.id })
 
 class BeerRating(models.Model):
     beer = models.ForeignKey('beertasting.Beer')
