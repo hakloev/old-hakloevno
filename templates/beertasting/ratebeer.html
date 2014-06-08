@@ -15,7 +15,21 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        <p>Rate that shit..</p>
+        {% if event.finished %}
+            {% if rating %}
+                <h6>Du ga {{ rating.beer }} følgende:</h6>
+                <p>{{ rating.comment }}, {{ rating.rating }}</p>
+            {% else %}
+                <h4>Du ga ikke denne ølen noen karakter</h4>
+            {% endif %} 
+        {% else %}
+            {% if rating %}
+                <h4>Du har gitt følgende så langt:</h4>
+                <p>{{ rating.comment }}, {{ rating.rating }}</p>
+            {% else %}
+                <h4>Gi ølen en karkter er du snill!</h4>
+            {% endif %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

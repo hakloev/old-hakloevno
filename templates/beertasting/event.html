@@ -15,19 +15,21 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        {% if beers %}
-            <h3>Oversikt:</h3>
-            {% for beer in beers.all %}
-                <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.id }}</a></p>
-            {% endfor %}
-        {% endif %}
-        {% if ratings %}
-            <h3>Resultat:</h3>
-            {% for rating in ratings %}
-                <p>{{ rating.beer }}</p>
-                <p>{{ rating.user }}</p>
-                <p>{{ rating.comment }}</p>
-            {% endfor %}
+        {% if event.finished %}
+            <h4>STATISTIKK LINK HER</h4>
+            {% if beers %}
+                <h3>Oversikt:</h3>
+                {% for beer in beers.all %}
+                <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.name }}: {{ beer.brewery }} ({{ beer.id }})</a></p>
+                {% endfor %}
+            {% endif %}
+        {% else %}
+            {% if beers %}
+                <h3>Øl å smake på:</h3>
+                {% for beer in beers.all %}
+                    <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.id }}</a></p>
+                {% endfor %}
+            {% endif %}
         {% endif %}
     </div>
 </div>
