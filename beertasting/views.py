@@ -6,6 +6,8 @@ import datetime
 # Create your views here.
 
 def index(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/accounts/login/?next=/beertasting/')
     context = {}
     context['request'] = request
     try:
@@ -18,6 +20,8 @@ def index(request):
     return render(request, u'beertasting/index.html', context)
 
 def event_by_id(request, id):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/accounts/login/?next=/beertasting/event%s' % (id))
     context = {}
     context['request'] = request
     event = TastingEvent.objects.get(id=id)
@@ -26,17 +30,26 @@ def event_by_id(request, id):
     return render(request, u'beertasting/event.html', context)
 
 def beer_rating(request, eid, bid):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/accounts/login/?next=/beertasting/event%s/beer%s' % (eid, bid))
     context = {}
     context['request'] = request
-    # ta imot post request, parse og putt i db 
-    if request.method == 'POST':
-        return HttpResponseRedirect(request.path)
     event = TastingEvent.objects.get(id=eid)
     context['event'] = event
+    context['beerid'] = bid
+    context['beers'] = event.beers
+
+    if request.method == 'POST':
+        return HttpResponseRedirect(request.path)
     try: 
         rating = BeerRating.objects.get(event=eid, beer=bid, user=request.user.id)
         context['rating'] = rating
     except:
         pass
-     
     return render(request, u'beertasting/ratebeer.html', context)
+
+def stats(request, eid):
+    context = {}
+    event = TastingEvent.objects.get(id=eid)
+    context['event'] = event
+    return render(request, u'beertasting/stats.html', context)

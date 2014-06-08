@@ -7,7 +7,7 @@
 
 {% block body_block %}
  <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="page-header">
                 <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
             </div>
@@ -15,6 +15,11 @@
 </div>
 <div class="row">
     <div class="col-md-8">
+        <ol class="breadcrumb">
+            <li><a href="/beertasting/">Arrangementer</a></li>
+            <li class="active">{{ event.name }}</li>
+        </ol>
+
         {% if event.finished %}
             <h4>STATISTIKK LINK HER</h4>
             {% if beers %}
@@ -32,5 +37,6 @@
             {% endif %}
         {% endif %}
     </div>
+    {% include 'beertasting/sidebar.html' %}
 </div>
 {% endblock %}

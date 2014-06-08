@@ -1,0 +1,26 @@
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Oversikt</h3>
+        </div>
+        <div class="panel-body">
+            {% if event.finished %}
+                {% if beers %}
+                    {% for beer in beers.all %}
+                    <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.name}} av {{ beer.brewery }} ({{ beer.id }})</a></p>
+                    {% endfor %}
+                {% else %}
+                    <p>Ingen øl tilgjengelig..</p>
+                {% endif %}
+            {% else %}
+                {% if beers %}
+                    {% for beer in beers.all %}
+                        <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.id }}</a></p>
+                    {% endfor %}
+                {% else %}
+                    <p>Ingen øl tilgjengelig..</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>

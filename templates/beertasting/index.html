@@ -7,14 +7,17 @@
 
 {% block body_block %}
  <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="page-header">
-                <h1>Ølsmaking <small>&dash; smak blindt!</small></h1>
+                <h1>Ølsmaking <small>&dash; arrangementer</small></h1>
             </div>
         </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li class="active">Arrangementer</li>
+        </ol>
         {% if user.is_authenticated %}
             {% if latestevents  %}
                 <h4>Pågående event(s):</h4>
