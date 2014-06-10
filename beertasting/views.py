@@ -1,6 +1,9 @@
+# -*- coding: utf8 -*-
+
 from django.shortcuts import render
 from django.contrib import messages
 from models import BeerRating, TastingEvent
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 import datetime
 
@@ -11,6 +14,10 @@ def index(request):
         return HttpResponseRedirect('/accounts/login/?next=/beertasting/')
     context = {}
     context['request'] = request
+    breadcrumbs = (
+            ('Arrangementer', '/beertasting/'),
+            )
+    context['breadcrumbs'] = breadcrumbs
     try:
         latestevents = TastingEvent.objects.filter(finished=False).order_by('id')
         context['latestevents'] = latestevents
@@ -27,6 +34,12 @@ def event_by_id(request, id):
     context['request'] = request
     event = TastingEvent.objects.get(id=id)
     context['event'] = event
+    breadcrumbs = (
+            ('Arrangementer', '/beertasting/'),
+            (event.name, reverse('event_by_id', args=[event.id])),
+            )
+    context['breadcrumbs'] = breadcrumbs
+
     # redirect til stats if finished?
     if event.finished:
         ratings = BeerRating.objects.filter(event=id, user_id=request.user.id)
@@ -43,6 +56,12 @@ def beer_rating(request, eid, bid):
     context['event'] = event
     context['beerid'] = bid
     context['beers'] = event.beers
+    breadcrumbs = (
+            ('Arrangementer', '/beertasting/'),
+            (event.name, reverse('event_by_id', args=[event.id])),
+            (u'Ølnummer %s' % (bid), reverse('beer_rating', args=[event.id, bid])),
+            )
+    context['breadcrumbs'] = breadcrumbs
 
     if request.method == "POST":
         rating = request.POST['ratingvalue']
