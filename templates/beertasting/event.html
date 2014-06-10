@@ -21,15 +21,13 @@
         </ol>
         {% if event.finished %}
             <a href="#" class="btn btn-md btn-primary">Resultat</a>
-            <!--# denne ifen skal vel bort #--!>
             {% if ratings %}
                 <h3>Dine vurderinger:</h3>
                 {% for rating in ratings %}
-                <section>
-                    <h4>{{ rating.beer }}</h4>
-                    <p><strong>{{ rating.rating }}</strong></p>
-                    <p>{{ rating.comment }}</p>
-                </section>
+                    <h4>{{ rating.beer }}, <strong>{{ rating.rating }}</strong></h4>
+                    <div class="well well-sm">
+                        <p>{{ rating.comment }}</p>
+                    </div>
                 {% endfor %}
             {% else %}
                 <h3>Du har ikke vurdert noen øl under dette arrangementet!</h3>
@@ -42,6 +40,7 @@
             </section>
             {% endif %}
         {% endif %}
+        <hr>
     </div>
     {% include 'beertasting/sidebar.html' %}
 </div>

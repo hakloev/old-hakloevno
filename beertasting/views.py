@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from models import BeerRating, TastingEvent
 from django.http import HttpResponseRedirect
 import datetime
@@ -55,6 +56,7 @@ def beer_rating(request, eid, bid):
         except:
             new_r = BeerRating(user=request.user, beer_id=bid, event_id=eid, rating=rating, comment=comment )
             new_r.save()
+        messages.success(request, 'Dine stemme ble registrert!')
         return HttpResponseRedirect(request.path)
     try: 
         rating = BeerRating.objects.get(event=eid, beer=bid, user=request.user.id)
