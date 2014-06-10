@@ -41,10 +41,10 @@
                 <h3>Du har ikke vurdert noen øl under dette arrangementet!</h3>
             {% endif %}
         {% else %}
-            {% if beers %}
+            {% if event.beers %}
             <section>
                 <h3>Velkommen til ølsmaking!</h3>
-                <p>Det er <strong>{{ beers.all|length }}</strong> øl på menyen i dag!</p>
+                <p>Det er <strong>{{ event.beers.all|length }}</strong> øl på menyen i dag!</p>
             </section>
             {% endif %}
         {% endif %}
