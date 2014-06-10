@@ -19,25 +19,29 @@
             <li class="active">Arrangementer</li>
         </ol>
         {% if user.is_authenticated %}
+            <div class="col-md-6">
             {% if latestevents  %}
-                <h4>Pågående event(s):</h4>
+                <h3>Pågående events:</h3>
                 {% for latest in latestevents %}
                     <p><a href="{{ latest.get_absolute_url }}">{{ latest.name }} ({{ latest.id }})</a></p>
                 {% endfor %}
             {% else %}
                 <h4>Ingen pågående event...</h4>
             {% endif %}
+            </div>
+            <div class="col-md-6">
             {% if events %}
-                <h4>Ferdige events:</h4>
+                <h3>Ferdige events:</h3>
                 {% for event in events %}
                 <p><a href="{{ event.get_absolute_url }}">{{ event.name }} ({{ event.id }})</a></p>
                 {% endfor %}
             {% else %}
-                <h4>Ingen eldre events</h4>
-                {% endif %}
-         {% else %}       
+                <h4>Ingen ferdige events</h4>
+            {% endif %}
+            </div>
+        {% else %}       
             <h4>Vennligst logg inn</h4>
-         {% endif %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

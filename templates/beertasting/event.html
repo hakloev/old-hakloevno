@@ -20,7 +20,8 @@
             <li class="active">{{ event.name }}</li>
         </ol>
         {% if event.finished %}
-            <a href="#" class="btn btn-md btn-primary">Resultat</a>
+            <a href="#" class="btn btn-md btn-primary btn-block">Resultat</a>
+            <hr>
             {% if ratings %}
                 <h3>Dine vurderinger:</h3>
                 {% for rating in ratings %}
