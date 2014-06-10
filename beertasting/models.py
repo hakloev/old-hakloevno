@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.db.models import permalink
 
@@ -29,11 +30,15 @@ class TastingEvent(models.Model):
     def get_absolute_url(self):
         return ('event_by_id', None, { 'id': self.id })
 
+def validate_beer_rating(rating):
+    if rating < 1 or rating > 6:
+        raise ValidationError('Karakter mellom 1 og 6..')
+
 class BeerRating(models.Model):
     beer = models.ForeignKey('beertasting.Beer')
     user = models.ForeignKey(User)
     event = models.ForeignKey('beertasting.TastingEvent')
-    rating = models.FloatField()
+    rating = models.IntegerField(validators=[validate_beer_rating])
     comment = models.TextField()
     rated = models.DateTimeField(auto_now_add=True)
 

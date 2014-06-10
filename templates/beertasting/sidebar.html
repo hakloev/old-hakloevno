@@ -7,7 +7,7 @@
             {% if event.finished %}
                 {% if beers %}
                     {% for beer in beers.all %}
-                    <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.name}} av {{ beer.brewery }} ({{ beer.id }})</a></p>
+                    <p><a href="{% url 'beer_rating' event.id beer.id %}">{{ beer.name}} av {{ beer.brewery }} ({{ beer.id }})</a></p>
                     {% endfor %}
                 {% else %}
                     <p>Ingen øl tilgjengelig..</p>
@@ -15,7 +15,7 @@
             {% else %}
                 {% if beers %}
                     {% for beer in beers.all %}
-                        <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.id }}</a></p>
+                        <p><a href="{% url 'beer_rating' event.id beer.id %}">Ølnummer: {{ beer.id }}</a></p>
                     {% endfor %}
                 {% else %}
                     <p>Ingen øl tilgjengelig..</p>

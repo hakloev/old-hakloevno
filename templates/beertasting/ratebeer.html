@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load filters %}
+
 {% block title %}
 {{ block.super }}
 &ndash; ølsmaking &ndash; rating
@@ -9,7 +11,7 @@
  <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>Ølsmaking <small>&ndash; detaljert visning</small></h1>
+                <h1>Ølsmaking <small>&ndash; {% if event.finished %}{% if rating %}{{ rating.beer }}{% else %}ølnummer {{ beerid }}{% endif %}{% else %}ølnummer {{ beerid }}{% endif %}</small></h1>
             </div>
         </div>
 </div>
@@ -28,13 +30,24 @@
                 <h4>Du ga ikke denne ølen noen karakter</h4>
             {% endif %} 
         {% else %}
-            <form class="form-horizontal" action="" method="POST">
+        <form class="form-horizontal" action="{% url 'beer_rating' event.id beerid %}" method="POST">
                 {% csrf_token %}
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-md-1 control-label" for="comment">Kommentar</label>
+                        <label class="col-md-1">Vurdering:</label>
                         <div class="col-md-12">
-                            <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5>KAN LEGGE INN BEER COMMENT I DENNE HVIS TILSTEDE</textarea>
+                            <select name="ratingvalue" id="ratingvalue">
+                                {% autoescape off %}
+                                   {{ rating.rating|print_select_form }}
+                                {% endautoescape %}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-1 control-label" for="comment">Kommentar:</label>
+                        <div class="col-md-12">
+                            <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5>{% if rating %}{{ rating.comment }}{% endif %}</textarea>
                         </div>
                     </div>
 
@@ -42,12 +55,11 @@
                 <input type="hidden" name="next" value="{{ next }}">
                 </fieldset>
             </form>
-            {% if rating %}
-                <h4>Du har gitt følgende så langt:</h4>
-                <p>{{ rating.comment }}, {{ rating.rating }}</p>
-            {% else %}
-                <h4>Gi ølen en karkter er du snill!</h4>
-            {% endif %}
+            <hr>
+                {% if rating %}
+                    <small>Sist vurdert: {{ rating.rated|date:"d.m.Y H:m" }}</small>
+                    <hr>
+                {% endif %}
             {% endif %}
     </div>
     {% include 'beertasting/sidebar.html' %}

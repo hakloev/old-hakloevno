@@ -19,21 +19,27 @@
             <li><a href="/beertasting/">Arrangementer</a></li>
             <li class="active">{{ event.name }}</li>
         </ol>
-
         {% if event.finished %}
-            <h4>STATISTIKK LINK HER</h4>
-            {% if beers %}
-                <h3>Oversikt:</h3>
-                {% for beer in beers.all %}
-                <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.name }}: {{ beer.brewery }} ({{ beer.id }})</a></p>
+            <a href="#" class="btn btn-md btn-primary">Resultat</a>
+            <!--# denne ifen skal vel bort #--!>
+            {% if ratings %}
+                <h3>Dine vurderinger:</h3>
+                {% for rating in ratings %}
+                <section>
+                    <h4>{{ rating.beer }}</h4>
+                    <p><strong>{{ rating.rating }}</strong></p>
+                    <p>{{ rating.comment }}</p>
+                </section>
                 {% endfor %}
+            {% else %}
+                <h3>Du har ikke vurdert noen øl under dette arrangementet!</h3>
             {% endif %}
         {% else %}
             {% if beers %}
-                <h3>Øl å smake på:</h3>
-                {% for beer in beers.all %}
-                    <p><a href="{% url 'beer_rating' event.id beer.id %}">Øl: {{ beer.id }}</a></p>
-                {% endfor %}
+            <section>
+                <h3>Velkommen til ølsmaking!</h3>
+                <p>Det er <strong>{{ beers.all|length }}</strong> øl på menyen i dag!</p>
+            </section>
             {% endif %}
         {% endif %}
     </div>

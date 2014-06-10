@@ -8,81 +8,14 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Beer'
-        db.create_table(u'beertasting_beer', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
-            ('ibu', self.gf('django.db.models.fields.IntegerField')()),
-            ('abv', self.gf('django.db.models.fields.FloatField')()),
-            ('style', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['beertasting.Style'])),
-            ('brewery', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['beertasting.Brewery'])),
-        ))
-        db.send_create_signal(u'beertasting', ['Beer'])
 
-        # Adding model 'TastingEvent'
-        db.create_table(u'beertasting_tastingevent', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=50)),
-            ('date', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('finished', self.gf('django.db.models.fields.BooleanField')()),
-        ))
-        db.send_create_signal(u'beertasting', ['TastingEvent'])
-
-        # Adding M2M table for field beers on 'TastingEvent'
-        m2m_table_name = db.shorten_name(u'beertasting_tastingevent_beers')
-        db.create_table(m2m_table_name, (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('tastingevent', models.ForeignKey(orm[u'beertasting.tastingevent'], null=False)),
-            ('beer', models.ForeignKey(orm[u'beertasting.beer'], null=False))
-        ))
-        db.create_unique(m2m_table_name, ['tastingevent_id', 'beer_id'])
-
-        # Adding model 'BeerRating'
-        db.create_table(u'beertasting_beerrating', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('beer', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['beertasting.Beer'])),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('event', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['beertasting.TastingEvent'])),
-            ('rating', self.gf('django.db.models.fields.FloatField')()),
-            ('comment', self.gf('django.db.models.fields.TextField')()),
-            ('rated', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-        ))
-        db.send_create_signal(u'beertasting', ['BeerRating'])
-
-        # Adding model 'Style'
-        db.create_table(u'beertasting_style', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('style', self.gf('django.db.models.fields.CharField')(max_length=50)),
-        ))
-        db.send_create_signal(u'beertasting', ['Style'])
-
-        # Adding model 'Brewery'
-        db.create_table(u'beertasting_brewery', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
-        ))
-        db.send_create_signal(u'beertasting', ['Brewery'])
-
+        # Changing field 'BeerRating.rating'
+        db.alter_column(u'beertasting_beerrating', 'rating', self.gf('django.db.models.fields.IntegerField')())
 
     def backwards(self, orm):
-        # Deleting model 'Beer'
-        db.delete_table(u'beertasting_beer')
 
-        # Deleting model 'TastingEvent'
-        db.delete_table(u'beertasting_tastingevent')
-
-        # Removing M2M table for field beers on 'TastingEvent'
-        db.delete_table(db.shorten_name(u'beertasting_tastingevent_beers'))
-
-        # Deleting model 'BeerRating'
-        db.delete_table(u'beertasting_beerrating')
-
-        # Deleting model 'Style'
-        db.delete_table(u'beertasting_style')
-
-        # Deleting model 'Brewery'
-        db.delete_table(u'beertasting_brewery')
-
+        # Changing field 'BeerRating.rating'
+        db.alter_column(u'beertasting_beerrating', 'rating', self.gf('django.db.models.fields.FloatField')())
 
     models = {
         u'auth.group': {
@@ -130,7 +63,7 @@ class Migration(SchemaMigration):
             'event': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['beertasting.TastingEvent']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'rated': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'rating': ('django.db.models.fields.FloatField', [], {}),
+            'rating': ('django.db.models.fields.IntegerField', [], {}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
         u'beertasting.brewery': {

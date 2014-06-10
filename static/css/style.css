@@ -20,3 +20,13 @@ footer {
 .page-header {
     margin-top: -25px;
 }
+
+.star-rating {
+    font-size: 0;
+    white-space: nowrap;
+    display: inline-block;
+    width: 250px;
+    height: 50px;
+    overflow:hidden;
+    position: relative;
+}
