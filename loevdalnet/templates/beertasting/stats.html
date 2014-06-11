@@ -30,12 +30,13 @@
         {% endif %}
         <h3>Resultater:</h3>
         <div class="panel panel-default">
-            <div class="panel-heading">Øl</div>
+            <div class="panel-heading">Oversikt</div>
             <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Øl</th>
+                        <th>Type</th>
                         <th>Bryggeri</th>
                         <th>ABV</th>
                         <th>IBU</th>
@@ -47,6 +48,7 @@
                         <tr>
                             <td>{{ beer.id }}</td>
                             <td>{{ beer.name }}</td>
+                            <td>{{ beer.style }}</td>
                             <td>{{ beer.brewery }}</td>
                             <td>{{ beer.abv }}</td>
                             <td>{{ beer.ibu }}</td>
