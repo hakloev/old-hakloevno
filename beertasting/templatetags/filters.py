@@ -16,3 +16,11 @@ def print_select_form(rating):
             string += '<option value="%s">%s</option>' % (x, x)
 
     return string
+
+@register.filter(name='get_average_score')
+def get_average_score(ratings, id):
+    for rating in ratings:
+        if rating['beer'] == id:
+            return "%.1f" % rating['score']
+    return 'NaN'
+

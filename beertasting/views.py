@@ -2,9 +2,10 @@
 
 from django.shortcuts import render
 from django.contrib import messages
-from models import BeerRating, TastingEvent
+from models import Beer, BeerRating, TastingEvent
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.db.models import Avg
 import datetime
 
 # Create your views here.
@@ -62,9 +63,10 @@ def beer_rating(request, eid, bid):
             new_r.save()
         messages.success(request, u'Dine stemme for øl %s ble registrert!' % (bid))
         return HttpResponseRedirect(request.path)
-    rating = None
+    rating, comments = None, None
     try: 
         rating = BeerRating.objects.get(event=eid, beer=bid, user=request.user.id)
+        comments = BeerRating.objects.filter(event=eid, beer=bid).exclude(user=request.user.id)
     except:
         pass
     
@@ -79,11 +81,26 @@ def beer_rating(request, eid, bid):
         'event': event,
         'beerid': bid,
         'rating': rating,
+        'comments': comments,
         'breadcrumbs': breadcrumbs}
     )
 
-def stats(request, eid):
-    context = {}
+def event_stats(request, eid):
     event = TastingEvent.objects.get(id=eid)
-    context['event'] = event
-    return render(request, u'beertasting/stats.html', context)
+    beers, ratings = None, None
+    if event.finished: 
+        beers = Beer.objects.filter(id__in=TastingEvent.objects.get(id=eid).beers.all()).order_by('id')
+        ratings = BeerRating.objects.filter(event=event).values('beer').annotate(score=Avg('rating'))
+    breadcrumbs = (
+            ('Arrangementer', '/beertasting/'),
+            (event.name, reverse('event_by_id', args=[eid])),
+            ('Resultater', reverse('event_stats', args=[eid])), #Do not need this...
+    )
+
+    return render(request, u'beertasting/stats.html', {
+        'request': request,
+        'event': event,
+        'beers': beers,
+        'ratings': ratings,
+        'breadcrumbs': breadcrumbs}
+    )

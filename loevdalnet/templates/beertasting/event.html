@@ -27,14 +27,14 @@
         </ol>
         {% endif %}
         {% if event.finished %}
-            <a href="#" class="btn btn-md btn-primary btn-block">Resultat</a>
+        <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-primary btn-block">Resultat</a>
             <hr>
             {% if ratings %}
                 <h3>Dine vurderinger:</h3>
                 {% for rating in ratings %}
                     <h4>{{ rating.beer }}, <strong>{{ rating.rating }}</strong></h4>
                     <div class="well well-sm">
-                        <p>{{ rating.comment }}</p>
+                        {{ rating.comment }}
                     </div>
                 {% endfor %}
             {% else %}
@@ -45,6 +45,9 @@
             <section>
                 <h3>Velkommen til ølsmaking!</h3>
                 <p>Det er <strong>{{ event.beers.all|length }}</strong> øl på menyen i dag!</p>
+                {% if ratings %}
+                <p>Du har gitt vurdering til <strong>{{ ratings|length }}</strong> øl!</p>
+                {% endif %}
             </section>
             {% endif %}
         {% endif %}

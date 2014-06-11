@@ -34,7 +34,7 @@
                     <p><a href="{{ latest.get_absolute_url }}">{{ latest.name }} ({{ latest.id }})</a></p>
                 {% endfor %}
             {% else %}
-                <h4>Ingen pågående event...</h4>
+                <h3>Ingen pågående event...</h3>
             {% endif %}
             </div>
             <div class="col-md-6">
@@ -44,7 +44,7 @@
                 <p><a href="{{ event.get_absolute_url }}">{{ event.name }} ({{ event.id }})</a></p>
                 {% endfor %}
             {% else %}
-                <h4>Ingen ferdige events</h4>
+                <h3>Ingen ferdige events...</h3>
             {% endif %}
             </div>
         {% else %}       
