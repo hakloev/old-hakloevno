@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load filters %}
+
+{% block title %}
+{{ block.super }}
+&ndash; ølsmaking &ndash; oversikt
+{% endblock %}
+
+{% block body_block %}
+ <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Ølsmaking <small>&dash; oversikt for {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
+            </div>
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        {% if breadcrumbs %}
+        <ol class="breadcrumb">
+            {% for name, link in breadcrumbs %}
+                {% if not forloop.last %}
+                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
+                {% else %}
+                    <li class="active">{{ name }}</li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        {% endif %}
+        {% if user.is_superuser %}
+        <div class="panel panel-default">
+            <div class="panel-heading">Liste:</div>
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Øl</th>
+                        <th>Bryggeri</th>
+                        <th>Type</th>
+                        <th>ABV</th>
+                        <th>IBU</th>
+                        <th>Vurderinger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for beer in beers %}
+                        <tr>
+                            <td>{{ beer.id }}</td>
+                            <td>{{ beer.name }}</a></td>
+                            <td>{{ beer.brewery }}</td>
+                            <td>{{ beer.style }}</td>
+                            <td>{{ beer.abv }}</td>
+                            <td>{{ beer.ibu }}</td>
+                            <td>{{ ratings|get_number_of_ratings:beer.id }}
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    {% else %}
+    <h3>Tilgang kun for "superuser"</h3>
+    {% endif %}
+</div>
+{% endblock %}

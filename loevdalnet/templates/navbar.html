@@ -19,7 +19,9 @@
             {% if user.is_authenticated %}
                 <p class="navbar-text">Hei, {{ user.first_name }}!</p>
                 <ul class="nav navbar-nav">
+                    {% if user.is_superuser %}
                     <li><a href="/admin/">Admin</a></li>
+                    {% endif %}
                     <li><a href="{% url 'auth_logout_next' request.path %}">Logg ut</a></li>
                 </ul>
             {% else %}

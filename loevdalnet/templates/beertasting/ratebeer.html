@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% load filters %}
+
+{% block title %}
+{{ block.super }}
+&ndash; ølsmaking &ndash; rating
+{% endblock %}
+
+{% block body_block %}
+ <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Ølsmaking <small>&ndash; {% if event.finished %}{% if rating %}{{ rating.beer }}{% else %}ølnummer {{ beerid }}{% endif %}{% else %}ølnummer {{ beerid }}{% endif %}</small></h1>
+            </div>
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        {% if breadcrumbs %}
+        <ol class="breadcrumb">
+            {% for name, link in breadcrumbs %}
+                {% if not forloop.last %}
+                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
+                {% else %}
+                    <li class="active">{{ name }}</li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        {% endif %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Weee!</strong> {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if event.finished %}
+            {% if rating %}
+                <h4>Du ga <strong>{{ rating.beer }}</strong> følgende:</h4>
+                <div class="well well-sm">
+                    <strong>{{ rating.rating }}</strong>
+                    <br/>
+                    {{ rating.comment }}
+                </div>     
+                {% if comments %}
+                <h4>Andre sa følgende om <strong>{{ rating.beer }}</strong>:</h4>
+                {% for comment in comments %}
+                    <div class="well well-sm">
+                        <strong>{{ comment.rating }}</strong>
+                        <br/>
+                        {{ comment.comment }}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            {% else %}
+                <h4>Du ga ikke denne ølen noen karakter</h4>
+            {% endif %}
+            <hr>
+        {% else %}
+        <form class="form-horizontal" action="{% url 'beer_rating' event.id beerid %}" method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-md-1">Vurdering:</label>
+                        <div class="col-md-12">
+                            <select name="ratingvalue" id="ratingvalue">
+                                {% autoescape off %}
+                                   {{ rating.rating|print_select_form }}
+                                {% endautoescape %}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-1 control-label" for="comment">Kommentar:</label>
+                        <div class="col-md-12">
+                            <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5>{% if rating %}{{ rating.comment }}{% endif %}</textarea>
+                        </div>
+                    </div>
+
+                <input class="btn btn-lg btn-success btn-block" type="submit" value="Gi vurdering"/>
+                <input type="hidden" name="next" value="{{ next }}">
+                </fieldset>
+            </form>
+            <hr>
+                {% if rating %}
+                    <small>Sist vurdert: {{ rating.rated|date:"d.m.Y H:i" }}</small>
+                    <hr>
+                {% endif %}
+            {% endif %}
+    </div>
+    {% include 'beertasting/sidebar.html' %}
+</div>
+{% endblock %}

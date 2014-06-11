@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'south',
     'blog',
     'front',
+    'beertasting',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,7 +51,7 @@ WSGI_APPLICATION = 'loevdalnet.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Oslo'
 
 USE_I18N = True
 
