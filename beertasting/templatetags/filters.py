@@ -29,4 +29,4 @@ def get_number_of_ratings(ratings, id):
     for rating in ratings:
         if rating['beer'] == id:
             return rating['total']
-    return 'NaN'
+    return 'Ingen'
