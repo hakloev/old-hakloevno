@@ -5,13 +5,13 @@ from django.contrib import messages
 from models import Beer, BeerRating, TastingEvent
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.db.models import Avg
+from django.db.models import Avg, Count
 import datetime
 
 # Create your views here.
 
 def index(request):
-    latestevents = TastingEvent.objects.filter(finished=False).order_by('id')
+    latestevents = TastingEvent.objects.filter(finished=False).order_by('-id')
     doneevents = TastingEvent.objects.filter(finished=True).order_by('-id')
     
     breadcrumbs = (
@@ -105,5 +105,23 @@ def event_stats(request, eid):
         'event': event,
         'beers': beers,
         'ratings': ratings,
+        'breadcrumbs': breadcrumbs}
+    )
+
+def event_list(request, eid):
+    beers = Beer.objects.filter(id__in=TastingEvent.objects.get(id=eid).beers.all()).order_by('id')
+    event = TastingEvent.objects.get(id=eid)
+    ratings = BeerRating.objects.filter(event=event).values('beer').annotate(total=Count('beer')) 
+    breadcrumbs = (
+            ('Arrangementer', '/beertasting/'),
+            (event.name, reverse('event_by_id', args=[eid])),
+            ('Oversikt', reverse('event_list', args=[eid])), #Do not need this...
+    )
+
+    return render(request, u'beertasting/list.html', {
+        'request': request,
+        'beers': beers,
+        'ratings': ratings,
+        'event':event,
         'breadcrumbs': breadcrumbs}
     )

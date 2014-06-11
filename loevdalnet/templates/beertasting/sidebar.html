@@ -5,7 +5,7 @@
         </div>
         <div class="panel-body">
             {% if event.finished %}
-                {% if event.beers %}
+                {% if event.beers.all|length > 1 %}
                     {% for beer in event.beers.all %}
                     <p><a href="{% url 'beer_rating' event.id beer.id %}">{{ beer.name}} fra {{ beer.brewery }} ({{ beer.id }})</a></p>
                     {% endfor %}
@@ -13,7 +13,7 @@
                     <p>Ingen øl tilgjengelig..</p>
                 {% endif %}
             {% else %}
-                {% if event.beers %}
+                {% if event.beers.all|length > 1 %}
                     {% for beer in event.beers.all %}
                         <p><a href="{% url 'beer_rating' event.id beer.id %}">Ølnummer: {{ beer.id }}</a></p>
                     {% endfor %}

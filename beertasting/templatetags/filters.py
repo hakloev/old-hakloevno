@@ -24,3 +24,9 @@ def get_average_score(ratings, id):
             return "%.1f" % rating['score']
     return 'NaN'
 
+@register.filter(name='get_number_of_ratings')
+def get_number_of_ratings(ratings, id):
+    for rating in ratings:
+        if rating['beer'] == id:
+            return rating['total']
+    return 'NaN'

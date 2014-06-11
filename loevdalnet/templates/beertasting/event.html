@@ -26,6 +26,9 @@
             {% endfor %}
         </ol>
         {% endif %}
+        {% if user.is_superuser %}
+        <a href="{% url 'event_list' event.id %}" class="btn btn-md btn-success btn-block">Liste</a>
+        {% endif %}
         {% if event.finished %}
         <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-primary btn-block">Resultat</a>
             <hr>
