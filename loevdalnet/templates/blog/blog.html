@@ -11,7 +11,7 @@
             <div class="page-header">
                 <h1>Innlegg <small>&dash; weee</small></h1>
                 {% if user.is_superuser %}
-                <a href="/blog/newpost/" class="btn btn-sm btn-primary">Skriv nytt innlegg</a> 
+                <a href="/blog/newpost/" class="btn btn-md btn-block btn-primary">Skriv nytt innlegg</a> 
                 {% endif %}
             </div>
                 {% if posts %}
@@ -20,7 +20,7 @@
                            <div class="post">
                                <h2><a href={{ post.get_absolute_url }}>{{ post.title }}</a><small> {{ post.posted|date:'d.m.Y' }}</small></h2>
                                <div class="well">
-                                   <p>{{ post.ingress|safe }}</p>
+                                   {{ post.ingress|safe }}
                                </div>
                            </div>
                        {% endfor %}
@@ -28,6 +28,7 @@
                 {% else %}
                     <h3>Ingen har skrevet noe i denne bloggen..</h3>
                 {% endif %}
-    </div>
+        </div>
+        {% include 'sidebar.html' %}
 </div>
 {% endblock %}

@@ -14,11 +14,10 @@
         <header>
             {% include 'navbar.html' %}
         </header>
+        {% block header_block %}
+        {% endblock %}
         <div class="container">
-            {% block header_block %}
-            {% endblock %}
             {% block body_block %}
-
             {% endblock %}
             <hr>
             <footer>
