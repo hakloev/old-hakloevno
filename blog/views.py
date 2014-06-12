@@ -8,7 +8,7 @@ def index(request):
     context = {}
     context['request'] = request
     context['categories'] = Category.objects.all()
-    context['posts'] = Blogpost.objects.order_by('-posted')
+    context['posts'] = Blogpost.objects.all().order_by('-posted')
     return render(request, u'blog/blog.html', context)
 
 def newpost(request):

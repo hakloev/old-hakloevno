@@ -5,34 +5,37 @@
 &ndash; hjem
 {% endblock %}
 
-{% block picture_block %}
-    <div class="picture-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="tagline">Tagline skal være her</h1>
-                </div>
-            </div>
+{% block header_block %}
+<div class="pageheader">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="jumbotron">
+                <h1>loevdal.net</h1>
+                <p>woopedy woop</p>
+            </section>
         </div>
     </div>
+</div>
 {% endblock %}
 
-{% block body_block %}
-{% if posts %}
-    <div class="row">
-        {% for post in posts %}
-            <div class="col-md-4">
-                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-                <p>{{ post.ingress }}</p>     
-                <small>{{ post.posted|date:"d.m.Y" }}</small>
-            </div>
-        {% endfor %}
-    </div>
-{% else %}
-    <div class="jumbotron">
-        <h1>Det er jo ikke skrevet noe innlegg...</h1>
-        <p>Må skjerpe meg og sette igang...</p>
-    </div>
-{% endif %}
 
+
+{% block body_block %}
+<div class ="row">
+    <div class="col-md-8">
+        {% if post %}
+        <section class="blogpost">
+            <h1>{{ post.title }}</h1>
+            <small>{{ post.posted|date:"d.m.Y" }}</small>
+            <p>{{ post.ingress }}</p> 
+            {{ post.text|safe }}
+        </section>     
+        {% else %}
+        <div class="jumbotron">
+            <h1>Det er jo ikke skrevet noe innlegg...</h1>
+            <p>Må skjerpe meg og sette igang...</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

@@ -14,10 +14,9 @@
         <header>
             {% include 'navbar.html' %}
         </header>
-        {% block picture_block %}
-        {% endblock %}
         <div class="container">
-            <hr>  
+            {% block header_block %}
+            {% endblock %}
             {% block body_block %}
 
             {% endblock %}

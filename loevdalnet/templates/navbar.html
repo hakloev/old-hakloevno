@@ -22,12 +22,26 @@
                     {% if user.is_superuser %}
                     <li><a href="/admin/">Admin</a></li>
                     {% endif %}
-                    <li><a href="{% url 'auth_logout_next' request.path %}">Logg ut</a></li>
+                    <li>
+                    <form class="navbar-form" action="{% url 'auth_logout_next' request.path %}">
+                        <button class="btn btn-danger" type="submit">Logg ut</button>
+                    </form>    
+                    </li>
                 </ul>
+                   
             {% else %}
-                <ul class="nav navbar-nav">
-                    <li><a href="/accounts/login/?next={{ request.path }}">Logg inn</a></li>
-                </ul>
+            <form class="navbar-form" action="{% url 'django.contrib.auth.views.login' %}?next={{ request.path }}" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Brukernavn" name="username" type="text" size="12">   
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Passord" name="password" type="password" value="" size="12">   
+                    </div>
+                    <button class="btn btn-primary" type="sumbit">Logg Inn</button>
+                </fieldset>
+            </form>
             {% endif %}
             </div>
         </div><!--/.nav-collapse -->
