@@ -7,6 +7,12 @@ header {
     border-radius: 0px;
 }
 
+.pageheader {
+    height: 250px;
+    background: url(/static/images/jotun.jpg) center center no-repeat;
+    background-size: cover;
+}
+
 .pageheader .jumbotron {
     margin-bottom: 0px;
 }
