@@ -1,3 +1,27 @@
 <div class="col-md-4">
-    <h1> derp </h1>
+    <div class="sidebar">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                {% if user.is_authenticated %}
+                <div id="apps">
+                    <h2>Apps</h2>
+                    <ul>
+                        <li><a href="/beertasting/">Ølsmaking</a></li>
+                    </ul>
+                {% endif %}
+                <div id="recentpost">
+                    <h2>Siste poster</h2>
+                    <ul>
+                        <li>test</li>
+                    </ul>
+                </div>
+                <div id="archive">
+                    <h2>Arkiv</h2>
+                    <ul>
+                        <li>test</li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </div>
 </div>

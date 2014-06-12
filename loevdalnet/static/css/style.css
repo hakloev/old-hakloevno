@@ -3,10 +3,16 @@ header {
     vertical-align: middle;
 }
 
-.picture-header {
-    height: 400px;
-    background: url(/static/images/picture-header.png) center center no-repeat;
-    background-size: cover;
+.page-header {
+    margin-top: 0px;
+}
+
+.sidebar {
+    margin-top: 20px;
+}
+
+.sidebar h2 {
+    margin-top: 0px;
 }
 
 footer {

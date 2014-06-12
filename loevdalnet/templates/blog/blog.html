@@ -9,7 +9,7 @@
  <div class="row">
         <div class="col-md-8">
             <div class="page-header">
-                <h1>Innlegg <small>&dash; weee</small></h1>
+                <h1>Innlegg</h1>
                 {% if user.is_superuser %}
                 <a href="/blog/newpost/" class="btn btn-md btn-block btn-primary">Skriv nytt innlegg</a> 
                 {% endif %}
@@ -18,10 +18,11 @@
                     <section class="main">
                         {% for post in posts %}
                            <div class="post">
-                               <h2><a href={{ post.get_absolute_url }}>{{ post.title }}</a><small> {{ post.posted|date:'d.m.Y' }}</small></h2>
+                               <h2>{{ post.title }}<small> {{ post.posted|date:'d.m.Y' }}</small></h2>
                                <div class="well">
                                    {{ post.ingress|safe }}
                                </div>
+                               <a class="btn btn-primary" href="{{ post.get_absolute_url }}">Les mer</a>
                            </div>
                        {% endfor %}
                    </section>
