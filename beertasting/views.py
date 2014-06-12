@@ -29,7 +29,6 @@ def event_by_id(request, id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/') #TODO: fix redirect to unauthorized
     event = TastingEvent.objects.get(id=id)
-    # Ratings does only show when event is finished. Check for that in view for optimalization?
     ratings = BeerRating.objects.filter(event=id, user_id=request.user.id)
     
     breadcrumbs = (
@@ -48,7 +47,7 @@ def beer_rating(request, eid, bid):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/') #TODO: fix redirect to unauthorized
     event = TastingEvent.objects.get(id=eid)
-    
+    ratings = BeerRating.objects.filter(event=eid, user_id=request.user.id)
     if request.method == "POST":
         rating = request.POST['ratingvalue']
         comment = request.POST['comment']
@@ -81,6 +80,7 @@ def beer_rating(request, eid, bid):
         'event': event,
         'beerid': bid,
         'rating': rating,
+        'ratings': ratings,
         'comments': comments,
         'breadcrumbs': breadcrumbs}
     )

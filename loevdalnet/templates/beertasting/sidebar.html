@@ -1,3 +1,5 @@
+{% load filters %}
+
 <div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -15,7 +17,9 @@
             {% else %}
                 {% if event.beers.all|length > 1 %}
                     {% for beer in event.beers.all %}
-                        <p><a href="{% url 'beer_rating' event.id beer.id %}">Ølnummer: {{ beer.id }}</a></p>
+                        {% autoescape off %}
+                        <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'beer_rating' event.id beer.id %}">Ølnummer {{ beer.id }}</a></p>
+                        {% endautoescape %}
                     {% endfor %}
                 {% else %}
                     <p>Ingen øl tilgjengelig..</p>
