@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,13 +22,14 @@
                     {% if user.is_superuser %}
                     <li><a href="/admin/">Admin</a></li>
                     {% endif %}
-                    <li>
-                    <form class="navbar-form" action="{% url 'auth_logout_next' request.path %}">
-                        <button class="btn btn-danger" type="submit">Logg ut</button>
-                    </form>    
-                    </li>
                 </ul>
-                   
+                <form class="navbar-form navbar-right" action="{% url 'auth_logout_next' request.path %}">
+                    <fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-danger" type="submit">Logg ut</button>
+                        </div>    
+                    </fieldset>
+                </form>    
             {% else %}
             <form class="navbar-form" action="{% url 'django.contrib.auth.views.login' %}?next={{ request.path }}" method="post">
                 {% csrf_token %}

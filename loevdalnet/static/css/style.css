@@ -1,6 +1,14 @@
 header {
-    margin-bottom: 50px; /* height of navbar++ */
+    margin-bottom: 20px; 
     vertical-align: middle;
+}
+
+.navbar {
+    border-radius: 0px;
+}
+
+.pageheader .jumbotron {
+    margin-bottom: 0px;
 }
 
 .page-header {

@@ -11,11 +11,12 @@
         <title>{% block title  %}loevdal.net {% endblock %}</title>
     </head>
     <body>
+        {% block header_block %}
+        {% endblock %}
         <header>
             {% include 'navbar.html' %}
         </header>
-        {% block header_block %}
-        {% endblock %}
+
         <div class="container">
             {% block body_block %}
             {% endblock %}
