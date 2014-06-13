@@ -15,7 +15,7 @@ class Beer(models.Model):
     brewery = models.ForeignKey('beertasting.Brewery')
 
     def __unicode__(self):
-        return (u'%s fra %s (%s)' % (self.name, self.brewery, self.id))
+        return (u'%s fra %s' % (self.name, self.brewery))
 
 class TastingEvent(models.Model):
     name = models.CharField(max_length=50, blank=False, unique=True)

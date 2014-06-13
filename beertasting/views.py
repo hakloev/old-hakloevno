@@ -72,7 +72,7 @@ def beer_rating(request, eid, bid):
     breadcrumbs = (
             ('Arrangementer', '/beertasting/'),
             (event.name, reverse('event_by_id', args=[event.id])),
-            (u'Øl %s' % (bid), reverse('beer_rating', args=[event.id, bid])),
+            (u'Vurdering', reverse('beer_rating', args=[event.id, bid])),
     )
 
     return render(request, u'beertasting/ratebeer.html', {

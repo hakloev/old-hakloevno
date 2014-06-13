@@ -9,7 +9,7 @@
             {% if event.finished %}
                 {% if event.beers.all|length > 1 %}
                     {% for beer in event.beers.all %}
-                    <p><a href="{% url 'beer_rating' event.id beer.id %}">{{ beer.name}} fra {{ beer.brewery }} ({{ beer.id }})</a></p>
+                    <p><a href="{% url 'beer_rating' event.id beer.id %}">{{ beer.name}} fra {{ beer.brewery }}</a></p>
                     {% endfor %}
                 {% else %}
                     <p>Ingen øl tilgjengelig..</p>
@@ -18,7 +18,7 @@
                 {% if event.beers.all|length > 1 %}
                     {% for beer in event.beers.all %}
                         {% autoescape off %}
-                        <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'beer_rating' event.id beer.id %}">Ølnummer {{ beer.id }}</a></p>
+                        <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'beer_rating' event.id beer.id %}">Ølnummer {{ forloop.counter }}{% if user.is_superuser %} (ID: {{ beer.id }}){% endif %}</a></p>
                         {% endautoescape %}
                     {% endfor %}
                 {% else %}
