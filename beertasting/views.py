@@ -66,7 +66,7 @@ def beer_rating(request, eid, code):
     rating, comments = None, None
     try: 
         rating = BeerRating.objects.get(event=eid, beer_id=bid, user=request.user.id)
-        comments = BeerRating.objects.filter(event=eid, beer_id=id).exclude(user=request.user.id)
+        comments = BeerRating.objects.filter(event=eid, beer_id=bid).exclude(user=request.user.id)
     except:
         pass
     
