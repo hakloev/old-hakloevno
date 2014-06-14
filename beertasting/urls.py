@@ -8,7 +8,7 @@ urlpatterns = patterns('',
 
     url(r'^$', index),
     url(r'event(?P<id>[0-9]+)/$', event_by_id, name="event_by_id"),
-    url(r'event(?P<eid>[0-9]+)/beer(?P<bid>[0-9]+)/$', beer_rating, name="beer_rating"),
+    url(r'event(?P<eid>[0-9]+)/beer/(?P<code>[a-z0-9]+)/$', beer_rating, name="beer_rating"),
     url(r'event(?P<eid>[0-9]+)/stats/$', event_stats, name="event_stats"),
     url(r'event(?P<eid>[0-9]+)/list/$', event_list, name="event_list"),
     #url(r'^newpost/$', newpost),

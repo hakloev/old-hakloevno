@@ -9,8 +9,9 @@ import hashlib
 # Create your models here.
 
 def createHash(name, brewery):
-    string = name + str(brewery)
-    return hashlib.md5(string).hexdigest()[-5:-1]
+    string = name + brewery
+    str_to_hash = string.encode('utf-8') 
+    return hashlib.md5(str_to_hash).hexdigest()[-5:-1]
 
 class Beer(models.Model):
     name = models.CharField(max_length=50)
@@ -21,7 +22,7 @@ class Beer(models.Model):
     code = models.CharField(max_length=50, blank=True)
 
     def save(self):
-        self.code = createHash(self.name, self.brewery)
+        self.code = createHash(self.name, self.brewery.name)
         super(Beer, self).save()
 
     def __unicode__(self):

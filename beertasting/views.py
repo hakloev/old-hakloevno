@@ -43,11 +43,12 @@ def event_by_id(request, id):
         'breadcrumbs':breadcrumbs}
     )
 
-def beer_rating(request, eid, bid):
+def beer_rating(request, eid, code):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/') #TODO: fix redirect to unauthorized
     event = TastingEvent.objects.get(id=eid)
     ratings = BeerRating.objects.filter(event=eid, user_id=request.user.id)
+    bid = Beer.objects.get(code=code).id
     if request.method == "POST":
         rating = request.POST['ratingvalue']
         comment = request.POST['comment']
@@ -60,25 +61,25 @@ def beer_rating(request, eid, bid):
         except:
             new_r = BeerRating(user=request.user, beer_id=bid, event_id=eid, rating=rating, comment=comment )
             new_r.save()
-        messages.success(request, u'Dine stemme for øl %s ble registrert!' % (bid))
+        messages.success(request, u'Dine stemme for øl %s ble registrert!' % (code))
         return HttpResponseRedirect(request.path)
     rating, comments = None, None
     try: 
-        rating = BeerRating.objects.get(event=eid, beer=bid, user=request.user.id)
-        comments = BeerRating.objects.filter(event=eid, beer=bid).exclude(user=request.user.id)
+        rating = BeerRating.objects.get(event=eid, beer_id=bid, user=request.user.id)
+        comments = BeerRating.objects.filter(event=eid, beer_id=id).exclude(user=request.user.id)
     except:
         pass
     
     breadcrumbs = (
             ('Arrangementer', '/beertasting/'),
             (event.name, reverse('event_by_id', args=[event.id])),
-            (u'Vurdering', reverse('beer_rating', args=[event.id, bid])),
+            (u'Ølkode %s' % (code), reverse('beer_rating', args=[event.id, code])),
     )
 
     return render(request, u'beertasting/ratebeer.html', {
         'request': request,
         'event': event,
-        'beerid': bid,
+        'beerid': code,
         'rating': rating,
         'ratings': ratings,
         'comments': comments,
