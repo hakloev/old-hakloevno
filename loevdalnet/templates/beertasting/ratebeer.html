@@ -40,15 +40,17 @@
             {% if rating %}
                 <h4>Du ga <strong>{{ rating.beer }}</strong> følgende:</h4>
                 <div class="well well-sm">
-                    <strong>{{ rating.rating }}</strong>
+                    Karakter: <strong>{{ rating.rating }}</strong>
+                    <br/>
                     <br/>
                     {{ rating.comment }}
                 </div>     
                 {% if comments %}
-                <h4>Andre sa følgende om <strong>{{ rating.beer }}</strong>:</h4>
+                <h4>Andre sa følgende:</h4>
                 {% for comment in comments %}
                     <div class="well well-sm">
-                        <strong>{{ comment.rating }}</strong>
+                        Karakter: <strong>{{ comment.rating }}</strong>
+                        <br/>
                         <br/>
                         {{ comment.comment }}
                     </div>

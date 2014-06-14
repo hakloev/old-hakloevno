@@ -35,7 +35,8 @@
             {% if ratings %}
                 <h3>Dine vurderinger:</h3>
                 {% for rating in ratings %}
-                    <h4>{{ rating.beer }}, <strong>{{ rating.rating }}</strong></h4>
+                    <h4>{{ rating.beer }}</h4>
+                    <h5>Karakter: <strong>{{ rating.rating }}</strong></h5>
                     <div class="well well-sm">
                         {{ rating.comment }}
                     </div>

@@ -48,7 +48,7 @@
                     {% for beer in beers %}
                         <tr>
                             <td>{{ beer.id }}</td>
-                            <td><a href="{% url 'beer_rating' event.id beer.id %}">{{ beer.name }}</a></td>
+                            <td><a href="{% url 'beer_rating' event.id beer.code %}">{{ beer.name }}</a></td>
                             <td><strong>{{ ratings|get_average_score:beer.id }}</strong></td>
                             <td>{{ beer.brewery }}</td>
                             <td>{{ beer.style }}</td>
