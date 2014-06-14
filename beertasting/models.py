@@ -11,7 +11,7 @@ import hashlib
 def createHash(name, brewery):
     string = name + brewery
     str_to_hash = string.encode('utf-8') 
-    return hashlib.md5(str_to_hash).hexdigest()[-5:-1]
+    return hashlib.md5(str_to_hash).hexdigest()[-4:]
 
 class Beer(models.Model):
     name = models.CharField(max_length=50)
