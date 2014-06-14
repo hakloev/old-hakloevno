@@ -4,8 +4,13 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.db.models import permalink
+import hashlib
 
 # Create your models here.
+
+def createHash(name, brewery):
+    string = name + str(brewery)
+    return hashlib.md5(string).hexdigest()[-5:-1]
 
 class Beer(models.Model):
     name = models.CharField(max_length=50)
@@ -13,6 +18,11 @@ class Beer(models.Model):
     abv = models.FloatField()
     style = models.ForeignKey('beertasting.Style')
     brewery = models.ForeignKey('beertasting.Brewery')
+    code = models.CharField(max_length=50, blank=True)
+
+    def save(self):
+        self.code = createHash(self.name, self.brewery)
+        super(Beer, self).save()
 
     def __unicode__(self):
         return (u'%s fra %s' % (self.name, self.brewery))

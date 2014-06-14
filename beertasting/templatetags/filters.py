@@ -1,4 +1,5 @@
 from django import template
+import random
 
 register = template.Library()
 
@@ -37,3 +38,9 @@ def print_rating_icon(ratings, id):
         if rating.beer.id == id:
             return '<span class="glyphicon glyphicon-ok"></span>'
     return '<span class="glyphicon glyphicon-remove"></span>'
+
+@register.filter(name='shuffle_beers')
+def shuffle_beers(arg):
+    beers = list(arg[:])
+    random.shuffle(beers)
+    return beers

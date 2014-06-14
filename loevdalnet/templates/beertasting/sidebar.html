@@ -16,9 +16,9 @@
                 {% endif %}
             {% else %}
                 {% if event.beers.all|length > 1 %}
-                    {% for beer in event.beers.all %}
+                    {% for beer in event.beers.all|shuffle_beers %}
                         {% autoescape off %}
-                        <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'beer_rating' event.id beer.id %}">Ølnummer {{ forloop.counter }}{% if user.is_superuser %} (ID: {{ beer.id }}){% endif %}</a></p>
+                        <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'beer_rating' event.id beer.id %}">Ølkode {{ beer.code }}</a></p>
                         {% endautoescape %}
                     {% endfor %}
                 {% else %}

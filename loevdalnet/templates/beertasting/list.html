@@ -41,6 +41,7 @@
                         <th>Type</th>
                         <th>ABV</th>
                         <th>IBU</th>
+                        <th>Kode</th>
                         <th>Vurderinger</th>
                     </tr>
                 </thead>
@@ -53,6 +54,7 @@
                             <td>{{ beer.style }}</td>
                             <td>{{ beer.abv }}</td>
                             <td>{{ beer.ibu }}</td>
+                            <td>{{ beer.code }}</td>
                             <td>{{ ratings|get_number_of_ratings:beer.id }}
                         </tr>
                         {% endfor %}
