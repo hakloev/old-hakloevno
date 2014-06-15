@@ -26,30 +26,26 @@
             {% endfor %}
         </ol>
         {% endif %}
-        {% if user.is_authenticated %}
-            <div class="col-md-6">
-            {% if latestevents  %}
-                <h3><span class="glyphicon glyphicon-glass"></span> &ndash; Pågående:</h3>
-                {% for latest in latestevents %}
-                <p><a href="{{ latest.get_absolute_url }}">{{ latest.name }} ({{ latest.id }})</a></p>
-                {% endfor %}
-            {% else %}
-                <h3>Ingen pågående arrangement...</h3>
-            {% endif %}
-            </div>
-            <div class="col-md-6">
-            {% if doneevents %}
-                <h3><span class="glyphicon glyphicon-calendar"></span> &ndash; Ferdige:</h3>
-                {% for event in doneevents %}
-                <p><a href="{{ event.get_absolute_url }}">{{ event.name }} ({{ event.id }})</a></p>
-                {% endfor %}
-            {% else %}
-                <h3>Ingen ferdige arrangement...</h3>
-            {% endif %}
-            </div>
-        {% else %}       
-            <h4>Vennligst logg inn</h4>
+        <div class="col-md-6">
+        {% if latestevents  %}
+            <h3><span class="glyphicon glyphicon-glass"></span> &ndash; Pågående:</h3>
+            {% for latest in latestevents %}
+            <p><a href="{{ latest.get_absolute_url }}">{{ latest.name }} ({{ latest.id }})</a></p>
+            {% endfor %}
+        {% else %}
+            <h3>Ingen pågående arrangement...</h3>
         {% endif %}
+        </div>
+        <div class="col-md-6">
+        {% if doneevents %}
+            <h3><span class="glyphicon glyphicon-calendar"></span> &ndash; Ferdige:</h3>
+            {% for event in doneevents %}
+            <p><a href="{{ event.get_absolute_url }}">{{ event.name }} ({{ event.id }})</a></p>
+            {% endfor %}
+        {% else %}
+            <h3>Ingen ferdige arrangement...</h3>
+        {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

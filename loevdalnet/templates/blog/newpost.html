@@ -7,7 +7,7 @@
 
 {% block body_block %}
 {{ block.super }}
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <div class="row">
     <div class="col-md-8">
         <div class="page-header">
@@ -61,6 +61,6 @@
     {% include 'sidebar.html' %}
 </div>
 {% else %}
-    <h1>IKKE TILGANG</h1>
+    <h1>Kun superbrukere har tilgang</h1>
 {% endif %}
 {% endblock %}

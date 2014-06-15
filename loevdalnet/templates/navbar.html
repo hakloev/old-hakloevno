@@ -23,7 +23,7 @@
                     <li><a href="/admin/">Admin</a></li>
                     {% endif %}
                 </ul>
-                <form class="navbar-form navbar-right" action="{% url 'auth_logout_next' request.path %}">
+                <form class="navbar-form navbar-right" action="{% url 'auth_logout' '/' %}">
                     <fieldset>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">Logg ut</button>

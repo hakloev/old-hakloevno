@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from blog.models import Blogpost, Category
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -11,6 +12,7 @@ def index(request):
     context['posts'] = Blogpost.objects.all().order_by('-posted')
     return render(request, u'blog/blog.html', context)
 
+@login_required
 def newpost(request):
     context = {}
     if request.method == "POST":

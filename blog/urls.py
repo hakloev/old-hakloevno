@@ -7,6 +7,6 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', index),
-    url(r'^newpost/$', newpost),
+    url(r'^new/$', newpost, name='newpost'),
     url(r'^posts/(?P<slug>[-a-zA-Z0-9]+)/$', post_by_slug, name='post_by_slug'),
 )

@@ -2,10 +2,12 @@
 
 from django.shortcuts import render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from models import Beer, BeerRating, TastingEvent
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.db.models import Avg, Count
+
 import datetime
 
 # Create your views here.
@@ -25,9 +27,8 @@ def index(request):
         'doneevents': doneevents}
     )
 
+@login_required
 def event_by_id(request, id):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/') #TODO: fix redirect to unauthorized
     event = TastingEvent.objects.get(id=id)
     ratings = BeerRating.objects.filter(event=id, user_id=request.user.id)
     
@@ -43,9 +44,8 @@ def event_by_id(request, id):
         'breadcrumbs':breadcrumbs}
     )
 
+@login_required
 def beer_rating(request, eid, code):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/') #TODO: fix redirect to unauthorized
     event = TastingEvent.objects.get(id=eid)
     ratings = BeerRating.objects.filter(event=eid, user_id=request.user.id)
     bid = Beer.objects.get(code=code).id
@@ -86,6 +86,7 @@ def beer_rating(request, eid, code):
         'breadcrumbs': breadcrumbs}
     )
 
+@login_required
 def event_stats(request, eid):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/') #TODO: fix redirect to unauthorized
@@ -109,6 +110,7 @@ def event_stats(request, eid):
         'breadcrumbs': breadcrumbs}
     )
 
+@login_required
 def event_list(request, eid):
     beers = Beer.objects.filter(id__in=TastingEvent.objects.get(id=eid).beers.all()).order_by('id')
     event = TastingEvent.objects.get(id=eid)
