@@ -88,9 +88,6 @@ def beer_rating(request, eid, code):
 
 @login_required
 def event_stats(request, eid):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/') #TODO: fix redirect to unauthorized
-    
     event = TastingEvent.objects.get(id=eid)
     beers, ratings = None, None
     if event.finished: 
