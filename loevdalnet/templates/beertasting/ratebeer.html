@@ -43,7 +43,11 @@
                     Karakter: <strong>{{ rating.rating }}</strong>
                     <br/>
                     <br/>
+                    {% if rating.comment|length < 1 %}
+                    <strong>Du ga ingen kommentar</strong>
+                    {% else %}
                     {{ rating.comment }}
+                    {% endif %}
                 </div>     
                 {% if comments %}
                 <h4>Andre sa følgende:</h4>

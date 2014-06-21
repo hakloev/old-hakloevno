@@ -28,9 +28,9 @@
         {% endif %}
         <div class="col-md-6">
         {% if latestevents  %}
-            <h3><span class="glyphicon glyphicon-glass"></span> &ndash; Pågående:</h3>
+        <h3><span class="glyphicon glyphicon-glass"></span> &ndash; Pågående: <small>{{ latestevents.count }} arrangement</small></h3>
             {% for latest in latestevents %}
-            <p><a href="{{ latest.get_absolute_url }}">{{ latest.name }} ({{ latest.id }})</a></p>
+            <p><a href="{{ latest.get_absolute_url }}">{{ latest.name }}</a> &ndash; {{ latest.beers.count }} øl</p>
             {% endfor %}
         {% else %}
             <h3>Ingen pågående arrangement...</h3>
@@ -38,9 +38,9 @@
         </div>
         <div class="col-md-6">
         {% if doneevents %}
-            <h3><span class="glyphicon glyphicon-calendar"></span> &ndash; Ferdige:</h3>
+        <h3><span class="glyphicon glyphicon-calendar"></span> &ndash; Ferdige: <small>{{ doneevents.count }} arrangement</small></h3>
             {% for event in doneevents %}
-            <p><a href="{{ event.get_absolute_url }}">{{ event.name }} ({{ event.id }})</a></p>
+            <p><a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash; {{ event.beers.count }} øl</p>
             {% endfor %}
         {% else %}
             <h3>Ingen ferdige arrangement...</h3>
