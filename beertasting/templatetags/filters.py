@@ -10,7 +10,7 @@ def print_select_form(rating):
     except:
         rating = 1
     string = ""
-    for x in range(1,7):
+    for x in range(1,11):
         if x == rating:
             string += '<option value="%s" selected>%s</option>' % (x, x)
         else:
@@ -22,7 +22,7 @@ def print_select_form(rating):
 def get_average_score(ratings, id):
     for rating in ratings:
         if rating['beer'] == id:
-            return "%.1f" % rating['score']
+            return "%.2f" % rating['score']
     return 'NaN'
 
 @register.filter(name='get_number_of_ratings')
