@@ -14,26 +14,25 @@
         </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         {% if breadcrumbs %}
-        <ol class="breadcrumb">
-            {% for name, link in breadcrumbs %}
-                {% if not forloop.last %}
-                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
-                {% else %}
-                    <li class="active">{{ name }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
-        {% endif %}
-        {% if user.is_superuser %}
-        <a href="{% url 'event_list' event.id %}" class="btn btn-md btn-success btn-block">Liste</a>
-        {% endif %}
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li class="active"><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li class="active">{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+       {% endif %}
+   </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
         {% if event.finished %}
-        <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-primary btn-block">Resultat</a>
-            <hr>
             {% if ratings %}
-                <h3>Dine vurderinger:</h3>
+                <h3 class="ratingheader">Dine vurderinger:</h3>
                 {% for rating in ratings %}
                     <h4>{{ rating.beer }}:</h4>
                     <div class="well well-sm">
@@ -49,7 +48,7 @@
         {% else %}
             {% if event.beers %}
             <section>
-                <h3>Velkommen til ølsmaking!</h3>
+                <h3 class="ratingheader">Velkommen til ølsmaking!</h3>
                 <p>Det er <strong>{{ event.beers.all|length }}</strong> øl på menyen i dag.</p>
                 {% if ratings %}
                 <p>Du har gitt vurdering til <strong>{{ ratings|length }}</strong> øl.</p>
@@ -57,7 +56,6 @@
             </section>
             {% endif %}
         {% endif %}
-        <hr>
     </div>
     {% include 'beertasting/sidebar.html' %}
 </div>

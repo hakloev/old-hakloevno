@@ -18,6 +18,15 @@ def print_select_form(rating):
 
     return string
 
+@register.filter(name='print_beer_info')
+def print_beer_info(beers, id):
+    string = ""
+    for beer in beers:
+        if beer.id == id:
+            string += '<td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>' % (beer.name, beer.brewery, beer.style, beer.abv, beer.ibu)
+    return string
+            
+
 @register.filter(name='get_average_score')
 def get_average_score(ratings, id):
     for rating in ratings:

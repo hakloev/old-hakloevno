@@ -14,9 +14,9 @@
                 <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
             </div>
         </div>
-</div>
+    </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         {% if breadcrumbs %}
         <ol class="breadcrumb">
             {% for name, link in breadcrumbs %}
@@ -28,37 +28,37 @@
             {% endfor %}
         </ol>
         {% endif %}
-        <h3>Resultater:</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <h3 class="ratingheader">Resultater:</h3>
         <div class="panel panel-default">
             <div class="panel-heading">Oversikt</div>
-            <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Øl</th>
-                        <th>Snitt</th>
-                        <th>Bryggeri</th>
-                        <th>Type</th>
-                        <th>ABV</th>
-                        <th>IBU</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for beer in beers %}
+                <div class="table-responsive">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>{{ beer.id }}</td>
-                            <td><a href="{% url 'beer_rating' event.id beer.code %}">{{ beer.name }}</a></td>
-                            <td><strong>{{ ratings|get_average_score:beer.id }}</strong></td>
-                            <td>{{ beer.brewery }}</td>
-                            <td>{{ beer.style }}</td>
-                            <td>{{ beer.abv }}</td>
-                            <td>{{ beer.ibu }}</td>
+                            <th>Snitt</th>
+                            <th>Øl</th>
+                            <th>Bryggeri</th>
+                            <th>Type</th>
+                            <th>ABV</th>
+                            <th>IBU</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {% for rating in ratings %}
+                            <tr>
+                                <td><strong>{{ rating.score|floatformat:2 }}</strong></td>
+                                {% autoescape off %}
+                                    {{ beers|print_beer_info:rating.beer }}
+                                {% endautoescape %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     {% include 'beertasting/sidebar.html' %}
