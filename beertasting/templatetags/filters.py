@@ -25,14 +25,6 @@ def print_beer_info(beers, id):
         if beer.id == id:
             string += '<td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>' % (beer.name, beer.brewery, beer.style, beer.abv, beer.ibu)
     return string
-            
-
-@register.filter(name='get_average_score')
-def get_average_score(ratings, id):
-    for rating in ratings:
-        if rating['beer'] == id:
-            return "%.2f" % rating['score']
-    return 'NaN'
 
 @register.filter(name='get_number_of_ratings')
 def get_number_of_ratings(ratings, id):
