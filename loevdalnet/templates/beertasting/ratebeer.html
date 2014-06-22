@@ -16,7 +16,7 @@
         </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         {% if breadcrumbs %}
         <ol class="breadcrumb">
             {% for name, link in breadcrumbs %}
@@ -28,6 +28,11 @@
             {% endfor %}
         </ol>
         {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-success alert-dismissable">
@@ -38,9 +43,9 @@
         {% endif %}
         {% if event.finished %}
             {% if rating %}
-                <h4>Du ga <strong>{{ rating.beer }}</strong> følgende:</h4>
+                <h4 class="ratingheader">Du ga <strong>{{ rating.beer }}</strong> følgende:</h4>
                 <div class="well well-sm">
-                    Karakter: <strong>{{ rating.rating }}</strong>
+                    Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
                     <br/>
                     <br/>
                     {% if rating.comment|length < 1 %}
@@ -53,7 +58,7 @@
                 <h4>Andre sa følgende:</h4>
                 {% for comment in comments %}
                     <div class="well well-sm">
-                        Karakter: <strong>{{ comment.rating }}</strong>
+                        Karakter: <strong>{{ comment.rating|floatformat:0 }}</strong>
                         <br/>
                         <br/>
                         {{ comment.comment }}
@@ -63,7 +68,6 @@
             {% else %}
                 <h4>Du ga ikke denne ølen noen karakter</h4>
             {% endif %}
-            <hr>
         {% else %}
         <form class="form-horizontal" action="{% url 'beer_rating' event.id beerid %}" method="POST">
                 {% csrf_token %}
@@ -82,7 +86,7 @@
                     <div class="form-group">
                         <label class="col-md-1 control-label" for="comment">Kommentar:</label>
                         <div class="col-md-12">
-                            <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5>{% if rating %}{{ rating.comment }}{% endif %}</textarea>
+                            <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5 {% if rating %}readonly>{{ rating.comment }}{% else %}>{% endif %}</textarea>
                         </div>
                     </div>
 
@@ -93,7 +97,6 @@
             <hr>
                 {% if rating %}
                     <small>Sist vurdert: {{ rating.rated|date:"d.m.Y H:i" }}</small>
-                    <hr>
                 {% endif %}
             {% endif %}
     </div>

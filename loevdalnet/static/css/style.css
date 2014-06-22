@@ -34,6 +34,18 @@ header {
     margin: 0 auto 0 auto;
 }
 
+.ratingheader {
+    margin-top: 0px;
+}
+
+.resultbutton {
+    margin-bottom: 15px;
+}
+
+.infotext {
+    margin-top: 10px;
+}
+
 footer {
     margin: 50px 0;
 }

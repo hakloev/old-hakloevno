@@ -28,14 +28,19 @@
             {% endfor %}
         </ol>
         {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
         {% if user.is_superuser %}
         <div class="panel panel-default">
-            <div class="panel-heading">Liste:</div>
+            <div class="panel-heading">Øloversikt</div>
             <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Kode</th>
+                        <th>ID</th>
                         <th>Øl</th>
                         <th>Bryggeri</th>
                         <th>Type</th>
@@ -48,6 +53,7 @@
                     {% for beer in beers %}
                         <tr>
                             <td>{{ beer.code }}</td>
+                            <td>{{ beer.id }}</td>
                             <td>{{ beer.name }}</a></td>
                             <td>{{ beer.brewery }}</td>
                             <td>{{ beer.style }}</td>

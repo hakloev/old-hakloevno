@@ -92,7 +92,7 @@ def event_stats(request, eid):
     beers, ratings = None, None
     if event.finished: 
         beers = Beer.objects.filter(id__in=TastingEvent.objects.get(id=eid).beers.all()).order_by('id')
-        ratings = BeerRating.objects.filter(event=event).values('beer').annotate(score=Avg('rating'))
+        ratings = BeerRating.objects.filter(event=event).values('beer').annotate(score=Avg('rating')).order_by('-score')
     breadcrumbs = (
             ('Arrangementer', '/beertasting/'),
             (event.name, reverse('event_by_id', args=[eid])),
