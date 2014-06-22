@@ -37,7 +37,7 @@
                 {% for rating in ratings %}
                     <h4>{{ rating.beer }}:</h4>
                     <div class="well well-sm">
-                        Karakter: <strong>{{ rating.rating }}</strong>
+                        Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
                         <br/>
                         <br/>
                         {{ rating.comment }}
