@@ -16,6 +16,11 @@
                     <p>Ingen øl tilgjengelig..</p>
                 {% endif %}
             {% else %}
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratings.count|get_percent }}" aria-valuemin="0" aria-valuemax="{{ event.beers.all.count|get_percent }}" style="width: {{ ratings.count|get_how_long:event.beers.all.count }}%">
+                        <span class="sr-only">{{ ratings.count|get_how_long:event.beers.all.count }}% Complete</span>
+                    </div>
+                </div>
                 {% if event.beers.all|length > 1 %}
                     {% for beer in event.beers.all|shuffle_beers %}
                         {% autoescape off %}

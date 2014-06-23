@@ -1,6 +1,6 @@
 from django.contrib import admin
-from models import Site
+from models import LogObject
 
 # Register your models here.
 
-admin.site.register(Site)
+admin.site.register(LogObject)
