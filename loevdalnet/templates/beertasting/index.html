@@ -30,7 +30,7 @@
         {% if latestevents  %}
         <h3><span class="glyphicon glyphicon-glass"></span> &ndash; Pågående: <small>{{ latestevents.count }} arrangement</small></h3>
             {% for latest in latestevents %}
-            <p><a href="{{ latest.get_absolute_url }}">{{ latest.name }}</a> &ndash; {{ latest.beers.count }} øl</p>
+            <p><a href="{{ latest.get_absolute_url }}">{{ latest.name }}</a> &ndash; {{ latest.beers.count }} øl</br><small>{{ latest.date|date:"h.m.Y" }}</small></p>
             {% endfor %}
         {% else %}
             <h3>Ingen pågående arrangement...</h3>
@@ -40,7 +40,7 @@
         {% if doneevents %}
         <h3><span class="glyphicon glyphicon-calendar"></span> &ndash; Ferdige: <small>{{ doneevents.count }} arrangement</small></h3>
             {% for event in doneevents %}
-            <p><a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash; {{ event.beers.count }} øl</p>
+            <p><a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash; {{ event.beers.count }} øl</br><small>{{ event.date|date:"h.m.Y" }}</small></p>
             {% endfor %}
         {% else %}
             <h3>Ingen ferdige arrangement...</h3>

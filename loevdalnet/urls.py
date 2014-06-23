@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^$', index),
     url(r'^blog/', include('blog.urls')),
     url(r'^beertasting/', include('beertasting.urls')),
+    url(r'userlog/', include('userlog.urls')),
     )

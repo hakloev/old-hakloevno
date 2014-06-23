@@ -45,3 +45,13 @@ def shuffle_beers(arg):
     beers = list(arg[:])
     random.shuffle(beers)
     return beers
+
+@register.filter(name='get_percent')
+def get_percent(number):
+    return int(number * 10)
+
+@register.filter(name='get_how_long')
+def get_how_long(number, total):
+    if number == 0 or total == 0:
+        return 0
+    return int(((float(number) / float(total)) * 100))

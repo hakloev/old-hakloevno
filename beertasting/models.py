@@ -42,8 +42,8 @@ class TastingEvent(models.Model):
         return ('event_by_id', None, { 'id': self.id })
 
 def validate_beer_rating(rating):
-    if rating < 1 or rating > 6:
-        raise ValidationError('Karakter mellom 1 og 6..')
+    if rating < 1 or rating > 10:
+        raise ValidationError('Karakter mellom 1 og 10')
 
 class BeerRating(models.Model):
     beer = models.ForeignKey('beertasting.Beer')
