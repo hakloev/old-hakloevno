@@ -7,8 +7,8 @@ def index(request):
     context = {}
     context['request'] = request
     try:
-        post = Blogpost.objects.latest('posted')
+        posts = Blogpost.objects.all().order_by('-posted')
     except:
-        post = []
-    context['post'] = post
+        posts = []
+    context['posts'] = posts
     return render(request, u'index.html', context)

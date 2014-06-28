@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def index(request):
+def all_posts(request):
     context = {}
     context['request'] = request
     context['categories'] = Category.objects.all()
@@ -13,7 +13,7 @@ def index(request):
     return render(request, u'blog/blog.html', context)
 
 @login_required
-def newpost(request):
+def create_post(request):
     context = {}
     if request.method == "POST":
         errors = []
