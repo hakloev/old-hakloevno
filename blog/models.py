@@ -28,11 +28,6 @@ class Blogpost(models.Model):
         return '%s' % self.title
     
     def save(self):
-        self.slug = slugify(self.title)
+        date = self.posted
+        self.slug = '/%s/%s/%s/%s' % (date.year, date.month, date.day, slugify(self.title))
         super(Blogpost, self).save()
-
-    @permalink
-    def get_absolute_url(self):
-        return ('post_by_slug', None, { 'slug': self.slug})
-
-

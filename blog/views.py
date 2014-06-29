@@ -37,9 +37,19 @@ def create_post(request):
         context['categories'] = Category.objects.all()
     return render(request, u'blog/newpost.html', context)
 
-def post_by_slug(request, slug):
-    post = get_object_or_404(Blogpost, slug=slug)
-    context = {}
-    context['post'] = post
-    context['request'] = request
-    return render(request, u'blog/article.html', context)
+def post_by_year(request, year):
+    posts = Blogpost.objects.filter(posted__year=int(year)).order_by('-posted')
+    return render(request, u'blog/blog.html', {'request': request, 'posts': posts})
+
+def post_by_month(request, year, month):
+    posts = Blogpost.objects.filter(posted__year=int(year), posted__month=int(month)).order_by('-posted')
+    return render(request, u'blog/blog.html', {'request': request, 'posts': posts})
+
+def post_by_day(request, year, month, day):
+    posts = Blogpost.objects.filter(posted__year=int(year), posted__month=int(month), posted__day=int(day)).order_by('-posted')
+    return render(request, u'blog/blog.html', {'request': request, 'posts': posts})
+
+def post_by_slug(request, year, month, day, slug):
+    s = '/%s/%s/%s/%s' % (year, month, day, slug)
+    post = get_object_or_404(Blogpost, slug=s)
+    return render(request, u'blog/article.html', {'request': request, 'post': post})
