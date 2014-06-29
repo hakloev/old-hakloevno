@@ -19,13 +19,18 @@
     <div class="col-md-8">
         {% if posts %}
             {% for post in posts %}
-            <section class="blogpost">
-                <h1>{{ post.title }}</h1>
-                <small>{{ post.posted|date:"d.m.Y" }}</small>
-                <p>{{ post.ingress }}</p>
-                <a class="btn btn-primary" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-            </section>     
-                {% endfor %}
+                   <section class="post">
+                        <h2>{{ post.title }}</h2>
+                        <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                        <p class="ingress">
+                           {{ post.ingress|safe }}
+                        </p>
+                        <a class="btn btn-primary" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                        {% if not forloop.last %}
+                        <hr>     
+                        {% endif %}
+                   </section>
+               {% endfor %}
             {% else %}
         <div class="jumbotron">
             <h1>Det er jo ikke skrevet noe innlegg...</h1>

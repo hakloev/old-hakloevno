@@ -10,9 +10,10 @@
     <div class="col-md-8">
     {% if post %}
         <div class="page-header">
-            <h1>{{ post.title }} <small> &dash; {{ post.posted|date:'d.m.Y'}}</small></h1>
+            <h1>{{ post.title }}</h1>
+        <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y'}}</small>
         </div>
-        <h4>{{ post.ingress }}</h4>
+        <p class="lead">{{ post.ingress }}</p>
         <hr>
         {{ post.text|safe }}
     {% else %}

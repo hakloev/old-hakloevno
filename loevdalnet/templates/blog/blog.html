@@ -12,11 +12,15 @@
                     <div class="main">
                         {% for post in posts %}
                            <section class="post">
-                               <h2>{{ post.title }}<small> {{ post.posted|date:'d.m.Y' }}</small></h2>
-                               <div class="well">
+                                <h2>{{ post.title }}</h2>
+                                <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                                <p class="ingress">
                                    {{ post.ingress|safe }}
-                               </div>
-                               <a class="btn btn-primary" href="{{ post.get_absolute_url }}">Les mer</a>
+                                </p>
+                                <a class="btn btn-primary" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                                {% if not forloop.last %}
+                                <hr>     
+                                {% endif %}
                            </section>
                        {% endfor %}
                    </div>
