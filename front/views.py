@@ -7,7 +7,7 @@ def index(request):
     context = {}
     context['request'] = request
     try:
-        posts = Blogpost.objects.all().order_by('-posted')
+        posts = Blogpost.objects.all().order_by('-posted')[:3]
     except:
         posts = []
     context['posts'] = posts

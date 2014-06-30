@@ -41,6 +41,7 @@
                 </div>
                 {% endfor %}
             {% elif posts|length = 1 %}
+                {% with posts|first as post %}
                 <div class="col-md-12">
                 <section class="post">
                     <h2>{{ post.title }}</h2>
@@ -51,6 +52,7 @@
                     <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                 </section>  
                 </div>
+                {% endwith %}
             {% endif %}
         </div>
         {% else %}
