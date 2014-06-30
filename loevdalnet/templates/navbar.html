@@ -11,9 +11,9 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li {% if request.path = '/' %}class="active"{% endif %}><a href="/">Hjem</a></li>
-                <li {% if '/blog/' in request.path %}class="active"{% endif %}><a href="/blog/archive/2014">Blogg</a></li> 
+                <li {% if '/blog/' in request.path %}class="active"{% endif %}><a href="/blog/archive/{% now "Y" %}">Blogg</a></li> 
                 <li {% if '/beertasting/' in request.path %}class="active"{% endif %}><a href="/beertasting/">Ølsmaking</a></li>
-                <li><a href="#">CV</a></li>
+                <li><a href="/static/public/cv.html">CV</a></li>
                 <li><a href="#">Om meg</a></li>
             </ul>
             <div class="navbar-inner navbar-right">
@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <input class="form-control" placeholder="Passord" name="password" type="password" value="" size="12">   
                     </div>
-                    <button class="btn btn-primary" type="sumbit">Logg Inn</button>
+                    <button class="btn btn-danger" type="sumbit">Logg Inn</button>
                     <input type="hidden" name="next" value="{{ next }}">
                 </fieldset>
             </form>
