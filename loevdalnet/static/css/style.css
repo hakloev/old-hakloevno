@@ -7,6 +7,10 @@ header {
     border-radius: 0px;
 }
 
+.navbar-text {
+    color: #18bc9c !important;
+}
+
 .stopsign {
     display: block;
     margin: 0 auto 0 auto;
