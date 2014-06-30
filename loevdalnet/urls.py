@@ -12,9 +12,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'denied.html'}),
     url(r'^accounts/logout/(?P<next_page>.*)$', 'django.contrib.auth.views.logout', name='auth_logout'),
-
     url(r'^$', index),
     url(r'^blog/', include('blog.urls')),
     url(r'^beertasting/', include('beertasting.urls')),
     url(r'userlog/', include('userlog.urls')),
-    )
+    ) 

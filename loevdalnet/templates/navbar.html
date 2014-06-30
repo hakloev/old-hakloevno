@@ -11,7 +11,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li {% if request.path = '/' %}class="active"{% endif %}><a href="/">Hjem</a></li>
-                <li id="cv"><a onClick="replacePage();">CV</a></li>
+                <li><a href="/cv/">CV</a></li>
                 <li {% if '/blog/' in request.path %}class="active"{% endif %}><a href="/blog/archive/{% now "Y" %}">Blogg</a></li> 
                 <li {% if '/beertasting/' in request.path %}class="active"{% endif %}><a href="/beertasting/">Ølsmaking</a></li>
             </ul>

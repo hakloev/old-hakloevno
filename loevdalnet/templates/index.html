@@ -24,7 +24,8 @@
                             {{ post.ingress|safe }}
                         </p>
                         <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-                    </section>
+                     </section>
+                     <hr>
                     </div>
                 {% endfor %}
             {% elif posts|length = 2 %}
@@ -38,6 +39,7 @@
                     </p>
                     <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                 </section>  
+                <hr>
                 </div>
                 {% endfor %}
             {% elif posts|length = 1 %}
@@ -51,6 +53,7 @@
                     </p>
                     <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                 </section>  
+                <hr>
                 </div>
                 {% endwith %}
             {% endif %}
