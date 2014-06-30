@@ -17,7 +17,7 @@
                                 <p class="ingress">
                                    {{ post.ingress|safe }}
                                 </p>
-                                <a class="btn btn-primary" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                                <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                                 {% if not forloop.last %}
                                 <hr>     
                                 {% endif %}
