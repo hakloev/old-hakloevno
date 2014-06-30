@@ -7,7 +7,7 @@
         </div>
         <div class="panel-body">
             {% if event.finished %}
-                <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-primary btn-block resultbutton">Resultat</a>
+                <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-danger btn-block resultbutton">Resultat</a>
                 {% if event.beers.all|length > 1 %}
                     {% for beer in event.beers.all %}
                     <p><a href="{% url 'beer_rating' event.id beer.code %}">{{ beer.name}} fra {{ beer.brewery }}</a></p>
@@ -37,7 +37,7 @@
             <h3 class="panel-title">Administrator:</h3>
         </div>
         <div class="panel-body">
-            <a href="{% url 'event_list' event.id %}" class="btn btn-md btn-warning btn-block">Øloversikt</a>
+            <a href="{% url 'event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
             <p class="infotext">Event-ID: {{ event.id }}</p>
             <p class="infotext">Dato: {{ event.date|date:"h.m.Y" }}</p>
             <p class="infotext">Antall øl: {{ event.beers.all|length }}</p>
