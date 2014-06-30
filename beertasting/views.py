@@ -50,18 +50,16 @@ def beer_rating(request, eid, code):
     ratings = BeerRating.objects.filter(event=eid, user_id=request.user.id)
     bid = Beer.objects.get(code=code).id
     if request.method == "POST":
-        rating = request.POST['ratingvalue']
-        comment = request.POST['comment']
         try: 
             r = BeerRating.objects.get(user_id=request.user.id, event_id=eid, beer_id=bid)
-            r.rating = rating
-            r.comment = comment
+            r.rating = request.POST['ratingvalue']
             r.rated = datetime.datetime.now()
             r.save()
+            messages.success(request, u'Dine stemme for øl %s ble oppdatert!' % (code))
         except:
-            new_r = BeerRating(user=request.user, beer_id=bid, event_id=eid, rating=rating, comment=comment )
+            new_r = BeerRating(user=request.user, beer_id=bid, event_id=eid, rating=request.POST['ratingvalue'], comment=request.POST['comment'] )
             new_r.save()
-        messages.success(request, u'Dine stemme for øl %s ble registrert!' % (code))
+            messages.success(request, u'Dine stemme for øl %s ble registrert!' % (code))
         return HttpResponseRedirect(request.path)
     rating, comments = None, None
     try: 

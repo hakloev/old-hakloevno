@@ -1,27 +1,48 @@
 <div class="col-md-4">
     <div class="sidebar">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-                {% if user.is_authenticated %}
-                <div id="apps">
-                    <h2>Apps</h2>
-                    <ul>
-                        <li><a href="/beertasting/">Ølsmaking</a></li>
-                    </ul>
-                {% endif %}
-                <div id="recentpost">
-                    <h2>Siste poster</h2>
-                    <ul>
-                        <li>test</li>
-                    </ul>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list-ul fa-fw"></i>&nbsp; Om meg</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6 pull-left">
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-check-square fa-fw"></i>&nbsp; Helt sjef</li>
+                            <li><i class="fa fa-check-square fa-fw"></i>&nbsp; Student</li>
+                            <li><i class="fa fa-check-square fa-fw"></i>&nbsp; Ølbrygger</li>
+                            <li><i class="fa fa-check-square fa-fw"></i>&nbsp; 22 år</li>
+                            <li><i class="fa fa-check-square fa-fw"></i>&nbsp; Helt konge</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <img class="img-thumbnail pull-right" src="/static/images/me.jpg"></img>
+                    </div>
                 </div>
-                <div id="archive">
-                    <h2>Arkiv</h2>
-                    <ul>
-                        <li>test</li>
-                    </ul>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                        <div class="well"> 
+                            22 år gammel informatikk-student. 
+                            Bosatt i Trondheim.    
+                        </div>
+                    </div>
                 </div>
-            </ul>
+            </div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-tablet fa-fw"></i>&nbsp; Sosialt</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="fa-ul">
+                    <li><i class="fa-li fa fa-linkedin-square"></i><a href="https://www.linkedin.com/profile/view?id=262626177">Linkedin</a></li>
+                    <li><i class="fa-li fa fa-facebook-square"></i><a href="https://www.facebook.com/hakloev">Facebook</a>
+                
+                    <li><i class="fa-li fa fa-twitter-square"></i><a href="https://www.twitter.com/hakloevdal">Twitter</a>
+                    <li><i class="fa-li fa fa-github-square"></i><a href="https://www.github.com/hakloev">GitHub</a>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

@@ -5,28 +5,62 @@
 &ndash; hjem
 {% endblock %}
 
-{% block header_block %}
-<div class="pageheader">
-    <div class="row">
-        <div class="col-md-12">
-        </div>
-    </div>
-</div>
-{% endblock %}
-
 {% block body_block %}
 <div class ="row">
     <div class="col-md-8">
-        {% if post %}
-        <section class="blogpost">
-            <h1>{{ post.title }}</h1>
-            <small>{{ post.posted|date:"d.m.Y" }}</small>
-            <p>{{ post.ingress }}</p> 
-            {{ post.text|safe }}
-        </section>     
+        <div class="jumbotron">
+            <h1>Hello world!</h1>
+            <p>lorem bla bla blabls sg sgs  eg gsd s dg dsg dsg sdg</p>
+        </div>
+        {% if posts %}
+        <div class="row">
+            {% if posts|length = 3 %}
+                {% for post in posts %}
+                    <div class="col-md-4">
+                    <section class="post">
+                        <h2>{{ post.title }}</h2>
+                        <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                        <p class="ingress">
+                            {{ post.ingress|safe }}
+                        </p>
+                        <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                     </section>
+                     <hr>
+                    </div>
+                {% endfor %}
+            {% elif posts|length = 2 %}
+                {% for post in posts %}
+                <div class="col-md-6">
+                <section class="post">
+                    <h2>{{ post.title }}</h2>
+                    <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                    <p class="ingress">
+                        {{ post.ingress|safe }}
+                    </p>
+                    <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                </section>  
+                <hr>
+                </div>
+                {% endfor %}
+            {% elif posts|length = 1 %}
+                {% with posts|first as post %}
+                <div class="col-md-12">
+                <section class="post">
+                    <h2>{{ post.title }}</h2>
+                    <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                    <p class="ingress">
+                        {{ post.ingress|safe }}
+                    </p>
+                    <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                </section>  
+                <hr>
+                </div>
+                {% endwith %}
+            {% endif %}
+        </div>
         {% else %}
         <div class="jumbotron">
-            <h1>Det er jo ikke skrevet noe innlegg...</h1>
+            <h1>Det er ikke skrevet noen innlegg...</h1>
             <p>Må skjerpe meg og sette igang...</p>
         </div>
         {% endif %}

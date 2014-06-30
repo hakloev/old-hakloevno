@@ -1,13 +1,13 @@
 {% load filters %}
 
 <div class="col-md-4">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Ølmeny:</h3>
         </div>
         <div class="panel-body">
             {% if event.finished %}
-                <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-primary btn-block resultbutton">Resultat</a>
+                <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-danger btn-block resultbutton">Resultat</a>
                 {% if event.beers.all|length > 1 %}
                     {% for beer in event.beers.all %}
                     <p><a href="{% url 'beer_rating' event.id beer.code %}">{{ beer.name}} fra {{ beer.brewery }}</a></p>
@@ -17,8 +17,8 @@
                 {% endif %}
             {% else %}
                 <div class="progress progress-striped active">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratings.count|get_percent }}" aria-valuemin="0" aria-valuemax="{{ event.beers.all.count|get_percent }}" style="width: {{ ratings.count|get_how_long:event.beers.all.count }}%">
-                        <span class="sr-only">{{ ratings.count|get_how_long:event.beers.all.count }}% Complete</span>
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ ratings.count|get_percent }}" aria-valuemin="0" aria-valuemax="{{ event.beers.all.count|get_percent }}" style="width: {{ ratings.count|get_how_long:event.beers.all.count }}%">
+                        {{ ratings.count|get_how_long:event.beers.all.count }}%
                     </div>
                 </div>
                 {% if event.beers.all|length > 1 %}
@@ -37,7 +37,7 @@
             <h3 class="panel-title">Administrator:</h3>
         </div>
         <div class="panel-body">
-            <a href="{% url 'event_list' event.id %}" class="btn btn-md btn-warning btn-block">Øloversikt</a>
+            <a href="{% url 'event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
             <p class="infotext">Event-ID: {{ event.id }}</p>
             <p class="infotext">Dato: {{ event.date|date:"h.m.Y" }}</p>
             <p class="infotext">Antall øl: {{ event.beers.all|length }}</p>

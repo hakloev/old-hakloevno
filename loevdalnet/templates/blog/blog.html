@@ -8,26 +8,24 @@
 {% block body_block %}
  <div class="row">
         <div class="col-md-8">
-            <div class="page-header">
-                <h1>Innlegg</h1>
-                {% if user.is_superuser %}
-                <a href="{% url 'newpost' %}" class="btn btn-md btn-block btn-primary">Skriv nytt innlegg</a> 
-                {% endif %}
-            </div>
                 {% if posts %}
-                    <section class="main">
+                    <div class="main">
                         {% for post in posts %}
-                           <div class="post">
-                               <h2>{{ post.title }}<small> {{ post.posted|date:'d.m.Y' }}</small></h2>
-                               <div class="well">
+                           <section class="post">
+                                <h2>{{ post.title }}</h2>
+                                <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                                <p class="ingress">
                                    {{ post.ingress|safe }}
-                               </div>
-                               <a class="btn btn-primary" href="{{ post.get_absolute_url }}">Les mer</a>
-                           </div>
+                                </p>
+                                <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                                {% if not forloop.last %}
+                                <hr>     
+                                {% endif %}
+                           </section>
                        {% endfor %}
-                   </section>
+                   </div>
                 {% else %}
-                    <h3>Ingen har skrevet noe i denne bloggen..</h3>
+                    <h3>Fant ingen artikler.</h3>
                 {% endif %}
         </div>
         {% include 'sidebar.html' %}

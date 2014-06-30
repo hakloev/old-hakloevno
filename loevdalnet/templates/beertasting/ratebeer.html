@@ -73,7 +73,7 @@
                 {% csrf_token %}
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-md-1">Vurdering:</label>
+                        <label class="col-md-1">Karakter:</label>
                         <div class="col-md-12">
                             <select name="ratingvalue" id="ratingvalue">
                                 {% autoescape off %}
@@ -86,11 +86,27 @@
                     <div class="form-group">
                         <label class="col-md-1 control-label" for="comment">Kommentar:</label>
                         <div class="col-md-12">
-                            <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5 {% if rating %}readonly>{{ rating.comment }}{% else %}>{% endif %}</textarea>
+                            {% if rating %}
+                                
+                                <div class="well well-sm">
+                                    {% if rating.comment|length_is:"0" %}
+                                    Du ga ikke denne ølen noen kommentar
+                                    {% else %}
+                                    {{ rating.comment }}
+                                    {% endif %}
+                                </div>
+                                <div class="alert alert-dismissable alert-warning">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <h4>Advarsel!</h4>
+                                    <p>Du kan ikke endre kommentar etter å ha avgitt vurdering, men du kan fortsatt endre karakter.</p>
+                                </div>
+                            {% else %}
+                                <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5></textarea>
+                            {% endif %}
                         </div>
                     </div>
 
-                <input class="btn btn-lg btn-success btn-block" type="submit" value="Gi vurdering"/>
+                <input class="btn btn-lg btn-danger btn-block" type="submit" value="Gi din vurdering"/>
                 <input type="hidden" name="next" value="{{ next }}">
                 </fieldset>
             </form>
