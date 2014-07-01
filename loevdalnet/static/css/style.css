@@ -46,6 +46,38 @@ header {
 }
 
 /*
+ *CV
+ */
+
+.cv_wrap {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.cell_title {
+    font-weight: bold;
+    width: 140px;
+}
+
+.exp_list {
+    list-style: none;
+}
+
+.exp_list li span {
+    margin: 0 15px 0 0;
+    float: right;
+    font-style: italic;
+}
+
+.exp_list li span.role {
+    float: left;
+}
+
+.exp_list p {
+    width: 680px;
+}
+
+/*
  * FOOTER
  */
 

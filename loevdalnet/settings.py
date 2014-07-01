@@ -31,7 +31,7 @@ INSTALLED_APPS = (
     'blog',
     'front',
     'beertasting',
-    'userlog',
+    'cv',
 )
 
 MIDDLEWARE_CLASSES = (
