@@ -68,6 +68,10 @@ header {
     height: 150px;
 }
 
+.img_col {
+    text-align: center;
+}
+
 .name_field {
     border-right: solid 1px #ecf0f1;
 }
@@ -88,10 +92,11 @@ header {
 
 .exp_list {
     list-style: none;
+    padding-left: 0;
 }
 
-.exp_list {
-    padding-left: 0;
+.exp_list li p {
+    max-width: 82%;
 }
 
 .exp_list li span {
