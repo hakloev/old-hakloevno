@@ -72,6 +72,11 @@ header {
     text-align: center;
 }
 
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    .img_col { display: none; }
+    .cv_header h1 { font-size: 30px; }
+}
+
 .name_field {
     border-right: solid 1px #ecf0f1;
 }
