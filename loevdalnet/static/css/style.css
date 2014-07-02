@@ -81,6 +81,11 @@ header {
     width: 140px;
 }
 
+.cv_body {
+    max-width: 640px;
+    margin: 0 auto 0 auto;
+}
+
 .exp_list {
     list-style: none;
 }

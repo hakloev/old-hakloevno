@@ -43,179 +43,181 @@
                 </div>
                 <hr>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>
-                        <span>Utdanning</span>
-                    </h2>
+            <div class="cv_body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>
+                            <span>Utdanning</span>
+                        </h2>
 
-                    <ul class="exp_list">
-                        {% for edu in educations %}
+                        <ul class="exp_list">
+                            {% for edu in educations %}
+                                <li>
+                                    <span>{{ edu.started }} - {% if edu.current %}nå{% else %}{{ edu.ended }}{% endif %}</span>
+                                    <a href="{{ edu.url }}">{{ edu.school }}</a>
+                                    <p>{{ edu.description }}</p>
+                                </li>
+                            {% endfor %}
                             <li>
-                                <span>{{ edu.started }} - {% if edu.current %}nå{% else %}{{ edu.ended }}{% endif %}</span>
-                                <a href="{{ edu.url }}">{{ edu.school }}</a>
-                                <p>{{ edu.description }}</p>
+                                <span>2012 - nå</span>
+                                <a href="http://ntnu.no/">Norges teknisk-naturvitenskapelige universitet</a>
+                                <p>Bachelor i Informatikk</p>
                             </li>
-                        {% endfor %}
-                        <li>
-                            <span>2012 - nå</span>
-                            <a href="http://ntnu.no/">Norges teknisk-naturvitenskapelige universitet</a>
-                            <p>Bachelor i Informatikk</p>
-                        </li>
-                        <li>
-                            <span>2008 - 2011</span><a href="http://www.vfk.no/notteroy-vgs//">Nøtterøy videregående skole</a>
-                            <p>Språk, samfunnsfag og økonomi med matematikk</p>
-                        </li>
-                        <li>
-                            <span>1998 - 2008</span><a href="http://www.tusk.tjome.kommune.no/">Tjøme Ungdomsskole</a>
-                            <p>Grunnskole</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>
-                        <span>Arbeidserfaring</span>
-                    </h2>
-
-                    <ul class="exp_list">
-                        {% for work in works %}
                             <li>
-                                <span>{{ work.started }} - {% if work.current %}nå{% else %}{{ work.ended }}{% endif %}</span>
-                                <span class="role">{{ work.position }}</span>
-                                <a href="{{ work.url }}">{{ work.work }}</a>
-                                <p>{{ work.description }}</p>
+                                <span>2008 - 2011</span><a href="http://www.vfk.no/notteroy-vgs//">Nøtterøy videregående skole</a>
+                                <p>Språk, samfunnsfag og økonomi med matematikk</p>
                             </li>
-                        {% endfor %}
-                        <li>
-                            <span>Sommer 2013</span>
-                            <span class="role">Varelassleder</span>
-                            <a href="#">Spar Tjøme</a>
-                            <p>Ansvar for butikkstandard, kundebehandling, varepåfylling og annet forefallende butikkarbeid.</p>
-                        </li>
-                        <li>
-                            <span>2011 - 2012</span>
-                            <span class="role">Visekorporal, nestlagfører</span>
-                            <a href="forsvaret.no">Forsvaret, Hæren</a>
-                            <p>Ansvarlig for utstyrskontroll over troppsmatriell og ledelse av matriellag. Fungerte også som stormingeniør.</p>
-                        </li>
-                        <li>
-                            <span>2009 - 2011 </span>
-                            <span class="role">Skiftleder</span>
-                            <a href="#">Rimi Tjøme</a>
-                            <p>Ansvar for butikkstandard, kundebehandling, varepåfylling og annet forefallende butikkarbeid. Fungerte også som butikksjefs stedfortreder.</p>
-                        </li>
-                    </ul>
-                </div>   
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>
-                        <span>Verv</span>
-                    </h2>
-
-                    <ul class="exp_list">
-                        {% for org in orgs %}
                             <li>
-                                <span>{{ org.started }} - {% if org.current %}nå{% else %}{{ org.ended }}{% endif %}</span>
-                                <span class="role">{{ org.position }}</span>
-                                <a href="{{ org.url }}">{{ org.organization }}</a>
-                                <p>{{ org.description }}</p>
+                                <span>1998 - 2008</span><a href="http://www.tusk.tjome.kommune.no/">Tjøme Ungdomsskole</a>
+                                <p>Grunnskole</p>
                             </li>
-                        {% endfor %}
-                        <li>
-                            <span>Vår 2013 - nå</span>
-                            <span class="role">Komitémedlem - Bank- og økonomikomiteen </span>
-                             <a href="http://online.ntnu.no/#bankom"> Online, linjeforeningen for informatikk</a>
-                            <p>Bank- og økonomikomiteen er ansvarlig for alt det økonomiske innad i Online. Dette består av regnskapsføring, fakturering og å ha kontroll på det som skjer i nettbanken. Representant for Fag- og kurskomiteen.</p>
-                        </li>
-                         <li>
-                            <span>Vår 2013 - nå</span>
-                            <span class="role">Komitémedlem - Ekskursjonskomiteen </span>
-                             <a href="http://online.ntnu.no/#ekskom"> Online, linjeforeningen for informatikk</a>
-                            <p>Ekskursjonskomiteen har ansvaret for å arrangere informatikkstudentene i tredje årstrinn sin årlige ekskursjon. Ekskursjonen er av akademisk grad og går gjerne til et sted av utenlandsk opprinnelse hvor næringsliv og utdanningsinstitusjoner blir besøkt.</p>
-                        </li>
-                        <li>
-                            <span>Høst 2012 - nå</span>
-                            <span class="role">Komitémedlem - Fag- og kurskomiteen </span>
-                            <a href="http://online.ntnu.no/#fagkom"> Online, linjeforeningen for informatikk</a>
-                            <p>Fag- og kurskomiteen jobber med å arrangere kurs, workshop, faglige presentasjoner og andre faglige arrangementer for studentene ved informatikk.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>
-                        <span>Kvalifikasjoner</span>
-                    </h2>
-
-                    <div class="non_list_content">
-                        
-                        <h4>Nøkkelkvalifikasjoner</h4>
-                        <ul>
-                            <li>Positiv</li>
-                            <li>Endringsvillig</li>
-                            <li>Utadvent</li>
-                            <li>Lærer raskt</li>
-                            <li>Selvstendig</li>
-                            <li>Tar ansvar</li>
-                            <li>Erfaring med ledelse av grupper og store mengder materiell</li>
-                        </ul>
-
-                        <h4>Datakompetanse</h4>
-
-                        <h5>God kompetanse</h5>
-                        <ul>
-                            <li>Linux</li>
-                            <li>Mac OS X</li>
-                            <li>Windows XP, 7</li>
-                        </ul>
-                        <h5>Kompetanse</h5>
-                        <ul>
-                            <li>Unix/BSD</li>
-                            <li>Python</li>
-                            <li>Java</li>
-                            <li>Latex</li>
-                            <li>MySQL</li>
-                            <li>Microsoft Office</li>
-                        </ul>
-                        <h4>Språk</h4>
-                        <ul>
-                            <li>Norsk, bokmål (morsmål)</li>
-                            <li>Engelsk (flytende skriftlig og muntlig)</li>
-                        </ul>
-                        
-                        <h4>Førerkort/Kompetansebevis</h4>
-                        <ul>
-                            <li>Klasse B</li>
-                            <li>Klasse M</li>
-                            <li>Truckfører, klasse T1, T2 og T4</li>
                         </ul>
                     </div>
                 </div>
-            </div>    
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>
-                        <span>Interesser</span>
-                    </h2>
-                    
-                    <div class="non_list_content">
-                        <ul>
-                        <li>Politikk</li>
-                        <li>Historie</li>
-                        <li>Musikk</li>
-                        <li>Trening</li>
-                        <li>Venner</li>
-                        <li>Data og programmering</li>
-                        <li>Linjeforeningen</li>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>
+                            <span>Arbeidserfaring</span>
+                        </h2>
+
+                        <ul class="exp_list">
+                            {% for work in works %}
+                                <li>
+                                    <span>{{ work.started }} - {% if work.current %}nå{% else %}{{ work.ended }}{% endif %}</span>
+                                    <span class="role">{{ work.position }}</span>
+                                    <a href="{{ work.url }}">{{ work.work }}</a>
+                                    <p>{{ work.description }}</p>
+                                </li>
+                            {% endfor %}
+                            <li>
+                                <span>Sommer 2013</span>
+                                <span class="role">Varelassleder</span>
+                                <a href="#">Spar Tjøme</a>
+                                <p>Ansvar for butikkstandard, kundebehandling, varepåfylling og annet forefallende butikkarbeid.</p>
+                            </li>
+                            <li>
+                                <span>2011 - 2012</span>
+                                <span class="role">Visekorporal, nestlagfører</span>
+                                <a href="forsvaret.no">Forsvaret, Hæren</a>
+                                <p>Ansvarlig for utstyrskontroll over troppsmatriell og ledelse av matriellag. Fungerte også som stormingeniør.</p>
+                            </li>
+                            <li>
+                                <span>2009 - 2011 </span>
+                                <span class="role">Skiftleder</span>
+                                <a href="#">Rimi Tjøme</a>
+                                <p>Ansvar for butikkstandard, kundebehandling, varepåfylling og annet forefallende butikkarbeid. Fungerte også som butikksjefs stedfortreder.</p>
+                            </li>
+                        </ul>
+                    </div>   
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>
+                            <span>Verv</span>
+                        </h2>
+
+                        <ul class="exp_list">
+                            {% for org in orgs %}
+                                <li>
+                                    <span>{{ org.started }} - {% if org.current %}nå{% else %}{{ org.ended }}{% endif %}</span>
+                                    <span class="role">{{ org.position }}</span>
+                                    <a href="{{ org.url }}">{{ org.organization }}</a>
+                                    <p>{{ org.description }}</p>
+                                </li>
+                            {% endfor %}
+                            <li>
+                                <span>Vår 2013 - nå</span>
+                                <span class="role">Komitémedlem - Bank- og økonomikomiteen </span>
+                                 <a href="http://online.ntnu.no/#bankom"> Online, linjeforeningen for informatikk</a>
+                                <p>Bank- og økonomikomiteen er ansvarlig for alt det økonomiske innad i Online. Dette består av regnskapsføring, fakturering og å ha kontroll på det som skjer i nettbanken. Representant for Fag- og kurskomiteen.</p>
+                            </li>
+                             <li>
+                                <span>Vår 2013 - nå</span>
+                                <span class="role">Komitémedlem - Ekskursjonskomiteen </span>
+                                 <a href="http://online.ntnu.no/#ekskom"> Online, linjeforeningen for informatikk</a>
+                                <p>Ekskursjonskomiteen har ansvaret for å arrangere informatikkstudentene i tredje årstrinn sin årlige ekskursjon. Ekskursjonen er av akademisk grad og går gjerne til et sted av utenlandsk opprinnelse hvor næringsliv og utdanningsinstitusjoner blir besøkt.</p>
+                            </li>
+                            <li>
+                                <span>Høst 2012 - nå</span>
+                                <span class="role">Komitémedlem - Fag- og kurskomiteen </span>
+                                <a href="http://online.ntnu.no/#fagkom"> Online, linjeforeningen for informatikk</a>
+                                <p>Fag- og kurskomiteen jobber med å arrangere kurs, workshop, faglige presentasjoner og andre faglige arrangementer for studentene ved informatikk.</p>
+                            </li>
                         </ul>
                     </div>
-                    <h2>
-                        <span>Referanser oppgis ved behov</span>
-                    </h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>
+                            <span>Kvalifikasjoner</span>
+                        </h2>
+
+                        <div class="non_list_content">
+                            
+                            <h4>Nøkkelkvalifikasjoner</h4>
+                            <ul>
+                                <li>Positiv</li>
+                                <li>Endringsvillig</li>
+                                <li>Utadvent</li>
+                                <li>Lærer raskt</li>
+                                <li>Selvstendig</li>
+                                <li>Tar ansvar</li>
+                                <li>Erfaring med ledelse av grupper og store mengder materiell</li>
+                            </ul>
+
+                            <h4>Datakompetanse</h4>
+
+                            <h5>God kompetanse</h5>
+                            <ul>
+                                <li>Linux</li>
+                                <li>Mac OS X</li>
+                                <li>Windows XP, 7</li>
+                            </ul>
+                            <h5>Kompetanse</h5>
+                            <ul>
+                                <li>Unix/BSD</li>
+                                <li>Python</li>
+                                <li>Java</li>
+                                <li>Latex</li>
+                                <li>MySQL</li>
+                                <li>Microsoft Office</li>
+                            </ul>
+                            <h4>Språk</h4>
+                            <ul>
+                                <li>Norsk, bokmål (morsmål)</li>
+                                <li>Engelsk (flytende skriftlig og muntlig)</li>
+                            </ul>
+                            
+                            <h4>Førerkort/Kompetansebevis</h4>
+                            <ul>
+                                <li>Klasse B</li>
+                                <li>Klasse M</li>
+                                <li>Truckfører, klasse T1, T2 og T4</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>    
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>
+                            <span>Interesser</span>
+                        </h2>
+                        
+                        <div class="non_list_content">
+                            <ul>
+                            <li>Politikk</li>
+                            <li>Historie</li>
+                            <li>Musikk</li>
+                            <li>Trening</li>
+                            <li>Venner</li>
+                            <li>Data og programmering</li>
+                            <li>Linjeforeningen</li>
+                            </ul>
+                        </div>
+                        <h2>
+                            <span>Referanser oppgis ved behov</span>
+                        </h2>
+                    </div>
                 </div>
             </div>
         </div>
