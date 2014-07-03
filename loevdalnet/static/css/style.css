@@ -52,7 +52,7 @@ header {
 .cv_wrap {
     max-width: 1024px;
     margin: 0 auto;
-    border: solid #ecf0f1;
+    border-top: solid #ecf0f1;
     border-width: 8px 0 2px 0;
 }
 
@@ -95,28 +95,31 @@ header {
     margin: 0 auto 0 auto;
 }
 
-.exp_list {
-    list-style: none;
-    padding-left: 0;
+.cv_body h2 span {
+    border-bottom: solid 4px #ecf0f1;
+    padding: 0 0 5px 0;
 }
 
-.exp_list li p {
-    max-width: 82%;
+.exp_list {
+    list-style: none;
+    border-top: solid 1px #ecf0f1;
+    /*padding-left: 0;*/
 }
 
 .exp_list li span {
     margin: 0 15px 0 0;
     float: right;
+    font-size: 15px;
     font-style: italic;
 }
 
-.exp_list li span.role {
-    float: left;
+.exp_list p {
+    max-width: 82%;
+    margin-top: 5px;
 }
 
-.exp_list p {
-    margin-top: 5px;
-    max-width: 680px;
+.exp_place {
+    float: left;
 }
 
 /*
