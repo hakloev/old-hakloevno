@@ -17,7 +17,6 @@ def create_post(request):
     context = {}
     if request.method == "POST":
         errors = []
-        c = Category.objects.latest('title')
         if not request.POST.get('title', ''):
             errors.append('Legg inn tittel')
         if not request.POST.get('ingress', ''):
@@ -27,8 +26,14 @@ def create_post(request):
         else:
             context['text'] = request.POST['text']
         if not errors:
-            b = Blogpost(title=request.POST['title'], ingress=request.POST['ingress'], text=request.POST['text'], category=c)
-            b.save()
+            try:
+                b = Blogpost.objects.get(title=request.POST['title'])
+                b.ingress = request.POST['ingress']
+                b.text = request.POST['text']
+                b.save()
+            except:
+                b = Blogpost(title=request.POST['title'], ingress=request.POST['ingress'], text=request.POST['text'])
+                b.save()
             return HttpResponseRedirect(b.get_absolute_url())
         else:
             context['errors'] = errors

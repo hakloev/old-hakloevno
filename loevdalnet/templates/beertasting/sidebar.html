@@ -3,7 +3,7 @@
 <div class="col-md-4">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Ølmeny:</h3>
+            <h3 class="panel-title">Ølmeny for {{ request.user.first_name }}:</h3>
         </div>
         <div class="panel-body">
             {% if event.finished %}
@@ -31,6 +31,7 @@
                     <p>Ingen øl tilgjengelig..</p>
                 {% endif %}
             {% endif %}
+            <p class="infotext">Din bruker-ID er: {{ request.user.id }}</p>
         </div>
         {% if user.is_superuser %}
         <div class="panel-heading">

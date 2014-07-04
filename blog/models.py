@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import permalink
 from django.template.defaultfilters import slugify
+import datetime
 
 # Create your models here.
 
@@ -28,6 +29,18 @@ class Blogpost(models.Model):
         return '%s' % self.title
     
     def save(self):
-        date = self.posted
-        self.slug = '/%s/%s/%s/%s' % (date.year, date.month, date.day, slugify(self.title))
+        if not self.posted:
+            date = datetime.datetime.today()
+            self.posted = date
+        if not self.slug:
+            self.slug = '/%s/%s/%s/%s' % (date.year, date.month, date.day, slugify(self.title))
         super(Blogpost, self).save()
+   
+    @permalink
+    def get_absolute_url(self):
+        return ('post_by_slug', (), {
+            'year': self.posted.year,
+            'month': self.posted.month,
+            'day': self.posted.day,
+            'slug': slugify(self.title)
+            })
