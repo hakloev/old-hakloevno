@@ -21,7 +21,7 @@
                         <h2>{{ post.title }}</h2>
                         <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
                         <br/>
-                        <small><a href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
+                        <small><i class="fa fa-comments"></i> &nbsp;<a href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
 
                         <p class="ingress">
                             {{ post.ingress|safe }}
