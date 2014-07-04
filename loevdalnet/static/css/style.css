@@ -72,11 +72,6 @@ header {
     text-align: center;
 }
 
-@media screen and (min-width: 0px) and (max-width: 600px) {
-    .img_col { display: none; }
-    .cv_header h1 { font-size: 30px; }
-}
-
 .name_field {
     border-right: solid 1px #ecf0f1;
 }
@@ -113,13 +108,29 @@ header {
     font-style: italic;
 }
 
+.cv_body h2 span.reference {
+    border-bottom: none;
+}
+
 .exp_list p {
     max-width: 82%;
     margin-top: 5px;
 }
 
-.exp_place {
-    float: left;
+.non_list_content { 
+    border-top: solid 1px #ecf0f1;
+    margin: 0 0 0 40px;
+}
+
+.interest {
+    padding-top: 10.5px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    .img_col { display: none; }
+    .cv_header h1 { font-size: 30px; }
+    .exp_list { padding: 0; }
+    .non_list_content { margin: 0; }
 }
 
 /*
