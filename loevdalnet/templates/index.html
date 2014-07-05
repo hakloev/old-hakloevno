@@ -9,8 +9,14 @@
 <div class ="row">
     <div class="col-md-8">
         <div class="jumbotron">
-            <h1>Hello world!</h1>
-            <p>lorem bla bla blabls sg sgs  eg gsd s dg dsg dsg sdg</p>
+            <blockquote>
+                Jasså?! Døkk sitt og glor?!
+                <small>Jostein Kroksleiven</small>
+            </blockquote>
+            <blockquote>
+                Vi er så heldige å ha fjernsynet her i dag, i svart/hvitt og fine farger!
+                <small>Meieribestyrer Ollvar O. Kleppvold</small>
+            </blockquote>
         </div>
         {% if posts %}
         <div class="row">
@@ -18,13 +24,16 @@
                 {% for post in posts %}
                     <div class="col-md-4">
                     <section class="post">
-                        <h2>{{ post.title }}</h2>
+                        <h3>{{ post.title }}</h3>
                         <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                        <br/>
+                        <small><i class="fa fa-comments"></i> &nbsp;<a href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
+
                         <p class="ingress">
-                            {{ post.ingress|safe }}
-                        </p>
+                            {% if post.ingress|length > 100 %}{{ post.ingress|truncatechars:100|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
+                            </p>
+                            </section>
                         <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-                     </section>
                      <hr>
                     </div>
                 {% endfor %}
@@ -32,13 +41,14 @@
                 {% for post in posts %}
                 <div class="col-md-6">
                 <section class="post">
-                    <h2>{{ post.title }}</h2>
+                    <h3>{{ post.title }}</h3>
                     <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
                     <p class="ingress">
-                        {{ post.ingress|safe }}
+                        {% if post.ingress|length > 300 %}{{ post.ingress|truncatechars:300|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
                     </p>
+                    </section>
                     <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-                </section>  
+                    <span><a class="btn btn-warning disabled" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
                 <hr>
                 </div>
                 {% endfor %}
@@ -52,16 +62,29 @@
                         {{ post.ingress|safe }}
                     </p>
                     <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                    <span><a class="btn btn-warning disabled" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
+
                 </section>  
                 <hr>
                 </div>
                 {% endwith %}
             {% endif %}
         </div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'loevdalnet'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
         {% else %}
         <div class="jumbotron">
-            <h1>Det er ikke skrevet noen innlegg...</h1>
-            <p>Må skjerpe meg og sette igang...</p>
+            <h1>Det er ikke skrevet noen innlegg</h1>
         </div>
         {% endif %}
     </div>

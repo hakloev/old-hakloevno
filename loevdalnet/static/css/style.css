@@ -3,6 +3,16 @@ header {
     vertical-align: middle;
 }
 
+.panel-heading { 
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.disabled a {
+    pointer-events: none;
+    cursor: default;
+}
+
 .navbar {
     border-radius: 0px;
 }
@@ -18,6 +28,11 @@ header {
 
 .img-thumbnail {
     max-height: 150px;
+}
+
+.post {
+    height: 245px;
+    overflow: auto;
 }
 
 /*
@@ -43,6 +58,94 @@ header {
 
 .infotext {
     margin-top: 10px;
+}
+
+/*
+ *CV
+ */
+
+.cv_wrap {
+    max-width: 1024px;
+    margin: 0 auto;
+    border-top: solid #ecf0f1;
+    border-width: 8px 0 2px 0;
+}
+
+.cv_header {
+    margin-top: 10px;
+}
+
+.cv_header h4 {
+    font-style: italic;
+}
+
+.cv_image {
+    height: 150px;
+}
+
+.img_col {
+    text-align: center;
+}
+
+.name_field {
+    border-right: solid 1px #ecf0f1;
+}
+
+.address_field { 
+    margin-top: 5px;
+}
+
+.address_field td:first-child {
+    font-weight: bold;
+    width: 140px;
+}
+
+.cv_body {
+    max-width: 640px;
+    margin: 0 auto 0 auto;
+}
+
+.cv_body h2 span {
+    border-bottom: solid 4px #ecf0f1;
+    padding: 0 0 5px 0;
+}
+
+.exp_list {
+    list-style: none;
+    border-top: solid 1px #ecf0f1;
+    /*padding-left: 0;*/
+}
+
+.exp_list li span {
+    margin: 0 15px 0 0;
+    float: right;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.cv_body h2 span.reference {
+    border-bottom: none;
+}
+
+.exp_list p {
+    max-width: 82%;
+    margin-top: 5px;
+}
+
+.non_list_content { 
+    border-top: solid 1px #ecf0f1;
+    margin: 0 0 0 40px;
+}
+
+.interest {
+    padding-top: 10.5px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    .img_col { display: none; }
+    .cv_header h1 { font-size: 30px; }
+    .exp_list { padding: 0; }
+    .non_list_content { margin: 0; }
 }
 
 /*

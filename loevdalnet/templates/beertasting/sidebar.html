@@ -3,7 +3,7 @@
 <div class="col-md-4">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Ølmeny:</h3>
+            <h3 class="panel-title">Ølmeny for {{ request.user.first_name }}:</h3>
         </div>
         <div class="panel-body">
             {% if event.finished %}
@@ -17,7 +17,7 @@
                 {% endif %}
             {% else %}
                 <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ ratings.count|get_percent }}" aria-valuemin="0" aria-valuemax="{{ event.beers.all.count|get_percent }}" style="width: {{ ratings.count|get_how_long:event.beers.all.count }}%">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ ratings.count|get_percent }}" aria-valuemin="0" aria-valuemax="{{ event.beers.all.count|get_percent }}" style="width: {{ ratings.count|get_how_long:event.beers.all.count }}%">
                         {{ ratings.count|get_how_long:event.beers.all.count }}%
                     </div>
                 </div>
@@ -31,6 +31,7 @@
                     <p>Ingen øl tilgjengelig..</p>
                 {% endif %}
             {% endif %}
+            <p class="infotext">Din bruker-ID er: {{ request.user.id }}</p>
         </div>
         {% if user.is_superuser %}
         <div class="panel-heading">
@@ -39,9 +40,13 @@
         <div class="panel-body">
             <a href="{% url 'event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
             <p class="infotext">Event-ID: {{ event.id }}</p>
+            {% if rating.beer.id %}
+                <p class="infotext">Øl-ID: <strong>{{ rating.beer.id }}</strong></p>
+                <p class="infotext">Øl: <strong>{{ rating.beer }}</strong></p>
+            {% endif %}
             <p class="infotext">Dato: {{ event.date|date:"h.m.Y" }}</p>
             <p class="infotext">Antall øl: {{ event.beers.all|length }}</p>
-        </div>
+            </div>
         {% endif %}
     </div>
 </div>

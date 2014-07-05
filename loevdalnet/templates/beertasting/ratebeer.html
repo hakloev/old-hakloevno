@@ -4,7 +4,7 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; rating
+&ndash; ølsmaking &ndash; vurdering
 {% endblock %}
 
 {% block body_block %}
@@ -55,18 +55,22 @@
                     {% endif %}
                 </div>     
                 {% if comments %}
-                <h4>Andre sa følgende:</h4>
+                <h4>Andre ga følgende:</h4>
                 {% for comment in comments %}
                     <div class="well well-sm">
                         Karakter: <strong>{{ comment.rating|floatformat:0 }}</strong>
                         <br/>
                         <br/>
-                        {{ comment.comment }}
+                        {% if comment.comment|length < 1 %}
+                            <strong>Denne brukeren ga ingen kommentar.</strong>
+                        {% else %}
+                            {{ comment.comment }}
+                        {% endif %}
                     </div>
                 {% endfor %}
                 {% endif %}
             {% else %}
-                <h4>Du ga ikke denne ølen noen karakter</h4>
+                <h4>Du ga ikke denne ølen noen vurdering, og da får du ikke se de andre sin vurdering heller.</h4>
             {% endif %}
         {% else %}
         <form class="form-horizontal" action="{% url 'beer_rating' event.id beerid %}" method="POST">
@@ -90,7 +94,7 @@
                                 
                                 <div class="well well-sm">
                                     {% if rating.comment|length_is:"0" %}
-                                    Du ga ikke denne ølen noen kommentar
+                                        <strong>Du ga ikke denne ølen noen kommentar.</strong>
                                     {% else %}
                                     {{ rating.comment }}
                                     {% endif %}
@@ -113,6 +117,7 @@
             <hr>
                 {% if rating %}
                     <small>Sist vurdert: {{ rating.rated|date:"d.m.Y H:i" }}</small>
+                    <hr>
                 {% endif %}
             {% endif %}
     </div>

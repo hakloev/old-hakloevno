@@ -13,7 +13,7 @@
         <div class="page-header">
             <h1>Skriv et nytt innlegg</h1>
         </div>
-        <form class="form-horizontal" role="form" method="post" action="/blog/newpost/">
+        <form class="form-horizontal" role="form" method="post" action="{% url 'create_post' %}">
             {% csrf_token %}
             <fieldset>
 
