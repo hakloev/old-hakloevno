@@ -30,6 +30,11 @@ header {
     max-height: 150px;
 }
 
+.post {
+    height: 245px;
+    overflow: auto;
+}
+
 /*
  * BLOG
  */

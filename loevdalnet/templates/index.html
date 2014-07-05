@@ -24,16 +24,16 @@
                 {% for post in posts %}
                     <div class="col-md-4">
                     <section class="post">
-                        <h2>{{ post.title }}</h2>
+                        <h3>{{ post.title }}</h3>
                         <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
                         <br/>
                         <small><i class="fa fa-comments"></i> &nbsp;<a href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
 
                         <p class="ingress">
-                            {{ post.ingress|safe }}
-                        </p>
+                            {% if post.ingress|length > 120 %}{{ post.ingress|truncatechars:120|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
+                            </p>
+                            </section>
                         <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-                     </section>
                      <hr>
                     </div>
                 {% endfor %}
@@ -41,14 +41,14 @@
                 {% for post in posts %}
                 <div class="col-md-6">
                 <section class="post">
-                    <h2>{{ post.title }}</h2>
+                    <h3>{{ post.title }}</h3>
                     <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
                     <p class="ingress">
-                        {{ post.ingress|safe }}
+                        {% if post.ingress|length > 320 %}{{ post.ingress|truncatechars:320|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
                     </p>
+                    </section>
                     <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                     <span><a class="btn btn-warning disabled" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
-                </section>  
                 <hr>
                 </div>
                 {% endfor %}
