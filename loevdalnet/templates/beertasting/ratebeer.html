@@ -99,18 +99,23 @@
                                     {{ rating.comment }}
                                     {% endif %}
                                 </div>
+                            {% else %}
+                                <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5></textarea>
+                                {% endif %}
+                                <hr>
                                 <div class="alert alert-dismissable alert-warning">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
                                     <h4>Advarsel!</h4>
                                     <p>Du kan ikke endre kommentar etter å ha avgitt vurdering, men du kan fortsatt endre karakter.</p>
                                 </div>
-                            {% else %}
-                                <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5></textarea>
-                            {% endif %}
                         </div>
                     </div>
 
-                <input class="btn btn-lg btn-danger btn-block" type="submit" value="Gi din vurdering"/>
+                {% if rating %}
+                <input class="btn btn-lg btn-danger btn-block" type="submit" value="Endre din karakter"/>
+                {% else %}
+                 <input class="btn btn-lg btn-danger btn-block" type="submit" value="Gi din vurdering"/>
+                {% endif %}
                 <input type="hidden" name="next" value="{{ next }}">
                 </fieldset>
             </form>

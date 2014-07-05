@@ -15,7 +15,6 @@ import datetime
 def index(request):
     latestevents = TastingEvent.objects.filter(finished=False).order_by('-id')
     doneevents = TastingEvent.objects.filter(finished=True).order_by('-id')
-    
     breadcrumbs = (
         ('Arrangementer', '/beertasting/'),
     )
@@ -31,7 +30,7 @@ def index(request):
 def event_by_id(request, id):
     event = TastingEvent.objects.get(id=id)
     ratings = BeerRating.objects.filter(event=id, user_id=request.user.id)
-    
+
     breadcrumbs = (
             ('Arrangementer', '/beertasting/'),
             (event.name, reverse('event_by_id', args=[event.id])),
