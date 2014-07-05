@@ -90,6 +90,9 @@ def event_stats(request, eid):
     if event.finished: 
         beers = Beer.objects.filter(id__in=TastingEvent.objects.get(id=eid).beers.all()).order_by('id')
         ratings = BeerRating.objects.filter(event=event).values('beer').annotate(score=Avg('rating')).order_by('-score')
+    else:
+        return HttpResponseRedirect('/beertasting/')
+
     breadcrumbs = (
             ('Arrangementer', '/beertasting/'),
             (event.name, reverse('event_by_id', args=[eid])),
@@ -125,13 +128,17 @@ def event_list(request, eid):
 
 def beer_stats(request, code): 
     bid = Beer.objects.get(code=code)
-    stats = BeerRating.objects.filter(beer_id=bid).annotate(score=Avg('rating')).order_by('-score')
+    stats = BeerRating.objects.filter(beer_id=bid, event_id=TastingEvent.objects.filter(finished=True)).annotate(score=Avg('rating')).order_by('-score')
     
-    # breadcrumbs here
+    breadcrumbs = (
+        ('Arrangemeneter', '/beertasting/'),
+        (u'Ølkode %s' % (code), None)
+    )
 
     return render(request, u'beertasting/beerstats.html', {
         'request': request,
-        'stats': stats}
+        'stats': stats,
+        'breadcrumbs': breadcrumbs}
     )
 
 def events_overall(request):
