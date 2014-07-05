@@ -69,9 +69,11 @@
                     </div>
                 {% endfor %}
                 {% endif %}
+                <a class="btn btn-danger" href="{% url 'beer_stats' rating.beer.code %}">Tidligere vurderinger for {{ rating.beer }}</a>
             {% else %}
                 <h4>Du ga ikke denne ølen noen vurdering, og da får du ikke se de andre sin vurdering heller.</h4>
-            {% endif %}
+        {% endif %}
+                <hr>
         {% else %}
         <form class="form-horizontal" action="{% url 'beer_rating' event.id beerid %}" method="POST">
                 {% csrf_token %}
