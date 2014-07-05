@@ -3,6 +3,11 @@ header {
     vertical-align: middle;
 }
 
+.panel-heading { 
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
 .disabled a {
     pointer-events: none;
     cursor: default;
