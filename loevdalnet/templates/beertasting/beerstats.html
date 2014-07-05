@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load filters %}
+
+{% block title %}
+{{ block.super }}
+&ndash; ølsmaking &ndash; resultater &ndash; {% if event %}{{ event.name }}{% else %}smaksevent{% endif %}
+{% endblock %}
+
+{% block body_block %}
+ <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        {% if breadcrumbs %}
+        <ol class="breadcrumb">
+            {% for name, link in breadcrumbs %}
+                {% if not forloop.last %}
+                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
+                {% else %}
+                    <li class="active">{{ name }}</li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        {{ stats }}
+    </div>
+</div>
+{% endblock %}

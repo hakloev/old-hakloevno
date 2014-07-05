@@ -122,3 +122,17 @@ def event_list(request, eid):
         'event':event,
         'breadcrumbs': breadcrumbs}
     )
+
+def beer_stats(request, code): 
+    bid = Beer.objects.get(code=code)
+    stats = BeerRating.objects.filter(beer_id=bid).annotate(score=Avg('rating')).order_by('-score')
+    
+    # breadcrumbs here
+
+    return render(request, u'beertasting/beerstats.html', {
+        'request': request,
+        'stats': stats}
+    )
+
+def events_overall(request):
+    pass
