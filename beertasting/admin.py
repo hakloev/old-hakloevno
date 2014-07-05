@@ -8,3 +8,6 @@ class BeerAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Beer, BeerAdmin)
 admin.site.register(TastingEvent)
+admin.site.register(Style)
+admin.site.register(BeerRating)
+admin.site.register(Brewery)
