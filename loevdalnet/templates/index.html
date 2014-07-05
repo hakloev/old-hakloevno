@@ -30,7 +30,7 @@
                         <small><i class="fa fa-comments"></i> &nbsp;<a href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
 
                         <p class="ingress">
-                            {% if post.ingress|length > 120 %}{{ post.ingress|truncatechars:120|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
+                            {% if post.ingress|length > 100 %}{{ post.ingress|truncatechars:100|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
                             </p>
                             </section>
                         <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
@@ -44,7 +44,7 @@
                     <h3>{{ post.title }}</h3>
                     <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
                     <p class="ingress">
-                        {% if post.ingress|length > 320 %}{{ post.ingress|truncatechars:320|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
+                        {% if post.ingress|length > 300 %}{{ post.ingress|truncatechars:300|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
                     </p>
                     </section>
                     <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
@@ -84,8 +84,7 @@ s.src = '//' + disqus_shortname + '.disqus.com/count.js';
 </script>
         {% else %}
         <div class="jumbotron">
-            <h1>Det er ikke skrevet noen innlegg...</h1>
-            <p>Må skjerpe meg og sette igang...</p>
+            <h1>Det er ikke skrevet noen innlegg</h1>
         </div>
         {% endif %}
     </div>
