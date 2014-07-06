@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from models import Beer, BeerRating, TastingEvent
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.db.models import Avg, Count
+from django.db.models import Avg, Count, Q
 
 import datetime
 
@@ -60,23 +60,30 @@ def beer_rating(request, eid, code):
             new_r.save()
             messages.success(request, u'Dine stemme for øl %s ble registrert!' % (code))
         return HttpResponseRedirect(request.path)
-    rating, comments = None, None
-    try: 
+    rating = None    
+    try:
         rating = BeerRating.objects.get(event=eid, beer_id=bid, user=request.user.id)
-        comments = BeerRating.objects.filter(event=eid, beer_id=bid).exclude(user=request.user.id)
     except:
-        pass
-    
-    breadcrumbs = (
-            ('Arrangementer', '/beertasting/'),
-            (event.name, reverse('event_by_id', args=[event.id])),
-            (u'Ølkode %s' % (code), reverse('beer_rating', args=[event.id, code])),
-    )
+        print 'beer_rating: query not exist'
+    comments = BeerRating.objects.filter(event=eid, beer_id=bid).exclude(user__in=[request.user.id])
+    if event.finished:     
+        breadcrumbs = (
+                ('Arrangementer', '/beertasting/'),
+                (event.name, reverse('event_by_id', args=[event.id])),
+                (u'%s' % (Beer.objects.get(id=bid).__unicode__()), reverse('beer_rating', args=[event.id, code])),
+        )
+    else:
+        breadcrumbs = (
+                ('Arrangementer', '/beertasting/'),
+                (event.name, reverse('event_by_id', args=[event.id])),
+                (u'Ølkode %s' % (code), reverse('beer_rating', args=[event.id, code])),
+        )
 
     return render(request, u'beertasting/ratebeer.html', {
         'request': request,
         'event': event,
-        'beerid': code,
+        'beercode': code,
+        'beerid': bid,
         'rating': rating,
         'ratings': ratings,
         'comments': comments,
@@ -150,7 +157,7 @@ def beer_list(request):
 
     breadcrumbs = (
         ('Arrangemeneter', '/beertasting/'),
-        (u'Øloversikt', reverse('beer_list'))
+        (u'Statistikk', reverse('beer_list'))
     )
     
     return render(request, u'beertasting/beerlist.html', {
@@ -178,7 +185,7 @@ def user_ratings(request,id):
     if not request.user.id == int(id):
         return render(request, u'denied.html', None)
     
-    ratings = BeerRating.objects.filter(event_id=TastingEvent.objects.filter(finished=True), user_id=id)
+    ratings = BeerRating.objects.filter(event_id=TastingEvent.objects.filter(finished=True), user_id=id).order_by('event')
     
     breadcrumbs = (
         ('Arrangemeneter', '/beertasting/'),

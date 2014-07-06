@@ -29,22 +29,22 @@
    </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
             {% if not ratings %}
             <h3>Du har ikke avgitt noen vurderinger.</h3>
             {% else %}
             {% for rating in ratings %}
-                    <h4>{{ rating.beer }}:</h4>
-                    <div class="well well-sm">
-                        Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
-                        <br/>
-                        <br/>
-                        {% if rating.comment %}
-                        {{ rating.comment }}
-                        {% else %}
-                        <strong>Du ga ingen kommetar.</strong>
-                        {% endif %}
-                    </div>
+                <h4>{{ rating.beer }} &ndash; {{ rating.event }}:</h4>
+                <div class="well well-sm">
+                    Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
+                    <br/>
+                    <br/>
+                    {% if rating.comment %}
+                    {{ rating.comment }}
+                    {% else %}
+                    <strong>Du ga ingen kommetar.</strong>
+                    {% endif %}
+                </div>
             {% endfor %}
             {% endif %}
     </div>
