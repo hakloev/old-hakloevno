@@ -4,14 +4,14 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; resultater &ndash; {% if event %}{{ event.name }}{% else %}smaksevent{% endif %}
+&ndash; ølsmaking &ndash; statistikk &ndash; {{ beer }}
 {% endblock %}
 
 {% block body_block %}
  <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
+                <h1>Ølsmaking <small>&dash; statistikk</small></h1>
             </div>
         </div>
     </div>

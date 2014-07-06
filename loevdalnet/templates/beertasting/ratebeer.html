@@ -37,7 +37,7 @@
             {% for message in messages %}
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Weee!</strong> {{ message }}
+                    {{ message }}
                 </div>
             {% endfor %}
         {% endif %}
@@ -69,7 +69,7 @@
                     </div>
                 {% endfor %}
                 {% endif %}
-                <a class="btn btn-danger" href="{% url 'beer_stats' rating.beer.code %}">Tidligere vurderinger for {{ rating.beer }}</a>
+                <a class="btn btn-danger" href="{% url 'beer_stats' rating.beer.id %}">Statistikk</a>
             {% else %}
                 <h4>Du ga ikke denne ølen noen vurdering, og da får du ikke se de andre sin vurdering heller.</h4>
         {% endif %}

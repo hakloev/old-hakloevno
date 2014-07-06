@@ -126,20 +126,36 @@ def event_list(request, eid):
         'breadcrumbs': breadcrumbs}
     )
 
-def beer_stats(request, code): 
-    bid = Beer.objects.get(code=code)
-    stats = BeerRating.objects.filter(beer_id=bid, event_id=TastingEvent.objects.filter(finished=True)).annotate(score=Avg('rating')).order_by('-score')
-    
+def beer_stats(request, id): 
+    stats = BeerRating.objects.filter(beer_id=id, event_id=TastingEvent.objects.filter(finished=True)).annotate(score=Avg('rating')).order_by('-score')
+    beer = Beer.objects.get(id=id) 
     breadcrumbs = (
         ('Arrangemeneter', '/beertasting/'),
-        (u'Ølkode %s' % (code), None)
+        ('Statistikk', reverse('beer_overall')),
+        (u'%s' % (beer.__unicode__()), None)
     )
 
     return render(request, u'beertasting/beerstats.html', {
         'request': request,
         'stats': stats,
+        'beer': beer,
         'breadcrumbs': breadcrumbs}
     )
 
-def events_overall(request):
-    pass
+
+def beer_overall(request):
+    ratings = BeerRating.objects.filter(event_id=TastingEvent.objects.filter(finished=True)).values('beer').annotate(score=Avg('rating'), rates=Count('rating'), events=Count('event', distinct=True)).order_by('-score') 
+
+    breadcrumbs = (
+        ('Arrangemeneter', '/beertasting/'),
+        ('Statistikk', reverse('beer_overall'))
+    )
+
+    return render(request, u'beertasting/beeroverall.html', {
+        'request': request,
+        'ratings': ratings,
+        'breadcrumbs': breadcrumbs}
+    )
+
+
+
