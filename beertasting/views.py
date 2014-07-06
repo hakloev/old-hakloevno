@@ -160,5 +160,21 @@ def beer_overall(request):
         'breadcrumbs': breadcrumbs}
     )
 
-
-
+@login_required
+def user_ratings(request,id):
+    if not request.user.id == int(id):
+        return render(request, u'denied.html', None)
+    
+    ratings = BeerRating.objects.filter(event_id=TastingEvent.objects.filter(finished=True), user_id=id)
+    
+    breadcrumbs = (
+        ('Arrangemeneter', '/beertasting/'),
+        ('Topp 10', reverse('beer_overall')),
+        ('%s' % (request.user.first_name), None)
+    )
+    
+    return render(request, u'beertasting/userratings.html', {
+        'request':request,
+        'breadcrumbs': breadcrumbs,
+        'ratings': ratings}
+    )

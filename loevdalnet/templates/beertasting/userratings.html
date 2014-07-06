@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}
+&ndash; ølsmaking &ndash; {{ request.user.first_name }}
+{% endblock %}
+
+{% block body_block %}
+ <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Ølsmaking <small>&dash; {{ request.user.first_name }}</small></h1>
+            </div>
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        {% if breadcrumbs %}
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li class="active"><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li class="active">{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+       {% endif %}
+   </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+                {% for rating in ratings %}
+                    <h4>{{ rating.beer }}:</h4>
+                    <div class="well well-sm">
+                        Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
+                        <br/>
+                        <br/>
+                        {{ rating.comment }}
+                    </div>
+                {% endfor %}
+    </div>
+</div>
+{% endblock %}
