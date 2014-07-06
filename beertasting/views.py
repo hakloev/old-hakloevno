@@ -145,6 +145,8 @@ def beer_stats(request, id):
         'breadcrumbs': breadcrumbs}
     )
 
+def beer_list(request):
+    pass
 
 def beer_overall(request):
     ratings = BeerRating.objects.filter(event_id=TastingEvent.objects.filter(finished=True)).values('beer', 'beer__name', 'beer__brewery__name').annotate(score=Avg('rating'), rates=Count('rating'), events=Count('event', distinct=True)).order_by('-score')[:10] 
