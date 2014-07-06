@@ -39,7 +39,11 @@
                         Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
                         <br/>
                         <br/>
+                        {% if rating.comment %}
                         {{ rating.comment }}
+                        {% else %}
+                        <strong>Du ga ingen kommentar.</strong>
+                        {% endif %}
                     </div>
                 {% endfor %}
             {% else %}
