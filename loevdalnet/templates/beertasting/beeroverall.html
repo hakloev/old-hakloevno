@@ -4,14 +4,14 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; statistikk 
+&ndash; ølsmaking &ndash; statistikk &ndash; topp 10 
 {% endblock %}
 
 {% block body_block %}
  <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>Ølsmaking <small>&dash; statistikk</small></h1>
+                <h1>Ølsmaking <small>&dash; topp 10</small></h1>
             </div>
         </div>
     </div>
@@ -32,13 +32,14 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <h3 class="ratingheader">Statistikk:</h3>
+        <h3 class="ratingheader">Topp 10:</h3>
         <div class="panel panel-default">
             <div class="panel-heading">Oversikt</div>
                 <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>Rangering</th>
                             <th>Snitt</th>
                             <th>Øl</th>
                             <th>Bryggeri</th>
@@ -49,9 +50,10 @@
                     <tbody>
                         {% for rating in ratings %}
                         <tr>
+                            <td>{{ forloop.counter }}</td>
                             <td><strong>{{ rating.score|floatformat:2 }}</strong></td>
-                            <td>ØLNAVN</td>
-                            <td>BRYGGERI</td>
+                            <td><a href="{% url 'beer_stats' rating.beer %}">{{ rating.beer__name }}</a></td>
+                            <td>{{ rating.beer__brewery__name }}</td>
                             <td>{{ rating.rates }}</td>
                             <td>{{ rating.events }}</td>
                        </tr>

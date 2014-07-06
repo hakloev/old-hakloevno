@@ -11,7 +11,7 @@
  <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>Ølsmaking <small>&dash; statistikk</small></h1>
+                <h1>Ølsmaking <small>&dash; statistikk &ndash; {{ beer }}</small></h1>
             </div>
         </div>
     </div>
@@ -32,7 +32,29 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        {{ stats }}
+        {% for stat in stats %}
+            <div class="well well-sm">
+                Karakter: <strong>{{ stat.rating|floatformat:0 }}</strong>
+                <br>
+                <br>
+                {{ stat.comment }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Øl-info</h3>
+            </div>          
+            <div class="panel-body">
+                {% for info in beerinfo %}
+                <p>Øl: {{ info.beer__name}}</p>
+                <p>Bryggeri: {{ info.beer__brewery__name }}</p>
+                <p><strong>Snitt: {{ info.score|floatformat:2 }}</strong></p>
+                <p>Antall arrangment: {{ info.events }}</p>
+                <p>Antall vurderinger: {{ info.rates }}</p>
+                {% endfor %}
+            </div>
     </div>
 </div>
 {% endblock %}
