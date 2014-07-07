@@ -6,7 +6,7 @@ import datetime
 # Create your models here.
 
 class Category(models.Model):
-    title = models.CharField(max_length=50, db_index=True)
+    title = models.CharField(max_length=25, db_index=True)
     slug = models.SlugField(db_index=True)
 
     def __unicode__(self):
@@ -17,7 +17,7 @@ class Category(models.Model):
         super(Category, self).save()
 
 class Blogpost(models.Model):
-    title = models.CharField(max_length=50, unique=True)
+    title = models.CharField(max_length=23, unique=True)
     slug = models.SlugField(unique=True, db_index=True)
     ingress = models.TextField(max_length=400)
     text = models.TextField()
@@ -32,8 +32,9 @@ class Blogpost(models.Model):
         if not self.posted:
             date = datetime.datetime.today()
             self.posted = date
-        if not self.slug:
-            self.slug = '/%s/%s/%s/%s' % (date.year, date.month, date.day, slugify(self.title))
+        else:
+            date = self.posted
+        self.slug = '/%s/%s/%s/%s' % (date.year, date.month, date.day, slugify(self.title))
         super(Blogpost, self).save()
    
     @permalink
