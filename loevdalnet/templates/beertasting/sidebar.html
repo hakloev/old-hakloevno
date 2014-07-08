@@ -8,12 +8,11 @@
         <div class="panel-body">
             {% if event.finished %}
                 <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-danger btn-block resultbutton">Resultat</a>
-                {% if event.beers.all|length > 1 %}
+                {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all %}
                     <p><a href="{% url 'beer_rating' event.id beer.code %}">{{ beer.name}} fra {{ beer.brewery }}</a></p>
                     {% endfor %}
                 {% else %}
-                    <p>Ingen øl tilgjengelig..</p>
                 {% endif %}
             {% else %}
                 <div class="progress progress-striped active">
@@ -21,7 +20,7 @@
                         {{ ratings.count|get_how_long:event.beers.all.count }}%
                     </div>
                 </div>
-                {% if event.beers.all|length > 1 %}
+                {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all|shuffle_beers %}
                         {% autoescape off %}
                         <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'beer_rating' event.id beer.code %}">Ølkode {{ beer.code }}</a></p>

@@ -35,8 +35,7 @@
         {% else %}
             <h3>Ingen pågående arrangement...</h3>
         {% endif %}
-        </div>
-        <div class="col-md-6">
+        <hr>
         {% if doneevents %}
         <h3><span class="glyphicon glyphicon-calendar"></span> &ndash; Ferdige: <small>{{ doneevents.count }} arrangement</small></h3>
             {% for event in doneevents %}
@@ -45,6 +44,15 @@
         {% else %}
             <h3>Ingen ferdige arrangement...</h3>
         {% endif %}
+        <hr>
+        </div>
+        <div class="col-md-6">
+            <h3><i class="fa fa-list-ol"></i> &nbsp;Statistikk:</h3>
+            {% if request.user.id %}
+            <p><a class="btn btn-danger" href="{% url 'user_ratings' request.user.id %}">Mine vurderinger</a></p>
+            {% endif %}
+            <p><a class="btn btn-danger" href="{% url 'beer_overall' %}">Topp 10</a></p>
+            <p><a class="btn btn-danger" href="{% url 'beer_list' %}">Alle øl</a></p>
         </div>
     </div>
 </div>

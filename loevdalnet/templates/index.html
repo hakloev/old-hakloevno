@@ -30,7 +30,7 @@
                         <small><i class="fa fa-comments"></i> &nbsp;<a href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
 
                         <p class="ingress">
-                            {% if post.ingress|length > 100 %}{{ post.ingress|truncatechars:100|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
+                            {% if post.ingress|length > 130 %}{{ post.ingress|truncatechars:130|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
                             </p>
                             </section>
                         <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
@@ -44,7 +44,7 @@
                     <h3>{{ post.title }}</h3>
                     <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
                     <p class="ingress">
-                        {% if post.ingress|length > 300 %}{{ post.ingress|truncatechars:300|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
+                        {% if post.ingress|length > 200 %}{{ post.ingress|truncatechars:200|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
                     </p>
                     </section>
                     <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>

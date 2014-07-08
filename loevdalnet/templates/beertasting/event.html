@@ -39,12 +39,17 @@
                         Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
                         <br/>
                         <br/>
+                        {% if rating.comment %}
                         {{ rating.comment }}
+                        {% else %}
+                        <strong>Du ga ingen kommentar.</strong>
+                        {% endif %}
                     </div>
                 {% endfor %}
             {% else %}
-                <h3>Du har ikke vurdert noen øl under dette arrangementet!</h3>
+                <h3>Du har ikke vurdert noen øl under dette arrangementet.</h3>
             {% endif %}
+            <hr>
         {% else %}
             {% if event.beers %}
             <section>

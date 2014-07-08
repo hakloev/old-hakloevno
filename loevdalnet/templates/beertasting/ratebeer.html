@@ -37,7 +37,7 @@
             {% for message in messages %}
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Weee!</strong> {{ message }}
+                    {{ message }}
                 </div>
             {% endfor %}
         {% endif %}
@@ -54,26 +54,33 @@
                     {{ rating.comment }}
                     {% endif %}
                 </div>     
-                {% if comments %}
-                <h4>Andre ga følgende:</h4>
-                {% for comment in comments %}
-                    <div class="well well-sm">
-                        Karakter: <strong>{{ comment.rating|floatformat:0 }}</strong>
-                        <br/>
-                        <br/>
-                        {% if comment.comment|length < 1 %}
-                            <strong>Denne brukeren ga ingen kommentar.</strong>
-                        {% else %}
-                            {{ comment.comment }}
-                        {% endif %}
-                    </div>
-                {% endfor %}
-                {% endif %}
             {% else %}
-                <h4>Du ga ikke denne ølen noen vurdering, og da får du ikke se de andre sin vurdering heller.</h4>
+                <h4>Du ga ikke denne ølen noen vurdering.</h4>
             {% endif %}
+            <hr>
+            {% if comments %}
+            <h4>Andre ga følgende:</h4>
+            {% for comment in comments %}
+                <div class="well well-sm">
+                    Karakter: <strong>{{ comment.rating|floatformat:0 }}</strong>
+                    <br/>
+                    <br/>
+                    {% if comment.comment|length < 1 %}
+                        <strong>Denne brukeren ga ingen kommentar.</strong>
+                    {% else %}
+                        {{ comment.comment }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {% else %}
+            <h4>Ingen andre ga noen vurdering.</h4>
+            {% endif %}
+            <hr>
+            <a class="btn btn-danger" href="{% url 'beer_stats' beerid %}">Statistikk</a>
+
+            <hr>
         {% else %}
-        <form class="form-horizontal" action="{% url 'beer_rating' event.id beerid %}" method="POST">
+        <form class="form-horizontal" action="{% url 'beer_rating' event.id beercode %}" method="POST">
                 {% csrf_token %}
                 <fieldset>
                     <div class="form-group">
