@@ -6,7 +6,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'loevdalnet.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', index),
+    url(r'^$', index, name="index"),
     url(r'event/(?P<id>[0-9]+)/$', event_by_id, name="event_by_id"),
     url(r'event/(?P<eid>[0-9]+)/beer/(?P<code>[a-z0-9]+)/$', beer_rating, name="beer_rating"),
     url(r'event/(?P<eid>[0-9]+)/stats/$', event_stats, name="event_stats"),
