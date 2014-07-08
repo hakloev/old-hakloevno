@@ -23,7 +23,7 @@ class work(models.Model):
     description = models.CharField(max_length=500)
 
     def __unicode__(self):
-        return u'%s' % (self.work)
+        return u'%s %s' % (self.work, self.position)
 
 class organization(models.Model):
     started = models.IntegerField(max_length=4)
@@ -35,28 +35,4 @@ class organization(models.Model):
     description = models.CharField(max_length=500)
     
     def __unicode__(self):
-        return u'%s' % (self.organization)
-
-class quality(models.Model):
-    quality = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return u'%s' % (self.quality)
-
-class intrest(models.Model):
-    intrest = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return u'%s' % (self.intrest)
-
-class licence(models.Model):
-    licence = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return u'%s' % (self.licence)
-
-class language(models.Model):
-    language = models.CharField(max_length=20)
-
-    def __unicode__(self):
-        return u'%s' % (self.language)
+        return u'%s %s' % (self.organization, self.position)
