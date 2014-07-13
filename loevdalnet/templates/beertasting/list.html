@@ -32,7 +32,6 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        {% if user.is_superuser %}
         <div class="panel panel-default">
             <div class="panel-heading">Øloversikt</div>
             <div class="table-responsive">
@@ -64,12 +63,8 @@
                         {% endfor %}
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
-    </div>
-    {% else %}
-        <h1>Kun superbrukere har tilgang</h1>
-        <hr>
-    {% endif %}
 </div>
 {% endblock %}

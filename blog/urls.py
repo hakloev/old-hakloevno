@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', create_post, name='create_post'),
-    url(r'^archive/$', all_posts, name='all_posts'),
+    url(r'^archive/$', all_posts, name='index'),
     url(r'^archive/(?P<year>[\d]{4})/$', post_by_year, name='post_by_year'),
     url(r'^archive/(?P<year>[\d]{4})/(?P<month>[\d]{1,2})/$', post_by_month, name='post_by_month'),
     url(r'^archive/(?P<year>[\d]{4})/(?P<month>[\d]{1,2})/(?P<day>[\d]{1,2})/$', post_by_day, name='post_by_day'),

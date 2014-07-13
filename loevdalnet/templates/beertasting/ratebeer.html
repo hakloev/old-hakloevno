@@ -76,11 +76,11 @@
             <h4>Ingen andre ga noen vurdering.</h4>
             {% endif %}
             <hr>
-            <a class="btn btn-danger" href="{% url 'beer_stats' beerid %}">Statistikk</a>
+            <a class="btn btn-danger" href="{% url 'tasting:beer_stats' beerid %}">Statistikk</a>
 
             <hr>
         {% else %}
-        <form class="form-horizontal" action="{% url 'beer_rating' event.id beercode %}" method="POST">
+        <form class="form-horizontal" action="{% url 'tasting:beer_rating' event.id beercode %}" method="POST">
                 {% csrf_token %}
                 <fieldset>
                     <div class="form-group">

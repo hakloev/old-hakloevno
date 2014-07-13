@@ -7,10 +7,10 @@
         </div>
         <div class="panel-body">
             {% if event.finished %}
-                <a href="{% url 'event_stats' event.id %}" class="btn btn-md btn-danger btn-block resultbutton">Resultat</a>
+                <a href="{% url 'tasting:event_stats' event.id %}" class="btn btn-md btn-danger btn-block resultbutton">Resultat</a>
                 {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all %}
-                    <p><a href="{% url 'beer_rating' event.id beer.code %}">{{ beer.name}} fra {{ beer.brewery }}</a></p>
+                    <p><a href="{% url 'tasting:beer_rating' event.id beer.code %}">{{ beer.name}} fra {{ beer.brewery }}</a></p>
                     {% endfor %}
                 {% else %}
                 {% endif %}
@@ -23,7 +23,7 @@
                 {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all|shuffle_beers %}
                         {% autoescape off %}
-                        <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'beer_rating' event.id beer.code %}">Ølkode {{ beer.code }}</a></p>
+                        <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'tasting:beer_rating' event.id beer.code %}">Ølkode {{ beer.code }}</a></p>
                         {% endautoescape %}
                     {% endfor %}
                 {% else %}
@@ -37,7 +37,7 @@
             <h3 class="panel-title">Administrator:</h3>
         </div>
         <div class="panel-body">
-            <a href="{% url 'event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
+            <a href="{% url 'tasting:event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
             <p class="infotext">Event-ID: {{ event.id }}</p>
             {% if rating.beer.id %}
                 <p class="infotext">Øl-ID: <strong>{{ rating.beer.id }}</strong></p>

@@ -27,13 +27,13 @@
                         <h3>{{ post.title }}</h3>
                         <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
                         <br/>
-                        <small><i class="fa fa-comments"></i> &nbsp;<a href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
+                        <small><i class="fa fa-comments"></i> &nbsp;<a href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
 
                         <p class="ingress">
                             {% if post.ingress|length > 130 %}{{ post.ingress|truncatechars:130|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
                             </p>
                             </section>
-                        <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                        <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                      <hr>
                     </div>
                 {% endfor %}
