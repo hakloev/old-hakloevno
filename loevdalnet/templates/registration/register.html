@@ -2,18 +2,17 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; blogg &ndash; ny post
+&ndash; registrer ny bruker
 {% endblock %}
 
 {% block body_block %}
 {{ block.super }}
-{% if user.is_superuser %}
 <div class="row">
     <div class="col-md-8">
         <div class="page-header">
-            <h1>Skriv et nytt innlegg</h1>
+            <h1>Registrer ny bruker</h1>
         </div>
-        <form class="form-horizontal" role="form" method="post" action="{% url 'blog:create_post' %}">
+        <form class="form-horizontal" role="form" method="post" action="{% url 'registration:new_user' %}">
             {% csrf_token %}
             <fieldset>
 
@@ -60,7 +59,4 @@
     </div>
     {% include 'sidebar.html' %}
 </div>
-{% else %}
-    <h1>Kun superbrukere har tilgang</h1>
-{% endif %}
 {% endblock %}

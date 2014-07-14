@@ -13,7 +13,7 @@ def register(request):
         if request.method == 'POST':
             return render(request, u'denied.html', None)
         else:
-            return render(request, u'denied.html', None)
+            return render(request, u'registration/register.html', None)
 
 def register_success(request):
     return render(request, u'index.html', None)

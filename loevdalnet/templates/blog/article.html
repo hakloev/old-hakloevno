@@ -15,7 +15,7 @@
             &ndash; 
             <small><span class="glyphicon glyphicon-time"></span> Sist endret: {{ post.modified|date:"d.m.Y H.i"}}</small>
         </div>
-        <p class="lead">{{ post.ingress }}</p>
+        <p class="lead">{{ post.ingress|safe }}</p>
         <hr>
         {{ post.text|safe }}
         <hr>
