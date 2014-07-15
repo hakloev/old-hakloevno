@@ -13,7 +13,7 @@
             <h1>{{ post.title }}</h1>
             <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y'}}</small>
             &ndash; 
-            <small><span class="glyphicon glyphicon-time"></span> Sist endret: {{ post.modified|date:"d.m.Y H.i"}}</small>
+            <small><span class="fa fa-pencil-square-o"></span> Sist endret: {{ post.modified|date:"d.m.Y H.i"}}</small>
         </div>
         <p class="lead">{{ post.ingress|safe }}</p>
         <hr>

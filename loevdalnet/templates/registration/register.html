@@ -12,43 +12,78 @@
         <div class="page-header">
             <h1>Registrer ny bruker</h1>
         </div>
-        <form class="form-horizontal" role="form" method="post" action="{% url 'registration:new_user' %}">
-            {% csrf_token %}
-            <fieldset>
+        <div class="col-md-12"> 
+            <form class="form-horizontal" action="{% url 'registration:new_user' %}" method="POST">
+                {% csrf_token %}
+<fieldset>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-1 control-label" for="title">Tittel</label>  
-                <div class="col-md-11">
-                    <input id="title" name="title" type="text" placeholder="tittel" class="form-control input-md" required="">
-                </div>
-            </div>
+<!-- Text input-->
+<div class="form-group">
+<label class="col-md-2 control-label" for="firstname">Fornavn:</label>  
+<div class="col-md-6">
+<input id="firstname" name="firstname" type="text" placeholder="Skriv inn ditt fornavn..." class="form-control input-md" required="">
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-1 control-label" for="ingress">Ingress</label>  
-                <div class="col-md-11">
-                    <input id="ingress" name="ingress" type="text" placeholder="ingress" class="form-control input-md" required="">
-                </div>
-            </div>
+</div>
+</div>
 
-            <!-- Textarea -->
-            <div class="form-group">
-                <label class="col-md-1 control-label" for="text">Innlegg</label>
-                <div class="col-md-11">                     
-                    <textarea class="form-control" id="text" name="text" rows="15">{{ text }}</textarea>
-                </div>
-            </div>
+<!-- Text input-->
+<div class="form-group">
+<label class="col-md-2 control-label" for="lastname">Etternavn:</label>  
+<div class="col-md-6">
+<input id="lastname" name="lastname" type="text" placeholder="Skriv inn ditt etternavn..." class="form-control input-md" required="">
 
-            <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-1 control-label" for="createpost"></label>
-                <div class="col-md-4">
-                      <button id="createpost" name="createpost" class="btn btn-danger">Lag post</button>
-                </div>
-            </div>
-        </fieldset>
-    </form> 
+</div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+<label class="col-md-2 control-label" for="username">Brukernavn:</label>  
+<div class="col-md-6">
+<input id="username" name="username" type="text" placeholder="Skriv inn ønsket brukernavn..." class="form-control input-md" required="">
+
+</div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+<label class="col-md-2 control-label" for="email">Epost:</label>  
+<div class="col-md-6">
+<input id="email" name="email" type="email" placeholder="Skriv inn din epost-adresse..." class="form-control input-md" required="">
+
+</div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+<label class="col-md-2 control-label" for="password1">Passord:</label>
+<div class="col-md-6">
+<input id="password1" name="password1" type="password" placeholder="Skriv inn ditt passord..." class="form-control input-md" required="">
+
+</div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+<label class="col-md-2 control-label" for="password2">Gjenta passord:</label>
+<div class="col-md-6">
+<input id="password2" name="password2" type="password" placeholder="Gjenta ditt passord..." class="form-control input-md" required="">
+
+</div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+<label class="col-md-2 control-label" for="createuser">Lag bruker:</label>
+<div class="col-md-4">
+    <input class="btn btn-danger" type="submit" value="Registrer"/>
+</div>
+</div>
+
+<input type="hidden" name="next" value="{{ next }}"/>
+</fieldset>
+</form>
+         </div>                                          
+    
     </div>
     <div class="col-md-4">
         {% if errors %}
