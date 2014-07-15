@@ -153,6 +153,14 @@ header {
 }
 
 /*
+ * REGISTRATION
+ */
+
+#createuser {
+    display: none;
+}
+
+/*
  * FOOTER
  */
 

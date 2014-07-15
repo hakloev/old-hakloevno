@@ -16,6 +16,20 @@
             {% include 'navbar.html' %}
         </header>
         <div class="container maincontainer">
+            {% block message_block %}
+                {% if messages %}
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for message in messages %}
+                            <div class="alert alert-dismissable alert-{{ message.tags }}">
+                                <button type="button" class="close" data-dismiss="alert">x</button>
+                                <p>{{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endblock %}
             {% block body_block %}
             {% endblock %}
             <hr>

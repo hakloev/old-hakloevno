@@ -33,14 +33,6 @@
 
 <div class="row">
     <div class="col-md-8">
-        {% if messages %}
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
         {% if event.finished %}
             {% if rating %}
                 <h4 class="ratingheader">Du ga <strong>{{ rating.beer }}</strong> følgende:</h4>
