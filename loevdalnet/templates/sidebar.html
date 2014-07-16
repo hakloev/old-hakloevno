@@ -47,12 +47,25 @@
         </div>
         <div class="panel panel-danger">
             <div class="panel-heading">
-                <h3 class="panel-title" id="weatherlocation">Været</h3>
+                <h3 class="panel-title"><i class="fa fa-sun-o fa-fw"></i>&nbsp; Været<span id="weatherlocation"></span></h3>
             </div>
             <div class="panel-body">
-                <div id="weather">
-                    <div id="temp"></div>
-                    <div id="forecast"></div>
+                <div class="row">
+                    <div class="col-md-6 weatherinfo">
+                        <div id="temp"></div>
+                        <div id="windspeed"></div>
+                        <div id="windstrength"></div>
+                        <div id="rain"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <i class="fa fa-sun-o" style="font-size: 9em"></i>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="forecast"></div>
+                    </div>
                 </div>
             </div>
         </div>

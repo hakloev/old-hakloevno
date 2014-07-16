@@ -22,8 +22,11 @@ var weather = {
         var rain = xml.getElementsByTagName("precipitation")[0].attributes[0].value;
         var windspeed = xml.getElementsByTagName('windSpeed')[0].attributes;
         var winddir = xml.getElementsByTagName("windDirection")[0].attributes;
-        document.getElementById("weatherlocation").innerHTML = "Været for " + place;
+        document.getElementById("weatherlocation").innerHTML = " for " + place;
         document.getElementById("temp").innerHTML = "<strong>&deg; " + temp + "</strong>";
+        document.getElementById("windspeed").innerHTML = windspeed[0].value + " m/s &ndash; " + winddir[2].value;
+        document.getElementById("windstrength").innerHTML = "<strong>Styrke:</strong> " + windspeed[1].value;
+        document.getElementById("rain").innerHTML = rain + " mm";
         document.getElementById("forecast").innerHTML = "<p>" + gislefoss + "</p>";
     }
 };

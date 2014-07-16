@@ -43,6 +43,10 @@ header {
  * WEATHER
  */
 
+.weatherinfo {
+    text-align: right;
+}
+
 #forecast {
     margin: 10px 0 10px 0;
 }
@@ -52,11 +56,7 @@ header {
 }
 
 #temp {
-    text-align: center;
-}
-
-#temp p {
-    font-size: 40px;
+    font-size: 45px;
 }
 
 /*
