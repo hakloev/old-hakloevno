@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<weatherdata>
+  <location>
+    <name>Tjøme</name>
+    <type>Kommune</type>
+    <country>Norge</country>
+    <timezone id="Europe/Oslo" utcoffsetMinutes="120" />
+    <location altitude="18" latitude="59.1108782347167" longitude="10.3932636025176" geobase="ssr" geobaseid="508258" />
+  </location>
+  <credit>
+    <!--For å bruke gratis værdata fra yr.no, MÅ du vise følgende tekst godt synlig på nettsiden din. Teksten skal være en lenke til URL-en som er spesifisert.-->
+    <!--Les mer om vilkår for bruk av gratis værdata + retningslinjer på 
+http://om.yr.no/verdata/ -->
+    <link text="Værvarsel fra yr.no, levert av NRK og Meteorologisk institutt" url="http://www.yr.no/sted/Norge/Vestfold/Tjøme/Tjøme/" />
+  </credit>
+  <links>
+    <link id="xmlSource" url="http://www.yr.no/sted/Norge/Vestfold/Tjøme/Tjøme/varsel.xml" />
+    <link id="xmlSourceHourByHour" url="http://www.yr.no/sted/Norge/Vestfold/Tjøme/Tjøme/varsel_time_for_time.xml" />
+    <link id="overview" url="http://www.yr.no/sted/Norge/Vestfold/Tjøme/Tjøme/" />
+    <link id="hourByHour" url="http://www.yr.no/sted/Norge/Vestfold/Tjøme/Tjøme/time_for_time.html" />
+    <link id="longTermForecast" url="http://www.yr.no/sted/Norge/Vestfold/Tjøme/Tjøme/langtidsvarsel.html" />
+    <link id="radar" url="http://www.yr.no/sted/Norge/Vestfold/Tjøme/Tjøme/radar.html" />
+  </links>
+  <meta>
+    <lastupdate>2014-07-16T16:34:20</lastupdate>
+    <nextupdate>2014-07-17T00:00:00</nextupdate>
+  </meta>
+  <sun rise="2014-07-16T04:31:37" set="2014-07-16T22:16:05" />
+  <forecast>
+    <text>
+      <location name="Tjøme">
+        <time from="2014-07-16" to="2014-07-17">
+          <title>onsdag og torsdag</title>
+          <body>&lt;strong&gt;Østlandet:&lt;/strong&gt; Sørvestlig opp i frisk bris på kysten. Utrygt for noen regnbyger nord for Mjøsa. Ellers opphold og til dels pent vær. &lt;strong&gt;Svenskegrensa - Oksøy:&lt;/strong&gt; Sørvestlig opp i frisk bris 10 m/s. Opphold og til dels pent vær. Torsdag sørvestlig opp i frisk bris, om ettermiddagen liten kuling 12. Skiftende skydekke, fra formiddagen regnbyger og mulighet for torden. Om kvelden vestlig bris og lettere vær.</body>
+        </time>
+        <time from="2014-07-17" to="2014-07-17">
+          <title>torsdag</title>
+          <body>&lt;strong&gt;Østlandet og Telemark:&lt;/strong&gt; Sørvestlig bris, frisk bris på kysten, om ettermiddagen liten kuling. Skiftende skydekke, fra formiddagen regnbyger og mulighet for torden. Om kvelden vestlig bris, lettere vær sør for Oslo.</body>
+        </time>
+        <time from="2014-07-18" to="2014-07-18">
+          <title>fredag</title>
+          <body>&lt;strong&gt;Østlandet og Telemark:&lt;/strong&gt; Skiftende bris, sørvestlig bris på kysten. Enkelte regnbyger nord for Oslo, ellers opphold og perioder med sol.</body>
+        </time>
+        <time from="2014-07-19" to="2014-07-19">
+          <title>lørdag</title>
+          <body>&lt;strong&gt;Sør-Norge:&lt;/strong&gt; Østlig bris. Pent vær. Omtrent uendret temperatur i Agder, ellers litt stigende.</body>
+        </time>
+        <time from="2014-07-20" to="2014-07-21">
+          <title>søndag og mandag</title>
+          <body>&lt;strong&gt;Sør-Norge:&lt;/strong&gt; Rolige vindforhold. En god del pent og varmt vær.</body>
+        </time>
+        <time from="2014-07-22" to="2014-07-25">
+          <title>tirsdag til fredag</title>
+          <body>&lt;strong&gt;Sør-Norge:&lt;/strong&gt; Det ventes rolige vindforhold. Lange perioder med pent vær mange steder, men utover i perioden økende sannsynlighet for ettermiddagsbyger i indre strøk. Fortsatt varmt.</body>
+        </time>
+      </location>
+    </text>
+    <tabular>
+      <time from="2014-07-16T20:00:00" to="2014-07-17T00:00:00" period="3">
+        <!-- Valid from 2014-07-16T20:00:00 to 2014-07-17T00:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-16T20:00:00 -->
+        <windDirection deg="215.9" code="SW" name="Sørvest" />
+        <windSpeed mps="4.4" name="Lett bris" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1015.5" />
+      </time>
+      <time from="2014-07-17T00:00:00" to="2014-07-17T06:00:00" period="0">
+        <!-- Valid from 2014-07-17T00:00:00 to 2014-07-17T06:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="mf/03n.66" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-17T00:00:00 -->
+        <windDirection deg="111.3" code="ESE" name="Øst-sørøst" />
+        <windSpeed mps="1.9" name="Svak vind" />
+        <temperature unit="celsius" value="18" />
+        <pressure unit="hPa" value="1015.5" />
+      </time>
+      <time from="2014-07-17T06:00:00" to="2014-07-17T12:00:00" period="1">
+        <!-- Valid from 2014-07-17T06:00:00 to 2014-07-17T12:00:00 -->
+        <symbol number="4" numberEx="4" name="Skyet" var="04" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-17T06:00:00 -->
+        <windDirection deg="291.2" code="WNW" name="Vest-nordvest" />
+        <windSpeed mps="1.2" name="Flau vind" />
+        <temperature unit="celsius" value="17" />
+        <pressure unit="hPa" value="1016.9" />
+      </time>
+      <time from="2014-07-17T12:00:00" to="2014-07-17T18:00:00" period="2">
+        <!-- Valid from 2014-07-17T12:00:00 to 2014-07-17T18:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" minvalue="0" maxvalue="0.1" />
+        <!-- Valid at 2014-07-17T12:00:00 -->
+        <windDirection deg="225.6" code="SW" name="Sørvest" />
+        <windSpeed mps="6.8" name="Laber bris" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1018.4" />
+      </time>
+      <time from="2014-07-17T18:00:00" to="2014-07-18T00:00:00" period="3">
+        <!-- Valid from 2014-07-17T18:00:00 to 2014-07-18T00:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" minvalue="0" maxvalue="0.1" />
+        <!-- Valid at 2014-07-17T18:00:00 -->
+        <windDirection deg="222.8" code="SW" name="Sørvest" />
+        <windSpeed mps="5.2" name="Lett bris" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1018.5" />
+      </time>
+      <time from="2014-07-18T00:00:00" to="2014-07-18T06:00:00" period="0">
+        <!-- Valid from 2014-07-18T00:00:00 to 2014-07-18T06:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.70" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-18T00:00:00 -->
+        <windDirection deg="243.4" code="WSW" name="Vest-sørvest" />
+        <windSpeed mps="1.5" name="Flau vind" />
+        <temperature unit="celsius" value="18" />
+        <pressure unit="hPa" value="1017.4" />
+      </time>
+      <time from="2014-07-18T06:00:00" to="2014-07-18T12:00:00" period="1">
+        <!-- Valid from 2014-07-18T06:00:00 to 2014-07-18T12:00:00 -->
+        <symbol number="2" numberEx="2" name="Lettskyet" var="02d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-18T06:00:00 -->
+        <windDirection deg="304.4" code="NW" name="Nordvest" />
+        <windSpeed mps="1.9" name="Svak vind" />
+        <temperature unit="celsius" value="16" />
+        <pressure unit="hPa" value="1018.4" />
+      </time>
+      <time from="2014-07-18T12:00:00" to="2014-07-18T18:00:00" period="2">
+        <!-- Valid from 2014-07-18T12:00:00 to 2014-07-18T18:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-18T12:00:00 -->
+        <windDirection deg="109.8" code="ESE" name="Øst-sørøst" />
+        <windSpeed mps="1.5" name="Flau vind" />
+        <temperature unit="celsius" value="23" />
+        <pressure unit="hPa" value="1019.3" />
+      </time>
+      <time from="2014-07-18T18:00:00" to="2014-07-19T00:00:00" period="3">
+        <!-- Valid from 2014-07-18T18:00:00 to 2014-07-19T00:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-18T18:00:00 -->
+        <windDirection deg="217.5" code="SW" name="Sørvest" />
+        <windSpeed mps="4.1" name="Lett bris" />
+        <temperature unit="celsius" value="22" />
+        <pressure unit="hPa" value="1018.5" />
+      </time>
+      <time from="2014-07-19T00:00:00" to="2014-07-19T06:00:00" period="0">
+        <!-- Valid from 2014-07-19T00:00:00 to 2014-07-19T06:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.73" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-19T00:00:00 -->
+        <windDirection deg="215.8" code="SW" name="Sørvest" />
+        <windSpeed mps="1.8" name="Svak vind" />
+        <temperature unit="celsius" value="19" />
+        <pressure unit="hPa" value="1019.3" />
+      </time>
+      <time from="2014-07-19T08:00:00" to="2014-07-19T14:00:00" period="1">
+        <!-- Valid from 2014-07-19T08:00:00 to 2014-07-19T14:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-19T08:00:00 -->
+        <windDirection deg="253.4" code="WSW" name="Vest-sørvest" />
+        <windSpeed mps="1.7" name="Svak vind" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1020.2" />
+      </time>
+      <time from="2014-07-19T14:00:00" to="2014-07-19T20:00:00" period="2">
+        <!-- Valid from 2014-07-19T14:00:00 to 2014-07-19T20:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-19T14:00:00 -->
+        <windDirection deg="214.1" code="SW" name="Sørvest" />
+        <windSpeed mps="2.1" name="Svak vind" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1020.4" />
+      </time>
+      <time from="2014-07-19T20:00:00" to="2014-07-20T02:00:00" period="3">
+        <!-- Valid from 2014-07-19T20:00:00 to 2014-07-20T02:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-19T20:00:00 -->
+        <windDirection deg="303.8" code="NW" name="Nordvest" />
+        <windSpeed mps="2.5" name="Svak vind" />
+        <temperature unit="celsius" value="22" />
+        <pressure unit="hPa" value="1019.1" />
+      </time>
+      <time from="2014-07-20T02:00:00" to="2014-07-20T08:00:00" period="0">
+        <!-- Valid from 2014-07-20T02:00:00 to 2014-07-20T08:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.77" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-20T02:00:00 -->
+        <windDirection deg="54.7" code="NE" name="Nordøst" />
+        <windSpeed mps="3.7" name="Lett bris" />
+        <temperature unit="celsius" value="18" />
+        <pressure unit="hPa" value="1019.9" />
+      </time>
+      <time from="2014-07-20T08:00:00" to="2014-07-20T14:00:00" period="1">
+        <!-- Valid from 2014-07-20T08:00:00 to 2014-07-20T14:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-20T08:00:00 -->
+        <windDirection deg="70.9" code="ENE" name="Øst-nordøst" />
+        <windSpeed mps="4.9" name="Lett bris" />
+        <temperature unit="celsius" value="19" />
+        <pressure unit="hPa" value="1020.3" />
+      </time>
+      <time from="2014-07-20T14:00:00" to="2014-07-20T20:00:00" period="2">
+        <!-- Valid from 2014-07-20T14:00:00 to 2014-07-20T20:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-20T14:00:00 -->
+        <windDirection deg="354.0" code="N" name="Nord" />
+        <windSpeed mps="2.2" name="Svak vind" />
+        <temperature unit="celsius" value="23" />
+        <pressure unit="hPa" value="1020.1" />
+      </time>
+      <time from="2014-07-20T20:00:00" to="2014-07-21T02:00:00" period="3">
+        <!-- Valid from 2014-07-20T20:00:00 to 2014-07-21T02:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-20T20:00:00 -->
+        <windDirection deg="24.1" code="NNE" name="Nord-nordøst" />
+        <windSpeed mps="3.1" name="Svak vind" />
+        <temperature unit="celsius" value="24" />
+        <pressure unit="hPa" value="1018.0" />
+      </time>
+      <time from="2014-07-21T02:00:00" to="2014-07-21T08:00:00" period="0">
+        <!-- Valid from 2014-07-21T02:00:00 to 2014-07-21T08:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.80" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-21T02:00:00 -->
+        <windDirection deg="86.1" code="E" name="Øst" />
+        <windSpeed mps="3.4" name="Lett bris" />
+        <temperature unit="celsius" value="19" />
+        <pressure unit="hPa" value="1019.2" />
+      </time>
+      <time from="2014-07-21T08:00:00" to="2014-07-21T14:00:00" period="1">
+        <!-- Valid from 2014-07-21T08:00:00 to 2014-07-21T14:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-21T08:00:00 -->
+        <windDirection deg="66.5" code="ENE" name="Øst-nordøst" />
+        <windSpeed mps="4.3" name="Lett bris" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1019.8" />
+      </time>
+      <time from="2014-07-21T14:00:00" to="2014-07-21T20:00:00" period="2">
+        <!-- Valid from 2014-07-21T14:00:00 to 2014-07-21T20:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-21T14:00:00 -->
+        <windDirection deg="76.8" code="ENE" name="Øst-nordøst" />
+        <windSpeed mps="2.4" name="Svak vind" />
+        <temperature unit="celsius" value="24" />
+        <pressure unit="hPa" value="1020.3" />
+      </time>
+      <time from="2014-07-21T20:00:00" to="2014-07-22T02:00:00" period="3">
+        <!-- Valid from 2014-07-21T20:00:00 to 2014-07-22T02:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-21T20:00:00 -->
+        <windDirection deg="287.9" code="WNW" name="Vest-nordvest" />
+        <windSpeed mps="3.2" name="Svak vind" />
+        <temperature unit="celsius" value="25" />
+        <pressure unit="hPa" value="1019.3" />
+      </time>
+      <time from="2014-07-22T02:00:00" to="2014-07-22T08:00:00" period="0">
+        <!-- Valid from 2014-07-22T02:00:00 to 2014-07-22T08:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.83" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-22T02:00:00 -->
+        <windDirection deg="329.1" code="NNW" name="Nord-nordvest" />
+        <windSpeed mps="3.0" name="Svak vind" />
+        <temperature unit="celsius" value="19" />
+        <pressure unit="hPa" value="1020.2" />
+      </time>
+      <time from="2014-07-22T08:00:00" to="2014-07-22T14:00:00" period="1">
+        <!-- Valid from 2014-07-22T08:00:00 to 2014-07-22T14:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-22T08:00:00 -->
+        <windDirection deg="9.6" code="N" name="Nord" />
+        <windSpeed mps="2.6" name="Svak vind" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1020.4" />
+      </time>
+      <time from="2014-07-22T14:00:00" to="2014-07-22T20:00:00" period="2">
+        <!-- Valid from 2014-07-22T14:00:00 to 2014-07-22T20:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-22T14:00:00 -->
+        <windDirection deg="345.4" code="NNW" name="Nord-nordvest" />
+        <windSpeed mps="1.8" name="Svak vind" />
+        <temperature unit="celsius" value="23" />
+        <pressure unit="hPa" value="1021.0" />
+      </time>
+      <time from="2014-07-22T20:00:00" to="2014-07-23T02:00:00" period="3">
+        <!-- Valid from 2014-07-22T20:00:00 to 2014-07-23T02:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-22T20:00:00 -->
+        <windDirection deg="343.3" code="NNW" name="Nord-nordvest" />
+        <windSpeed mps="3.9" name="Lett bris" />
+        <temperature unit="celsius" value="24" />
+        <pressure unit="hPa" value="1019.4" />
+      </time>
+      <time from="2014-07-23T02:00:00" to="2014-07-23T08:00:00" period="0">
+        <!-- Valid from 2014-07-23T02:00:00 to 2014-07-23T08:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.87" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-23T02:00:00 -->
+        <windDirection deg="217.3" code="SW" name="Sørvest" />
+        <windSpeed mps="2.8" name="Svak vind" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1020.7" />
+      </time>
+      <time from="2014-07-23T08:00:00" to="2014-07-23T14:00:00" period="1">
+        <!-- Valid from 2014-07-23T08:00:00 to 2014-07-23T14:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-23T08:00:00 -->
+        <windDirection deg="230.5" code="SW" name="Sørvest" />
+        <windSpeed mps="3.0" name="Svak vind" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1020.6" />
+      </time>
+      <time from="2014-07-23T14:00:00" to="2014-07-23T20:00:00" period="2">
+        <!-- Valid from 2014-07-23T14:00:00 to 2014-07-23T20:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-23T14:00:00 -->
+        <windDirection deg="357.8" code="N" name="Nord" />
+        <windSpeed mps="1.6" name="Svak vind" />
+        <temperature unit="celsius" value="23" />
+        <pressure unit="hPa" value="1020.8" />
+      </time>
+      <time from="2014-07-23T20:00:00" to="2014-07-24T02:00:00" period="3">
+        <!-- Valid from 2014-07-23T20:00:00 to 2014-07-24T02:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-23T20:00:00 -->
+        <windDirection deg="291.3" code="WNW" name="Vest-nordvest" />
+        <windSpeed mps="3.6" name="Lett bris" />
+        <temperature unit="celsius" value="24" />
+        <pressure unit="hPa" value="1019.8" />
+      </time>
+      <time from="2014-07-24T02:00:00" to="2014-07-24T08:00:00" period="0">
+        <!-- Valid from 2014-07-24T02:00:00 to 2014-07-24T08:00:00 -->
+        <symbol number="2" numberEx="2" name="Lettskyet" var="mf/02n.90" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-24T02:00:00 -->
+        <windDirection deg="199.7" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="2.9" name="Svak vind" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1020.1" />
+      </time>
+      <time from="2014-07-24T08:00:00" to="2014-07-24T14:00:00" period="1">
+        <!-- Valid from 2014-07-24T08:00:00 to 2014-07-24T14:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-24T08:00:00 -->
+        <windDirection deg="30.0" code="NNE" name="Nord-nordøst" />
+        <windSpeed mps="3.4" name="Lett bris" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1020.2" />
+      </time>
+      <time from="2014-07-24T14:00:00" to="2014-07-24T20:00:00" period="2">
+        <!-- Valid from 2014-07-24T14:00:00 to 2014-07-24T20:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-24T14:00:00 -->
+        <windDirection deg="34.6" code="NE" name="Nordøst" />
+        <windSpeed mps="3.1" name="Svak vind" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1019.4" />
+      </time>
+      <time from="2014-07-24T20:00:00" to="2014-07-25T02:00:00" period="3">
+        <!-- Valid from 2014-07-24T20:00:00 to 2014-07-25T02:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-24T20:00:00 -->
+        <windDirection deg="350.2" code="N" name="Nord" />
+        <windSpeed mps="3.7" name="Lett bris" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1019.5" />
+      </time>
+      <time from="2014-07-25T02:00:00" to="2014-07-25T08:00:00" period="0">
+        <!-- Valid from 2014-07-25T02:00:00 to 2014-07-25T08:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="mf/03n.93" />
+        <precipitation value="0" />
+        <!-- Valid at 2014-07-25T02:00:00 -->
+        <windDirection deg="210.8" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="3.3" name="Svak vind" />
+        <temperature unit="celsius" value="19" />
+        <pressure unit="hPa" value="1019.2" />
+      </time>
+    </tabular>
+  </forecast>
+  <observations>
+    <weatherstation stno="27500" sttype="eklima" name="Færder fyr" distance="11944" lat="59.02720" lon="10.52420" source="Meteorologisk Institutt">
+      <temperature unit="celsius" value="20.6" time="2014-07-16T17:00:00Z" />
+      <windDirection deg="233.0" code="SW" name="Sørvest" time="2014-07-16T17:00:00Z" />
+      <windSpeed mps="5.8" name="Laber bris" time="2014-07-16T17:00:00Z" />
+    </weatherstation>
+    <weatherstation stno="27450" sttype="eklima" name="Melsom" distance="13495" lat="59.23000" lon="10.34830" source="Meteorologisk Institutt">
+      <temperature unit="celsius" value="22.7" time="2014-07-16T17:00:00Z" />
+      <windDirection deg="189.0" code="S" name="Sør" time="2014-07-16T17:00:00Z" />
+      <windSpeed mps="2.0" name="Svak vind" time="2014-07-16T17:00:00Z" />
+    </weatherstation>
+    <weatherstation stno="27780" sttype="eklima" name="Tjølling" distance="16913" lat="59.04670" lon="10.12500" source="Meteorologisk Institutt">
+      <temperature unit="celsius" value="20.8" time="2014-07-16T16:00:00Z" />
+    </weatherstation>
+  </observations>
+</weatherdata>

@@ -32,7 +32,9 @@
         </div>
         {% include 'sidebar.html' %}
     </div>
+{% endblock %}
 
+{% block script_block %}
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = 'loevdalnet'; // required: replace example with your forum shortname
@@ -46,3 +48,4 @@ s.src = '//' + disqus_shortname + '.disqus.com/count.js';
 }());
 </script>
 {% endblock %}
+

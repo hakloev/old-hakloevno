@@ -40,6 +40,26 @@ header {
 }
 
 /*
+ * WEATHER
+ */
+
+#forecast {
+    margin: 10px 0 10px 0;
+}
+
+#forecast p {
+    font-size: 13px;
+}
+
+#temp {
+    text-align: center;
+}
+
+#temp p {
+    font-size: 40px;
+}
+
+/*
  * BLOG
  */
 
