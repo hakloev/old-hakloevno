@@ -22,7 +22,7 @@ http://om.yr.no/verdata/ -->
     <link id="radar" url="http://www.yr.no/sted/Norge/Vestfold/Tjøme/Tjøme/radar.html" />
   </links>
   <meta>
-    <lastupdate>2014-07-16T16:34:20</lastupdate>
+    <lastupdate>2014-07-16T16:34:30</lastupdate>
     <nextupdate>2014-07-17T00:00:00</nextupdate>
   </meta>
   <sun rise="2014-07-16T04:31:37" set="2014-07-16T22:16:05" />
@@ -39,7 +39,7 @@ http://om.yr.no/verdata/ -->
         </time>
         <time from="2014-07-18" to="2014-07-18">
           <title>fredag</title>
-          <body>&lt;strong&gt;Østlandet og Telemark:&lt;/strong&gt; Skiftende bris, sørvestlig bris på kysten. Enkelte regnbyger nord for Oslo, ellers opphold og perioder med sol.</body>
+          <body>&lt;strong&gt;Østlandet:&lt;/strong&gt; Skiftende bris, sørvestlig bris på kysten. Enkelte regnbyger nord for Oslo, ellers stort sett opphold og lange perioder med sol.</body>
         </time>
         <time from="2014-07-19" to="2014-07-19">
           <title>lørdag</title>
@@ -56,14 +56,14 @@ http://om.yr.no/verdata/ -->
       </location>
     </text>
     <tabular>
-      <time from="2014-07-16T20:00:00" to="2014-07-17T00:00:00" period="3">
-        <!-- Valid from 2014-07-16T20:00:00 to 2014-07-17T00:00:00 -->
-        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+      <time from="2014-07-16T22:00:00" to="2014-07-17T00:00:00" period="3">
+        <!-- Valid from 2014-07-16T22:00:00 to 2014-07-17T00:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.63" />
         <precipitation value="0" />
-        <!-- Valid at 2014-07-16T20:00:00 -->
-        <windDirection deg="215.9" code="SW" name="Sørvest" />
-        <windSpeed mps="4.4" name="Lett bris" />
-        <temperature unit="celsius" value="21" />
+        <!-- Valid at 2014-07-16T22:00:00 -->
+        <windDirection deg="194.9" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="2.4" name="Svak vind" />
+        <temperature unit="celsius" value="19" />
         <pressure unit="hPa" value="1015.5" />
       </time>
       <time from="2014-07-17T00:00:00" to="2014-07-17T06:00:00" period="0">
@@ -400,17 +400,17 @@ http://om.yr.no/verdata/ -->
   </forecast>
   <observations>
     <weatherstation stno="27500" sttype="eklima" name="Færder fyr" distance="11944" lat="59.02720" lon="10.52420" source="Meteorologisk Institutt">
-      <temperature unit="celsius" value="20.6" time="2014-07-16T17:00:00Z" />
-      <windDirection deg="233.0" code="SW" name="Sørvest" time="2014-07-16T17:00:00Z" />
-      <windSpeed mps="5.8" name="Laber bris" time="2014-07-16T17:00:00Z" />
+      <temperature unit="celsius" value="19.7" time="2014-07-16T19:00:00Z" />
+      <windDirection deg="212.0" code="SSW" name="Sør-sørvest" time="2014-07-16T19:00:00Z" />
+      <windSpeed mps="4.2" name="Lett bris" time="2014-07-16T19:00:00Z" />
     </weatherstation>
     <weatherstation stno="27450" sttype="eklima" name="Melsom" distance="13495" lat="59.23000" lon="10.34830" source="Meteorologisk Institutt">
-      <temperature unit="celsius" value="22.7" time="2014-07-16T17:00:00Z" />
-      <windDirection deg="189.0" code="S" name="Sør" time="2014-07-16T17:00:00Z" />
-      <windSpeed mps="2.0" name="Svak vind" time="2014-07-16T17:00:00Z" />
+      <temperature unit="celsius" value="20.7" time="2014-07-16T19:00:00Z" />
+      <windDirection deg="194.0" code="SSW" name="Sør-sørvest" time="2014-07-16T19:00:00Z" />
+      <windSpeed mps="1.2" name="Flau vind" time="2014-07-16T19:00:00Z" />
     </weatherstation>
     <weatherstation stno="27780" sttype="eklima" name="Tjølling" distance="16913" lat="59.04670" lon="10.12500" source="Meteorologisk Institutt">
-      <temperature unit="celsius" value="20.8" time="2014-07-16T16:00:00Z" />
+      <temperature unit="celsius" value="19.9" time="2014-07-16T18:00:00Z" />
     </weatherstation>
   </observations>
 </weatherdata>
