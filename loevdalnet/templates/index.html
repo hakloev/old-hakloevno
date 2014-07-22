@@ -8,31 +8,6 @@
 {% block body_block %}
 <div class ="row">
     <div class="col-md-8">
-        <div class="panel panel-danger" id="weatherpanel" style="">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-sun-o fa-fw"></i>&nbsp; Været<span id="weatherlocation"></span></h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-6 col-md-6 weatherinfo">
-                        <div id="temp"></div>
-                        <div id="windspeed"></div>
-                        <div id="windstrength"></div>
-                        <div id="rain"></div>
-                    </div>
-                    <div class="col-xs-6 col-md-6 weathericon">
-                        <img id="weathericon"></img>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="forecast"><h3 style="text-align: center">Laster været... &nbsp;<i class="fa fa-spinner fa-spin"></i>
-</h3></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     {% if posts %}
     <div class="row">
         {% if posts|length = 3 %}
