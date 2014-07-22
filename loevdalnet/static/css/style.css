@@ -91,6 +91,10 @@ header {
     margin-top: 10px;
 }
 
+#adminbutton {
+    float: right;
+}
+
 /*
  *CV
  */

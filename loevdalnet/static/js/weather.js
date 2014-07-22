@@ -34,6 +34,7 @@ var weather = {
 };
 
 $(document).ready(function () {
+    $('.weatherwidget').hide();
     $('#weatherbutton').on('click', function() {
         $('.weatherwidget').slideToggle(350);
     });

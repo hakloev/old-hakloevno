@@ -34,9 +34,9 @@
         </div>
         {% if user.is_superuser %}
         <div class="panel-heading">
-            <h3 class="panel-title">Administrator:</h3>
+            <h3 class="panel-title">Administrator:<span id="adminbutton"><i class="fa fa-expand"></i></span></h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body adminpanel">
             <a href="{% url 'tasting:event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
             <p class="infotext">Event-ID: {{ event.id }}</p>
             {% if rating.beer.id %}
