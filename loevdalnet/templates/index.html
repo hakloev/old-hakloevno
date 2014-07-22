@@ -37,7 +37,7 @@
                     {% if post.ingress|length > 200 %}{{ post.ingress|truncatechars:200|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
                 </p>
                 </section>
-                <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                 <span><a class="btn btn-warning disabled" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
             <hr>
             </div>
@@ -51,7 +51,7 @@
                 <p class="ingress">
                     {{ post.ingress|safe }}
                 </p>
-                <a class="btn btn-danger" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                 <span><a class="btn btn-warning disabled" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
 
             </section>  
