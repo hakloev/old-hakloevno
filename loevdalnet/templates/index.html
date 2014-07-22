@@ -38,7 +38,7 @@
                 </p>
                 </section>
                 <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-                <span><a class="btn btn-warning disabled" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
+                <span><a class="btn btn-warning disabled" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
             <hr>
             </div>
             {% endfor %}
@@ -52,7 +52,7 @@
                     {{ post.ingress|safe }}
                 </p>
                 <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-                <span><a class="btn btn-warning disabled" href="{% url 'post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
+                <span><a class="btn btn-warning disabled" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
 
             </section>  
             <hr>
