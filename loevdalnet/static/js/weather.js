@@ -33,6 +33,9 @@ var weather = {
     }
 };
 
-window.onload = function () {
+$(document).ready(function () {
+    $('#weatherbutton').on('click', function() {
+        $('.weatherwidget').slideToggle(350);
+    });
     weather.loadXML();
-};
+});

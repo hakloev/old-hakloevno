@@ -47,6 +47,10 @@ header {
     padding-top: 12px;
 }
 
+#weatherbutton {
+    float: right; 
+}
+
 #weathericon {
     height: 100%;
     width: 100%;
