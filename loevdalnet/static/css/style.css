@@ -47,6 +47,16 @@ header {
     text-align: right;
 }
 
+.weathericon {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#weathericon {
+    height: 100%;
+    width: 100%;
+}
+
 #forecast {
     margin: 10px 0 10px 0;
 }

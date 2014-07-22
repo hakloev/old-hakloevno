@@ -10,7 +10,7 @@ var weather = {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 data = xmlhttp.responseXML;
                 weather.parseXML(data);
-            }
+            }    
         }
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
@@ -22,12 +22,14 @@ var weather = {
         var rain = xml.getElementsByTagName("precipitation")[0].attributes[0].value;
         var windspeed = xml.getElementsByTagName('windSpeed')[0].attributes;
         var winddir = xml.getElementsByTagName("windDirection")[0].attributes;
-        document.getElementById("weatherlocation").innerHTML = " for " + place;
+        var icon = xml.getElementsByTagName("symbol")[0].attributes;
+        document.getElementById("weatherlocation").innerHTML = " på " + place;
         document.getElementById("temp").innerHTML = "<strong>&deg; " + temp + "</strong>";
-        document.getElementById("windspeed").innerHTML = windspeed[0].value + " m/s &ndash; " + winddir[2].value;
+        document.getElementById("windspeed").innerHTML = "<strong>Vind:</strong> " + windspeed[0].value + " m/s &ndash; " + winddir[2].value;
         document.getElementById("windstrength").innerHTML = "<strong>Styrke:</strong> " + windspeed[1].value;
-        document.getElementById("rain").innerHTML = rain + " mm";
+        document.getElementById("rain").innerHTML = "<strong>Nedbør: </strong>" + rain + " mm";
         document.getElementById("forecast").innerHTML = "<p>" + gislefoss + "</p>";
+        document.getElementById("weathericon").src = "http://symbol.yr.no/grafikk/sym/b100/0" + icon[0].value + "d.png";
     }
 };
 
