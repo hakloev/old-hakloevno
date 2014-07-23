@@ -39,9 +39,9 @@
         <div class="panel-body adminpanel">
             <a href="{% url 'tasting:event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
             <p class="infotext">Event-ID: {{ event.id }}</p>
-            {% if rating.beer.id %}
-                <p class="infotext">Øl-ID: <strong>{{ rating.beer.id }}</strong></p>
-                <p class="infotext">Øl: <strong>{{ rating.beer }}</strong></p>
+            {% if beer %}
+                <p class="infotext">Øl-ID: <strong>{{ beer.id }}</strong></p>
+                <p class="infotext">Øl: <strong>{{ beer }}</strong></p>
             {% endif %}
             <p class="infotext">Dato: {{ event.date|date:"h.m.Y" }}</p>
             <p class="infotext">Antall øl: {{ event.beers.all|length }}</p>

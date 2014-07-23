@@ -66,6 +66,7 @@ def beer_rating(request, eid, code):
     except:
         print 'beer_rating: query not exist'
     comments = BeerRating.objects.filter(event=eid, beer_id=bid).exclude(user__in=[request.user.id])
+    beer = Beer.objects.get(id=bid)
     if event.finished:     
         breadcrumbs = (
                 ('Arrangementer', reverse('tasting:index')),
@@ -84,6 +85,7 @@ def beer_rating(request, eid, code):
         'event': event,
         'beercode': code,
         'beerid': bid,
+        'beer': beer,
         'rating': rating,
         'ratings': ratings,
         'comments': comments,
