@@ -43,6 +43,11 @@ header {
  * WEATHER
  */
 
+.obsforecast {
+    padding: 0;
+    margin-top: 0;
+}
+
 #winfo {
     padding-top: 12px;
 }
