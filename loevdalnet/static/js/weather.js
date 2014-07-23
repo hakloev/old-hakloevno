@@ -16,21 +16,21 @@ var weather = {
         xmlhttp.send();
     },
     parseXML: function (xml) {
-        var place = xml.getElementsByTagName("location")[0].childNodes[1].childNodes[0].nodeValue; 
-        var temp = xml.getElementsByTagName("temperature")[0].attributes[1].value;
-        var rain = xml.getElementsByTagName("precipitation")[0].attributes[0].value;
+        var place = xml.getElementsByTagName("name")[0].childNodes[0].nodeValue; 
+        var temp = xml.getElementsByTagName("temperature")[0].getAttribute('value');
+        var rain = xml.getElementsByTagName("precipitation")[0].getAttribute('value');
         var windspeed = xml.getElementsByTagName('windSpeed')[0].attributes;
         var winddir = xml.getElementsByTagName("windDirection")[0].attributes;
         var icon = xml.getElementsByTagName("symbol")[0].attributes;
-        
-        var gislefoss = xml.getElementsByTagName("body")[0].childNodes[0].data;
-        var forecasttype = xml.getElementsByTagName("forecast")[0].childNodes[1].childNodes[1].childNodes[1].attributes[2].value;
+
+        var forecasttype = xml.getElementsByTagName("time")[0].getAttribute('type');
         if (forecasttype === "obsforecast") {
             console.log("obsforecast");
-            var gislefoss2 = xml.getElementsByTagName("forecast")[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[0].data;
-            console.log(gislefoss2);
-            document.getElementById("forecast").innerHTML = '<h4 class="obsforecast"><b>OBS-varsel:</b></h4>' + "<p>" + gislefoss + "</p><br>" + "<p>" + gislefoss2 + "</p>";
+            var gislefoss = xml.getElementsByTagName("body")[0].childNodes[0].data;
+            var gislefoss2 = xml.getElementsByTagName("body")[1].childNodes[0].data;
+            document.getElementById("forecast").innerHTML = '<h4 class="obsforecast"><i class="fa fa-exclamation-triangle"></i>&nbsp;<b>OBS-varsel:</b></h4>' + "<p>" + gislefoss + "</p><br>" + "<p>" + gislefoss2 + "</p>";
         } else {
+            var gislefoss =  xml.getElementsByTagName("body")[1].childNodes[0].data;
             document.getElementById("forecast").innerHTML = "<p>" + gislefoss + "</p>";
         }
 
@@ -44,7 +44,7 @@ var weather = {
 };
 
 $(document).ready(function () {
-    $('.weatherwidget').hide();
+    //$('.weatherwidget').hide();
     $('#weatherbutton').on('click', function() {
         $('.weatherwidget').slideToggle(350);
     });
