@@ -204,6 +204,21 @@ footer {
     margin: 50px 0;
 }
 
+footer p {
+    float: right;
+}
+
+footer a {
+    float: left;
+    margin-right: 10px;
+    color: #2c3e50;
+}
+
+@media screen and (min-width: 0px) and (max-width: 990px) {
+    footer p {float: left; margin-top: 10px;}
+}
+
+
 .well, .navbar-inner, .popover, .btn, .tooltip, input, select, textarea, pre, .progress, .modal, .add-on, .alert, .table-bordered, .nav>.active>a, .dropdown-menu, .tooltip-inner, .badge, .label, .img-polaroid, .breadcrumb, .panel {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
