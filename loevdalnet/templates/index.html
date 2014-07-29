@@ -9,9 +9,6 @@
 <div class ="row">
     <div class="col-md-8">
         <div class="row">
-            <div class="jumbotron">
-                <h2 class="infotext"></h2>
-            </div>
         </div> 
         {% if posts %}
         <div class="row">
@@ -58,7 +55,6 @@
                     </p>
                     <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
                     <span><a class="btn btn-warning disabled" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
-
                 </section>  
                 <hr>
                 </div>

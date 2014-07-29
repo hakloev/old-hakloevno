@@ -38,6 +38,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Nummer</th>
                         <th>Kode</th>
                         <th>ID</th>
                         <th>Øl</th>
@@ -49,8 +50,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for beer in beers %}
+                    {% for beer in beers|shuffle_beers %}
                         <tr>
+                            <td>{{ forloop.counter }}</td>
                             <td>{{ beer.code }}</td>
                             <td>{{ beer.id }}</td>
                             <td>{{ beer.name }}</a></td>

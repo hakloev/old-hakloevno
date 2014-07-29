@@ -21,9 +21,9 @@
                     </div>
                 </div>
                 {% if event.beers.all|length > 0 %}
-                    {% for beer in event.beers.all %}
+                    {% for beer in event.beers.all|shuffle_beers %}
                         {% autoescape off %}
-                        <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'tasting:beer_rating' event.id beer.code %}">Ølkode {{ beer.code }}</a></p>
+                        {% if beer.code == beercode %}<p id="activebeer">{% else %}<p>{% endif %}{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'tasting:beer_rating' event.id beer.code %}">Ølnummer {{ forloop.counter}}</a></p>
                         {% endautoescape %}
                     {% endfor %}
                 {% else %}

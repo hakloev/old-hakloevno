@@ -71,7 +71,7 @@ def beer_rating(request, eid, code):
         breadcrumbs = (
                 ('Arrangementer', reverse('tasting:index')),
                 (event.name, reverse('tasting:event_by_id', args=[event.id])),
-                (u'%s' % (Beer.objects.get(id=bid).__unicode__()), reverse('tasting:beer_rating', args=[event.id, code])),
+                (u'%s' % (Beer.objects.get(id=bid)), reverse('tasting:beer_rating', args=[event.id, code])),
         )
     else:
         breadcrumbs = (
@@ -129,7 +129,7 @@ def event_list(request, eid):
             ('Oversikt', reverse('tasting:event_list', args=[eid])), #Do not need this...
     )
 
-    return render(request, u'beertasting/list.html', {
+    return render(request, u'beertasting/adminlist.html', {
         'request': request,
         'beers': beers,
         'ratings': ratings,

@@ -63,10 +63,6 @@ header {
     padding-top: 12px;
 }
 
-#weatherbutton {
-    float: right; 
-}
-
 #weathericon {
     height: 100%;
     width: 100%;
@@ -101,6 +97,11 @@ header {
 
 .resultbutton {
     margin-bottom: 15px;
+}
+
+#activebeer a {
+    color: #d62c1a;
+    font-size: 20px;
 }
 
 .infotext {
