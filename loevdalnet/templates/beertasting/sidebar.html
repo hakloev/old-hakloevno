@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 {% if event.beers.all|length > 0 %}
-                    {% for beer in event.beers.all|shuffle_beers %}
+                    {% for beer in event.beers.all %}
                         {% autoescape off %}
                         <p>{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'tasting:beer_rating' event.id beer.code %}">Ølkode {{ beer.code }}</a></p>
                         {% endautoescape %}

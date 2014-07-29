@@ -40,11 +40,12 @@ def print_rating_icon(ratings, id):
             return '<span class="glyphicon glyphicon-ok"></span>'
     return '<span class="glyphicon glyphicon-remove"></span>'
 
-@register.filter(name='shuffle_beers')
-def shuffle_beers(arg):
-    beers = list(arg[:])
-    random.shuffle(beers)
-    return beers
+# Removed with issue #16
+#@register.filter(name='shuffle_beers')
+#def shuffle_beers(arg):
+#    beers = list(arg[:])
+#    random.shuffle(beers)
+#    return beers
 
 @register.filter(name='get_percent')
 def get_percent(number):
