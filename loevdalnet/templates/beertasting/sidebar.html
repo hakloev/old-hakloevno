@@ -43,7 +43,7 @@
                 <p class="infotext">Øl-ID: <strong>{{ beer.id }}</strong></p>
                 <p class="infotext">Øl: <strong>{{ beer }}</strong></p>
             {% endif %}
-            <p class="infotext">Dato: {{ event.date|date:"h.m.Y" }}</p>
+            <p class="infotext">Dato: {{ event.date|date:"d.m.Y" }}</p>
             <p class="infotext">Antall øl: {{ event.beers.all|length }}</p>
             </div>
         {% endif %}
