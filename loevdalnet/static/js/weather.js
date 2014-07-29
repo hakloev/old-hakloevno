@@ -44,9 +44,10 @@ var weather = {
 };
 
 $(document).ready(function () {
-    $('.weatherwidget').hide();
+    $('#weatherpanel').hide();
     $('#weatherbutton').on('click', function() {
-        $('.weatherwidget').slideToggle(350);
+        $('#weatherpanel').slideToggle(350);
+        //$('.weatherwidget').slideToggle(350);
     });
     weather.loadXML();
 });
