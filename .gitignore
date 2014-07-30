@@ -1,3 +1,4 @@
 *.pyc
 *.pyo
 loevdalnet/local_settings.py
+loevdalnet/static/files/varsel.xml

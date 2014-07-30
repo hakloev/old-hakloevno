@@ -13,7 +13,7 @@
         <div class="page-header">
             <h1>Skriv et nytt innlegg</h1>
         </div>
-        <form class="form-horizontal" role="form" method="post" action="{% url 'create_post' %}">
+        <form class="form-horizontal" role="form" method="post" action="{% url 'blog:create_post' %}">
             {% csrf_token %}
             <fieldset>
 
@@ -63,4 +63,7 @@
 {% else %}
     <h1>Kun superbrukere har tilgang</h1>
 {% endif %}
+{% endblock %}
+{% block script_block %}
+<script src="/static/js/weather.js"></script>
 {% endblock %}

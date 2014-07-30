@@ -39,7 +39,7 @@ class TastingEvent(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('event_by_id', None, { 'id': self.id })
+        return ('tasting:event_by_id', None, { 'id': self.id })
 
 def validate_beer_rating(rating):
     if rating < 1 or rating > 10:

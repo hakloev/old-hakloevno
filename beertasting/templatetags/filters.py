@@ -1,5 +1,4 @@
 from django import template
-import random
 
 register = template.Library()
 
@@ -42,9 +41,9 @@ def print_rating_icon(ratings, id):
 
 @register.filter(name='shuffle_beers')
 def shuffle_beers(arg):
+    # Orders beerlist by code, alphabetically. 
     beers = list(arg[:])
-    random.shuffle(beers)
-    return beers
+    return sorted(beers, key=lambda x: x.code, reverse=False)
 
 @register.filter(name='get_percent')
 def get_percent(number):

@@ -1,3 +1,14 @@
+.well, .navbar-inner, .popover, .btn, .tooltip, input, select, textarea, pre, .progress, .modal, .add-on, .alert, .table-bordered, .nav>.active>a, .dropdown-menu, .tooltip-inner, .badge, .label, .img-polaroid, .breadcrumb, .panel {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    border-collapse: collapse !important;
+    background-image: none !important;
+ }
+
 header {
     margin-bottom: 20px; 
     vertical-align: middle;
@@ -30,13 +41,49 @@ header {
     max-height: 150px;
 }
 
-.post {
+.titleheader {
+    margin: 0;
+}
+
+.frontpagepost {
     height: 250px;
     overflow: auto;
 }
 
 @media screen and (min-width: 0px) and (max-width: 990px) {
-    .post { height: auto; }
+    .postrow { margin-bottom: 20px; }
+}
+
+@media screen and (min-width: 0px) and (max-width: 990px) {
+    .frontpagepost { height: auto; }
+}
+
+/*
+ * WEATHER
+ */
+
+.obsforecast {
+    padding: 0;
+    margin-top: 0;
+}
+
+#winfo {
+    padding-top: 12px;
+}
+
+#weathericon {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+}
+
+#forecast p {
+    font-size: 13px;
+}
+
+#temp {
+    font-size: 50px;
+    text-align: center;
 }
 
 /*
@@ -60,8 +107,21 @@ header {
     margin-bottom: 15px;
 }
 
+#activebeer a {
+    color: #d62c1a;
+    font-size: 20px;
+}
+
 .infotext {
     margin-top: 10px;
+}
+
+.ratingbutton {
+    margin-bottom: 35px;
+}
+
+#adminbutton {
+    float: right;
 }
 
 /*
@@ -153,6 +213,14 @@ header {
 }
 
 /*
+ * REGISTRATION
+ */
+
+#createuser {
+    display: none;
+}
+
+/*
  * FOOTER
  */
 
@@ -160,13 +228,17 @@ footer {
     margin: 50px 0;
 }
 
-.well, .navbar-inner, .popover, .btn, .tooltip, input, select, textarea, pre, .progress, .modal, .add-on, .alert, .table-bordered, .nav>.active>a, .dropdown-menu, .tooltip-inner, .badge, .label, .img-polaroid, .breadcrumb, .panel {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    -webkit-border-radius: 0px !important;
-    -moz-border-radius: 0px !important;
-    border-radius: 0px !important;
-    border-collapse: collapse !important;
-    background-image: none !important;
- }
+footer p {
+    float: right;
+}
+
+footer a {
+    float: left;
+    margin-right: 10px;
+    color: #2c3e50;
+}
+
+@media screen and (min-width: 0px) and (max-width: 990px) {
+    footer p {float: left; margin-top: 10px;}
+}
+

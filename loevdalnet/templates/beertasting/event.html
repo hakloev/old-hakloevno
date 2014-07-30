@@ -49,7 +49,6 @@
             {% else %}
                 <h3>Du har ikke vurdert noen øl under dette arrangementet.</h3>
             {% endif %}
-            <hr>
         {% else %}
             {% if event.beers %}
             <section>
@@ -64,4 +63,7 @@
     </div>
     {% include 'beertasting/sidebar.html' %}
 </div>
+{% endblock %}
+{% block script_block %}
+<script src="/static/js/beertasting.js"></script>
 {% endblock %}

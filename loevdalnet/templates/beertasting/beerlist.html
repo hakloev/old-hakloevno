@@ -49,7 +49,7 @@
                     <tbody>
                         {% for beer in beers %}
                         <tr>
-                            <td><a href="{% url 'beer_stats' beer.beer %}">{{ beer.beer__name }}</a></td>
+                            <td><a href="{% url 'tasting:beer_stats' beer.beer %}">{{ beer.beer__name }}</a></td>
                             <td>{{ beer.beer__brewery__name }}</td>
                             <td><strong>{{ beer.score|floatformat:2 }}</strong></td>
                             <td>{{ beer.rates }}</td>

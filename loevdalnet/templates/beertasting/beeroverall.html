@@ -52,7 +52,7 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td><strong>{{ rating.score|floatformat:2 }}</strong></td>
-                            <td><a href="{% url 'beer_stats' rating.beer %}">{{ rating.beer__name }}</a></td>
+                            <td><a href="{% url 'tasting:beer_stats' rating.beer %}">{{ rating.beer__name }}</a></td>
                             <td>{{ rating.beer__brewery__name }}</td>
                             <td>{{ rating.rates }}</td>
                             <td>{{ rating.events }}</td>
