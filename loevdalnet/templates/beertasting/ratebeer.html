@@ -68,9 +68,7 @@
             <h4>Ingen andre ga noen vurdering.</h4>
             {% endif %}
             <hr>
-            <a class="btn btn-danger" href="{% url 'tasting:beer_stats' beerid %}">Statistikk</a>
-
-            <hr>
+            <a class="btn btn-danger ratingbutton" href="{% url 'tasting:beer_stats' beerid %}">Statistikk</a>
         {% else %}
         <form class="form-horizontal" action="{% url 'tasting:beer_rating' event.id beercode %}" method="POST">
                 {% csrf_token %}
@@ -97,6 +95,7 @@
                                     {% else %}
                                     {{ rating.comment }}
                                     {% endif %}
+                                <small><i><br><br>Sist vurdert: {{ rating.rated|date:"d.m.Y H:i" }}</i></small>
                                 </div>
                             {% else %}
                                 <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5></textarea>
@@ -109,20 +108,14 @@
                                 </div>
                         </div>
                     </div>
-
                 {% if rating %}
-                <input class="btn btn-lg btn-danger btn-block" type="submit" value="Endre din karakter"/>
+                <input class="btn btn-lg btn-danger btn-block ratingbutton" type="submit" value="Endre din karakter"/>
                 {% else %}
-                 <input class="btn btn-lg btn-danger btn-block" type="submit" value="Gi din vurdering"/>
+                 <input class="btn btn-lg btn-danger btn-block ratingbutton" type="submit" value="Gi din vurdering"/>
                 {% endif %}
                 <input type="hidden" name="next" value="{{ next }}">
                 </fieldset>
             </form>
-            <hr>
-                {% if rating %}
-                    <small>Sist vurdert: {{ rating.rated|date:"d.m.Y H:i" }}</small>
-                    <hr>
-                {% endif %}
             {% endif %}
     </div>
     {% include 'beertasting/sidebar.html' %}

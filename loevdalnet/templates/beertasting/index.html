@@ -35,7 +35,6 @@
         {% else %}
             <h3>Ingen pågående arrangement...</h3>
         {% endif %}
-        <hr>
         {% if doneevents %}
         <h3><span class="glyphicon glyphicon-calendar"></span> &ndash; Ferdige: <small>{{ doneevents.count }} arrangement</small></h3>
             {% for event in doneevents %}
@@ -44,7 +43,6 @@
         {% else %}
             <h3>Ingen ferdige arrangement...</h3>
         {% endif %}
-        <hr>
         </div>
         <div class="col-md-6">
             <h3><i class="fa fa-list-ol"></i> &nbsp;Statistikk:</h3>

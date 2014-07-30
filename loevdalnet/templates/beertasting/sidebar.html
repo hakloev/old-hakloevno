@@ -40,6 +40,7 @@
             <a href="{% url 'tasting:event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
             <p class="infotext">Event-ID: {{ event.id }}</p>
             {% if beer %}
+                <p class="infotext">Ølkode: <strong>{{ beer.code }}</strong></p>
                 <p class="infotext">Øl-ID: <strong>{{ beer.id }}</strong></p>
                 <p class="infotext">Øl: <strong>{{ beer }}</strong></p>
             {% endif %}

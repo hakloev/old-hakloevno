@@ -41,13 +41,21 @@ header {
     max-height: 150px;
 }
 
-.post {
+.titleheader {
+    margin: 0;
+}
+
+.frontpagepost {
     height: 250px;
     overflow: auto;
 }
 
 @media screen and (min-width: 0px) and (max-width: 990px) {
-    .post { height: auto; }
+    .postrow { margin-bottom: 20px; }
+}
+
+@media screen and (min-width: 0px) and (max-width: 990px) {
+    .frontpagepost { height: auto; }
 }
 
 /*
@@ -106,6 +114,10 @@ header {
 
 .infotext {
     margin-top: 10px;
+}
+
+.ratingbutton {
+    margin-bottom: 35px;
 }
 
 #adminbutton {
