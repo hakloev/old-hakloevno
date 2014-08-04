@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Blogpost, Category
+from apps.blog.models import Blogpost, Category
 
 # Register your models here.
 

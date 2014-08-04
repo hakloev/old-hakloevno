@@ -8,8 +8,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-from django.contrib.messages import constants as messages
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -30,10 +28,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south',
-    'blog',
-    'front',
-    'beertasting',
-    'cv',
+    'apps.blog',
+    'apps.front',
+    'apps.beertasting',
+    'apps.cv',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -44,10 +42,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
-
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger'        
-}
 
 ROOT_URLCONF = 'loevdalnet.urls'
 
