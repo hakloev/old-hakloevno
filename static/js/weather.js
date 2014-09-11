@@ -39,7 +39,7 @@ var weather = {
         document.getElementById("windspeed").innerHTML = "<strong>Vind:</strong> " + windspeed[0].value + " m/s &ndash; " + winddir[2].value;
         document.getElementById("windstrength").innerHTML = "<strong>Styrke:</strong> " + windspeed[1].value;
         document.getElementById("rain").innerHTML = "<strong>Nedbør: </strong>" + rain + " mm";
-        document.getElementById("weathericon").src = "http://symbol.yr.no/grafikk/sym/b100/0" + icon[0].value + "d.png";
+        document.getElementById("weathericon").src = "static/images/weather/0" + icon[0].value + ".png";
     }
 };
 

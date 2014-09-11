@@ -102,6 +102,10 @@ header {
     text-align: center;
 }
 
+#weatherrights small {
+    font-size: 55%;
+}
+
 /*
  * BLOG
  */
