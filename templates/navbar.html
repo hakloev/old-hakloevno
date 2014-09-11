@@ -31,7 +31,7 @@
                     </fieldset>
                 </form>    
             {% else %}
-            <form class="navbar-form" action="{% url 'django.contrib.auth.views.login' %}?next={{ request.path }}" method="post">
+            <form class="navbar-form navbar-form-login" action="{% url 'django.contrib.auth.views.login' %}?next={{ request.path }}" method="post">
                 {% csrf_token %}
                 <fieldset>
                     <div class="form-group">

@@ -9,6 +9,10 @@
     background-image: none !important;
  }
 
+/*
+* HEADER
+*/
+
 header {
     margin-bottom: 20px; 
     vertical-align: middle;
@@ -31,6 +35,18 @@ header {
 .navbar-text {
     color: #18bc9c !important;
 }
+
+.navbar-collapse, .navbar-form-login {
+    padding-right: 0;
+}
+
+@media screen and (min-width: 0px) and (max-width: 990px) {
+    .navbar-collapse, .navbar-form-login { padding-right: 15px; }
+}
+
+/*
+* DIVERSE
+*/
 
 .stopsign {
     display: block;
