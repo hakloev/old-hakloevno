@@ -32,7 +32,7 @@ class TastingEvent(models.Model):
     name = models.CharField(max_length=50, blank=False, unique=True)
     date = models.DateTimeField(auto_now_add=True)
     beers = models.ManyToManyField('beertasting.Beer', null=True, blank=True)
-    finished = models.BooleanField()
+    finished = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
