@@ -48,6 +48,10 @@ header {
 * DIVERSE
 */
 
+#busberg span, #busila span {
+    text-decoration: underline;
+}
+
 .stopsign {
     display: block;
     margin: 0 auto 0 auto;
