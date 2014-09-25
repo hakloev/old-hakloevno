@@ -20,7 +20,7 @@ var Bus = ( function () {
                     self.parseInfo(json.berg);
                     parsed = true;
                     self.parseInfo(json.ila);
-                    runnedBefore = true;
+                    runnedBefore = true; 
                 }
             );
         },
@@ -76,7 +76,7 @@ var Bus = ( function () {
             var departure = new Date(d[3], d[2] - 1, d[1], d[4], d[5]);
             var diff = Math.floor((departure.getTime() - today.getTime()) / (1000 * 60));
             if (diff <= -1 || diff <= 0) {
-                return "ca nå";
+                return '<b style="color:red">ca nå</b>';
             } else {
                 return "ca " + diff + " min";
             }   
