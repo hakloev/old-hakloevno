@@ -13,6 +13,12 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'        
 }
 
+ADMINS = (
+    ('name', 'email@email.com'),
+)
+
+DEFAULT_FROM_EMAIL = "noreply@domain.com"
+
 ALLOWED_HOSTS = ['.DOMAIN.NO']
 
 SECRET_KEY = ''
