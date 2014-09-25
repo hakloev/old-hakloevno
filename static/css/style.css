@@ -48,8 +48,12 @@ header {
 * DIVERSE
 */
 
-#busberg span, #busila span {
+#busberg span b, #busila span b {
     text-decoration: underline;
+}
+
+#busberglist, #busilalist {
+    padding-top: 4px;
 }
 
 #buspanel p {

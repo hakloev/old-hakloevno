@@ -13,7 +13,7 @@ def index(request):
     except:
         posts = []
     context['posts'] = posts
-    return render(request, u'index.html', context)
+    return render(request, u'front/index.html', context)
 
 def busTimes(request):
     if request.method == "GET":

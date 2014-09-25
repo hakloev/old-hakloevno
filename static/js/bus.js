@@ -1,4 +1,4 @@
-var Bus = ( function ($) {
+var Bus = ( function () {
     
     var busInfoUrl = "/bus/";
     var parsed = false;
@@ -11,14 +11,15 @@ var Bus = ( function ($) {
                 function(responseText) {
                     if (runnedBefore) {
                         self.resetInfo();
+                    } else {
+                        document.getElementById("busloading").innerHTML = "";
+                        document.getElementById("bergname").innerHTML = "Østre Berg:";
+                        document.getElementById("ilaname").innerHTML = "Ila:";
                     }
                     var json = JSON.parse(responseText);
                     self.parseInfo(json.berg);
                     parsed = true;
                     self.parseInfo(json.ila);
-                    document.getElementById("busloading").innerHTML = "";
-                    document.getElementById("bergname").innerHTML = "Østre Berg:";
-                    document.getElementById("ilaname").innerHTML = "Ila:";
                     runnedBefore = true;
                 }
             );
@@ -60,20 +61,13 @@ var Bus = ( function ($) {
                 place = "busilalist";
             }
             document.getElementById(place).innerHTML = "";
+            var rows = document.getElementById(place);
+            var row = "";
             for (var i = 0; i < list.length; i++) {
                 console.log(list[i]);
-                var ul = document.getElementById(place);
-                var li = document.createElement("li");
-                var p = document.createElement("p");
-                var small = document.createElement("small");
-                var text1 = document.createTextNode(" - " + this.calcTime(list[i].t) + " min ");
-                small.appendChild(text1);
-                var text2 = document.createTextNode(list[i].t.substring(11, 16));
-                p.appendChild(text2);
-                p.appendChild(small);
-                li.appendChild(p);
-                ul.appendChild(li);
+                row += "<li><p><b>" + list[i].t.substring(11, 16) + "</b><small> &ndash; " + this.calcTime(list[i].t) + "</small></p></li>"
             } 
+            rows.innerHTML = row;
         },
         calcTime: function(time) {
             console.log("INFO: calcTime called");
@@ -81,14 +75,14 @@ var Bus = ( function ($) {
             var today = new Date();
             var departure = new Date(d[3], d[2] - 1, d[1], d[4], d[5]);
             var diff = Math.floor((departure.getTime() - today.getTime()) / (1000 * 60));
-            if (diff <= -1 && diff <= 0) {
+            if (diff <= -1 || diff <= 0) {
                 return "ca nå";
             } else {
-                return "ca " + diff;
+                return "ca " + diff + " min";
             }   
         }
     }  
-}(jQuery));
+}());
 
 $(document).ready(function () {
     Bus.getBusInfo();
