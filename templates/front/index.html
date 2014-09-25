@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}
+&ndash; hjem
+{% endblock %}
+
+{% block body_block %}
+<div class ="row">
+    <div class="col-md-8">
+        <div class="row">
+        </div> 
+            {% if posts %}
+            <div class="row postrow">
+                {% if posts|length = 3 %}
+                    {% for post in posts %}
+                        <div class="col-md-4">
+                        <section class="frontpagepost">
+                            <h3>{{ post.title }}</h3>
+                            <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                            <br/>
+                            <small><i class="fa fa-comments"></i> &nbsp;<a href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></small>
+
+                            <p class="ingress">
+                                {% if post.ingress|length > 130 %}{{ post.ingress|truncatechars:130|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
+                                </p>
+                        </section>
+                        <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                        </div>
+                    {% endfor %}
+                {% elif posts|length = 2 %}
+                    {% for post in posts %}
+                    <div class="col-md-6">
+                    <section class="frontpagepost">
+                        <h3>{{ post.title }}</h3>
+                        <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                        <p class="ingress">
+                            {% if post.ingress|length > 200 %}{{ post.ingress|truncatechars:200|safe }}{% else %}{{ post.ingress|safe }}{% endif %}
+                        </p>
+                        </section>
+                        <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                        <span><a class="btn btn-warning disabled" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
+                    </div>
+                    {% endfor %}
+                {% elif posts|length = 1 %}
+                    {% with posts|first as post %}
+                    <div class="col-md-12">
+                    <section class="frontpagepost">
+                        <h2>{{ post.title }}</h2>
+                        <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
+                        <p class="ingress">
+                            {{ post.ingress|safe }}
+                        </p>
+                        <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
+                        <span><a class="btn btn-warning disabled" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
+                    </section>  
+                    </div>
+                    {% endwith %}
+                {% endif %}
+            </div>
+            {% else %}
+            <div class="jumbotron">
+                <h1>Det er ikke skrevet noen innlegg</h1>
+            </div>
+            {% endif %}
+        </div>
+    {% include 'front/sidebar.html' %}
+</div>
+{% endblock %}
+
+{% block script_block %}
+    <script src="/static/js/weather.js"></script>
+    <script src="/static/js/bus.js"></script>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'loevdalnet'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+{% endblock %}

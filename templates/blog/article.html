@@ -7,7 +7,7 @@
 
 {% block body_block %}
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
     {% if post %}
         <div class="page-header">
             <h1>{{ post.title }}</h1>
@@ -25,12 +25,10 @@
         <h1>Denne artikkelen finnes ikke.</h1>
     {% endif%}
     </div>
-    {% include 'sidebar.html' %}
-    </div>
+</div>
 
 {% endblock %}
 {% block script_block %}
-<script src="/static/js/weather.js"></script>
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = 'loevdalnet'; // required: replace example with your forum shortname
