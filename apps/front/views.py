@@ -1,6 +1,6 @@
 import requests
 from django.shortcuts import render
-from apps.blog.models import Blogpost
+#from apps.blog.models import Blogpost
 from django.http import JsonResponse, Http404
 
 # Create your views here.
@@ -8,11 +8,11 @@ from django.http import JsonResponse, Http404
 def index(request):
     context = {}
     context['request'] = request
-    try:
-        posts = Blogpost.objects.all().order_by('-posted')[:3]
-    except:
-        posts = []
-    context['posts'] = posts
+    #try:
+    #    posts = Blogpost.objects.all().order_by('-posted')[:3]
+    #except:
+    #    posts = []
+    #context['posts'] = posts
     return render(request, u'front/index.html', context)
 
 def busTimes(request):

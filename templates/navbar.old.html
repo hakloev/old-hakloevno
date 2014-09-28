@@ -12,6 +12,7 @@
             <ul class="nav navbar-nav">
                 <li {% if request.path = '/' %}class="active"{% endif %}><a href="/">Hjem</a></li>
                 <li {% if '/cv/' in request.path %}class="active"{% endif %}><a href="{% url 'cv:cv' %}">CV</a></li>
+                <!--<li {% if '/blog/' in request.path %}class="active"{% endif %}><a href="{% url 'blog:index' %}{% now "Y" %}">Blogg</a></li>-->
                 <li {% if '/tasting/' in request.path %}class="active"{% endif %}><a href="{% url 'tasting:index' %}">Ølsmaking</a></li>
             </ul>
             <div class="navbar-inner navbar-right">

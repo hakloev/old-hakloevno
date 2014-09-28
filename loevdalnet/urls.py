@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/(?P<next_page>.*)$', 'django.contrib.auth.views.logout', name='auth_logout'),
     url(r'^$', index),
     url(r'^bus/$', busTimes),
-    url(r'^blog/', include('apps.blog.urls', namespace='blog')),
+    #url(r'^blog/', include('apps.blog.urls', namespace='blog')), # This can be deleted, but leave it temporarily 'cause it is easy
     url(r'^tasting/', include('apps.beertasting.urls', namespace='tasting')),
     url(r'^cv/', include('apps.cv.urls', namespace='cv')),
     ) 
