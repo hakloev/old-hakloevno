@@ -1,7 +1,7 @@
 hakloevno
 =======
 
-Repo for hosting my Django-powered [https://hakloev.no](website).
+Repo for hosting my Django-powered [website](https://hakloev.no).
 
 TODO:
 ------
