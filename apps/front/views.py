@@ -28,3 +28,11 @@ def busTimes(request):
             return JsonResponse({"error": "no response from bybussen.api.tmn.io"})
     else:
         raise Http404
+
+def busStops(request):
+    apiUrl = "http://bybussen.api.tmn.io/stops/"
+    r = requests.get(apiUrl)
+    if (r.status_code == requests.codes.ok):
+        return JsonResponse(r.json(), safe=False)
+    else:
+        return JsonResponse({"error": "no response from bybussen.api.tmn.io"})
