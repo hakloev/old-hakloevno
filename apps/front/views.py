@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 from django.shortcuts import render
 #from apps.blog.models import Blogpost
 from django.http import JsonResponse, Http404
@@ -8,6 +9,8 @@ from django.http import JsonResponse, Http404
 def index(request):
     context = {}
     context['request'] = request
+    birthday = datetime(1992, 5, 7, 12, 0, 0)
+    context['birthday'] = datetime.now().year - birthday.year
     #try:
     #    posts = Blogpost.objects.all().order_by('-posted')[:3]
     #except:
