@@ -1,0 +1,17 @@
+<header id="main-header">
+    <img src="/static/images/me.jpg" alt="Håkon Løvdal" id="main-header-picture">
+    <hgroup>
+        <h1>Håkon Ødegård Løvdal</h1>
+        <h2>completely boss<br>student<br>homebrewer<br>{{ birthday }} years<br>tjømling</h2>
+    </hgroup>
+    <nav id="main-nav" role="navigation">
+        <ul>
+            <li id="main-nav-item"{% if request.path = '/'%} class="main-nav-item-active"{% endif %}><a href="/">Home</a></li>
+            <li id="main-nav-item"{% if '/cv/' in request.path %}class="main-nav-item-active"{% endif %}><a href="{% url 'cv:cv' %}">CV</a></li>
+            <li id="main-nav-item"{% if '/tasting/' in request.path %}class="main-nav-item-active"{% endif %}><a href="{% url 'tasting:index' %}">Tasting</a></li>
+            <li id="main-nav-item"><a href="mailto:me@hakloev.no?subject=Contact hakloev.no" id="contact-link">Contact</a></li>
+        </ul>
+        <span id="mobile-nav-button"><h3>hakloev.no</h3></span>
+    </nav>
+</header>
+
