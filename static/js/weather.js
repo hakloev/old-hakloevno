@@ -34,7 +34,7 @@ var weather = {
             document.getElementById("forecast").innerHTML = "<p>" + gislefoss + "</p>";
         }
 
-        document.getElementById("weatherlocation").innerHTML = " for " + place;
+        document.getElementById("modal-header-name").innerHTML = "Været for " + place;
         document.getElementById("temp").innerHTML = "&deg; " + temp;
         document.getElementById("windspeed").innerHTML = "<strong>Vind:</strong> " + windspeed[0].value + " m/s &ndash; " + winddir[2].value;
         document.getElementById("windstrength").innerHTML = "<strong>Styrke:</strong> " + windspeed[1].value;
@@ -44,7 +44,7 @@ var weather = {
 };
 
 $(document).ready(function () {
-    $('#weatherpanel').hide();
+    //$('#weatherpanel').hide();
     $('#weatherbutton').on('click', function() {
         $('#weatherpanel').slideToggle(350);
         //$('.weatherwidget').slideToggle(350);
