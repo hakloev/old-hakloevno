@@ -55,9 +55,9 @@ var Bus = ( function () {
         var departure = new Date(d[3], d[2] - 1, d[1], d[4], d[5]);
         var diff = Math.floor((departure.getTime() - today.getTime()) / (1000 * 60));
         if (diff <= -1 || diff <= 0) {
-            return '<b style="color:red">ca nå</b>';
+            return '<b style="color:red">approx. now</b>';
         } else {
-            return "ca " + diff + " min";
+            return "approx. " + diff + " min";
         }   
     }
 

@@ -34,11 +34,11 @@ var weather = {
             document.getElementById("forecast").innerHTML = "<p>" + gislefoss + "</p>";
         }
 
-        document.getElementById("modal-header-name").innerHTML = "Været for " + place;
+        document.getElementById("weather-location").innerHTML = "Forecast for " + place;
         document.getElementById("temp").innerHTML = "&deg; " + temp;
-        document.getElementById("windspeed").innerHTML = "<strong>Vind:</strong> " + windspeed[0].value + " m/s &ndash; " + winddir[2].value;
-        document.getElementById("windstrength").innerHTML = "<strong>Styrke:</strong> " + windspeed[1].value;
-        document.getElementById("rain").innerHTML = "<strong>Nedbør: </strong>" + rain + " mm";
+        document.getElementById("windspeed").innerHTML = "<strong>Wind:</strong> " + windspeed[0].value + " m/s &ndash; " + winddir[2].value;
+        document.getElementById("windstrength").innerHTML = "<strong>Strength:</strong> " + windspeed[1].value;
+        document.getElementById("rain").innerHTML = "<strong>Rain: </strong>" + rain + " mm";
         document.getElementById("weathericon").src = "static/images/weather/0" + icon[0].value + ".png";
     }
 };
