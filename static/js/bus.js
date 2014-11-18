@@ -44,22 +44,22 @@ var Bus = ( function () {
         var rows = document.getElementById(place);
         var row = "";
         for (var i = 0; i < list.length; i++) {
-            row += "<li><p><b>" + list[i].t.substring(11, 16) + "</b><small> &ndash; " + calcTime(list[i].t) + "</small></p></li>"
+            row += "<li><p><b>" + list[i].t.substring(11, 16) + "</b><small> &ndash; " + calcTime(list[i].t, list[i].rt) + "</small></p></li>"
         } 
         rows.innerHTML = row;
     }
-    var calcTime = function(time) {
-        //console.log("INFO: calcTime called");
-        var d = time.match(/^(\d{2}).(\d{2}).(\d{4}) (\d{2}):(\d{2})$/);
-        var today = new Date();
-        var departure = new Date(d[3], d[2] - 1, d[1], d[4], d[5]);
-        var diff = Math.floor((departure.getTime() - today.getTime()) / (1000 * 60));
-        if (diff <= -1 || diff <= 0) {
-            return '<b style="color:red">approx. now</b>';
-        } else {
-            return "approx. " + diff + " min";
-        }   
-    }
+
+     var calcTime = function(time, realtime) {
+         var d = time.match(/^(\d{2}).(\d{2}).(\d{4}) (\d{2}):(\d{2})$/);
+         var today = new Date();
+         var departure = new Date(d[3], d[2] - 1, d[1], d[4], d[5]);
+         var diff = Math.floor((departure.getTime() - today.getTime()) / (1000 * 60));
+         if (diff <= -1 || diff <= 0) {
+             return realtime ? "now (RT)" : "approx. now";
+         } else {
+             return (realtime ? (diff + " min (RT)") : "approx. " + diff + " min");
+         }  
+     }
 
     return {
         getBusInfo: function() {

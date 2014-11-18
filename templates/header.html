@@ -8,7 +8,8 @@
                 <li class="main-nav-item{% if request.path = '/'%} main-nav-item-active{% endif %}"><a href="/">Home</a></li>
                 <li class="main-nav-item{% if '/cv/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'cv:cv' %}">CV</a></li>
                 <li class="main-nav-item{% if '/tasting/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'tasting:index' %}">BeerTasting</a></li>
-                <li class="main-nav-item"><a href="mailto:me@hakloev.no?subject=Contact hakloev.no" id="contact-link">Contact</a></li>
+                <li class="main-nav-item"><a href="mailto:me@hakloev.no?subject=Contact hakloev.no">Contact</a></li>
+                <li class="main-nav-item"><a href="#modal-login"><i class="fa fa-lock"></i></a></li>
             </ul>
         </span>
     </nav>

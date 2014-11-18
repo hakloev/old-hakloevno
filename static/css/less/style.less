@@ -13,7 +13,7 @@
 
 /* Variables */
 @wrapper-spacing: 25px;
-@header-height: 70px;
+@header-height: 60px;
 @header-spacing: 40px;
 @grid-spacing: 15px;
 
@@ -38,7 +38,7 @@
     width: 100%;
     margin: 0 auto;
     position: relative;
-    top: -25px;
+    top: -20px;
     background: @white;
     opacity: 0;
     .transition(~"0.5s opacity");
@@ -209,8 +209,15 @@ blockquote {
 /* Footer */
 footer {
     text-align: center;
+    margin-bottom: 50px;
     p {
-        margin: 50px 0;
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+    a {
+        i {
+            color: @orange;
+        }
     }
 }
 
@@ -248,7 +255,7 @@ footer {
 }
 
 .panel-heading {
-    padding: 10px 15px;
+    padding: 7px 15px;
     border-bottom: 1px solid transparent;
 }
 
@@ -264,7 +271,7 @@ footer {
 }
 
 .panel-footer {
-    padding: 10px 15px;
+    padding: 4px 15px;
     border-bottom: 1px solid transparent;
     p {
         color: @white;
@@ -296,14 +303,16 @@ footer {
 }
 
 .modal-dialog {
-    background: darken(@white, 5%);
-    border: 1px solid @grey;
-    border-radius: 5px;
-    margin-left: -230px;
+    background: @white;
+    border-radius: 0px;
+    margin: 0 auto;
+    margin-top: 8%;
+    width: 80%;
+    max-width: 480px;
     position: fixed;
-    left: 50%; top: -100%;
+    left: 0; top: 0; right: 0;
     z-index: 1000;
-    width: 360px;
+    overflow: auto;
     .translate(0, -500%);
     .transition(~"0.8s ease out");
 }
@@ -311,25 +320,27 @@ footer {
 .modal-body {
     padding: 20px;
 }
-    
+
+.modal-footer {
+    padding: 5px 20px;
+}
+
 .modal-header,
 .modal-footer {
-    padding: 10px 20px;
+    background-color: @lightgrey;
 }
 
 .modal-header {
-    border-bottom: 1px solid @grey;
+    border-bottom: 1px solid @lightgrey;
+    padding: 10px 20px;
     h2 {
         font-size: 20px;
+        color: @orange;
     }
 }
 
 .modal-footer {
-    border-top: 1px solid @grey;
-    text-align: right;
-    a {
-        color: @blue;
-    }
+    border-top: 1px solid @lightgrey;
 }
 
 #close {
@@ -339,6 +350,23 @@ footer {
 /* Weather panel */
 #temp {
     font-size: 50px;
+}
+
+#weather-copyright small {
+    font-size: 8px;
+    a {
+        color: @black;
+        font-weight: normal;
+    }
+}
+
+/* Bus panel */
+#busberglist, 
+#busilalist {
+    margin: 5px 0;
+    p {
+        margin: 0;
+    }
 }
 
 /* Media queries */
@@ -355,7 +383,4 @@ and (max-device-width: 480px) {
     }
     *[class*='col-'] {
         width: 100%}
-    .modal-dialog {
-        margin-left: -180px;
-    }
 }

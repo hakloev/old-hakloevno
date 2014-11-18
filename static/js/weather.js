@@ -22,6 +22,8 @@ var weather = {
         var windspeed = xml.getElementsByTagName('windSpeed')[0].attributes;
         var winddir = xml.getElementsByTagName("windDirection")[0].attributes;
         var icon = xml.getElementsByTagName("symbol")[0].attributes;
+        var copyright = xml.getElementsByTagName("link")[0].getAttributeNode("text");
+        var copyrightUrl = xml.getElementsByTagName("link")[0].getAttributeNode("url");
 
         var forecasttype = xml.getElementsByTagName("time")[0].getAttribute('type');
         if (forecasttype === "obsforecast") {
@@ -34,12 +36,13 @@ var weather = {
             document.getElementById("forecast").innerHTML = "<p>" + gislefoss + "</p>";
         }
 
-        document.getElementById("weather-location").innerHTML = "Forecast for " + place;
+        document.getElementById("weather-location").innerHTML = '<i class="fa fa-sun-o"> Forecast for ' + place + '</i>';
         document.getElementById("temp").innerHTML = "&deg; " + temp;
         document.getElementById("windspeed").innerHTML = "<strong>Wind:</strong> " + windspeed[0].value + " m/s &ndash; " + winddir[2].value;
         document.getElementById("windstrength").innerHTML = "<strong>Strength:</strong> " + windspeed[1].value;
         document.getElementById("rain").innerHTML = "<strong>Rain: </strong>" + rain + " mm";
         document.getElementById("weathericon").src = "static/images/weather/0" + icon[0].value + ".png";
+        document.getElementById("weather-copyright").innerHTML = '<small><a href="' + copyrightUrl.value + '">' + copyright.value + "</a></small>";
     }
 };
 
