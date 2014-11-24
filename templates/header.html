@@ -1,17 +1,4 @@
-<header id="main-header">
-    <nav id="main-nav" role="navigation">
-        <div id="main-nav-namebrand">
-            <h1><a href="/" id="main-nav-logo">hakloev.no</a></h1>
-        </div>
-        <span id="main-nav-right">
-            <ul>
-                <li class="main-nav-item{% if request.path = '/'%} main-nav-item-active{% endif %}"><a href="/">Home</a></li>
-                <li class="main-nav-item{% if '/cv/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'cv:cv' %}">CV</a></li>
-                <li class="main-nav-item{% if '/tasting/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'tasting:index' %}">BeerTasting</a></li>
-                <li class="main-nav-item"><a href="mailto:me@hakloev.no?subject=Contact hakloev.no">Contact</a></li>
-                <li class="main-nav-item"><a href="#modal-login"><i class="fa fa-lock"></i></a></li>
-            </ul>
-        </span>
-    </nav>
-</header>
-
+<blockquote>
+    &ndash; Mister I ain't a boy, no I'm a man, and I believe in a promised land
+    <small>Bruce Springsteen</small>
+</blockquote>
