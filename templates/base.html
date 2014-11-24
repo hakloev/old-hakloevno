@@ -32,15 +32,56 @@
                 <div class="unit one-third">
                     <div class="panel panel-default">
                         <div class="panel-header">
-                            <h1 class="panel-title">Panel title</h1>
+                            <h1 class="panel-title" id="weather-location"></h1>
                         </div>
                         <div class="panel-body">
-                            <p>panel content here</p>
+                            <div class="grid">
+                                <div class="unit half">
+                                    <img id="weather-icon"></img>
+                                </div>
+                                <div class="unit half">
+                                    <div id="weather-temperature"></div>
+                                </div>
+                            </div>
+                            <div id="weather-windspeed"></div>
+                            <div id="weather-windstrength"></div>
+                            <div id="weather-rain"></div>
+                            <div id="weather-forecast"></div>
                         </div>
                         <div class="panel-footer">
-                            <small>Panel footer</small>
+                            <small id="weather-copyright"></small>
                         </div>
                     </div>
+                </div>
+                <div class="unit one-third">
+                    <a href="#" class="button button-blue">blue</a>
+                    <a href="#" class="button button-default">default</a>
+                    <a href="#" class="button button-green">green</a>
+                    <a href="#" class="button button-purple">purple</a>
+                    <div class="panel panel-green">
+                        <div class="panel-header">
+                            <h1 class="panel-title"><i class="fa fa-bus"></i>&nbsp;Bus departures</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div id="busloading"></div>
+                            <div class="grid">
+                                <div class="unit half">
+                                    <div id="bergname"></div>
+                                    <div id="busberglist" style="list-style-type: none"></div>
+                                </div>
+                                <div class="unit half">
+                                    <div id="ilaname"></div>
+                                    <div id="busilalist" style="list-style-type: none"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <small>Dep. for route 5, to the city center, RT is realtime</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="unit one-third">
+                    {% include 'header.html' %}                    
                     <div class="panel panel-purple">
                         <div class="panel-header">
                             <h1 class="panel-title">Panel title</h1>
@@ -52,26 +93,6 @@
                             <small>Panel footer</small>
                         </div>
                     </div>
-                    <div class="panel panel-green">
-                        <div class="panel-header">
-                            <h1 class="panel-title">Panel title</h1>
-                        </div>
-                        <div class="panel-body">
-                            <p>panel content here</p>
-                        </div>
-                        <div class="panel-footer">
-                            <small>Panel footer</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="unit one-third">
-                    <a href="#" class="button button-blue">blue</a>
-                    <a href="#" class="button button-default">default</a>
-                    <a href="#" class="button button-green">green</a>
-                    <a href="#" class="button button-purple">purple</a>
-                </div>
-                <div class="unit one-third">
-                    {% include 'header.html' %}                    
                 </div>
             </div>
             {% include 'footer.html' %}
@@ -83,6 +104,8 @@
                 $(this).parent().fadeOut(200);
             });
         </script>
+        {% block scriptblock %}
+        {% endblock %}
     </body>
 </html>
 

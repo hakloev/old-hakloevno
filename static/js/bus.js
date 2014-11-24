@@ -44,7 +44,7 @@ var Bus = ( function () {
         var rows = document.getElementById(place);
         var row = "";
         for (var i = 0; i < list.length; i++) {
-            row += "<li><p><b>" + list[i].t.substring(11, 16) + "</b><small> &ndash; " + calcTime(list[i].t, list[i].rt) + "</small></p></li>"
+            row += "<li><span><b>" + list[i].t.substring(11, 16) + "</b><small> &ndash; " + calcTime(list[i].t, list[i].rt) + "</small></span></li>"
         } 
         rows.innerHTML = row;
     }
