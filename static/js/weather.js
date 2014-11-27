@@ -43,6 +43,8 @@ var weather = {
         document.getElementById("weather-rain").innerHTML = "<strong>Rain: </strong>" + rain + " mm";
         document.getElementById("weather-icon").src = "/static/images/weather/" + icon[0].value + ".png";
         document.getElementById("weather-copyright").innerHTML = '<small><a href="' + copyrightUrl.value + '">' + copyright.value + "</a></small>";
+        document.getElementById("weather-degrees").innerHTML = temp + " &deg;";
+        document.getElementById("weather-icon-cube").src = "/static/images/weather/" + icon[0].value + ".png";
     }
 };
 

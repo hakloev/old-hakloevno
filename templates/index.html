@@ -6,14 +6,115 @@
 {% endblock %}
 
 {% block content %}
-<div class="unit whole">
-<h1>Samuel says:</h1>
-<p>Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends. </p>
+   <div class="grid">
+    <div class="unit whole">
+        <div class="alert alert-default">
+            Default
+            <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="alert alert-success">
+            Success
+            <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="alert alert-danger">
+            Danger
+            <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="alert alert-warning">
+            Warning
+            <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+
+    </div>
+</div>
+<div class="grid">
+    <div class="unit one-third">
+        <div class="panel panel-default">
+            <div class="panel-header">
+                <h1 class="panel-title" id="weather-location"></h1>
+            </div>
+            <div class="panel-body">
+                <div class="grid">
+                    <div class="unit half">
+                        <img id="weather-icon"></img>
+                    </div>
+                    <div class="unit half">
+                        <div id="weather-temperature"></div>
+                    </div>
+                </div>
+                <div id="weather-windspeed"></div>
+                <div id="weather-windstrength"></div>
+                <div id="weather-rain"></div>
+                <hr>
+                <div id="weather-forecast"></div>
+            </div>
+            <div class="panel-footer">
+                <small id="weather-copyright"></small>
+            </div>
+        </div>
+    </div>
+    <div class="unit one-third">
+        <a href="#" class="button button-default">default</a>
+        <a href="#" class="button button-orange">orange</a>
+        <a href="#" class="button button-green">green</a>
+        <a href="#" class="button button-red">red</a>
+        <hr>
+        <div class="panel panel-red">
+            <div class="panel-header">
+                <h1 class="panel-title"><i class="fa fa-bus"></i>&nbsp;Bus departures</h1>
+            </div>
+            <div class="panel-body">
+                <div id="busloading"></div>
+                <div class="grid">
+                    <div class="unit half">
+                        <div id="bergname"></div>
+                        <div id="busberglist" style="list-style-type: none"></div>
+                    </div>
+                    <div class="unit half">
+                        <div id="ilaname"></div>
+                        <div id="busilalist" style="list-style-type: none"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <small>Dep. for route 5, to the city center, RT is realtime</small>
+            </div>
+        </div>
+    </div>
+    <div class="unit one-third">
+        {% include 'header.html' %}                    
+        <div class="cube cube-green">
+            <div class="cube-header">
+                <h1 class="cube-title">Forecast for Trondheim</h1>
+            </div>
+            <div class="cube-body">
+                <div class="cube-row">
+                    <span id="clock-date"></span>
+                </div>
+                <div class="cube-container">
+                    <div class="cube-single">
+                        <span id="clock-hour"></span>
+                    </div>
+                    <div class="cube-single">
+                        <span id="clock-minutes"></span>
+                    </div>
+                </div>
+                <div class="cube-container">
+                    <div class="cube-single">
+                        <span id="weather-degrees"></span>
+                    </div>
+                    <div class="cube-single">
+                        <img id="weather-icon-cube" src="/static/images/weather/1.png"></img>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
 {% block scriptblock %}
-<script src="/static/js/weather.js" type="text/javascript"></script>
-<script src="/static/js/bus.js" type="text/javascript"></script>
+    <script src="/static/js/weather.js" type="text/javascript"></script>
+    <script src="/static/js/bus.js" type="text/javascript"></script>
 {% endblock %}
-

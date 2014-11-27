@@ -16,115 +16,29 @@
     <body>
         {% include 'nav.html' %}
         <div id="main-wrapper">
-            <div class="grid">
-                <div class="unit whole">
-                    <div class="alert alert-default">
-                        This is a motherfucking alert
-                        <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
-                    </div>
-                </div>
-            </div>
-            <section id="main-container" class="grid">
-                <h1 class="unit whole">Hello.</h1>
-                <hr>
-            </section>
-            <div class="grid">
-                <div class="unit one-third">
-                    <div class="panel panel-default">
-                        <div class="panel-header">
-                            <h1 class="panel-title" id="weather-location"></h1>
-                        </div>
-                        <div class="panel-body">
-                            <div class="grid">
-                                <div class="unit half">
-                                    <img id="weather-icon"></img>
+            {% block message_block %}
+                {% if messages %}
+                    <div class="grid">
+                        <div class="unit whole">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                    <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
                                 </div>
-                                <div class="unit half">
-                                    <div id="weather-temperature"></div>
-                                </div>
-                            </div>
-                            <div id="weather-windspeed"></div>
-                            <div id="weather-windstrength"></div>
-                            <div id="weather-rain"></div>
-                            <div id="weather-forecast"></div>
-                        </div>
-                        <div class="panel-footer">
-                            <small id="weather-copyright"></small>
+                            {% endfor %}
                         </div>
                     </div>
-                </div>
-                <div class="unit one-third">
-                    <a href="#" class="button button-blue">blue</a>
-                    <a href="#" class="button button-default">default</a>
-                    <a href="#" class="button button-green">green</a>
-                    <a href="#" class="button button-purple">purple</a>
-                    <div class="panel panel-green">
-                        <div class="panel-header">
-                            <h1 class="panel-title"><i class="fa fa-bus"></i>&nbsp;Bus departures</h1>
-                        </div>
-                        <div class="panel-body">
-                            <div id="busloading"></div>
-                            <div class="grid">
-                                <div class="unit half">
-                                    <div id="bergname"></div>
-                                    <div id="busberglist" style="list-style-type: none"></div>
-                                </div>
-                                <div class="unit half">
-                                    <div id="ilaname"></div>
-                                    <div id="busilalist" style="list-style-type: none"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <small>Dep. for route 5, to the city center, RT is realtime</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="unit one-third">
-                    {% include 'header.html' %}                    
-                    <div class="panel panel-purple">
-                        <div class="panel-header">
-                            <h1 class="panel-title">Panel title</h1>
-                        </div>
-                        <div class="panel-body">
-                            <p>panel content here</p>
-                        </div>
-                        <div class="panel-footer">
-                            <small>Panel footer</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+
             {% include 'footer.html' %}
         </div>
         <script src="https://code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $('.alert-disassemble').on('click', function(e){
-                e.preventDefault();
-                $(this).parent().fadeOut(200);
-            });
-        </script>
+        <script src="/static/js/main.js" type="text/javascript"></script>
         {% block scriptblock %}
         {% endblock %}
     </body>
 </html>
-
-
-
-
-
-<!-- {% block message_block %}
-                {% if messages %}
-                <div class="row">
-                    <div class="col-md-12">
-                        {% for message in messages %}
-                            <div class="alert alert-dismissable alert-{{ message.tags }}">
-                                <button type="button" class="close" data-dismiss="alert">x</button>
-                                <p>{{ message }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endif %}
-                {% endblock %} -->
-
