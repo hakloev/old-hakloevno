@@ -36,15 +36,14 @@ var weather = {
             document.getElementById("weather-forecast").innerHTML = "<p>" + gislefoss + "</p>";
         }
 
-        document.getElementById("weather-location").innerHTML = '<i class="fa fa-sun-o"> Forecast for ' + place + '</i>';
-        document.getElementById("weather-temperature").innerHTML = "&deg; " + temp;
-        document.getElementById("weather-windspeed").innerHTML = "<strong>Wind:</strong> " + windspeed[0].value + " m/s &ndash; " + winddir[2].value;
-        document.getElementById("weather-windstrength").innerHTML = "<strong>Strength:</strong> " + windspeed[1].value;
-        document.getElementById("weather-rain").innerHTML = "<strong>Rain: </strong>" + rain + " mm";
-        document.getElementById("weather-icon").src = "/static/images/weather/" + icon[0].value + ".png";
+        document.getElementById("weather-location").innerHTML = 'Forecast for ' + place;
         document.getElementById("weather-copyright").innerHTML = '<small><a href="' + copyrightUrl.value + '">' + copyright.value + "</a></small>";
-        document.getElementById("weather-degrees").innerHTML = temp + " &deg;";
+
+        document.getElementById("weather-info").innerHTML = windspeed[0].value + " m/s<br>" + winddir[2].value + "<br>" + windspeed[1].value + "<br>";
+        document.getElementById("weather-rain").innerHTML = rain;
+        document.getElementById("weather-degrees").innerHTML = temp + "&deg;";
         document.getElementById("weather-icon-cube").src = "/static/images/weather/" + icon[0].value + ".png";
+        document.getElementById("weather-update").innerHTML = "data from yr.no"
     }
 };
 

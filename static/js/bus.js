@@ -36,15 +36,15 @@ var Bus = ( function () {
     } 
     var printInfo = function(list) {
         //console.log("INFO: printInfo called");
-        var place = "busberglist";
+        var place = "bus-berg";
         if (parsed) {
-            place = "busilalist";
+            place = "bus-ila";
         }
         document.getElementById(place).innerHTML = "";
         var rows = document.getElementById(place);
         var row = "";
         for (var i = 0; i < list.length; i++) {
-            row += "<li><span><b>" + list[i].t.substring(11, 16) + "</b><small> &ndash; " + calcTime(list[i].t, list[i].rt) + "</small></span></li>"
+            row += "<strong>" + list[i].t.substring(11, 16) + "</strong><small> &ndash; " + calcTime(list[i].t, list[i].rt) + "</small><br>"
         } 
         rows.innerHTML = row;
     }
@@ -68,9 +68,7 @@ var Bus = ( function () {
                     if (runnedBefore) {
                         resetInfo();
                     } else {
-                        document.getElementById("busloading").innerHTML = "";
-                        document.getElementById("bergname").innerHTML = "Østre Berg:";
-                        document.getElementById("ilaname").innerHTML = "Ila:";
+                        document.getElementById("busloading").innerHTML = "route 5, to the city center";
                     }
                     var json = JSON.parse(responseText);
                     parseInfo(json.berg);

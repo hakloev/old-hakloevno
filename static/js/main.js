@@ -20,6 +20,9 @@ var Main = (function ($) {
         var day = now.getDay();
         var month = now.getMonth();
         var date = now.getDate();
+        if (m < 10) {
+            m = "0" + m;
+        }
         $('#clock-hour').text(h);
         $('#clock-minutes').text(m);
         $('#clock-date').text(days[day] + ', ' + months[month] + ' ' + date);
