@@ -2,11 +2,13 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; logg inn
+&ndash; log in
 {% endblock %}
 
 {% block content %}
-<section class="main-section">
-    <img class="stopsign" src="/static/images/stop.jpg"></img>
+<section class="grid">
+    <div class="unit whole" style="text-align: center">
+        <img src="/static/images/stop.jpg" alt="Please log in"></img>
+    </div>
 </section>
 {% endblock %}

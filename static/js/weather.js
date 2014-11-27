@@ -22,7 +22,6 @@ var weather = {
         var windspeed = xml.getElementsByTagName('windSpeed')[0].attributes;
         var winddir = xml.getElementsByTagName("windDirection")[0].attributes;
         var icon = xml.getElementsByTagName("symbol")[0].attributes;
-        var copyright = xml.getElementsByTagName("link")[0].getAttributeNode("text");
         var copyrightUrl = xml.getElementsByTagName("link")[0].getAttributeNode("url");
 
         var forecasttype = xml.getElementsByTagName("time")[0].getAttribute('type');
@@ -37,13 +36,12 @@ var weather = {
         }
 
         document.getElementById("weather-location").innerHTML = 'Forecast for ' + place;
-        document.getElementById("weather-copyright").innerHTML = '<small><a href="' + copyrightUrl.value + '">' + copyright.value + "</a></small>";
 
         document.getElementById("weather-info").innerHTML = windspeed[0].value + " m/s<br>" + winddir[2].value + "<br>" + windspeed[1].value + "<br>";
         document.getElementById("weather-rain").innerHTML = rain;
         document.getElementById("weather-degrees").innerHTML = temp + "&deg;";
         document.getElementById("weather-icon-cube").src = "/static/images/weather/" + icon[0].value + ".png";
-        document.getElementById("weather-update").innerHTML = "data from yr.no"
+        document.getElementById("weather-update").innerHTML = '<small><a href="' + copyrightUrl.value + '">data from yr.no</a></small>';
     }
 };
 
