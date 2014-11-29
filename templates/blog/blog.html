@@ -2,37 +2,35 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; blogg
+&ndash; blog
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-                {% if posts %}
-                    <div class="main">
-                        {% for post in posts %}
-                            <section>
-                            <h2>{{ post.title }}</h2>
-                            <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
-                            <p class="ingress">
-                               {{ post.ingress|safe }}
-                            </p>
-                            <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-                            <span><a class="btn btn-warning disabled" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
-                            {% if not forloop.last %}
-                            <hr>     
-                            {% endif %}
-                            </section>
-                       {% endfor %}
-                   </div>
-                {% else %}
-                    <h3>Fant ingen artikler.</h3>
-                {% endif %}
+{% block content %}
+ <div class="grid">
+        <div class="unit whole">
+            {% if posts %}
+                    {% for post in posts %}
+                        <section class="blog-post-short">
+                        <h1>{{ post.title }}</h1>
+                        <small><i class="fa fa-clock-o"></i>Written {{ post.posted|date:'d.m.Y' }}</small>
+                        <p>
+                           {{ post.ingress|safe }}
+                        </p>
+                        <a class="button button-default" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Read more</a>
+                        <span><a class="button button-red" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
+                        {% if not forloop.last %}
+                        <hr>     
+                        {% endif %}
+                        </section>
+                   {% endfor %}
+            {% else %}
+                <h1>No articles found</h1>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
 
-{% block script_block %}
+{% block scriptblock %}
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = 'loevdalnet'; // required: replace example with your forum shortname

@@ -1,7 +1,8 @@
-var url = "/static/files/varsel.xml";
+var Weather = (function($) { 
+   
+    var url = "/static/files/varsel.xml";
 
-var weather = { 
-    loadXML: function () {
+    var loadXML =  function () {
         var xmlhttp;
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
@@ -9,13 +10,14 @@ var weather = {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 data = xmlhttp.responseXML;
-                weather.parseXML(data);
+                parseXML(data);
             }    
         }
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
-    },
-    parseXML: function (xml) {
+    }
+    
+    var parseXML =function (xml) {
         var place = xml.getElementsByTagName("name")[0].childNodes[0].nodeValue; 
         var temp = xml.getElementsByTagName("temperature")[0].getAttribute('value');
         var rain = xml.getElementsByTagName("precipitation")[0].getAttribute('value');
@@ -35,21 +37,33 @@ var weather = {
             document.getElementById("weather-forecast").innerHTML = "<p>" + gislefoss + "</p>";
         }
 
-        document.getElementById("weather-location").innerHTML = 'Forecast for ' + place;
-
+        document.getElementById("weather-location").innerHTML = 'Forecast for ' + place + '&nbsp; <i class="fa fa-chevron-down"></i>';
         document.getElementById("weather-info").innerHTML = windspeed[0].value + " m/s<br>" + winddir[2].value + "<br>" + windspeed[1].value + "<br>";
         document.getElementById("weather-rain").innerHTML = rain;
         document.getElementById("weather-degrees").innerHTML = temp + "&deg;";
         document.getElementById("weather-icon-cube").src = "/static/images/weather/" + icon[0].value + ".png";
         document.getElementById("weather-update").innerHTML = '<small><a href="' + copyrightUrl.value + '">data from yr.no</a></small>';
     }
-};
+    
+    return {
+        init: function() {
+            loadXML();        
+        }
+    }
+
+})(jQuery);
 
 $(document).ready(function () {
-    //$('#weatherpanel').hide();
-    $('#weatherbutton').on('click', function() {
-        $('#weatherpanel').slideToggle(350);
-        //$('.weatherwidget').slideToggle(350);
+    var showing = false;
+    $('.weather-toggle').on('click', function() {
+        if (showing) {
+            showing = !showing;
+            $('#weather-location').find('i').attr('class', 'fa fa-chevron-down');
+        } else {
+            showing = !showing;
+            $('#weather-location').find('i').attr('class', 'fa fa-chevron-up');
+        }
+        $('#weather-widget').slideToggle(350);
     });
-    weather.loadXML();
+    Weather.init();
 });

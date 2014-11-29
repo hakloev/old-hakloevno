@@ -7,7 +7,7 @@
 &ndash; ølsmaking &ndash; statistikk &ndash; {{ beer }}
 {% endblock %}
 
-{% block body_block %}
+{% block content %}
  <div class="row">
         <div class="col-md-12">
             <div class="page-header">
@@ -23,7 +23,7 @@
                 {% if not forloop.last %}
                     <li class="active"><a href="{{ link }}">{{ name }}</a></li>
                 {% else %}
-                    <li class="active">{{ name }}</li>
+                    {{ name }}
                 {% endif %}
             {% endfor %}
         </ol>

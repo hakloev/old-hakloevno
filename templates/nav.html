@@ -2,6 +2,7 @@
     <nav id="main-nav" role="navigation">
         <ul>
             <li class="main-nav-item{% if request.path = "/" %} main-nav-item-active{% endif %}"><a href="/"><i class="fa fa-home"></i></a>
+            <li class="main-nav-item{% if '/blog/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'blog:index' %}">Blog</a>
             <li class="main-nav-item{% if '/cv/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'cv:cv' %}">CV</a></li>
             <li class="main-nav-item{% if '/tasting/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'tasting:index' %}">BeerTasting</a></li>
             <li class="main-nav-item"><a href="https://www.github.com/hakloev" target="_blank">github</a></li>

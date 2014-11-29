@@ -86,4 +86,7 @@ $(document).ready(function () {
     setInterval( function() {
         Bus.getBusInfo();
     }, 30000);
+    $('.bus-toggle').on('click', function() {
+        $('#bus-widget').slideToggle(350);
+    });
 });

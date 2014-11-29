@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 from django.shortcuts import render
-#from apps.blog.models import Blogpost
+from apps.blog.models import Blogpost
 from django.http import JsonResponse, Http404
 
 # Create your views here.
@@ -11,11 +11,11 @@ def index(request):
     context['request'] = request
     birthday = datetime(1992, 5, 7, 12, 0, 0)
     context['birthday'] = datetime.now().year - birthday.year
-    #try:
-    #    posts = Blogpost.objects.all().order_by('-posted')[:3]
-    #except:
-    #    posts = []
-    #context['posts'] = posts
+    try:
+        posts = Blogpost.objects.all().order_by('-posted')[:3]
+    except:
+        posts = []
+    context['posts'] = posts
     return render(request, u'index.html', context)
 
 def busTimes(request):

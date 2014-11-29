@@ -7,43 +7,50 @@
 
 {% block content %}
 <div class="grid">
+    <div class="unit two-thirds">
+        <h1>Hello.</h1>
+        <strong><em>Woopedy...</em></strong>
+        {% for post in posts %}
+            <section class="blog-post-short">
+                <h2>{{ post.title }}</h2>
+                <small><i class="fa fa-clock-o"></i>&nbsp; {{ post.posted }}</small>
+                <p>{{ post.ingress }}</p>
+                <a class="button button-default" href={% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}>Read more</a>
+            </section>
+        {% endfor %}
+    </div>
     <div class="unit one-third">
-        <div class="cube cube-default">
+        <div class="cube cube-default bus-toggle">
             <div class="cube-header">
-                <h1 class="cube-title">clock</h1>
+                <h1 class="cube-title">Bus departures&nbsp; <i class="fa fa-bus"></i></h1>
             </div>
-            <div class="cube-body">
+            <div class="cube-body" id="bus-widget">
                 <div class="cube-row">
-                    <span id="clock-date">loading...</span>
+                    <span id="busloading">Loading...</span>
                 </div>
                 <div class="cube-container">
                     <div class="cube-single">
-                        <span id="clock-hour"></span>
+                        Østre Berg
                     </div>
                     <div class="cube-single">
-                        <span id="clock-minutes"></span>
+                        Ila
+                    </div>
+                </div>
+                <div class="cube-container">
+                    <div class="cube-single">
+                        <span id="bus-berg"></span>
+                    </div>
+                    <div class="cube-single">
+                        <span id="bus-ila"></span>
                     </div>
                 </div>
             </div>
         </div>
-        <span id="weather-copyright"></span>
-    </div>
-    <div class="unit one-third">
-        <a href="#" class="button button-default">default</a>
-        <a href="#" class="button button-orange">orange</a>
-        <a href="#" class="button button-green">green</a>
-        <a href="#" class="button button-red">red</a>
-        {% include 'header.html' %}                    
-    </div>
-    <div class="unit one-third">
-        <div class="cube cube-green">
-            <div class="cube-header">
+        <div class="cube cube-default">
+            <div class="cube-header weather-toggle">
                 <h1 class="cube-title" id="weather-location">weather forecast</h1>
             </div>
-            <div class="cube-body">
-                <div class="cube-row">
-                    <span id="weather-update">loading...</span>
-                </div>
+            <div class="cube-body" id="weather-widget" style="display:none">
                 <div class="cube-container">
                     <div class="cube-single">
                         <span id="weather-degrees"></span>
@@ -63,23 +70,8 @@
                 <div class="cube-row">
                     <span id="weather-forecast"></span>
                 </div>
-            </div>
-        </div>
-        <div class="cube cube-red">
-            <div class="cube-header">
-                <h1 class="cube-title">Bus departures</h1>
-            </div>
-            <div class="cube-body">
                 <div class="cube-row">
-                    <span id="busloading">Loading...</span>
-                </div>
-                <div class="cube-container">
-                    <div class="cube-single">
-                        <span id="bus-berg"></span>
-                    </div>
-                    <div class="cube-single">
-                        <span id="bus-ila"></span>
-                    </div>
+                    <span id="weather-update">loading...</span>
                 </div>
             </div>
         </div>
@@ -87,22 +79,6 @@
 </div>
 <div class="grid">
     <div class="unit whole">
-        <div class="alert alert-default">
-            Default
-            <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
-        </div>
-        <div class="alert alert-success">
-            Success
-            <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
-        </div>
-        <div class="alert alert-danger">
-            Danger
-            <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
-        </div>
-        <div class="alert alert-warning">
-            Warning
-            <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
-        </div>
     </div>
 </div>
 {% endblock %}

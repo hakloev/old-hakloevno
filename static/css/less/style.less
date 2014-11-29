@@ -2,23 +2,28 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:200);
 
 /* Variables */
+/* Colors Absent: afternoon */
 @white: #fff;
-@blue: #3299BB;
+@blue: #1B8FC3;
 
-@green: #339C41;
-@header: #385E60;
+@green: #72A435;
+/*@header: #081E2E;*/
+/*@header: #343838;*/
+@header: #142531;
+@grey: #585858;
 
 @miku: #33989C;
 @anchor: #1E9AE;
-@orange: #FFA719;
+@orange: #EE591E;
 
 @slate: #556270;
 @pacifica: #4ECDC4;
 
-@darkpink: #C44D58;
+@darkpink: #A4032F;
 
+@red: #E45C57;
 
-@navheight: 3em;
+@navheight: 3.5em;
 
 /* Mixins */
 .clearfix() {
@@ -54,25 +59,24 @@
 }
 
 .cube(@color) {
-    color: #fff;
-    border-color: @color;
+    @lightcolor: lighten(@color, 40%);
+    border: 2px solid @color;
     .cube-header {
         background-color: @color;
-        border-color: @color;
     }
     .cube-row {
-        background-color: @color;
+        border-color: @color;
     }
     .cube-single {
-        background-color: @color;
+        border-color: @color;
+        &:hover {
+            background-color: @lightcolor;
+        }
     }
 }
 
 .button(@color) {
     background-color: @color;
-    &:hover {
-       background-color: darken(@color, 10%); 
-    }
 }
 
 .alert(@color) {
@@ -92,21 +96,24 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: "Raleway", sans-serif;
+    font-weight: 400;
 }
 
 a {
     text-decoration: none;
-    color: @white;
+    color: @orange;
 }
 
 h1 {
-    font-family: "Open Sans", sans-serif;
-    font-weight: 200;
+    color: @blue;
+}
+
+h2 {
+    color: @green;
 }
 
 a, p, blockquote {
-    font-family: "Raleway", sans-serif;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 hr {
@@ -129,6 +136,24 @@ blockquote {
     }
 }
 
+.breadcrumb {
+    list-style-type: none;
+    display: block;
+    padding: 10px 15px;
+    background-color: lighten(@grey, 50%);
+    li {
+        display: inline-block;
+        &:before {
+            content: "/\00a0";
+            padding: 0 5px;
+            color: #ccc;
+        }
+        a {
+            color: @orange;
+        } 
+    }
+}
+
 .image-thumbnail {
     border: 1px solid @slate;
     border-radius: 4px;
@@ -138,22 +163,47 @@ blockquote {
 }
 
 #weather-info {
-    font-size: 1.5em;
+    font-size: 0.8em;
 }
 
 #bus-berg, #bus-ila {
     font-size: 1em;
 }
 
+.blog-post {
+    margin-bottom: 20px;
+    h1 {
+        margin-bottom: 0;
+        font-size: 2em;
+    }
+    p {
+        font-style: italic;
+        font-size: 20px;
+    }
+}
+
+.blog-post-short {
+    h1 {
+        margin-bottom: 0;
+    }
+}
+
 
 #main-wrapper {
-    margin: 10px 50px auto;
+    margin: 40px 50px auto;
+    h1 {
+        margin-top: 0;
+    }
+    h2 {
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
 }
 
 #main-header {
     position: relative;
     background: @header; 
-    position: relative;
+    opacity: 0.95;
     z-index: 9999;
     font-size: 20px;
     #main-nav {
@@ -168,9 +218,9 @@ blockquote {
             .main-nav-item {
                 float: left;
                 border-top: 5px solid lighten(@header, 10%);
-                .transition(~"all .18s ease-in");
+                .transition(~"all .1s ease-in");
                 &:hover {
-                    border-top-color: @orange;
+                    border-top-color: @blue;
                     background-color: lighten(@header, 10%);
                 }
                 a {
@@ -181,25 +231,24 @@ blockquote {
                     margin-top: -5px; /* negative of border on main-nav-item */
                     padding: 0 20px;
                     text-transform: lowercase;
+                    color: @white;
                 }
             }
             .main-nav-item-active {
-                border-top-color: @orange;
+                border-top-color: @blue;
             }
         }
     }
 }
 
-
-
 footer {
-    padding-top: 32px;
+    padding-top: 10px;
     padding-bottom: 50px;
 }
 
 footer a {
     color: @header;
-    .transition(~"color .18s ease-in");
+    .transition(~"color .1s ease-in");
     &:hover {
         color: lighten(@header, 10%);
     }
@@ -213,15 +262,7 @@ footer a {
 }
 
 .panel-default {
-    .panel(@miku);
-}
-
-.panel-red {
-    .panel(@darkpink);
-}
-
-.panel-green {
-    .panel(#339C41);
+    .panel(@blue);
 }
 
 .panel-header {
@@ -249,12 +290,10 @@ footer a {
 /* Buttons */
 .button {
     display: inline-block;
-    padding: 8px 14px;
+    padding: 5px 8px;
     margin-bottom: 3px; /* To get spacing on break */
-    border: 0;
-    border-radius: 4px;
     color: @white;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .button-block {
@@ -263,19 +302,14 @@ footer a {
 }
 
 .button-default {
-    .button(@miku); 
-}
-
-.button-green {
-    .button(@green);
-}
-
-.button-orange {
-    .button(@orange)
+    .button(@blue);
+    &:hover {
+        background-color: @orange;
+    }
 }
 
 .button-red {
-    .button(@darkpink);
+    .button(@red);
 }
 
 /* Alerts */
@@ -292,13 +326,13 @@ footer a {
         float: right;
         &:hover {
             color: @header;
-            .transition(~"color .18s ease-in");
+            .transition(~"color .1s ease-in");
         }
     }
 }
 
 .alert-default {
-    .alert(@miku);
+    .alert(@blue);
 }
 
 .alert-warning {
@@ -318,6 +352,7 @@ footer a {
 .cube {
     margin-bottom: 20px;
     background-color: #fff;
+    color: #000;
 }
 
 .cube-header {
@@ -331,6 +366,7 @@ footer a {
     font-size: 18px;
     text-transform: lowercase;
     text-align: center;
+    color: @white;
 }
 
 .cube-row {
@@ -340,7 +376,7 @@ footer a {
 }
 
 .cube-single {
-    padding: 20px;
+    padding: 10px;
     width: 50%;
     -webkit-flex: 1;
     flex: 1;
@@ -352,6 +388,7 @@ footer a {
     span {
         font-size: 60px;
     }
+    .transition(~"background-color .1s ease-in");
 }
 
 .cube-container {
@@ -361,15 +398,7 @@ footer a {
 }
 
 .cube-default {
-    .cube(@miku);
-}
-
-.cube-green {
-    .cube(@green);
-}
-
-.cube-red {
-    .cube(@darkpink);
+    .cube(@blue);
 }
 
 /* CV */

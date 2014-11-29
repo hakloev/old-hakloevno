@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^$', index),
     url(r'^bustimes/$', busTimes),
     url(r'^busstops/', busStops),
-    #url(r'^blog/', include('apps.blog.urls', namespace='blog')), # This can be deleted, but leave it temporarily 'cause it is easy
+    url(r'^blog/', include('apps.blog.urls', namespace='blog')), # This can be deleted, but leave it temporarily 'cause it is easy
     url(r'^tasting/', include('apps.beertasting.urls', namespace='tasting')),
     url(r'^cv/', include('apps.cv.urls', namespace='cv')),
     ) 
