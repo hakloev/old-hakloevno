@@ -26,7 +26,7 @@ class Beer(models.Model):
         super(Beer, self).save()
 
     def __unicode__(self):
-        return (u'%s fra %s' % (self.name, self.brewery))
+        return (u'%s from %s' % (self.name, self.brewery))
 
 class TastingEvent(models.Model):
     name = models.CharField(max_length=50, blank=False, unique=True)

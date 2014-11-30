@@ -23,7 +23,8 @@
 
 @red: #E45C57;
 
-@navheight: 3.5em;
+@navheight: 3em;
+@main-spacing: 50px;
 
 /* Mixins */
 .clearfix() {
@@ -106,6 +107,7 @@ a {
 
 h1 {
     color: @blue;
+    margin: 0;
 }
 
 h2 {
@@ -119,7 +121,7 @@ a, p, blockquote {
 hr {
     margin-top: 21px;
     margin-bottom: 21px;
-    border-top: 1px solid lighten(@miku, 5%);
+    border-top: 1px solid @green;
 }
 
 blockquote {
@@ -140,10 +142,10 @@ blockquote {
     list-style-type: none;
     display: block;
     padding: 10px 15px;
-    background-color: lighten(@grey, 50%);
+    background-color: rgba(240, 240, 240, 0.8);
     li {
         display: inline-block;
-        &:before {
+        &+ li:before {
             content: "/\00a0";
             padding: 0 5px;
             color: #ccc;
@@ -178,37 +180,57 @@ blockquote {
     }
     p {
         font-style: italic;
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 
 .blog-post-short {
-    h1 {
+    h1, h2 {
         margin-bottom: 0;
     }
 }
 
 
 #main-wrapper {
-    margin: 40px 50px auto;
+    margin: @navheight + 1.350em @main-spacing auto;
     h1 {
-        margin-top: 0;
-    }
-    h2 {
-        margin-bottom: 0;
-        text-transform: uppercase;
     }
 }
 
 #main-header {
-    position: relative;
+    position: fixed;
+    top:0; right: 0; left: 0;
     background: @header; 
-    opacity: 0.95;
+    opacity: 0.9;
     z-index: 9999;
-    font-size: 20px;
+    font-size: 1em;
+    text-align: justify;
+    letter-spacing: 2px;
+    height: @navheight;
+    padding: 0 @main-spacing + 20; /* padding on grid */
+    &:after {
+        content:'';
+        display: inline-block;
+        width: 100%;
+    }
+    h1 {
+        display: inline-block;
+        height: 100%;
+        float: left;
+        vertical-align: middle;
+        color: @white;
+        &:before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+    }
     #main-nav {
+        display: inline-block;
+        vertical-align: middle;
         height: @navheight;
-        text-align: center;
+        float: right;
         ul {
             list-style-type: none;
             margin: 0;
@@ -224,8 +246,8 @@ blockquote {
                     background-color: lighten(@header, 10%);
                 }
                 a {
-                    font-size: 20px;
-                    font-weight: 300;
+                    font-size: 1em;
+                    font-weight: 400;
                     line-height: @navheight;
                     display: block;
                     margin-top: -5px; /* negative of border on main-nav-item */
@@ -294,6 +316,7 @@ footer a {
     margin-bottom: 3px; /* To get spacing on break */
     color: @white;
     font-size: 15px;
+    .transition(~"background-color .1s ease-in");
 }
 
 .button-block {

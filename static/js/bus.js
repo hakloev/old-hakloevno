@@ -1,28 +1,14 @@
-var Bus = ( function () {
+var Bus = (function ($) {
     
-    var busInfoUrl = "/bustimes/";
     var parsed = false;
     var runnedBefore = false;
 
     var resetInfo = function() {
-            parsed = false;
-            runnedBefore = false;
+        parsed = false;
+        runnedBefore = false;
     }
-    var xmlReq = function(url, type, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                //console.log('INFO: Callback in XMLHttpRequest');
-                callback(this.responseText);
-            } else {
-                console.log('ERROR: XMLHttpRequest failed, nothing to display in DOM');
-            }
-        }
-        xhr.open(type, url, true);
-        xhr.send();
-    }
+    
     var parseInfo = function(place) {
-        //console.log("INFO: parseInfo called");
         var departureList = [];
         for (var i = 0; i < place.next.length; i++) {
             if (place.next[i].l == "5") {
@@ -35,18 +21,12 @@ var Bus = ( function () {
         printInfo(departureList);
     } 
     var printInfo = function(list) {
-        //console.log("INFO: printInfo called");
-        var place = "bus-berg";
-        if (parsed) {
-            place = "bus-ila";
-        }
-        document.getElementById(place).innerHTML = "";
-        var rows = document.getElementById(place);
+        parsed ? place = "#bus-berg" : place = "#bus-ila";
         var row = "";
         for (var i = 0; i < list.length; i++) {
             row += "<strong>" + list[i].t.substring(11, 16) + "</strong><small> &ndash; " + calcTime(list[i].t, list[i].rt) + "</small><br>"
-        } 
-        rows.innerHTML = row;
+        }
+        $(place).html(row);
     }
 
      var calcTime = function(time, realtime) {
@@ -61,31 +41,32 @@ var Bus = ( function () {
          }  
      }
 
+
     return {
-        getBusInfo: function() {
-            xmlReq(busInfoUrl, "GET", 
-                function(responseText) {
-                    if (runnedBefore) {
-                        resetInfo();
-                    } else {
-                        document.getElementById("busloading").innerHTML = "route 5, to the city center";
-                    }
-                    var json = JSON.parse(responseText);
-                    parseInfo(json.berg);
-                    parsed = true;
-                    parseInfo(json.ila);
-                    runnedBefore = true; 
+        init: function() {
+            $.ajax({
+                type: "GET",
+                url: "/bustimes/",
+                dataType: "json",
+                success: function(data) {
+                    runnedBefore ? resetInfo() : $('#busloading').html("route 5, to the city center");
+                    parseInfo(data.berg);
+                    parsed = !parsed;
+                    parseInfo(data.ila);
+                    runnedBefore = !runnedBefore; 
+                },
+                error: function(xhr, options, error) {
+                    $('#busloading').html("failed to load bus times.")
+                    console.log("Failed to fetch bus data!");  
                 }
-            );
+            });
         }
-           }  
-})();
+    }
+})(jQuery);
 
 $(document).ready(function () {
-    Bus.getBusInfo();
-    setInterval( function() {
-        Bus.getBusInfo();
-    }, 30000);
+    Bus.init();
+    setInterval(Bus.init, 30000);
     $('.bus-toggle').on('click', function() {
         $('#bus-widget').slideToggle(350);
     });

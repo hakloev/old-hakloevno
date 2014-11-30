@@ -7,7 +7,7 @@
 
 {% block content %}
  <div class="grid">
-        <div class="unit whole">
+        <div class="unit two-thirds">
             {% if posts %}
                     {% for post in posts %}
                         <section class="blog-post-short">
@@ -17,7 +17,6 @@
                            {{ post.ingress|safe }}
                         </p>
                         <a class="button button-default" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Read more</a>
-                        <span><a class="button button-red" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
                         {% if not forloop.last %}
                         <hr>     
                         {% endif %}
@@ -26,6 +25,18 @@
             {% else %}
                 <h1>No articles found</h1>
             {% endif %}
+        </div>
+        <div class="unit one-third">
+            <div class="cube cube-default">
+                <div class="cube-header">
+                    <h1 class="cube-title">Categories</h1>
+                </div>
+                <div class="cube-body">
+                    <div class="cube-row">
+                        categories to be here
+                    </div>
+                </div>
+            </div> 
         </div>
     </div>
 {% endblock %}

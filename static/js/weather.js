@@ -1,22 +1,5 @@
 var Weather = (function($) { 
    
-    var url = "/static/files/varsel.xml";
-
-    var loadXML =  function () {
-        var xmlhttp;
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        }
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                data = xmlhttp.responseXML;
-                parseXML(data);
-            }    
-        }
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-    }
-    
     var parseXML =function (xml) {
         var place = xml.getElementsByTagName("name")[0].childNodes[0].nodeValue; 
         var temp = xml.getElementsByTagName("temperature")[0].getAttribute('value');
@@ -47,13 +30,24 @@ var Weather = (function($) {
     
     return {
         init: function() {
-            loadXML();        
+            $.ajax({
+                type: "GET",
+                url: "/static/files/varsel.xml",
+                dataType: "xml",
+                success: function(data) {
+                    parseXML(data);
+                },
+                error: function(xhr, options, error) {
+                    console.log('Failed fetching weather data!');
+                }
+            }); 
         }
     }
 
 })(jQuery);
 
 $(document).ready(function () {
+    Weather.init();
     var showing = false;
     $('.weather-toggle').on('click', function() {
         if (showing) {
@@ -65,5 +59,4 @@ $(document).ready(function () {
         }
         $('#weather-widget').slideToggle(350);
     });
-    Weather.init();
 });
