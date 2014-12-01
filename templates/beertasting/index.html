@@ -8,7 +8,7 @@
 {% block content %}
  <div class="grid">
         <div class="unit whole">
-            <h1>beer tasting <small>&dash; events</small></h1>
+            <h1>Beer Tasting</h1>
         </div>
 </div>
 <div class="grid">
@@ -17,9 +17,9 @@
         <ol class="breadcrumb">
             {% for name, link in breadcrumbs %}
                 {% if not forloop.last %}
-                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
+                    <li><a href="{{ link }}">{{ name }}</a></li>
                 {% else %}
-                    <li class="active">{{ name }}</li>
+                    <li>{{ name }}</li>
                 {% endif %}
             {% endfor %}
         </ol>

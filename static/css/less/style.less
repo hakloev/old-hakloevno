@@ -24,7 +24,7 @@
 @red: #E45C57;
 
 @nav-height: 3.5em;
-@mobile-nav-height: 2em;
+@mobile-nav-height: 3em;
 @mobile-nav-spacing: 20px;
 @main-spacing: 50px;
 
@@ -126,6 +126,34 @@ hr {
     border-top: 1px solid @green;
 }
 
+.table-responsive {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+table {
+    width: 100%;
+    min-width: 640px;
+    overflow: scroll;
+    border-collapse: collapse;
+    font-family: monospace;
+    th {
+        text-align: left;
+        padding: 8px;
+        color: @green;
+        background-color: rgba(240, 240, 240, 1);
+    }
+    tr {
+        td {
+            padding: 8px 5px;
+            color: #000;
+        }
+    }
+}
+
 blockquote {
     margin: 16px 0;
     padding-right: 15px;
@@ -166,10 +194,6 @@ blockquote {
     width: auto;
 }
 
-.disabled {
-    pointer-events: none;
-    background-color: lighten(@header, 10%);
-}
 
 #weather-info {
     font-size: 0.8em;
@@ -197,6 +221,20 @@ blockquote {
     }
 }
 
+.beer-rating {
+    background-color: rgba(240, 240, 240, 0.8);
+    cursor: text;
+    word-break: normal;
+    word-wrap: normal;
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 0;
+    font-family: monospace;
+    &:first-of-type {
+        margin-top: 0;
+    }
+}
 
 #main-wrapper {
     margin: @nav-height + 1.350em @main-spacing auto;
@@ -450,9 +488,6 @@ footer a {
                     display: block;
                     float: none;
                     width: 100%;
-                    a {
-                        line-height: @mobile-nav-height;
-                    }
                 }
             }
             .nav-fullscreen {
@@ -482,4 +517,40 @@ footer a {
             }
         }
     }
+}
+
+@media all and (min-device-width: 320px)
+and (max-device-width: 769px)
+and (orientation : landscape) {
+    #main-header {
+        .main-nav {
+            height: auto;
+            ul {
+                width: 100%;
+                display: block;
+                height: auto;
+                overflow: auto;
+                margin-top: -3px;
+                .main-nav-item {
+                    border-top: 3px solid lighten(@header, 10%);
+                    width: 50%;
+                    float: left;
+                    position: relative;
+                    a {
+                        line-height: @mobile-nav-height;
+                    }
+                }
+            }
+            #nav-mobile {
+                text-align: left;
+                width: 100%;
+                text-indent: 25px;
+                line-height: @mobile-nav-height;
+                &:after {
+                    top: 0.9em;
+                }
+            }
+        }
+    }
+
 }

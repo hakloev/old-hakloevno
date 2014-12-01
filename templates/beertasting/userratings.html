@@ -2,50 +2,50 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; {{ request.user.first_name }}
+&ndash; beer tasting &ndash; {{ request.user.first_name }}
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Ølsmaking <small>&dash; {{ request.user.first_name }}</small></h1>
-            </div>
+{% block content %}
+ <div class="grid">
+        <div class="unit whole">
+            <h1>Ratings</h1>
         </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
+<div class="grid">
+    <div class="unit whole">
         {% if breadcrumbs %}
             <ol class="breadcrumb">
                 {% for name, link in breadcrumbs %}
                     {% if not forloop.last %}
-                        <li class="active"><a href="{{ link }}">{{ name }}</a></li>
+                        <li><a href="{{ link }}">{{ name }}</a></li>
                     {% else %}
-                        <li class="active">{{ name }}</li>
+                        <li>{{ name }}</li>
                     {% endif %}
                 {% endfor %}
             </ol>
        {% endif %}
    </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
+<div class="grid">
+    <div class="unit whole">
             {% if not ratings %}
-            <h3>Du har ikke avgitt noen vurderinger.</h3>
+                <h2>{{ request.user.username }} hasn't given any ratings.</h2>
             {% else %}
-            {% for rating in ratings %}
-                <h4>{{ rating.beer }} &ndash; {{ rating.event }}:</h4>
-                <div class="well well-sm">
-                    Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
-                    <br/>
-                    <br/>
-                    {% if rating.comment %}
-                    {{ rating.comment }}
-                    {% else %}
-                    <strong>Du ga ingen kommetar.</strong>
-                    {% endif %}
-                </div>
-            {% endfor %}
+                <h2>Ratings by {{ request.user.username }}</h2>
+                {% for rating in ratings %}
+                    <div class="beer-rating">
+                        <strong>{{ rating.beer }} &ndash; {{ rating.event }}:</strong>
+                        <br>
+                        Grade: <strong>{{ rating.rating|floatformat:0 }}</strong>
+                        <br>
+                        <br>
+                        {% if rating.comment %}
+                            {{ rating.comment }}
+                        {% else %}
+                            No comment given.
+                        {% endif %}
+                    </div>
+                {% endfor %}
             {% endif %}
     </div>
 </div>
