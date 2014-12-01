@@ -5,7 +5,7 @@
 &ndash; blogg &ndash; ny post
 {% endblock %}
 
-{% block body_block %}
+{% block content %}
 {{ block.super }}
 {% if user.is_superuser %}
 <div class="row">

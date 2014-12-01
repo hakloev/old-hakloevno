@@ -5,7 +5,14 @@ var Main = (function ($) {
                   "November", "December"];
 
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-     
+    
+    var bindNavMobile = function() {
+        $('#nav-mobile').on('click', function(e) {
+            e.preventDefault();
+            $('.nav-fullscreen').slideToggle();
+        });    
+    }
+
     var alertDisassemble = function() {
         $('.alert-disassemble').on('click', function(e){
             e.preventDefault();
@@ -27,11 +34,35 @@ var Main = (function ($) {
         $('#clock-minutes').text(m);
         $('#clock-date').text(days[day] + ', ' + months[month] + ' ' + date);
     }
+    
+    var hasScrolled = function() {
+        if (!$('.nav-fullscreen').is(':hidden')) { $('.nav-fullscreen').hide() }
+    }
+
+    var activateResponsive = function() {
+        bindNavMobile();
+        var didScroll;
+        var nav = $('.nav-fullscreen');
+        $(window).resize(function() {
+            if (window.innerWidth > 768) {
+                nav.is(':hidden') ? nav.removeAttr('style') : "";
+            }
+        });
+        $(window).scroll(function(e) {
+            if (window.innerWidth < 768) {
+                didScroll = true;
+            }
+        });
+        setInterval(function() {
+            if (didScroll) { hasScrolled(); didScroll = !didScroll };
+        }, 350);
+    }
 
     return {
         init: function() {
             alertDisassemble();
             setInterval(updateTime, 1000);
+            activateResponsive();
         }
     }
 

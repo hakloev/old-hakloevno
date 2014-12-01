@@ -23,7 +23,9 @@
 
 @red: #E45C57;
 
-@navheight: 3em;
+@nav-height: 3.5em;
+@mobile-nav-height: 2em;
+@mobile-nav-spacing: 20px;
 @main-spacing: 50px;
 
 /* Mixins */
@@ -164,6 +166,11 @@ blockquote {
     width: auto;
 }
 
+.disabled {
+    pointer-events: none;
+    background-color: lighten(@header, 10%);
+}
+
 #weather-info {
     font-size: 0.8em;
 }
@@ -192,53 +199,32 @@ blockquote {
 
 
 #main-wrapper {
-    margin: @navheight + 1.350em @main-spacing auto;
+    margin: @nav-height + 1.350em @main-spacing auto;
     h1 {
     }
 }
 
 #main-header {
-    position: fixed;
-    top:0; right: 0; left: 0;
-    background: @header; 
-    opacity: 0.9;
-    z-index: 9999;
     font-size: 1em;
     text-align: justify;
-    letter-spacing: 2px;
-    height: @navheight;
-    padding: 0 @main-spacing + 20; /* padding on grid */
-    &:after {
-        content:'';
-        display: inline-block;
-        width: 100%;
-    }
-    h1 {
-        display: inline-block;
-        height: 100%;
-        float: left;
-        vertical-align: middle;
-        color: @white;
-        &:before {
-            content: '';
-            display: inline-block;
-            vertical-align: middle;
-            height: 100%;
-        }
-    }
-    #main-nav {
-        display: inline-block;
-        vertical-align: middle;
-        height: @navheight;
-        float: right;
+    letter-spacing: 1px;
+    display: block;
+    .main-nav {
+        position: fixed;
+        top:0; right: 0; left: 0;
+        background: @header; 
+        opacity: 0.9;
+        z-index: 9999;
+        padding: 0 @main-spacing + 20; /* padding on grid */
+        height: @nav-height;
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
-            display: inline-block;
             line-height: 1;
             .main-nav-item {
                 float: left;
+                display: inline;
                 border-top: 5px solid lighten(@header, 10%);
                 .transition(~"all .1s ease-in");
                 &:hover {
@@ -247,8 +233,7 @@ blockquote {
                 }
                 a {
                     font-size: 1em;
-                    font-weight: 400;
-                    line-height: @navheight;
+                    line-height: @nav-height;
                     display: block;
                     margin-top: -5px; /* negative of border on main-nav-item */
                     padding: 0 20px;
@@ -259,6 +244,9 @@ blockquote {
             .main-nav-item-active {
                 border-top-color: @blue;
             }
+        }
+        .nav-right {
+            float: right;
         }
     }
 }
@@ -439,15 +427,59 @@ footer a {
     }
 }
 
+@media all and (min-width: 769px) {
+    #nav-mobile {
+        display: none;
+    }
+}
 
-
-@media (max-width: 320px) {
+@media all and (max-width: 768px) {
     #main-wrapper {
-        margin: 5px auto;
+        margin: @nav-height + 1.350em auto;
     }
     #weather-temperature {
         font-size: 60px;
         text-align: left;
     }
-
+    #main-header {
+      .main-nav {
+            padding: 0;
+            height: auto;
+            ul {
+                .main-nav-item {
+                    display: block;
+                    float: none;
+                    width: 100%;
+                    a {
+                        line-height: @mobile-nav-height;
+                    }
+                }
+            }
+            .nav-fullscreen {
+                display: none;
+            }
+            .nav-right {
+                float: none;
+            }
+            #nav-mobile {
+                display: block;
+                position: relative;
+                width: 100%;
+                line-height: @nav-height;
+                padding-left: @mobile-nav-spacing;
+                color: @white;
+                background-color: inherit;
+                &:after {
+                    content: "";
+                    background: url('/static/images/mobilenav.svg') no-repeat;
+                    width: 30px;
+                    height: 30px;
+                    position: absolute;
+                    top: 1.2em;
+                    right: @mobile-nav-spacing - 5px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
 }
