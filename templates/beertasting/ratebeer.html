@@ -4,71 +4,69 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; vurdering
+&ndash; beer tasting &ndash; rating
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Ølsmaking <small>&ndash; {% if event.finished %}{% if rating %}{{ rating.beer }}{% else %}detaljer{% endif %}{% else %}vurdering{% endif %}</small></h1>
-            </div>
+{% block content %}
+ <div class="grid">
+        <div class="unit whole">
+            <h1>{% if event.finished %}{% if rating %}{{ rating.beer }}{% else %}Details{% endif %}{% else %}Rating{% endif %}</h1>
         </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
+<div class="grid">
+    <div class="unit whole">
         {% if breadcrumbs %}
-        <ol class="breadcrumb">
-            {% for name, link in breadcrumbs %}
-                {% if not forloop.last %}
-                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
-                {% else %}
-                    <li class="active">{{ name }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li>{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
         {% endif %}
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
+<div class="grid">
+    <div class="unit two-thirds">
         {% if event.finished %}
             {% if rating %}
-                <h4 class="ratingheader">Du ga <strong>{{ rating.beer }}</strong> følgende:</h4>
-                <div class="well well-sm">
-                    Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
+                <h2>You gave <strong>{{ rating.beer }}</strong> the following:</h2>
+                <div class="beer-rating">
+                    Grade: <strong>{{ rating.rating|floatformat:0 }}</strong>
                     <br/>
                     <br/>
                     {% if rating.comment|length < 1 %}
-                    <strong>Du ga ingen kommentar</strong>
+                    <strong>You gave no comment.</strong>
                     {% else %}
                     {{ rating.comment }}
                     {% endif %}
                 </div>     
             {% else %}
-                <h4>Du ga ikke denne ølen noen vurdering.</h4>
+                <h2>You didn't give this beer any rating</h2>
             {% endif %}
             <hr>
             {% if comments %}
-            <h4>Andre ga følgende:</h4>
+            <h2>Others gave the follwing:</h2>
             {% for comment in comments %}
-                <div class="well well-sm">
-                    Karakter: <strong>{{ comment.rating|floatformat:0 }}</strong>
+                <div class="beer-rating">
+                    Grade: <strong>{{ comment.rating|floatformat:0 }}</strong>
                     <br/>
                     <br/>
                     {% if comment.comment|length < 1 %}
-                        <strong>Denne brukeren ga ingen kommentar.</strong>
+                        <strong>This user gave no comment.</strong>
                     {% else %}
                         {{ comment.comment }}
                     {% endif %}
                 </div>
             {% endfor %}
             {% else %}
-            <h4>Ingen andre ga noen vurdering.</h4>
+                <h2>No one else has rated this beer.</h2>
             {% endif %}
             <hr>
-            <a class="btn btn-danger ratingbutton" href="{% url 'tasting:beer_stats' beerid %}">Statistikk</a>
+            <a class="button button-default" href="{% url 'tasting:beer_stats' beerid %}">Statistics</a>
         {% else %}
         <form class="form-horizontal" action="{% url 'tasting:beer_rating' event.id beercode %}" method="POST">
                 {% csrf_token %}
