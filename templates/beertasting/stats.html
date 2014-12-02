@@ -4,44 +4,44 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; resultater &ndash; {% if event %}{{ event.name }}{% else %}smaksevent{% endif %}
+&ndash; beer tasting &ndash; results &ndash; {% if event %}{{ event.name }}{% else %}event{% endif %}
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
-            </div>
+{% block content %}
+ <div class="grid">
+        <div class="unit whole">
+            <h1>Results</h1>
         </div>
     </div>
-<div class="row">
-    <div class="col-md-12">
+<div class="grid">
+    <div class="unit whole">
         {% if breadcrumbs %}
-        <ol class="breadcrumb">
-            {% for name, link in breadcrumbs %}
-                {% if not forloop.last %}
-                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
-                {% else %}
-                    <li class="active">{{ name }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li>{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
         {% endif %}
     </div>
 </div>
-<div class="row">
-    <div class="col-md-8">
-        <h3 class="ratingheader">Resultater:</h3>
+<div class="grid">
+    <div class="unit two-thirds">
+        <h2>{{ event.name }}</h2>
         <div class="panel panel-default">
-            <div class="panel-heading">Oversikt</div>
-                <div class="table-responsive">
-                <table class="table">
+            <div class="panel-header">
+                <h3 class="panel-title">Overview</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table monospace-table">
                     <thead>
                         <tr>
-                            <th>Snitt</th>
-                            <th>Øl</th>
-                            <th>Bryggeri</th>
+                            <th>Avg.</th>
+                            <th>Beer</th>
+                            <th>Brewery</th>
                             <th>Type</th>
                             <th>ABV</th>
                             <th>IBU</th>

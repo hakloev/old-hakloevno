@@ -36,8 +36,8 @@ def get_number_of_ratings(ratings, id):
 def print_rating_icon(ratings, id):
     for rating in ratings:
         if rating.beer.id == id:
-            return '<span class="glyphicon glyphicon-ok"></span>'
-    return '<span class="glyphicon glyphicon-remove"></span>'
+            return '<i class="fa fa-check"></i>'
+    return '<i class="fa fa-close"></i>'
 
 @register.filter(name='shuffle_beers')
 def shuffle_beers(arg):

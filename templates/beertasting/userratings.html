@@ -2,13 +2,13 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; beer tasting &ndash; {{ request.user.first_name }}
+&ndash; beer tasting &ndash; {{ request.user.username }}
 {% endblock %}
 
 {% block content %}
  <div class="grid">
         <div class="unit whole">
-            <h1>Ratings</h1>
+            <h1>My ratings</h1>
         </div>
 </div>
 <div class="grid">

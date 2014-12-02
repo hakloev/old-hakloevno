@@ -139,7 +139,9 @@ table {
     min-width: 640px;
     overflow: scroll;
     border-collapse: collapse;
-    font-family: monospace;
+    &.monospace-table {
+        font-family: monospace;
+    }
     th {
         text-align: left;
         padding: 8px;
@@ -201,6 +203,10 @@ blockquote {
 
 #bus-berg, #bus-ila {
     font-size: 1em;
+}
+
+.bus-toggle, .weather-toggle {
+    cursor: pointer;
 }
 
 .blog-post {
@@ -311,6 +317,10 @@ footer a {
 
 .panel-default {
     .panel(@blue);
+}
+
+.panel-green {
+    .panel(@green);
 }
 
 .panel-header {

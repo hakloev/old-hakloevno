@@ -194,7 +194,7 @@ def user_ratings(request,id):
     breadcrumbs = (
             ('Events', reverse('tasting:index')),
             ('Statistics', reverse('tasting:beer_list')),
-        ('%s' % (request.user.first_name), None)
+        ('%s' % (request.user.username), None)
     )
     
     return render(request, u'beertasting/userratings.html', {
