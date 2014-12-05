@@ -54,11 +54,11 @@ def beer_rating(request, eid, code):
             r.rating = request.POST['ratingvalue']
             r.rated = datetime.datetime.now()
             r.save()
-            messages.success(request, u'Dine stemme for øl %s ble oppdatert!' % (code))
+            messages.success(request, u'Your rating for beer %s was updated!' % (code))
         except:
             new_r = BeerRating(user=request.user, beer_id=bid, event_id=eid, rating=request.POST['ratingvalue'], comment=request.POST['comment'] )
             new_r.save()
-            messages.success(request, u'Dine stemme for øl %s ble registrert!' % (code))
+            messages.success(request, u'Your rating for beer %s was registered!' % (code))
         return HttpResponseRedirect(request.path)
     rating = None    
     try:

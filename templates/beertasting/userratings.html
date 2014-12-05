@@ -33,17 +33,19 @@
             {% else %}
                 <h2>Ratings by {{ request.user.username }}</h2>
                 {% for rating in ratings %}
-                    <div class="beer-rating">
-                        <strong>{{ rating.beer }} &ndash; {{ rating.event }}:</strong>
-                        <br>
-                        Grade: <strong>{{ rating.rating|floatformat:0 }}</strong>
-                        <br>
-                        <br>
-                        {% if rating.comment %}
-                            {{ rating.comment }}
-                        {% else %}
-                            No comment given.
-                        {% endif %}
+                    <div class="unit half">
+                        <div class="beer-rating">
+                            <strong>{{ rating.beer }} &ndash; {{ rating.event }}:</strong>
+                            <br>
+                            Grade: <strong>{{ rating.rating|floatformat:0 }}</strong>
+                            <br>
+                            <br>
+                            {% if rating.comment %}
+                                {{ rating.comment }}
+                            {% else %}
+                                No comment given.
+                            {% endif %}
+                        </div>
                     </div>
                 {% endfor %}
             {% endif %}

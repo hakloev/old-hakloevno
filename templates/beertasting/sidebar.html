@@ -1,7 +1,7 @@
 {% load filters %}
 
 <div class="unit one-third">
-    <div class="panel panel-green">
+    <div class="panel panel-default">
         <div class="panel-header">
             <h3 class="panel-title">Menu for {{ request.user.username }}:</h3>
         </div>
@@ -15,8 +15,9 @@
                 {% else %}
                 {% endif %}
             {% else %}
-                <progress value="{{ ratings.count|get_percent }}" max="{{ event.beers.all.count|get_percent }}"></progress>
+                <progress value="{{ ratings.count|get_percent }}" max="{{ event.beers.all.count|get_percent }}"><span>
                 {{ ratings.count|get_how_long:event.beers.all.count }}%
+                </span>%</progress>
                 {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all|shuffle_beers %}
                         {% autoescape off %}
@@ -30,10 +31,10 @@
             <p>Your user id is: {{ request.user.id }}</p>
         </div>
         {% if user.is_superuser %}
-        <div class="panel-header">
+        <div class="panel-header beer-admin-toggle">
             <h3 class="panel-title">Administrator:</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body beer-admin-panel" style="display:none">
             <a href="{% url 'tasting:event_list' event.id %}" class="button button-default button-block">Beer list</a>
             <p>Event-ID: {{ event.id }}</p>
             {% if beer %}

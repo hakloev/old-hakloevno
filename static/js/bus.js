@@ -24,7 +24,7 @@ var Bus = (function ($) {
         parsed ? place = "#bus-berg" : place = "#bus-ila";
         var row = "";
         for (var i = 0; i < list.length; i++) {
-            row += "<strong>" + list[i].t.substring(11, 16) + "</strong><small> &ndash; " + calcTime(list[i].t, list[i].rt) + "</small><br>"
+            row += list[i].t.substring(11, 16) + "<small> &ndash; " + calcTime(list[i].t, list[i].rt) + "</small><br>"
         }
         $(place).html(row);
     }

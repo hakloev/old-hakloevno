@@ -40,20 +40,18 @@
         {% endfor %}
     </div>
     <div class="unit one-third">
-        <div class="cube cube-default">
-            <div class="cube-header">
-                <h2 class="cube-title">Beer statistics</h2>
+        <div class="panel panel-default">
+            <div class="panel-header">
+                <h2 class="panel-title">Beer statistics</h2>
             </div>          
-            <div class="cube-body">
-                <div class="cube-row">
-                    {% for info in beerinfo %}
-                        <p>Beer: {{ info.beer__name}}</p>
-                        <p>Brewery: {{ info.beer__brewery__name }}</p>
-                        <p><strong>Avg.: {{ info.score|floatformat:2 }}</strong></p>
-                        <p>Events: {{ info.events }}</p>
-                        <p>Ratings: {{ info.rates }}</p>
-                    {% endfor %}
-                </div>
+            <div class="panel-body">
+                {% for info in beerinfo %}
+                    <p>Beer: {{ info.beer__name}}</p>
+                    <p>Brewery: {{ info.beer__brewery__name }}</p>
+                    <p><strong>Avg.: {{ info.score|floatformat:2 }}</strong></p>
+                    <p>Events: {{ info.events }}</p>
+                    <p>Ratings: {{ info.rates }}</p>
+                {% endfor %}
             </div>
         </div>
     </div>

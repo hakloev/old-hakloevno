@@ -30,7 +30,7 @@ def get_number_of_ratings(ratings, id):
     for rating in ratings:
         if rating['beer'] == id:
             return rating['total']
-    return 'Ingen'
+    return 'None'
 
 @register.filter(name='print_rating_icon')
 def print_rating_icon(ratings, id):

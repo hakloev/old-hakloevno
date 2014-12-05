@@ -1,26 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,700,300,400);
-@import url(https://fonts.googleapis.com/css?family=Raleway:200);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,500,600,900,200);
 
 /* Variables */
-/* Colors Absent: afternoon */
+/* Colors */
 @white: #fff;
 @blue: #1B8FC3;
-
-@green: #72A435;
-/*@header: #081E2E;*/
-/*@header: #343838;*/
+@green: #00B294;
 @header: #142531;
-@grey: #585858;
-
-@miku: #33989C;
-@anchor: #1E9AE;
 @orange: #EE591E;
 
+@grey: #585858;
+@miku: #33989C;
+@anchor: #1E9AE;
 @slate: #556270;
 @pacifica: #4ECDC4;
-
 @darkpink: #A4032F;
-
 @red: #E45C57;
 
 @nav-height: 3.5em;
@@ -99,12 +93,16 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: "Raleway", sans-serif;
-    font-weight: 400;
+    font-weight: 200;
 }
 
 a {
     text-decoration: none;
     color: @orange;
+}
+
+h1, h2 {
+    font-weight: 200;
 }
 
 h1 {
@@ -117,13 +115,74 @@ h2 {
 }
 
 a, p, blockquote {
-    font-weight: 400;
+    font-weight: 200;
 }
 
 hr {
     margin-top: 21px;
     margin-bottom: 21px;
     border-top: 1px solid @green;
+}
+
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    height: 1.2em;
+    width: 100%;
+    vertical-align: -0.2em;
+    &::-webkit-progress-bar {
+        background: @white;
+        border-radius: 3px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25) inset;
+    }
+    &::-webkit-progress-value {
+        background: @green;
+        border-radius: 2px;
+    }
+}
+
+.form {
+    padding: 0 10px 10px;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    outline: 0;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+select {
+    width: auto;
+}
+
+textarea {
+    line-height: 150%;
+}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus {
+    border-color: @green;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.submit input {
+    margin-bottom: 10px;
+    -webkit-appearence: none;
+    -moz-appearence: none;
+    &:hover {
+        background-color: darken(@orange, 10%);
+    }
 }
 
 .table-responsive {
@@ -146,9 +205,13 @@ table {
         text-align: left;
         padding: 8px;
         color: @green;
+        font-size: 15px;
         background-color: rgba(240, 240, 240, 1);
     }
     tr {
+        &:nth-child(even) {
+            background-color: rgba(239, 239, 239, 0.8);
+        }
         td {
             padding: 8px 5px;
             color: #000;
@@ -205,7 +268,7 @@ blockquote {
     font-size: 1em;
 }
 
-.bus-toggle, .weather-toggle {
+.bus-toggle, .weather-toggle, .beer-admin-toggle {
     cursor: pointer;
 }
 
@@ -277,6 +340,7 @@ blockquote {
                 }
                 a {
                     font-size: 1em;
+                    font-weight: 200;
                     line-height: @nav-height;
                     display: block;
                     margin-top: -5px; /* negative of border on main-nav-item */
@@ -332,6 +396,7 @@ footer a {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 18px;
+    font-weight: 400;
     color: inherit;
 }
 
@@ -349,9 +414,11 @@ footer a {
 .button {
     display: inline-block;
     padding: 5px 8px;
+    font-weight: 200;
     margin-bottom: 3px; /* To get spacing on break */
     color: @white;
     font-size: 15px;
+    border: 0;
     .transition(~"background-color .1s ease-in");
 }
 
@@ -383,6 +450,7 @@ footer a {
     color: @white;
     .alert-disassemble {
         float: right;
+        color: @white;
         &:hover {
             color: @header;
             .transition(~"color .1s ease-in");
@@ -423,6 +491,7 @@ footer a {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 18px;
+    font-weight: 400;
     text-transform: lowercase;
     text-align: center;
     color: @white;

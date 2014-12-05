@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    $('.adminpanel').hide();
-    $('#adminbutton').on('click', function () {
-        $('.adminpanel').slideToggle(350);
+    $('.beer-admin-toggle').on('click', function () {
+        $('.beer-admin-panel').slideToggle(350);
     });    
 });
