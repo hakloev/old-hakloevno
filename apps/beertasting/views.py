@@ -10,11 +10,9 @@ from django.db.models import Avg, Count, Q
 
 import datetime
 
-# Create your views here.
-
 def index(request):
     latestevents = TastingEvent.objects.filter(finished=False).order_by('-id')
-    doneevents = TastingEvent.objects.filter(finished=True).order_by('-id')
+    doneevents = TastingEvent.objects.filter(finished=True).order_by('-id')[:5]
     breadcrumbs = (
             ('Events', reverse('tasting:index')),
     )
@@ -83,8 +81,6 @@ def beer_rating(request, eid, code):
     return render(request, u'beertasting/ratebeer.html', {
         'request': request,
         'event': event,
-        'beercode': code,
-        'beerid': bid,
         'beer': beer,
         'rating': rating,
         'ratings': ratings,

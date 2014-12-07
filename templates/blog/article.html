@@ -12,7 +12,6 @@
         <section class="blog-post">
             <h1>{{ post.title }}</h1>
             <small><i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted|date:'d.m.Y'}}</small>
-            &ndash; 
             <small><i class="fa fa-pencil-square-o"></i>&nbsp; Modified: {{ post.modified|date:"d.m.Y H.i"}}</small>
             <p>{{ post.ingress|safe }}</p>
             {{ post.text|safe }}

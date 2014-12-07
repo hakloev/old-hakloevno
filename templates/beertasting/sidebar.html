@@ -28,7 +28,6 @@
                     <p>No beers available.</p>
                 {% endif %}
             {% endif %}
-            <p>Your user id is: {{ request.user.id }}</p>
         </div>
         {% if user.is_superuser %}
         <div class="panel-header beer-admin-toggle">
@@ -38,9 +37,9 @@
             <a href="{% url 'tasting:event_list' event.id %}" class="button button-default button-block">Beer list</a>
             <p>Event-ID: {{ event.id }}</p>
             {% if beer %}
-                <p>Beer code: <strong>{{ beer.code }}</strong></p>
-                <p>Beer-ID: <strong>{{ beer.id }}</strong></p>
-                <p>Beer: <strong>{{ beer }}</strong></p>
+                <p>Beer code: {{ beer.code }}</p>
+                <p>Beer-ID: {{ beer.id }}</p>
+                <p>Beer: {{ beer }}</p>
             {% endif %}
             <p>Date: {{ event.date|date:"d.m.Y" }}</p>
             <p>Total beers: {{ event.beers.all|length }}</p>

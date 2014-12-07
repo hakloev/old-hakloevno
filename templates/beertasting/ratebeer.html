@@ -8,11 +8,6 @@
 {% endblock %}
 
 {% block content %}
- <div class="grid">
-        <div class="unit whole">
-            <h1>{% if event.finished %}{% if rating %}{{ rating.beer }}{% else %}Details{% endif %}{% else %}Rating{% endif %}</h1>
-        </div>
-</div>
 <div class="grid">
     <div class="unit whole">
         {% if breadcrumbs %}
@@ -33,7 +28,7 @@
     <div class="unit two-thirds">
         {% if event.finished %}
             {% if rating %}
-                <h2>You gave <strong>{{ rating.beer }}</strong> the following:</h2>
+                <h2>You gave {{ rating.beer }} the following:</h2>
                 <div class="beer-rating">
                     Grade: <strong>{{ rating.rating|floatformat:0 }}</strong>
                     <br/>
@@ -47,6 +42,7 @@
             {% else %}
                 <h2>You didn't give this beer any rating</h2>
             {% endif %}
+            <br>
             {% if comments %}
                 <h2>Others gave the follwing:</h2>
             {% for comment in comments %}
@@ -62,11 +58,12 @@
                 </div>
             {% endfor %}
             {% else %}
-                <h2>No one else has rated this beer.</h2>
+                <h2>No one else rated this beer.</h2>
             {% endif %}
-            <a class="button button-default" href="{% url 'tasting:beer_stats' beerid %}">Statistics</a>
+            <br>
+            <a class="button button-default" href="{% url 'tasting:beer_stats' beer.id %}">Statistics</a>
         {% else %}
-        <form class="form" action="{% url 'tasting:beer_rating' event.id beercode %}" method="POST">
+        <form class="form" action="{% url 'tasting:beer_rating' event.id beer.code %}" method="POST">
                 {% csrf_token %}
                     <div>
                          <label for="ratingvalue">Grade:</label>

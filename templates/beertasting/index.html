@@ -6,11 +6,6 @@
 {% endblock %}
 
 {% block content %}
- <div class="grid">
-        <div class="unit whole">
-            <h1>Beer Tasting</h1>
-        </div>
-</div>
 <div class="grid">
     <div class="unit whole">
         {% if breadcrumbs %}
@@ -25,22 +20,32 @@
         </ol>
         {% endif %}
         <div class="unit half">
-            {% if latestevents  %}
-                <h2><span class="fa fa-glass"></span> &ndash; Ongoing: <small>{{ latestevents.count }} events</small></h2>
-                {% for latest in latestevents %}
-                   <a href="{{ latest.get_absolute_url }}">{{ latest.name }}</a> &ndash; {{ latest.beers.count }} beers</br><small>{{ latest.date|date:"d.m.Y" }}</small><br>
-                {% endfor %}
-            {% else %}
-                <h1>No ongoing events</h1>
-            {% endif %}
-            {% if doneevents %}
-            <h2><i class="fa fa-calendar"></i> &ndash; Finished: <small>{{ doneevents.count }} events</small></h2>
-                {% for event in doneevents %}
-                    <a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash; {{ event.beers.count }} beers</br><small>{{ event.date|date:"d.m.Y" }}</small><br>
-                {% endfor %}
-            {% else %}
-                <h1>No completed events</h1>
-            {% endif %}
+            <section class="beer-events">
+                {% if latestevents  %}
+                    <h2><span class="fa fa-glass"></span> &ndash; Ongoing: <small>{{ latestevents.count }} events</small></h2>
+                    {% for latest in latestevents %}
+                        <div class="beer-event">
+                            <a href="{{ latest.get_absolute_url }}">{{ latest.name }}</a> &ndash; 
+                            <small>{{ latest.date|date:"d.m.Y" }}</small>
+                       </div>
+                    {% endfor %}
+                {% else %}
+                    <h1>No ongoing events</h1>
+                {% endif %}
+            </section>
+            <section class="beer-event">
+                {% if doneevents %}
+                <h2><i class="fa fa-calendar"></i> &ndash; Finished: <small>{{ doneevents.count }} events</small></h2>
+                    {% for event in doneevents %}
+                        <div class="beer-event">
+                            <a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash;
+                            <small>{{ event.date|date:"d.m.Y" }}</small>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h1>No completed events</h1>
+                {% endif %}
+            </section>
         </div>
         <div class="unit half">
             <div class="cube cube-default">

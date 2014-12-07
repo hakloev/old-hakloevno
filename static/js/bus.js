@@ -57,6 +57,7 @@ var Bus = (function ($) {
                 },
                 error: function(xhr, options, error) {
                     $('#busloading').html("failed to load bus times.")
+                    $('#bus-widget').hide();
                     console.log("Failed to fetch bus data!");  
                 }
             });

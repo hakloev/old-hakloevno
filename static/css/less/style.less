@@ -22,6 +22,8 @@
 @mobile-nav-spacing: 20px;
 @main-spacing: 50px;
 
+@line-height: 150%;
+
 /* Mixins */
 .clearfix() {
     &:after {
@@ -101,7 +103,8 @@ a {
     color: @orange;
 }
 
-h1, h2 {
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
     font-weight: 200;
 }
 
@@ -115,7 +118,8 @@ h2 {
 }
 
 a, p, blockquote {
-    font-weight: 200;
+    line-height: @line-height;
+    font-weight: 100;
 }
 
 hr {
@@ -134,8 +138,8 @@ progress {
     vertical-align: -0.2em;
     &::-webkit-progress-bar {
         background: @white;
-        border-radius: 3px;
-        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25) inset;
+        border-radius: 4px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5) inset;
     }
     &::-webkit-progress-value {
         background: @green;
@@ -144,7 +148,7 @@ progress {
 }
 
 .form {
-    padding: 0 10px 10px;
+    padding: 0 0 10px;
 }
 
 input, textarea, select {
@@ -178,8 +182,9 @@ input:focus, textarea:focus {
 
 .submit input {
     margin-bottom: 10px;
-    -webkit-appearence: none;
-    -moz-appearence: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     &:hover {
         background-color: darken(@orange, 10%);
     }
@@ -236,7 +241,8 @@ blockquote {
 .breadcrumb {
     list-style-type: none;
     display: block;
-    padding: 10px 15px;
+    line-height: @line-height;
+    padding: 8px 15px;
     background-color: rgba(240, 240, 240, 0.8);
     li {
         display: inline-block;
@@ -273,9 +279,9 @@ blockquote {
 }
 
 .blog-post {
+    line-height: 150%;
     margin-bottom: 20px;
     h1 {
-        margin-bottom: 0;
         font-size: 2em;
     }
     p {
@@ -285,9 +291,16 @@ blockquote {
 }
 
 .blog-post-short {
-    h1, h2 {
-        margin-bottom: 0;
-    }
+    margin-bottom: 15px;
+}
+
+.beer-events {
+    margin-bottom: 10px;    
+}
+
+.beer-event {
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .beer-rating {
@@ -301,7 +314,6 @@ blockquote {
     border: 0;
     font-family: monospace;
     &:first-of-type {
-        margin-top: 0;
     }
 }
 

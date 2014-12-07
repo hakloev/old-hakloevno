@@ -8,11 +8,6 @@
 {% endblock %}
 
 {% block content %}
- <div class="grid">
-        <div class="unit whole">
-            <h1>Results</h1>
-        </div>
-    </div>
 <div class="grid">
     <div class="unit whole">
         {% if breadcrumbs %}
@@ -30,10 +25,9 @@
 </div>
 <div class="grid">
     <div class="unit two-thirds">
-        <h2>{{ event.name }}</h2>
         <div class="panel panel-default">
             <div class="panel-header">
-                <h3 class="panel-title">Overview</h3>
+                <h3 class="panel-title">Results for {{ event.name }}</h3>
             </div>
             <div class="table-responsive">
                 <table class="table monospace-table">

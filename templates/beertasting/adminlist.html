@@ -8,11 +8,6 @@
 {% endblock %}
 
 {% block content %}
- <div class="grid">
-        <div class="unit whole">
-            <h1>Admin overview for {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</h1>
-        </div>
-</div>
 <div class="grid">
     <div class="unit whole">
             {% if breadcrumbs %}
@@ -32,7 +27,7 @@
     <div class="unit whole">
         <div class="panel panel-default">
             <div class="panel-header">
-                <h2 class="panel-title">Overview</h2>
+                <h2 class="panel-title">Beers</h2>
             </div>
             <div class="table-responsive">
                 <table class="table monospace-table">

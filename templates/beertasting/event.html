@@ -6,11 +6,6 @@
 {% endblock %}
 
 {% block content %}
- <div class="grid">
-    <div class="unit whole">
-        <h1>{% if event %}{{ event.name }}{% else%}tasting event{% endif %}</small></h1>
-    </div>
-</div>
 <div class="grid">
     <div class="unit whole">
         {% if breadcrumbs %}
@@ -32,11 +27,11 @@
             {% if ratings %}
                 <h2>Your ratings:</h2>
                 {% for rating in ratings %}
-                    <h3>{{ rating.beer }}:</h3>
                     <div class="beer-rating">
+                        <h3>{{ rating.beer }}:</h3><br>
                         Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
-                        <br/>
-                        <br/>
+                        <br>
+                        <br>
                         {% if rating.comment %}
                         {{ rating.comment }}
                         {% else %}

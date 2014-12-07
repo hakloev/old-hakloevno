@@ -11,15 +11,12 @@
             {% if posts %}
                     {% for post in posts %}
                         <section class="blog-post-short">
-                        <h1>{{ post.title }}</h1>
-                        <small><i class="fa fa-clock-o"></i>Written {{ post.posted|date:'d.m.Y' }}</small>
-                        <p>
-                           {{ post.ingress|safe }}
-                        </p>
-                        <a class="button button-default" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Read more</a>
-                        {% if not forloop.last %}
-                        <hr>     
-                        {% endif %}
+                            <h1>{{ post.title }}</h1>
+                            <small><i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted|date:'d.m.Y' }}</small>
+                            <p>
+                               {{ post.ingress|safe }}
+                            </p>
+                            <a class="button button-default" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Read more</a>
                         </section>
                    {% endfor %}
             {% else %}

@@ -22,8 +22,8 @@
                         <div class="unit whole">
                             {% for message in messages %}
                                 <div class="alert alert-{{ message.tags }}">
-                                    {{ message }}
                                     <a class="alert-disassemble" href="#"><i class="fa fa-times-circle"></i></a>
+                                    {{ message }}
                                 </div>
                             {% endfor %}
                         </div>
