@@ -16,6 +16,12 @@ class Category(models.Model):
         self.slug = slugify(self.title)
         super(Category, self).save()
 
+    @permalink
+    def get_absolute_url(self):
+        return('category_by_slug', (), {
+            'slug': slugify(self.slug)
+        })
+
 class Blogpost(models.Model):
     title = models.CharField(max_length=23, unique=True)
     slug = models.SlugField(unique=True, db_index=True)
@@ -23,7 +29,7 @@ class Blogpost(models.Model):
     text = models.TextField()
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    categories = models.ManyToManyField(Category, blank=True)
+    categories = models.ManyToManyField(Category, blank=False)
 
     def __unicode__(self):
         return '%s' % self.title

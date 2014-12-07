@@ -30,7 +30,9 @@
                 </div>
                 <div class="cube-body">
                     <div class="cube-row">
-                        categories to be here
+                        {% for category in categories.all %}
+                            <a href="#">{{ category.title }}</a></br>
+                        {% endfor %}
                     </div>
                 </div>
             </div> 
