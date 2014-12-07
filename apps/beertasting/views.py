@@ -6,13 +6,19 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from models import Beer, BeerRating, TastingEvent
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.db.models import Avg, Count, Q
+from django.db.models import Avg, Count, Q, Max
 
 import datetime
 
 def index(request):
     latestevents = TastingEvent.objects.filter(finished=False).order_by('-id')
     doneevents = TastingEvent.objects.filter(finished=True).order_by('-id')[:5]
+    beers = Beer.objects.aggregate(Count('id'))
+    ratings = BeerRating.objects.aggregate(Count('id'))
+    events = TastingEvent.objects.aggregate(Count('id'))
+    rated = Beer.objects.get(id=BeerRating.objects.values('beer__id').annotate(num_ratings=Count('beer__id')).latest('num_ratings')['beer__id'])
+    liked = Beer.objects.get(id=BeerRating.objects.values('beer__id').annotate(best=Avg('rating')).latest('best')['beer__id'])
+    hated = Beer.objects.get(id=BeerRating.objects.values('beer__id').annotate(lowest=Avg('rating')).earliest('lowest')['beer__id'])
     breadcrumbs = (
             ('Events', reverse('tasting:index')),
     )
@@ -21,7 +27,14 @@ def index(request):
         'request': request, 
         'breadcrumbs': breadcrumbs,
         'latestevents': latestevents,
-        'doneevents': doneevents}
+        'doneevents': doneevents,
+        'beers': beers,
+        'ratings': ratings,
+        'events': events,
+        'most_rated': rated,
+        'most_hated': hated,
+        'most_liked': liked
+        }
     )
 
 @login_required

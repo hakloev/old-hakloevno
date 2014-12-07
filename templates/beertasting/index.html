@@ -54,7 +54,12 @@
                 </div>
                 <div class="cube-body">
                     <div class="cube-row">
-                        stats here, type most rated, best enjoyed and most hated, total amount of beers, ratings given, total events<br>
+                        beers: {{ beers.id__count }}<br>
+                        most rated: {{ most_rated }}<br>
+                        most liked: {{ most_liked }}<br>
+                        most hated: {{ most_hated }}<br>
+                        number of ratings: {{ ratings.id__count }}<br>
+                        total events: {{ events.id__count }}<br>
                     </div>
                 </div>
             </div>
