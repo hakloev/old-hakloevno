@@ -54,3 +54,7 @@ def get_how_long(number, total):
     if number == 0 or total == 0:
         return 0
     return int(((float(number) / float(total)) * 100))
+
+@register.filter(name='lookup')
+def cut(value, arg):
+    return value[str(arg)]

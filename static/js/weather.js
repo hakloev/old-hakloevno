@@ -14,10 +14,10 @@ var Weather = (function($) {
             console.log("obsforecast");
             var gislefoss = xml.getElementsByTagName("body")[0].childNodes[0].data;
             var gislefoss2 = xml.getElementsByTagName("body")[1].childNodes[0].data;
-            document.getElementById("weather-forecast").innerHTML = '<h4 class="obsforecast"><i class="fa fa-exclamation-triangle"></i>&nbsp;<b>OBS-varsel:</b></h4>' + "<p>" + gislefoss + "</p><br>" + "<p>" + gislefoss2 + "</p>";
+            document.getElementById("weather-forecast").innerHTML = '<h4 class="obsforecast"><i class="fa fa-exclamation-triangle"></i>&nbsp;<b>OBS-varsel:</b></h4>' + gislefoss + "<br>" + gislefoss2;
         } else {
             var gislefoss =  xml.getElementsByTagName("body")[0].childNodes[0].data;
-            document.getElementById("weather-forecast").innerHTML = "<p>" + gislefoss + "</p>";
+            document.getElementById("weather-forecast").innerHTML = "<small>" + gislefoss + "</small>";
         }
 
         document.getElementById("weather-location").innerHTML = 'Forecast for ' + place + '&nbsp; <i class="fa fa-chevron-down"></i>';

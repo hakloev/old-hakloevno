@@ -49,17 +49,36 @@
         </div>
         <div class="unit half">
             <div class="cube cube-default">
-                <div class="cube-header">
-                    <h2 class="cube-title"><i class="fa fa-list-ol"></i> &nbsp;Statistics:</h2>
+                <div class="cube-header beer-stats-toggle">
+                    <h2 class="cube-title">Statistics:</h2>
                 </div>
-                <div class="cube-body">
+                <div class="cube-body beer-stats-widget">
+                    <div class="cube-container">
+                        <div class="cube-single">
+                            <span>{{ beers }}</span><br>beers
+                        </div>
+                        <div class="cube-single">
+                            <span>{{ brewers }}</span><br>breweries
+                        </div>
+                    </div>
+                    <div class="cube-container">
+                        <div class="cube-single">
+                            <br><span>{{ ratings }}</span><br>ratings
+                        </div>
+                        <div class="cube-single">
+                            <br><span>{{ events }}</span><br>events
+                        </div>
+                    </div>
                     <div class="cube-row">
-                        beers: {{ beers.id__count }}<br>
-                        most rated: {{ most_rated }}<br>
-                        most liked: {{ most_liked }}<br>
-                        most hated: {{ most_hated }}<br>
-                        number of ratings: {{ ratings.id__count }}<br>
-                        total events: {{ events.id__count }}<br>
+                        <div class="panel-body">
+                            most rated : {{ most_rated }}<br>
+                            most liked : {{ most_liked }}<br>
+                            most hated : {{ most_hated }}<br>
+                            brewery with most beers: 
+                                {% for brewery in most_beers_brewery %}
+                                    {{ brewery }}
+                                {% endfor %}<br>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,4 +91,6 @@
     </div>
 </div>
 {% endblock %}
-
+{% block scriptblock %}
+    <script src="/static/js/beertasting.js" type="text/javascript"></script>
+{% endblock %}
