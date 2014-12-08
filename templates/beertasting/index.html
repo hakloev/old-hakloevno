@@ -8,85 +8,97 @@
 {% block content %}
 <div class="grid">
     <div class="unit whole">
-        {% if breadcrumbs %}
-        <ol class="breadcrumb">
-            {% for name, link in breadcrumbs %}
-                {% if not forloop.last %}
-                    <li><a href="{{ link }}">{{ name }}</a></li>
-                {% else %}
-                    <li>{{ name }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
-        {% endif %}
-        <div class="unit half">
-            <section class="beer-events">
-                {% if latestevents  %}
-                    <h2><span class="fa fa-glass"></span> &ndash; Ongoing: <small>{{ latestevents.count }} events</small></h2>
-                    {% for latest in latestevents %}
-                        <div class="beer-event">
-                            <a href="{{ latest.get_absolute_url }}">{{ latest.name }}</a> &ndash; 
-                            <small>{{ latest.date|date:"d.m.Y" }}</small>
-                       </div>
-                    {% endfor %}
-                {% else %}
-                    <h1>No ongoing events</h1>
-                {% endif %}
-            </section>
-            <section class="beer-event">
-                {% if doneevents %}
-                <h2><i class="fa fa-calendar"></i> &ndash; Finished: <small>{{ doneevents.count }} events</small></h2>
-                    {% for event in doneevents %}
-                        <div class="beer-event">
-                            <a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash;
-                            <small>{{ event.date|date:"d.m.Y" }}</small>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <h1>No completed events</h1>
-                {% endif %}
-            </section>
-        </div>
-        <div class="unit half">
-            <div class="cube cube-default">
-                <div class="cube-header beer-stats-toggle">
-                    <h2 class="cube-title">Statistics:</h2>
+        <div class="grid">
+            {% if breadcrumbs %}
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li>{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+            {% endif %}
+         </div>
+         <div class="grid">
+            <div class="unit two-thirds">
+                <div class="grid">
+                    <div class="unit whole">
+                        <section class="beer-events">
+                            {% if latestevents  %}
+                                <h2>Currently ongoing event{% if latestevents.count > 1 %}s{% endif %}:</h2>
+                                {% for latest in latestevents %}
+                                    <div class="beer-event">
+                                        <a href="{{ latest.get_absolute_url }}">{{ latest.name }}</a> &ndash; 
+                                        <small>{{ latest.date|date:"d.m.Y" }}</small>
+                                   </div>
+                                {% endfor %}
+                            {% else %}
+                                <h2>No ongoing events</h2>
+                            {% endif %}
+                        </section>
+                    </div>
                 </div>
-                <div class="cube-body beer-stats-widget">
-                    <div class="cube-container">
-                        <div class="cube-single">
-                            <span>{{ beers }}</span><br>beers
-                        </div>
-                        <div class="cube-single">
-                            <span>{{ brewers }}</span><br>breweries
-                        </div>
-                    </div>
-                    <div class="cube-container">
-                        <div class="cube-single">
-                            <br><span>{{ ratings }}</span><br>ratings
-                        </div>
-                        <div class="cube-single">
-                            <br><span>{{ events }}</span><br>events
-                        </div>
-                    </div>
-                    <div class="cube-row">
-                        <div class="panel-body">
-                            most rated : {{ most_rated }}<br>
-                            most liked : {{ most_liked }}<br>
-                            most hated : {{ most_hated }}<br>
-                            brewery with most beers: 
-                                {% for brewery in most_beers_brewery %}
-                                    {{ brewery }}
-                                {% endfor %}<br>
-                        </div>
+                <div class="grid">
+                    <div class="unit whole">
+                        <section class="beer-events">
+                            {% if doneevents %}
+                            <h2>Finished event{% if doneevents.count > 1 %}s{% endif %}:</h2>
+                                {% for event in doneevents %}
+                                    <div class="beer-event">
+                                        <a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash;
+                                        <small>{{ event.date|date:"d.m.Y" }}</small>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <h2>No completed events</h2>
+                            {% endif %}
+                        </section>
                     </div>
                 </div>
             </div>
-            {% if request.user.id %}
-              <a class="button button-default" href="{% url 'tasting:user_ratings' request.user.id %}">My ratings</a>
-            {% endif %}
-            <a class="button button-default" href="{% url 'tasting:beer_overall' %}">Top 10</a>
-            <a class="button button-default" href="{% url 'tasting:beer_list' %}">All beers</a>
+            <div class="unit one-third">
+                <div class="cube cube-default">
+                    <div class="cube-header beer-stats-toggle">
+                        <h2 class="cube-title">Statistics:</h2>
+                    </div>
+                    <div class="cube-body beer-stats-widget">
+                        <div class="cube-container">
+                            <div class="cube-single">
+                                <span>{{ beers }}</span><br>beers
+                            </div>
+                            <div class="cube-single">
+                                <span>{{ brewers }}</span><br>breweries
+                            </div>
+                        </div>
+                        <div class="cube-container">
+                            <div class="cube-single">
+                                <br><span>{{ ratings }}</span><br>ratings
+                            </div>
+                            <div class="cube-single">
+                                <br><span>{{ events }}</span><br>events
+                            </div>
+                        </div>
+                        <div class="cube-row">
+                            <div class="panel-body">
+                                most rated : {{ most_rated }}<br>
+                                most liked : {{ most_liked }}<br>
+                                most hated : {{ most_hated }}<br>
+                                brewery with most beers: 
+                                    {% for brewery in most_beers_brewery %}
+                                        {{ brewery }}
+                                    {% endfor %}<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if request.user.id %}
+                  <a class="button button-default" href="{% url 'tasting:user_ratings' request.user.id %}">My ratings</a>
+                {% endif %}
+                <a class="button button-default" href="{% url 'tasting:beer_overall' %}">Top 10</a>
+                <a class="button button-default" href="{% url 'tasting:beer_list' %}">All beers</a>
+            </div>
         </div>
     </div>
 </div>

@@ -24,15 +24,19 @@
     </div>
 </div>
 <div class="grid">
-    <div class="unit two-thirds">
+    <div class="unit two-thirds" style="margin-top: -15px">
+        <div class="grid">
         {% for stat in stats %}
+            <div class="unit half">
             <div class="beer-rating">
                 Karakter: <strong>{{ stat.rating|floatformat:0 }}</strong>
                 <br>
                 <br>
                 {{ stat.comment }}
             </div>
+            </div>
         {% endfor %}
+        </div>
     </div>
     <div class="unit one-third">
         <div class="cube cube-default">

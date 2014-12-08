@@ -23,6 +23,7 @@
 </div>
 <div class="grid">
     <div class="unit whole">
+        <div class="grid">
             {% if not ratings %}
                 <h2>{{ request.user.username }} hasn't given any ratings.</h2>
             {% else %}
@@ -44,6 +45,7 @@
                     </div>
                 {% endfor %}
             {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

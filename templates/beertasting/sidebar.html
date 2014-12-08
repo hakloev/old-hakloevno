@@ -1,9 +1,9 @@
 {% load filters %}
 
 <div class="unit one-third">
-    <div class="panel panel-default">
-        <div class="panel-header">
-            <h3 class="panel-title">Menu for {{ request.user.username }}:</h3>
+    <div class="cube cube-default">
+        <div class="cube-header">
+            <h3 class="cube-title">Menu for {{ request.user.username }}:</h3>
         </div>
         <div class="panel-body">
             {% if event.finished %}
@@ -30,8 +30,8 @@
             {% endif %}
         </div>
         {% if user.is_superuser %}
-        <div class="panel-header beer-admin-toggle">
-            <h3 class="panel-title">Administrator:</h3>
+        <div class="cube-header beer-admin-toggle">
+            <h3 class="cube-title">Administrator:</h3>
         </div>
         <div class="panel-body beer-admin-panel" style="display:none">
             <a href="{% url 'tasting:event_list' event.id %}" class="button button-default button-block">Beer list</a>
