@@ -1,4 +1,21 @@
-<blockquote>
-    &ndash; Mister I ain't a boy, no I'm a man, and I believe in a promised land
-    <small>Bruce Springsteen</small>
-</blockquote>
+<div id="main-header">
+    <nav class="main-nav" role="navigation">
+        <ul class="nav nav-fullscreen">
+            <li class="main-nav-item{% if request.path = "/" %} main-nav-item-active{% endif %}"><a href="/"><i class="fa fa-home"></i></a>
+            <li class="main-nav-item{% if '/blog/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'blog:index' %}">/Blog</a>
+            <li class="main-nav-item{% if '/cv/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'cv:cv' %}">/CV</a></li>
+            <li class="main-nav-item{% if '/tasting/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'tasting:index' %}">/BeerTasting</a></li>
+        </ul>
+        <ul class="nav nav-fullscreen nav-right">
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <li class="main-nav-item"><a href="/admin/"><i class="fa fa-gear"></i></a></li>
+                {% endif %}
+                <li class="main-nav-item"><a href="{% url 'auth_logout' request.path %}"><i class="fa fa-sign-out"></i></a></li>
+            {% else %}
+                <li class="main-nav-item"><a href="/accounts/login"><i class="fa fa-sign-in"></i></a></li>
+            {% endif %}
+        </ul>
+        <a href="#" class="main-nav-item" id="nav-mobile">&gt;&gt;&gt; hakloev.no</a>
+    </nav>
+</div>
