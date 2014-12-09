@@ -9,7 +9,12 @@
 <div class="grid">
     <div class="unit two-thirds">
         <div class="unit whole">
-            img left maybe? welcome to my site, informatics student etc. enyoing whatnot and bla bla
+            <section id="about-me">
+                <div class="image">
+                    <img src="/static/images/me.jpg" class="image-thumbnail" alt="Håkon Ødegård Løvdal">
+                </div>
+                <p>Welcome to my site! I'm an informatics student at NTNU. Below you can find a list of my most recent blog posts.</p>
+            </section>
         </div>
         {% for post in posts %}
             <section class="blog-post-short">
@@ -23,7 +28,7 @@
     <div class="unit one-third">
         <div class="cube cube-default bus-toggle">
             <div class="cube-header">
-                <h1 class="cube-title">Bus departures&nbsp; <i class="fa fa-bus"></i></h1>
+                <h1 class="cube-title">Bus departures</h1>
             </div>
             <div class="cube-body" id="bus-widget">
                 <div class="cube-row">
@@ -51,7 +56,7 @@
             <div class="cube-header weather-toggle">
                 <h1 class="cube-title" id="weather-location">weather forecast</h1>
             </div>
-            <div class="cube-body" id="weather-widget" style="display:none">
+            <div class="cube-body" id="weather-widget">
                 <div class="cube-container">
                     <div class="cube-single">
                         <span id="weather-degrees"></span>
