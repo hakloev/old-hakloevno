@@ -14,7 +14,7 @@ var Weather = (function($) {
             console.log("obsforecast");
             var gislefoss = xml.getElementsByTagName("body")[0].childNodes[0].data;
             var gislefoss2 = xml.getElementsByTagName("body")[1].childNodes[0].data;
-            document.getElementById("weather-forecast").innerHTML = '<h4 class="obsforecast"><i class="fa fa-exclamation-triangle"></i>&nbsp;<b>OBS-varsel:</b></h4>' + gislefoss + "<br>" + gislefoss2;
+            document.getElementById("weather-forecast").innerHTML = '<h3><i class="fa fa-exclamation-triangle"></i>&nbsp;<b>OBS-varsel:</b></h3><br><small>' + gislefoss + "<br><br>" + gislefoss2 + "</small>";
         } else {
             var gislefoss =  xml.getElementsByTagName("body")[0].childNodes[0].data;
             document.getElementById("weather-forecast").innerHTML = "<small>" + gislefoss + "</small>";

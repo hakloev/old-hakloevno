@@ -36,6 +36,12 @@
     }
 }
 
+.appearance() {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance: none;
+}
+
 .transition(@transition) {
     -webkit-transition: @transition;
     -moz-transition: @transition;
@@ -129,9 +135,7 @@ hr {
 }
 
 progress {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    .appearance();
     display: block;
     height: 1.2em;
     width: 100%;
@@ -155,6 +159,7 @@ input, textarea, select {
     padding: 10px;
     border: 1px solid #e5e5e5;
     outline: 0;
+    border-radius: 0;
     display: block;
     width: 100%;
     margin-top: 10px;
@@ -183,8 +188,7 @@ input:focus, textarea:focus {
 .submit input {
     margin-bottom: 10px;
     border-radius: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    .appearance();
     &:hover {
         background-color: darken(@orange, 10%);
     }
@@ -424,6 +428,7 @@ footer a {
 
 /* Buttons */
 .button {
+    .appearance();
     display: inline-block;
     padding: 5px 8px;
     font-weight: 200;
