@@ -74,21 +74,22 @@
                         </div>
                         <div class="cube-container">
                             <div class="cube-single">
-                                <br><span>{{ ratings }}</span><br>ratings
+                                <span>{{ events }}</span><br>events
                             </div>
                             <div class="cube-single">
-                                <br><span>{{ events }}</span><br>events
+                                <span>{{ ratings }}</span><br>ratings
                             </div>
                         </div>
                         <div class="cube-row">
                             <div class="panel-body">
-                                most rated : {{ most_rated }}<br>
-                                most liked : {{ most_liked }}<br>
-                                most hated : {{ most_hated }}<br>
-                                brewery with most beers: 
+                                <b>most liked : </b>{{ most_liked }}<br>
+                                <b>most hated : </b>{{ most_hated }}<br>
+                                <b>most rated : </b>{{ most_rated }}<br>
+                                <br>
+                                <b>largest brewery :</b>  
                                     {% for brewery in most_beers_brewery %}
                                         {{ brewery }}
-                                    {% endfor %}<br>
+                                    {% endfor %}
                             </div>
                         </div>
                     </div>

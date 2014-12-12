@@ -50,6 +50,16 @@
     transition: @transition;
 }
 
+.btnafter(@icon) {
+    &:after {
+        content: "@{icon}";
+        font-family: FontAwesome;
+        margin-left: 8px !important;
+        position: relative;
+        top: 1px;
+    }
+}
+
 .panel(@color) {
     color: @white;
     border-color: @color;
@@ -187,7 +197,7 @@ input:focus, textarea:focus {
 
 .submit input {
     margin-bottom: 10px;
-    border-radius: 0;
+    padding: 10px;
     .appearance();
     &:hover {
         background-color: darken(@orange, 10%);
@@ -269,7 +279,7 @@ blockquote {
 
 .image-thumbnail {
     border: 1px solid lighten(@grey, 30%);
-    border-radius: 4px;
+    border-radius: 2px;
     padding: 4px;
     height: 160px;
     width: auto;
@@ -279,6 +289,8 @@ blockquote {
     margin-top: 0;
     margin-bottom: 20px;
     overflow: auto;
+    padding: 20px;
+    background-color: rgba(210, 210, 210, 0.2);
     p {
         margin: 0;
         overflow: auto;
@@ -338,10 +350,22 @@ blockquote {
     }
 }
 
+.exp_list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0;
+    span {
+        float: right;
+        font-style: italic;
+    }
+    p {
+        margin: 0;
+    }
+
+}
+
 #main-wrapper {
     margin: @nav-height + 1.350em @main-spacing auto;
-    h1 {
-    }
 }
 
 #main-header {
@@ -449,11 +473,13 @@ footer a {
     display: inline-block;
     padding: 5px 8px;
     font-weight: 200;
+    border-radius: 2px;
     margin-bottom: 3px; /* To get spacing on break */
     color: @white;
     font-size: 15px;
     border: 0;
     .transition(~"background-color .1s ease-in");
+    .btnafter(~"\f105");
 }
 
 .button-block {
@@ -631,8 +657,9 @@ footer a {
         }
     }
     .image {
-        float: none;
-        margin-bottom: 10px;
+        display: none;
+        /*float: none;
+        margin-bottom: 10px;*/
     }
 }
 

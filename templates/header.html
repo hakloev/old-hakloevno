@@ -1,11 +1,11 @@
 <div id="main-header">
     <nav class="main-nav" role="navigation">
         <ul class="nav nav-fullscreen">
-            <li class="main-nav-item{% if request.path = "/" %} main-nav-item-active{% endif %}"><a href="/">/.</a>
+            <li class="main-nav-item{% if request.path = "/" %} main-nav-item-active{% endif %}"><a href="/">/home</a>
             <li class="main-nav-item{% if '/blog/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'blog:index' %}">/Blog</a>
             <li class="main-nav-item"><a href="https://github.com/hakloev" target="_blank">/Code</a>
             <li class="main-nav-item{% if '/cv/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'cv:cv' %}">/CV</a></li>
-            <li class="main-nav-item{% if '/tasting/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'tasting:index' %}">/BeerTasting</a></li>
+            <li class="main-nav-item{% if '/tasting/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'tasting:index' %}">/Tasting</a></li>
         </ul>
         <ul class="nav nav-fullscreen nav-right">
             {% if user.is_authenticated %}

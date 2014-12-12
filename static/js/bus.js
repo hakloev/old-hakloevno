@@ -68,7 +68,15 @@ var Bus = (function ($) {
 $(document).ready(function () {
     Bus.init();
     setInterval(Bus.init, 30000);
+    var showing = false;
     $('.bus-toggle').on('click', function() {
+        if (showing) {
+            showing = !showing;
+            $('#bus-title').find('i').attr('class', 'fa fa-chevron-up');
+        } else {
+            showing = !showing;
+            $('#bus-title').find('i').attr('class', 'fa fa-chevron-down');
+        }
         $('#bus-widget').slideToggle(350);
     });
 });

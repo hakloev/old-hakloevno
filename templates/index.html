@@ -8,13 +8,15 @@
 {% block content %}
 <div class="grid">
     <div class="unit two-thirds">
+        <div class="grid">
         <div class="unit whole">
             <section id="about-me">
                 <div class="image">
                     <img src="/static/images/me.jpg" class="image-thumbnail" alt="Håkon Ødegård Løvdal">
                 </div>
-                <p>Welcome to my site! Currently, I'm an computer science student at NTNU, but mainly I act out as a structurized procastinator. Feel free to look around. To begin with you can look below, there you will find a list of my most recent blog posts.</p>
+                    <p>Welcome to my site! Currently, I'm an computer science student at NTNU, but mainly I act out as <b>totally boss</b> and a structurized procastinator. Feel free to look around. To begin with you can look below, there you will find a list of my most recent blog posts.<br><br><b>SKEETY SKEETY BANGBROS with me and my homeboy Azzimat!</b> </p>
             </section>
+        </div>
         </div>
         {% for post in posts %}
             <section class="blog-post-short">
@@ -28,7 +30,7 @@
     <div class="unit one-third">
         <div class="cube cube-default bus-toggle">
             <div class="cube-header">
-                <h1 class="cube-title">Bus departures</h1>
+                <h1 class="cube-title" id="bus-title">Bus departures &nbsp;<i class="fa fa-chevron-up"></i></h1>
             </div>
             <div class="cube-body" id="bus-widget">
                 <div class="cube-row">

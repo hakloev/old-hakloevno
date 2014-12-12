@@ -20,7 +20,7 @@ var Weather = (function($) {
             document.getElementById("weather-forecast").innerHTML = "<small>" + gislefoss + "</small>";
         }
 
-        document.getElementById("weather-location").innerHTML = 'Forecast for ' + place + '&nbsp; <i class="fa fa-chevron-down"></i>';
+        document.getElementById("weather-location").innerHTML = 'Forecast for ' + place + '&nbsp; <i class="fa fa-chevron-up"></i>';
         document.getElementById("weather-info").innerHTML = windspeed[0].value + " m/s<br>" + winddir[2].value + "<br>" + windspeed[1].value + "<br>";
         document.getElementById("weather-rain").innerHTML = rain;
         document.getElementById("weather-degrees").innerHTML = temp + "&deg;";
@@ -52,10 +52,10 @@ $(document).ready(function () {
     $('.weather-toggle').on('click', function() {
         if (showing) {
             showing = !showing;
-            $('#weather-location').find('i').attr('class', 'fa fa-chevron-down');
+            $('#weather-location').find('i').attr('class', 'fa fa-chevron-up');
         } else {
             showing = !showing;
-            $('#weather-location').find('i').attr('class', 'fa fa-chevron-up');
+            $('#weather-location').find('i').attr('class', 'fa fa-chevron-down');
         }
         $('#weather-widget').slideToggle(350);
     });
