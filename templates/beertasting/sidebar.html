@@ -29,7 +29,7 @@
                 {% endif %}
             {% endif %}
         </div>
-        {% if user.is_superuser %}
+        {% if perms.beertasting.view_admin %}
         <div class="cube-header beer-admin-toggle">
             <h3 class="cube-title">Administrator:</h3>
         </div>

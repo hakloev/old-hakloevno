@@ -29,6 +29,12 @@ class Beer(models.Model):
         return (u'%s, %s' % (self.name, self.brewery))
 
 class TastingEvent(models.Model):
+    
+    class Meta:
+        permissions = (
+            ('view_admin', 'Can see admin list'),
+        )
+
     name = models.CharField(max_length=50, blank=False, unique=True)
     date = models.DateTimeField(auto_now_add=True)
     beers = models.ManyToManyField('beertasting.Beer', null=True, blank=True)
