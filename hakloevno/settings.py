@@ -42,9 +42,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'loevdalnet.urls'
+ROOT_URLCONF = 'hakloevno.urls'
 
-WSGI_APPLICATION = 'loevdalnet.wsgi.application'
+WSGI_APPLICATION = 'hakloevno.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
