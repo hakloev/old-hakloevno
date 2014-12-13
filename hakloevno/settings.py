@@ -49,7 +49,9 @@ WSGI_APPLICATION = 'hakloevno.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
+LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = '/auth/logout/'
 
 LANGUAGE_CODE = 'en-us'
 
