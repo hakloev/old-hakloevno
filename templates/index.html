@@ -22,12 +22,18 @@
             <section class="blog-post-short">
                 <h2>{{ post.title }}</h2>
                 <small><i class="fa fa-clock-o"></i>&nbsp; {{ post.posted }}</small>
-                <p>{{ post.ingress }}</p>
+                <p>{{ post.ingress|safe }}</p>
                 <a class="button button-default" href={% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}>Read more</a>
             </section>
         {% endfor %}
     </div>
     <div class="unit one-third">
+        <form class="form" action="https://google.com/search">
+                <input type="text" name="q" placeholder="Search Google" autofocus>
+                <div class="submit">
+                    <input type="submit" class="button button-default" value="Search">
+                </div>
+        </form>
         <div class="cube cube-default bus-toggle">
             <div class="cube-header">
                 <h1 class="cube-title" id="bus-title">Bus departures &nbsp;<i class="fa fa-chevron-up"></i></h1>
@@ -62,6 +68,7 @@
                 <div class="cube-container">
                     <div class="cube-single">
                         <span id="weather-degrees"></span>
+                        <br>temperature
                     </div>
                     <div class="cube-single">
                         <img id="weather-icon-cube"></img>
@@ -73,6 +80,7 @@
                     </div>
                     <div class="cube-single">
                         <span id="weather-rain"></span>
+                        <br>rain
                     </div>
                 </div>
                 <div class="cube-row">

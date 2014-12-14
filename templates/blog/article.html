@@ -11,9 +11,9 @@
     {% if post %}
         <section class="blog-post">
             <h1>{{ post.title }}</h1>
-            <small><i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted|date:'d.m.Y'}}</small>
-            <small><i class="fa fa-pencil-square-o"></i>&nbsp; Modified: {{ post.modified|date:"d.m.Y H.i"}}</small>
-            <p>{{ post.ingress|safe }}</p>
+            <small>&nbsp; <i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted }}</small>
+            <small>&nbsp; <i class="fa fa-pencil-square-o"></i>&nbsp; Modified: {{ post.modified }}</small>
+            <p class="ingress">{{ post.ingress|safe }}</p>
             {{ post.text|safe }}
         </section>
         <div id="disqus_thread">
