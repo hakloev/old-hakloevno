@@ -192,7 +192,7 @@ textarea {
 
 input:hover, textarea:hover,
 input:focus, textarea:focus {
-    border-color: @green;
+    border-color: @orange;
 }
 
 .form label {
@@ -371,7 +371,7 @@ blockquote {
 }
 
 #main-wrapper {
-    margin: @nav-height + 1.350em @main-spacing auto;
+    margin: @nav-height + 0.7em @main-spacing auto;
 }
 
 #main-header {
@@ -516,6 +516,7 @@ footer a {
     color: @white;
     .alert-disassemble {
         float: right;
+        line-height: 125%;
         color: @white;
         &:hover {
             color: @header;
@@ -618,7 +619,7 @@ footer a {
 
 @media all and (max-width: 768px) {
     #main-wrapper {
-        margin: @nav-height + 1.350em auto;
+        margin: @nav-height + 0.5em auto;
     }
     #weather-temperature {
         font-size: 60px;

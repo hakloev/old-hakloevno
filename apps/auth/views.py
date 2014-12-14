@@ -18,10 +18,9 @@ def login_view(request):
                     return HttpResponseRedirect(redirect_url)
                 return HttpResponseRedirect('/') 
             else:
-                pass
-                #return "disabled account"
+                messages.error(request, 'The username %s is disabled!' % (username))
         else:
-            pass
+            messages.error(request, "The username or password was wrong!")
             #return invalid account
     return render(request, u'auth/login.html', {
         'request': request
@@ -31,4 +30,3 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'You successfully logged out!')
     return HttpResponseRedirect('/')
-    #redirect to login success page
