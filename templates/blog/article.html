@@ -30,7 +30,7 @@
             <div class="cube-body">
                <div class="cube-row">
                     {% for category in post.categories.all %}
-                        <a href="#">{{ category.title }}</a><br>
+                        <a href="{% url 'blog:category_by_slug' category.title|slugify %}">{{ category.title }}</a><br>
                     {% endfor %}
                </div>
             </div>

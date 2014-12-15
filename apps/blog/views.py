@@ -80,3 +80,12 @@ def post_by_slug(request, year, month, day, slug):
     context['post'] = post
     context['categories'] = Category.objects.all()
     return render(request, u'blog/article.html', context)
+
+def category_by_slug(request, category):
+    posts = Blogpost.objects.all().order_by('-posted')
+    category_posts = [post for post in posts if post.categories.filter(slug=category)]
+    return render(request, u'blog/category.html', {
+        'request': request,
+        'category': category,
+        'posts': category_posts })
+

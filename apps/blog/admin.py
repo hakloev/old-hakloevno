@@ -8,7 +8,8 @@ class BlogAdmin(admin.ModelAdmin):
         return ('slug',)
 
 class CategoryAdmin(admin.ModelAdmin):
-    exclude = ['slug']
+    def get_readonly_fields(self, request, obj=None):
+        return ('slug',)
 
 admin.site.register(Blogpost, BlogAdmin)
 admin.site.register(Category, CategoryAdmin)
