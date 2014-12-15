@@ -12,6 +12,7 @@
             {% for post in posts %}
                 <section class="blog-post-short">
                     <h2>{{ post.title }}</h2>
+                    <small><i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted|date:"d.m.Y" }}</small>
                     <p class="ingress">{{ post.ingress|safe }}</p>
                     <a href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}" class="button button-default">Read more</a>
                 </section>
