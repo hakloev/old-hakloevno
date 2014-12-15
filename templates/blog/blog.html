@@ -26,7 +26,7 @@
         <div class="unit one-third">
             <div class="cube cube-default">
                 <div class="cube-header">
-                    <h1 class="cube-title">All Categories</h1>
+                    <h1 class="cube-title">Categories</h1>
                 </div>
                 <div class="cube-body">
                     <div class="cube-row">
@@ -34,6 +34,9 @@
                             <a href="{% url 'blog:category_by_slug' category.title|slugify %}">{{ category.title }}</a></br>
                         {% endfor %}
                     </div>
+                </div>
+                <div class="cube-header">
+                    <h1 class="cube-title">{{ categories.all|length }} categories</h1>
                 </div>
             </div> 
         </div>

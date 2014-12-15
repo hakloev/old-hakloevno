@@ -2,3 +2,4 @@
 *.pyo
 hakloevno/local_settings.py
 static/files/varsel.xml
+static/CACHE/*

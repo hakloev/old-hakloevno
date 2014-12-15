@@ -29,6 +29,9 @@
             </div>
             <div class="cube-body">
                <div class="cube-row">
+                    {% if post.categories.all|length == 0 %}
+                        no categories
+                    {% endif %}
                     {% for category in post.categories.all %}
                         <a href="{% url 'blog:category_by_slug' category.title|slugify %}">{{ category.title }}</a><br>
                     {% endfor %}

@@ -27,10 +27,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
     'apps.blog',
     'apps.front',
     'apps.beertasting',
-    'apps.cv',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -45,6 +45,18 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'hakloevno.urls'
 
 WSGI_APPLICATION = 'hakloevno.wsgi.application'
+
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+)
+
+COMPRESS_ENABLED = True
+
+STATICFILES_FINDERS = (
+    'compressor.finders.CompressorFinder',
+)
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
