@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }} 
+    &ndash; category &ndash; {{ category }} 
+{% endblock %}
+
+{% block content %}
+    <div class="grid">
+        <div class="unit whole">
+            <h1>{{ category }}</h1>
+            {% for post in posts %}
+                <section class="blog-post-short">
+                    <h2>{{ post.title }}</h2>
+                    <p class="ingress">{{ post.ingress|safe }}</p>
+                    <a href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}" class="button button-default">Read more</a>
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
