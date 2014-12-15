@@ -15,7 +15,7 @@ def index(request):
     context['posts'] = posts
     return render(request, u'index.html', context)
 
-def busTimes(request):
+def bus_times(request):
     if request.method == "GET":
         apiUrl = "http://bybussen.api.tmn.io/rt/"
         stopBerg = {"til": "16011567", "fra": "16010567"}
@@ -29,7 +29,7 @@ def busTimes(request):
     else:
         raise Http404
 
-def busStops(request):
+def bus_stops(request):
     apiUrl = "http://bybussen.api.tmn.io/stops/"
     r = requests.get(apiUrl)
     if (r.status_code == requests.codes.ok):
