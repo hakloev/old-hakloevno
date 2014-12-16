@@ -11,8 +11,8 @@ from django.db.models import Avg, Count, Q, Max
 import datetime
 
 def index(request):
-    latestevents = TastingEvent.objects.filter(finished=False).order_by('-id')
-    doneevents = TastingEvent.objects.filter(finished=True).order_by('-id')[:5]
+    ongoing_events = TastingEvent.objects.filter(finished=False).order_by('-id')
+    done_events = TastingEvent.objects.filter(finished=True).order_by('-id')[:5]
     beers = Beer.objects.aggregate(Count('id'))['id__count']
     brewers = Brewery.objects.aggregate(Count('id'))['id__count']
     ratings = BeerRating.objects.aggregate(Count('id'))['id__count']
@@ -22,6 +22,18 @@ def index(request):
     hated = Beer.objects.get(id=BeerRating.objects.values('beer__id').annotate(lowest=Avg('rating')).earliest('lowest')['beer__id'])
     beers_brewery = Beer.objects.values('brewery__id').annotate(num_beers=Count('brewery__id')).latest('num_beers')['num_beers'] 
     beers_brewery = Brewery.objects.filter(id__in=Beer.objects.values('brewery__id').annotate(num_beers=Count('brewery__id')).filter(num_beers__gte=beers_brewery).values('brewery__id'))
+    stats = {
+        'ongoing': ongoing_events,
+        'done': done_events,
+        'beers': beers, 
+        'breweries': brewers, 
+        'ratings': ratings, 
+        'events': events, 
+        'most_rated': rated, 
+        'most_hated': hated, 
+        'most_liked': liked, 
+        'most_beers_brewery':beers_brewery
+    }
     breadcrumbs = (
             (u'Events', reverse('tasting:index')),
     )
@@ -29,16 +41,7 @@ def index(request):
     return render(request, u'beertasting/index.html', {
         'request': request, 
         'breadcrumbs': breadcrumbs,
-        'latestevents': latestevents,
-        'doneevents': doneevents,
-        'beers': beers,
-        'brewers': brewers,
-        'ratings': ratings,
-        'events': events,
-        'most_rated': rated,
-        'most_hated': hated,
-        'most_liked': liked,
-        'most_beers_brewery': beers_brewery,
+        'stats': stats,
         }
     )
 
