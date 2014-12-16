@@ -52,6 +52,8 @@ COMPRESS_PRECOMPILERS = (
 
 COMPRESS_ENABLED = True
 
+COMPRESS_OUTPUT_DIR = 'cache'
+
 STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
