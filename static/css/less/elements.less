@@ -1,0 +1,156 @@
+/* Panels */
+.panel {
+    margin-bottom: 20px;
+    background-color: @white;
+    border: 1px solid transparent;
+}
+
+.panel-default {
+    .panel(@blue);
+}
+
+.panel-green {
+    .panel(@green);
+}
+
+.panel-header {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+}
+
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: inherit;
+}
+
+.panel-body {
+    color: #000;
+    padding: 15px;
+}
+
+.panel-footer {
+    padding: 5px 10px;
+    border-bottom: 1px solid transparent;
+}
+
+/* Buttons */
+.button {
+    .appearance();
+    display: inline-block;
+    padding: 5px 8px;
+    font-weight: 200;
+    border-radius: 2px;
+    margin-bottom: 3px; /* To get spacing on break */
+    color: @white;
+    font-size: 15px;
+    border: 0;
+    .transition(~"background-color .1s ease-in");
+    .btnafter(~"\f105");
+}
+
+.button-block {
+    display: block;
+    text-align: center;
+}
+
+.button-default {
+    .button(@blue);
+    &:hover {
+        background-color: @orange;
+    }
+}
+
+/* Alerts */
+.alert {
+    display: block;
+    font-family: inherit;
+    padding: 15px 25px;
+    margin-bottom: 3px;
+    font-size: 20px;
+    border: 0;
+    border-radius: 4px;
+    color: @white;
+    .alert-disassemble {
+        float: right;
+        line-height: 125%;
+        color: @white;
+        &:hover {
+            color: @header;
+            .transition(~"color .1s ease-in");
+        }
+    }
+}
+
+.alert-default {
+    .alert(@blue);
+}
+
+.alert-warning {
+    .alert(darken(@orange, 5%));
+}
+
+.alert-success {
+    .alert(@green);
+}
+
+.alert-error {
+    .alert(@darkpink);
+}
+
+/* Cubes */
+
+.cube {
+    margin-bottom: 20px;
+    background-color: #fff;
+    color: #000;
+}
+
+.cube-header {
+    padding: 5px 10px;
+    border-bottom: 1px solid transparent;
+}
+
+.cube-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: lowercase;
+    text-align: center;
+    color: @white;
+}
+
+.cube-row {
+        padding: 5px;
+        text-align: center;
+        border-top: 1px solid @white;
+}
+
+.cube-single {
+    padding: 10px;
+    width: 50%;
+    -webkit-flex: 1;
+    flex: 1;
+    text-align: center;
+    border-top: 1px solid @white;
+    &:first-of-type {
+        border-right: 1px solid @white;
+    }
+    span {
+        font-size: 60px;
+    }
+    .transition(~"background-color .1s ease-in");
+}
+
+.cube-container {
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.cube-default {
+    .cube(@blue);
+}

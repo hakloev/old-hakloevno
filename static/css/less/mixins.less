@@ -1,0 +1,75 @@
+/* Mixins */
+.clearfix() {
+    &:after {
+        content:".";
+        display: block;
+        clear:both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+}
+
+.appearance() {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance: none;
+}
+
+.transition(@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -ms-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+.btnafter(@icon) {
+    &:after {
+        content: "@{icon}";
+        font-family: FontAwesome;
+        margin-left: 8px !important;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.panel(@color) {
+    color: @white;
+    border-color: @color;
+    .panel-header {
+        background-color: @color;
+        border-color: @color;
+    }
+    .panel-footer {
+        background-color: @color;
+        border-color: @color;
+    }
+}
+
+.cube(@color) {
+    @lightcolor: lighten(@color, 40%);
+    border: 2px solid @color;
+    .cube-header {
+        background-color: @color;
+    }
+    .cube-row {
+        border-color: @color;
+    }
+    .cube-single {
+        border-color: @color;
+        &:hover {
+            background-color: @lightcolor;
+        }
+    }
+}
+
+.button(@color) {
+    background-color: @color;
+}
+
+.alert(@color) {
+    background-color: @color;
+}
+
+

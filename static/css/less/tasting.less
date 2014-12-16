@@ -1,0 +1,47 @@
+.beer-events {
+    margin-bottom: 10px;    
+}
+
+.beer-event {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.beer-rating {
+    background-color: rgba(240, 240, 240, 0.8);
+    cursor: text;
+    word-break: normal;
+    word-wrap: normal;
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    border: 0;
+    font-family: monospace;
+}
+
+.beer-table {
+    width: 100%;
+    min-width: 640px;
+    overflow: scroll;
+    border-collapse: collapse;
+    &.monospace-table {
+        font-family: monospace;
+    }
+    th {
+        text-align: left;
+        padding: 8px;
+        color: @green;
+        font-size: 15px;
+        background-color: rgba(240, 240, 240, 1);
+    }
+    tr {
+        &:nth-child(even) {
+            background-color: rgba(239, 239, 239, 0.8);
+        }
+        td {
+            padding: 8px 5px;
+            color: #000;
+        }
+    }
+}
