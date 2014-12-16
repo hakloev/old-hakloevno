@@ -28,63 +28,7 @@
         {% endfor %}
     </div>
     <div class="unit one-third">
-        <div class="cube cube-default bus-toggle">
-            <div class="cube-header">
-                <h1 class="cube-title" id="bus-title">Bus departures &nbsp;<i class="fa fa-chevron-up"></i></h1>
-            </div>
-            <div class="cube-body" id="bus-widget">
-                <div class="cube-row">
-                    <span id="busloading">Loading...</span>
-                </div>
-                <div class="cube-container">
-                    <div class="cube-single">
-                        Østre Berg
-                    </div>
-                    <div class="cube-single">
-                        Ila
-                    </div>
-                </div>
-                <div class="cube-container">
-                    <div class="cube-single">
-                        <span id="bus-berg"></span>
-                    </div>
-                    <div class="cube-single">
-                        <span id="bus-ila"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="cube cube-default">
-            <div class="cube-header weather-toggle">
-                <h1 class="cube-title" id="weather-location">weather forecast</h1>
-            </div>
-            <div class="cube-body" id="weather-widget">
-                <div class="cube-container">
-                    <div class="cube-single">
-                        <span id="weather-degrees"></span>
-                        <br>temperature
-                    </div>
-                    <div class="cube-single">
-                        <img id="weather-icon-cube"></img>
-                    </div>
-                </div>
-                <div class="cube-container">
-                    <div class="cube-single">
-                        <span id="weather-info"></span>
-                    </div>
-                    <div class="cube-single">
-                        <span id="weather-rain"></span>
-                        <br>rain
-                    </div>
-                </div>
-                <div class="cube-row">
-                    <span id="weather-forecast"></span>
-                </div>
-                <div class="cube-row">
-                    <span id="weather-update">loading...</span>
-                </div>
-            </div>
-        </div>
+        {% include 'main/sidebar.html' %}
     </div>
 </div>
 <div class="grid">
