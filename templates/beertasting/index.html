@@ -26,12 +26,12 @@
                 <div class="grid">
                     <div class="unit whole">
                         <section class="beer-events">
-                            {% if latestevents  %}
-                                <h2>Currently ongoing event{% if latestevents.count > 1 %}s{% endif %}:</h2>
-                                {% for latest in latestevents %}
+                            {% if stats.ongoing  %}
+                                <h2>Currently ongoing event{% if stats.ongoing.count > 1 %}s{% endif %}:</h2>
+                                {% for event in stats.ongoing %}
                                     <div class="beer-event">
-                                        <a href="{{ latest.get_absolute_url }}">{{ latest.name }}</a> &ndash; 
-                                        <small>{{ latest.date|date:"d.m.Y" }}</small>
+                                        <a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash; 
+                                        <small>{{ event.date|date:"d.m.Y" }}</small>
                                    </div>
                                 {% endfor %}
                             {% else %}
@@ -43,9 +43,9 @@
                 <div class="grid">
                     <div class="unit whole">
                         <section class="beer-events">
-                            {% if doneevents %}
-                            <h2>Finished event{% if doneevents.count > 1 %}s{% endif %}:</h2>
-                                {% for event in doneevents %}
+                            {% if stats.done %}
+                            <h2>Finished event{% if stats.done.count > 1 %}s{% endif %}:</h2>
+                                {% for event in stats.done %}
                                     <div class="beer-event">
                                         <a href="{{ event.get_absolute_url }}">{{ event.name }}</a> &ndash;
                                         <small>{{ event.date|date:"d.m.Y" }}</small>
@@ -66,28 +66,28 @@
                     <div class="cube-body beer-stats-widget">
                         <div class="cube-container">
                             <div class="cube-single">
-                                <span>{{ beers }}</span><br>beers
+                                <span>{{ stats.beers }}</span><br>beers
                             </div>
                             <div class="cube-single">
-                                <span>{{ brewers }}</span><br>breweries
+                                <span>{{ stats.breweries }}</span><br>breweries
                             </div>
                         </div>
                         <div class="cube-container">
                             <div class="cube-single">
-                                <span>{{ events }}</span><br>events
+                                <span>{{ stats.events }}</span><br>events
                             </div>
                             <div class="cube-single">
-                                <span>{{ ratings }}</span><br>ratings
+                                <span>{{ stats.ratings }}</span><br>ratings
                             </div>
                         </div>
                         <div class="cube-row">
                             <div class="panel-body">
-                                <b>most liked : </b>{{ most_liked }}<br>
-                                <b>most hated : </b>{{ most_hated }}<br>
-                                <b>most rated : </b>{{ most_rated }}<br>
+                                <b>most liked : </b>{{ stats.most_liked }}<br>
+                                <b>most hated : </b>{{ stats.most_hated }}<br>
+                                <b>most rated : </b>{{ stats.most_rated }}<br>
                                 <br>
                                 <b>largest brewery :</b>  
-                                    {% for brewery in most_beers_brewery %}
+                                    {% for brewery in stats.most_beers_brewery %}
                                         {{ brewery }}
                                     {% endfor %}
                             </div>
