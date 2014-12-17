@@ -11,8 +11,12 @@
             {% if posts %}
                     {% for post in posts %}
                         <section class="blog-post-short">
+                            <span class="blog-post-date">
+                                {{ post.posted|date:"M" }}
+                                <span>{{ post.posted|date:"d"}}</span>
+                            </span>
                             <h1>{{ post.title }}</h1>
-                            <small><i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted|date:'d.m.Y' }}</small>
+                            <small><i class="fa fa-clock-o"></i>&nbsp; Posted {{ post.posted|date:'d.m.Y' }}</small>
                             <p>
                                {{ post.ingress|safe }}
                             </p>
@@ -29,10 +33,12 @@
                     <h1 class="cube-title">Categories</h1>
                 </div>
                 <div class="cube-body">
-                    <div class="cube-row">
+                    <div class="panel-content">
+                        <ul style="list-style-type: none">
                         {% for category in categories.all %}
-                            <a href="{% url 'blog:category_by_slug' category.title|slugify %}">{{ category.title }}</a></br>
+                            <li><a href="{% url 'blog:category_by_slug' category.title|slugify %}">{{ category.title }}</a></li>
                         {% endfor %}
+                        </ul>
                     </div>
                 </div>
                 <div class="cube-header">

@@ -10,7 +10,7 @@
                 <a href="{% url 'tasting:event_stats' event.id %}" class="button button-default button-block">Result</a>
                 {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all %}
-                       <p><a href="{% url 'tasting:beer_rating' event.id beer.code %}">{{ beer }}</a></p>
+                       <p><a href="{% url 'tasting:beer_rating' event.id beer.code %}"><i class="fa fa-beer"></i> &ndash; {{ beer }}</a></p>
                     {% endfor %}
                 {% else %}
                 {% endif %}
