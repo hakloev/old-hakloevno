@@ -10,27 +10,30 @@
         <div class="unit two-thirds">
             {% for post in posts %}
                 <section class="blog-post-short">
+                    <span class="blog-post-date">
+                        {{ post.posted|date:"M" }}
+                        <span>{{ post.posted|date:"d"}}</span>
+                    </span>
                     <h2>{{ post.title }}</h2>
-                    <small><i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted|date:"d.m.Y" }}</small>
-                    <p class="ingress">{{ post.ingress|safe }}</p>
+                    <p class="blog-post-ingress">{{ post.ingress|safe }}</p>
                     <a href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}" class="button button-default">Read more</a>
                 </section>
             {% endfor %}
         </div>
         <div class="unit one-third">
-            <div class="cube cube-default">
-                <div class="cube-header">
-                    <h1 class="cube-title">Category: {{ category }}</h1>
+            <div class="panel panel-default">
+                <div class="panel-header">
+                    <h1 class="panel-title">Category: {{ category }}</h1>
                 </div>
-                <div class="cube-body">
-                    <div class="cube-row">
+                <div class="panel-body">
+                    <div class="panel-content">
                         {% for post in posts %}
                             <a href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">{{ post.title }}</a><br>
                         {% endfor %}
                     </div>
                 </div>
-                <div class="cube-header">
-                    <h1 class="cube-title">{{ posts|length }} posts</h1>
+                <div class="panel-footer">
+                    <h1 class="panel-title">{{ posts|length }} post{% if posts|length > 1%}s{% endif %} in this category</h1>
                 </div>
 
             </div>

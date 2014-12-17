@@ -11,8 +11,8 @@
     {% if post %}
         <section class="blog-post">
             <h1>{{ post.title }}</h1>
-            <small>&nbsp; <i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted }}</small>
-            <small>&nbsp; <i class="fa fa-pencil-square-o"></i>&nbsp; Modified: {{ post.modified }}</small>
+            <small>&nbsp; <i class="fa fa-clock-o"></i>&nbsp; Written {{ post.posted|date:"d.m.Y" }}</small>
+            <small>&nbsp; <i class="fa fa-pencil-square-o"></i>&nbsp; Modified: {{ post.modified|date:"d.m.Y" }}</small>
             <p class="ingress">{{ post.ingress|safe }}</p>
             {{ post.text|safe }}
         </section>
@@ -23,12 +23,12 @@
     {% endif%}
     </div>
     <div class="unit one-third">
-        <div class="cube cube-default">
-            <div class="cube-header">
-                <h1 class="cube-title">Categories</h1>
+        <div class="panel panel-default">
+            <div class="panel-header">
+                <h1 class="panel-title">Categories</h1>
             </div>
-            <div class="cube-body">
-               <div class="cube-row">
+            <div class="panel-body">
+               <div class="panel-content">
                     {% if post.categories.all|length == 0 %}
                         no categories
                     {% endif %}

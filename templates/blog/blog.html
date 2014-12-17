@@ -25,21 +25,19 @@
             {% endif %}
         </div>
         <div class="unit one-third">
-            <div class="cube cube-default">
-                <div class="cube-header">
-                    <h1 class="cube-title">Categories</h1>
+            <div class="panel panel-default">
+                <div class="panel-header">
+                    <h1 class="panel-title">Categories</h1>
                 </div>
-                <div class="cube-body">
+                <div class="panel-body">
                     <div class="panel-content">
-                        <ul style="list-style-type: none">
                         {% for category in categories.all %}
-                            <li><a href="{% url 'blog:category_by_slug' category.title|slugify %}">{{ category.title }}</a></li>
+                            <a href="{% url 'blog:category_by_slug' category.title|slugify %}">{{ category.title }}</a><br>
                         {% endfor %}
-                        </ul>
                     </div>
                 </div>
-                <div class="cube-header">
-                    <h1 class="cube-title">{{ categories.all|length }} categories</h1>
+                <div class="panel-footer">
+                    <h1 class="panel-title">There are {{ categories.all|length }} categories in this blog</h1>
                 </div>
             </div> 
         </div>
