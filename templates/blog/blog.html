@@ -15,11 +15,8 @@
                                 {{ post.posted|date:"M" }}
                                 <span>{{ post.posted|date:"d"}}</span>
                             </span>
-                            <h1>{{ post.title }}</h1>
-                            <small><i class="fa fa-clock-o"></i>&nbsp; Posted {{ post.posted|date:'d.m.Y' }}</small>
-                            <p>
-                               {{ post.ingress|safe }}
-                            </p>
+                            <h2>{{ post.title }}</h2>
+                            <p class="blog-post-ingress">{{ post.ingress|safe }}</p>
                             <a class="button button-default" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Read more</a>
                         </section>
                    {% endfor %}
