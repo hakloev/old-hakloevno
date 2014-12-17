@@ -4,14 +4,11 @@ from django.contrib.messages import constants as messages
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+COMPRESS_ENABLED = not DEBUG # Set to True in prod
 
 TEMPLATE_DIRS = (
     BASE_DIR + '/templates/'
 )
-
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger'        
-}
 
 ADMINS = (
     ('name', 'email@email.com'),
