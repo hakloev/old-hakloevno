@@ -15,6 +15,9 @@ def index(request):
     context['posts'] = posts
     return render(request, u'index.html', context)
 
+def cv_view(request):
+    return render(request, u'index.html', {})
+
 def bus_times(request):
     if request.method == "GET":
         apiUrl = "http://bybussen.api.tmn.io/rt/"

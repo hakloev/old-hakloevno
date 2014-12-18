@@ -16,7 +16,9 @@ var Main = (function ($) {
     var alertDisassemble = function() {
         $('.alert-disassemble').on('click', function(e){
             e.preventDefault();
-            $(this).parent().fadeOut(200);
+            $(this).parent().slideUp(350, function() {
+                $(this).parent().remove();
+            });
         });
     }
 

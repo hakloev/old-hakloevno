@@ -28,8 +28,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
+    'apps.pages',
     'apps.blog',
-    'apps.front',
     'apps.beertasting',
 )
 
