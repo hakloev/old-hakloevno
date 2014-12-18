@@ -18,7 +18,7 @@
         <title>{% block title %}hakloev.no {% endblock %}</title>
     </head>
     <body>
-        {% include 'main/header.html' %}
+        {% include 'pages/header.html' %}
         <div id="main-wrapper">
             {% block message_block %}
                 {% if messages %}
@@ -38,7 +38,7 @@
             {% block content %}
             {% endblock %}
 
-            {% include 'main/footer.html' %}
+            {% include 'pages/footer.html' %}
         </div>
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

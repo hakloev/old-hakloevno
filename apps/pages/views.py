@@ -13,10 +13,10 @@ def index(request):
     except:
         posts = []
     context['posts'] = posts
-    return render(request, u'index.html', context)
+    return render(request, u'pages/index.html', context)
 
 def cv_view(request):
-    return render(request, u'index.html', {})
+    return render(request, u'pages/index.html', {})
 
 def bus_times(request):
     if request.method == "GET":
