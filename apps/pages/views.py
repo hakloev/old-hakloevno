@@ -16,7 +16,7 @@ def index(request):
     return render(request, u'pages/index.html', context)
 
 def cv_view(request):
-    return render(request, u'pages/index.html', {})
+    return render(request, u'pages/cv.html', {})
 
 def bus_times(request):
     if request.method == "GET":

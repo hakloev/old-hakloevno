@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}
+&ndash; cv
+{% endblock %}
+
+{% block content %}
+    <div class="grid">
+        <div class="unit whole">
+            <h1>Håkon Ødegård Løvdal</h1>
+            <table class="cv-table">
+                <tbody>
+                    <tr>
+                        <th>Address</th>
+                        <td>Jonsvannsveien 51B</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>May 7, 1992</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>940 50 008</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cv-experience">
+                <h2><span>Education</span></h2>
+                <ul class="cv-experience-list">
+                    <li>
+                        <span>2012 - present</span>
+                        <a href="#"><h3>Norwegian University of Science and Technology</h3></a>
+                        <p>Bachelor in Informatics</p>
+                    </li>
+                    <li>
+                        <span>2008 - 2011</span>
+                        <a href="#"><h3>Nøtterøy Videregående Skoley</h3></a>
+                        <p>Språk, samfunnsfag og økonomi</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="cv-experience">
+                <h2><span>Work experience</span></h2>
+                <ul class="cv-experience-list">
+                    <li>
+                        <span>2013, 2014</span>
+                        <a href="#"><h3>Spar Tjøme</h3></a>
+                        <p>Varelassleder etc</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="cv-experience">
+                <h2><span>Other experience</span></h2>
+                <ul class="cv-experience-list">
+                    <li>
+                        <span>2013, 2014</span>
+                        <a href="#"><h3>Spar Tjøme</h3></a>
+                        <p>Varelassleder etc</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
