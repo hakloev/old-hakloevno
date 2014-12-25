@@ -4,62 +4,58 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; statistikk &ndash; topp 10 
+&ndash; tasting 
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Ølsmaking <small>&dash; topp 10</small></h1>
-            </div>
-        </div>
-    </div>
-<div class="row">
-    <div class="col-md-12">
+{% block content %}
+<div class="grid">
+    <div class="unit whole">
         {% if breadcrumbs %}
-        <ol class="breadcrumb">
-            {% for name, link in breadcrumbs %}
-                {% if not forloop.last %}
-                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
-                {% else %}
-                    <li class="active">{{ name }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li>{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
         {% endif %}
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <h3 class="ratingheader">Topp 10:</h3>
-        <div class="panel panel-default">
-            <div class="panel-heading">Oversikt</div>
+<div class="grid">
+    <div class="unit whole">
+        <div class="cube cube-default">
+            <div class="cube-header">
+                <h2 class="cube-title">Top 10</h2>
+            </div>
+            <div class="cube-body">
                 <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Rangering</th>
-                            <th>Snitt</th>
-                            <th>Øl</th>
-                            <th>Bryggeri</th>
-                            <th>Vurderinger</th>
-                            <th>Arrangement</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for rating in ratings %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td><strong>{{ rating.score|floatformat:2 }}</strong></td>
-                            <td><a href="{% url 'tasting:beer_stats' rating.beer %}">{{ rating.beer__name }}</a></td>
-                            <td>{{ rating.beer__brewery__name }}</td>
-                            <td>{{ rating.rates }}</td>
-                            <td>{{ rating.events }}</td>
-                       </tr>
-                       {% endfor %}
-                    </tbody>
-                </table>
+                    <table class="beer-table monospace-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Avg.</th>
+                                <th>Beer</th>
+                                <th>Brewery</th>
+                                <th>Ratings</th>
+                                <th>Events</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rating in ratings %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><strong>{{ rating.score|floatformat:2 }}</strong></td>
+                                <td><a href="{% url 'tasting:beer_stats' rating.beer %}">{{ rating.beer__name }}</a></td>
+                                <td>{{ rating.beer__brewery__name }}</td>
+                                <td>{{ rating.rates }}</td>
+                                <td>{{ rating.events }}</td>
+                           </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

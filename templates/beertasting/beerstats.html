@@ -4,56 +4,59 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; statistikk &ndash; {{ beer }}
+&ndash; tasting
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Ølsmaking <small>&dash; statistikk &ndash; {{ beer }}</small></h1>
-            </div>
-        </div>
-    </div>
-<div class="row">
-    <div class="col-md-12">
+{% block content %}
+<div class="grid">
+    <div class="unit whole">
         {% if breadcrumbs %}
-        <ol class="breadcrumb">
-            {% for name, link in breadcrumbs %}
-                {% if not forloop.last %}
-                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
-                {% else %}
-                    <li class="active">{{ name }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li>{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
         {% endif %}
     </div>
 </div>
-<div class="row">
-    <div class="col-md-8">
+<div class="grid">
+    <div class="unit two-thirds">
+        <h2>Reviews for {{ beer.name }} </h2>
         {% for stat in stats %}
-            <div class="well well-sm">
+            <div class="unit half no-gutters">
+            <div class="beer-rating">
                 Karakter: <strong>{{ stat.rating|floatformat:0 }}</strong>
                 <br>
                 <br>
                 {{ stat.comment }}
             </div>
+            </div>
         {% endfor %}
     </div>
-    <div class="col-md-4">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Ølstatistikk</h3>
+    <div class="unit one-third">
+        <div class="cube cube-default">
+            <div class="cube-header">
+                <h2 class="cube-title">Beer statistics</h2>
             </div>          
-            <div class="panel-body">
-                {% for info in beerinfo %}
-                <p>Øl: {{ info.beer__name}}</p>
-                <p>Bryggeri: {{ info.beer__brewery__name }}</p>
-                <p><strong>Snitt: {{ info.score|floatformat:2 }}</strong></p>
-                <p>Antall arrangment: {{ info.events }}</p>
-                <p>Antall vurderinger: {{ info.rates }}</p>
-                {% endfor %}
+            <div class="cube-body">
+                <div class="cube-row">
+                    <div class="panel-body">
+                        {{ beer }}<br><br>
+                        Avg: <span>{{ beerinfo.0.score }}</span>
+                    </div>
+                </div>
+                <div class="cube-container">
+                    <div class="cube-single">
+                        <span>{{ beerinfo.0.rates }}</span><br>ratings:
+                    </div>
+                    <div class="cube-single">
+                        <span>{{ beerinfo.0.events }}</span><br>events:
+                    </div>
+                </div>
             </div>
         </div>
     </div>

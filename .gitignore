@@ -1,4 +1,6 @@
 *.pyc
 *.pyo
-loevdalnet/local_settings.py
+hakloevno/local_settings.py
 static/files/varsel.xml
+static/cache/*
+

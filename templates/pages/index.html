@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}
+&ndash; home
+{% endblock %}
+
+{% block content %}
+<div class="grid">
+    <div class="unit two-thirds">
+        <div class="grid">
+        <div class="unit whole">
+            <section id="about-me">
+                <div class="image">
+                    <img src="/static/images/me.jpg" class="image-thumbnail" alt="Håkon Ødegård Løvdal">
+                </div>
+                    <p>Welcome to my site! Currently, I'm a computer science student at <a href="http://www.ntnu.no">NTNU</a>, but mainly I act out as <b>totally boss</b> and a structurized procastinator. Feel free to look around. To begin with you can look below, there you will find a list of my most recent blog posts.</p>
+            </section>
+        </div>
+        </div>
+        {% for post in posts %}
+            <section class="blog-post-short">
+                <span class="blog-post-date">
+                    {{ post.posted|date:"M" }}
+                    <span>{{ post.posted|date:"d"}}</span>
+                </span>
+                <h2>{{ post.title }}</h2>
+                <p class="blog-post-ingress">{{ post.ingress|safe }}</p>
+                <a class="button button-default" href={% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}>Read more</a>
+            </section>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="unit one-third">
+        {% include 'pages/sidebar.html' %}
+    </div>
+</div>
+<div class="grid">
+    <div class="unit whole">
+    </div>
+</div>
+{% endblock %}
+
+{% block scriptblock %}
+    <script src="/static/js/weather.js" type="text/javascript"></script>
+    <script src="/static/js/bus.js" type="text/javascript"></script>
+{% endblock %}

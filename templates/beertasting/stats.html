@@ -4,44 +4,38 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; resultater &ndash; {% if event %}{{ event.name }}{% else %}smaksevent{% endif %}
+&ndash; tasting
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
-            </div>
-        </div>
-    </div>
-<div class="row">
-    <div class="col-md-12">
+{% block content %}
+<div class="grid">
+    <div class="unit whole">
         {% if breadcrumbs %}
-        <ol class="breadcrumb">
-            {% for name, link in breadcrumbs %}
-                {% if not forloop.last %}
-                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
-                {% else %}
-                    <li class="active">{{ name }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li>{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
         {% endif %}
     </div>
 </div>
-<div class="row">
-    <div class="col-md-8">
-        <h3 class="ratingheader">Resultater:</h3>
-        <div class="panel panel-default">
-            <div class="panel-heading">Oversikt</div>
-                <div class="table-responsive">
-                <table class="table">
+<div class="grid">
+    <div class="unit two-thirds">
+        <div class="cube cube-default">
+            <div class="cube-header">
+                <h3 class="cube-title">Results for {{ event.name }}</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="beer-table monospace-table">
                     <thead>
                         <tr>
-                            <th>Snitt</th>
-                            <th>Øl</th>
-                            <th>Bryggeri</th>
+                            <th>Avg.</th>
+                            <th>Beer</th>
+                            <th>Brewery</th>
                             <th>Type</th>
                             <th>ABV</th>
                             <th>IBU</th>
@@ -64,6 +58,6 @@
     {% include 'beertasting/sidebar.html' %}
 </div>
 {% endblock %}
-{% block script_block %}
+{% block scriptblock %}
 <script src="/static/js/beertasting.js"></script>
 {% endblock %}

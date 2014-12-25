@@ -2,68 +2,44 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; blogg &ndash; ny post
+&ndash; blog
 {% endblock %}
 
-{% block body_block %}
+{% block content %}
 {{ block.super }}
 {% if user.is_superuser %}
-<div class="row">
-    <div class="col-md-8">
-        <div class="page-header">
-            <h1>Skriv et nytt innlegg</h1>
-        </div>
-        <form class="form-horizontal" role="form" method="post" action="{% url 'blog:create_post' %}">
+<div class="grid">
+    <div class="unit whole">
+        <h1>Write a new blog post</h1>
+        <form class="form" role="form" method="post" action="{% url 'blog:create_post' %}">
             {% csrf_token %}
-            <fieldset>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-1 control-label" for="title">Tittel</label>  
-                <div class="col-md-11">
-                    <input id="title" name="title" type="text" placeholder="tittel" class="form-control input-md" required="">
-                </div>
+            <div>
+                <label for="title">Title</label>  
+                <input id="title" name="title" type="text" placeholder="title" required="Please write a title">
             </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-1 control-label" for="ingress">Ingress</label>  
-                <div class="col-md-11">
-                    <input id="ingress" name="ingress" type="text" placeholder="ingress" class="form-control input-md" required="">
-                </div>
+            <div>
+                <label for="ingress">Ingress</label>  
+                <input id="ingress" name="ingress" type="text" placeholder="ingress" required="Please write an ingress">
             </div>
-
-            <!-- Textarea -->
-            <div class="form-group">
-                <label class="col-md-1 control-label" for="text">Innlegg</label>
-                <div class="col-md-11">                     
-                    <textarea class="form-control" id="text" name="text" rows="15">{{ text }}</textarea>
-                </div>
+            <div>
+                <label for="text">Post</label>
+                <textarea id="text" name="text" rows="15">{{ text }}</textarea>
             </div>
-
-            <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-1 control-label" for="createpost"></label>
-                <div class="col-md-4">
-                      <button id="createpost" name="createpost" class="btn btn-danger">Lag post</button>
-                </div>
+            <div>
+                <label for="createpost"></label>
+                  <input class="button button-default" type="submit" value="Create post" id="createpost" name="createpost"/>
             </div>
-        </fieldset>
-    </form> 
+        </form> 
     </div>
-    <div class="col-md-4">
+    <div class="unit whole">
         {% if errors %}
             {% for error in errors %}
-            <h4>{{ error }}</h4>
+                <strong>{{ error }}</strong><br>
             {% endfor %}
         {% endif %}
     </div>
-    {% include 'sidebar.html' %}
 </div>
 {% else %}
-    <h1>Kun superbrukere har tilgang</h1>
+    <h1>Only superusers have access.</h1>
 {% endif %}
-{% endblock %}
-{% block script_block %}
-<script src="/static/js/weather.js"></script>
 {% endblock %}

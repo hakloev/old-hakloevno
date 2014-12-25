@@ -2,68 +2,71 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; {% if event %}{{ event.name }}{% else %}smaksevent{% endif %}
+&ndash; tasting 
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Ølsmaking <small>&dash; {% if event %}{{ event.name }}{% else%}smaksevent{% endif %}</small></h1>
-            </div>
-        </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
+{% block content %}
+<div class="grid">
+    <div class="unit whole">
         {% if breadcrumbs %}
             <ol class="breadcrumb">
                 {% for name, link in breadcrumbs %}
                     {% if not forloop.last %}
-                        <li class="active"><a href="{{ link }}">{{ name }}</a></li>
+                        <li><a href="{{ link }}">{{ name }}</a></li>
                     {% else %}
-                        <li class="active">{{ name }}</li>
+                        <li>{{ name }}</li>
                     {% endif %}
                 {% endfor %}
             </ol>
        {% endif %}
    </div>
 </div>
-<div class="row">
-    <div class="col-md-8">
+<div class="grid">
+    <div class="unit two-thirds">
         {% if event.finished %}
             {% if ratings %}
-                <h3 class="ratingheader">Dine vurderinger:</h3>
+                <h2>Your ratings:</h2>
                 {% for rating in ratings %}
-                    <h4>{{ rating.beer }}:</h4>
-                    <div class="well well-sm">
+                    <div class="beer-rating">
+                        <h3>{{ rating.beer }}:</h3><br>
                         Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
-                        <br/>
-                        <br/>
+                        <br>
+                        <br>
                         {% if rating.comment %}
                         {{ rating.comment }}
                         {% else %}
-                        <strong>Du ga ingen kommentar.</strong>
+                            <strong>You gave no comment.</strong>
                         {% endif %}
                     </div>
                 {% endfor %}
             {% else %}
-                <h3>Du har ikke vurdert noen øl under dette arrangementet.</h3>
+                <h2>You haven't rated any beers during this event.</h2>
             {% endif %}
         {% else %}
             {% if event.beers %}
-            <section>
-                <h3 class="ratingheader">Velkommen til ølsmaking!</h3>
-                <p>Det er <strong>{{ event.beers.all|length }}</strong> øl på menyen i dag.</p>
-                {% if ratings %}
-                <p>Du har gitt vurdering til <strong>{{ ratings|length }}</strong> øl.</p>
-                {% endif %}
-            </section>
+                <h2>Welcome to this beer tasting event</h2>
+                <div class="beer-rating">
+                    {% if event.beers.all|length > 1 %}
+                        It's <strong>{{ event.beers.all|length }}</strong> beers on the menu today.
+                    {% else %}
+                        It's <strong>{{ event.beers.all|length }}</strong> beer on the menu today.
+                    {% endif %}
+                    <br>
+                    {% if ratings %}
+                        {% if ratings|length > 1 %}
+                            You have rated <strong>{{ ratings|length }}</strong> beers.
+                        {% else %}
+                            You have rated <strong>{{ ratings|length }}</strong> beer.
+                        {% endif %}
+                    {% endif %}
+                </div>
             {% endif %}
         {% endif %}
     </div>
     {% include 'beertasting/sidebar.html' %}
 </div>
 {% endblock %}
-{% block script_block %}
+
+{% block scriptblock %}
 <script src="/static/js/beertasting.js"></script>
 {% endblock %}

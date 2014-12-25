@@ -1,0 +1,22 @@
+<div id="main-header">
+    <nav class="main-nav" role="navigation">
+        <ul class="nav nav-fullscreen">
+            <li class="main-nav-item{% if request.path = "/" %} main-nav-item-active{% endif %}"><a href="/">/home</a>
+            <!--<li class="main-nav-item"><a href="/static/files/cv.pdf">/CV</a></li>-->
+            <li class="main-nav-item{% if '/blog/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'blog:index' %}">/Blog</a>
+            <li class="main-nav-item{% if '/tasting/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'tasting:index' %}">/Tasting</a></li>
+            <li class="main-nav-item"><a href="https://github.com/hakloev" target="_blank">/Code</a>
+        </ul>
+        <ul class="nav nav-fullscreen nav-right">
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <li class="main-nav-item"><a href="/admin/"><i class="fa fa-gear"></i></a></li>
+                {% endif %}
+                <li class="main-nav-item"><a href="{% url 'auth:logout' %}"><i class="fa fa-sign-out"></i></a></li>
+            {% else %}
+                <li class="main-nav-item"><a href="/auth/login"><i class="fa fa-lock"></i></a></li>
+            {% endif %}
+        </ul>
+        <a href="#" class="main-nav-item" id="nav-mobile">&gt;&gt;&gt; hakloev.no</a>
+    </nav>
+</div>

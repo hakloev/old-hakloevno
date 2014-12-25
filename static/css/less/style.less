@@ -1,0 +1,402 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,900,800);
+
+@import "variables";
+@import "mixins";
+@import "elements";
+@import "tasting";
+@import "blog";
+
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+.clearfix {
+    .clearfix();
+}
+
+html, body {
+    background-color: darken(@white, 1.5%);
+    margin: 0;
+    padding: 0;
+    font-family: "Lato", "Raleway", "HelveticeNeue-Light", "Helvetica", sans-serif;
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+    color: @orange;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 300;
+}
+
+h1 {
+    color: @blue;
+    margin: 0;
+}
+
+h2 {
+    color: @green;
+}
+
+a, p, blockquote {
+    line-height: @line-height;
+    font-weight: 300;
+}
+
+hr {
+    margin-top: 21px;
+    margin-bottom: 21px;
+    border-top: 1px solid @lightgrey;
+}
+
+.progressbar {
+    background: @lightgrey;
+    box-shadow: inset 0 0 2px #000;
+    height: 25px;
+    position: relative;
+    display: block;
+    span {
+        display: block;
+        background-color: @orange;
+        line-height: 24px;
+        height: 100%;
+        text-align: center;
+        color: @white;
+        position: relative;
+    }
+}
+
+.form {
+    padding: 0 0 10px;
+    width: 100%;
+}
+
+.login-form {
+    margin: 0 auto;
+    max-width: 340px;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    outline: 0;
+    border-radius: 0;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+select {
+    width: auto;
+}
+
+textarea {
+    line-height: 150%;
+}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus {
+    border-color: @orange;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.submit input {
+    margin-bottom: 10px;
+    padding: 10px;
+    .appearance();
+    &:hover {
+        background-color: darken(@orange, 10%);
+    }
+}
+
+.table-responsive {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+blockquote {
+    margin: 16px 0;
+    padding-right: 15px;
+    padding-left: 0;
+    border-right: 3px solid @header;
+    border-left: 0;
+    text-align: right;
+    display: inline-block;
+    small {
+        display: block;
+        font-size: 80%;
+    }
+}
+
+pre {
+    display: block;
+    padding: 15px;
+    margin: 0 0 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    line-height: 1;
+    background-color: @lightgrey;
+    border: 0;
+    border-radius: 0;
+}
+
+.breadcrumb {
+    list-style-type: none;
+    display: block;
+    line-height: @line-height;
+    padding: 8px 15px;
+    background-color: @lightgrey;
+    li {
+        display: inline-block;
+        &+ li:before {
+            content: "/\00a0";
+            padding: 0 5px;
+            color: #ccc;
+        }
+        a {
+            color: @orange;
+        } 
+    }
+}
+
+.image {
+    float: left;
+    margin-right: 20px;
+    clear: both;
+}
+
+.image-thumbnail {
+    border: 1px solid lighten(@grey, 30%);
+    border-radius: 2px;
+    padding: 4px;
+    height: 160px;
+    width: auto;
+}
+
+#about-me {
+    margin-top: 0;
+    margin-bottom: 20px;
+    overflow: auto;
+    padding: 20px;
+    background-color: @lightgrey;
+    p {
+        margin: 0;
+        overflow: auto;
+        display: block;
+    }
+}
+
+.cv-table {
+    
+    th {
+        vertical-align: baseline;
+        width: 140px;
+        text-align: left;
+    }
+}
+
+.cv-experience {
+    .cv-experience-list {
+        list-style-type: none;
+        margin: 0 0 0 25px;
+        li {
+            h3 {
+                display: block;
+            }
+            span {
+                float: right;
+                margin: 0 15px 0 0;
+                font-style: italic;
+                font-size: 12px;
+            }
+            p {
+                margin: 0 0 5px 0;
+                color: #000;
+            }
+        }
+    }
+}
+
+#weather-info {
+    font-size: 0.8em;
+}
+
+#bus-berg, #bus-ila {
+    font-size: 1em;
+}
+
+.bus-toggle, .weather-toggle, .beer-admin-toggle, .beer-stats-toggle {
+    cursor: pointer;
+}
+
+#main-wrapper {
+    margin: @nav-height + 1.5em @main-spacing auto;
+}
+
+#main-header {
+    font-size: 1em;
+    text-align: justify;
+    letter-spacing: 1px;
+    display: block;
+    .main-nav {
+        position: fixed;
+        top:0; right: 0; left: 0;
+        background: @header; 
+        opacity: 0.9;
+        z-index: 9999;
+        padding: 0 @main-spacing + 20; /* padding on grid */
+        height: @nav-height;
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+            .main-nav-item {
+                float: left;
+                display: inline;
+                border-top: 5px solid lighten(@header, 10%);
+                .transition(~"all .1s ease-in");
+                &:hover {
+                    border-top-color: @blue;
+                    background-color: lighten(@header, 10%);
+                }
+                a {
+                    font-size: 1em;
+                    line-height: @nav-height;
+                    display: block;
+                    margin-top: -5px; /* negative of border on main-nav-item */
+                    padding: 0 20px;
+                    text-transform: lowercase;
+                    color: @white;
+                }
+            }
+            .main-nav-item-active {
+                border-top-color: @blue;
+            }
+        }
+        .nav-right {
+            float: right;
+        }
+    }
+}
+
+footer {
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+footer a {
+    color: @header;
+    .transition(~"color .1s ease-in");
+    &:hover {
+        color: lighten(@header, 10%);
+    }
+}
+
+@media all and (min-width: 769px) {
+    #nav-mobile {
+        display: none;
+    }
+}
+
+@media all and (max-width: 768px) {
+    #main-wrapper {
+        margin: @nav-height + 0.5em auto;
+    }
+    #weather-temperature {
+        font-size: 60px;
+        text-align: left;
+    }
+    #main-header {
+      .main-nav {
+            padding: 0;
+            height: auto;
+            ul {
+                .main-nav-item {
+                    display: block;
+                    float: none;
+                    width: 100%;
+                }
+            }
+            .nav-fullscreen {
+                display: none;
+            }
+            .nav-right {
+                float: none;
+            }
+            #nav-mobile {
+                display: block;
+                position: relative;
+                width: 100%;
+                line-height: @nav-height;
+                padding-left: @mobile-nav-spacing;
+                color: @white;
+                background-color: inherit;
+                &:after {
+                    content: "";
+                    background: url('/static/images/mobilenav.svg') no-repeat;
+                    width: 30px;
+                    height: 30px;
+                    position: absolute;
+                    top: 1.2em;
+                    right: @mobile-nav-spacing - 5px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .image {
+        display: none;
+        /*float: none;
+        margin-bottom: 10px;*/
+    }
+}
+
+@media all and (min-device-width: 320px)
+and (max-device-width: 769px)
+and (orientation : landscape) {
+    #main-header {
+        .main-nav {
+            height: auto;
+            ul {
+                width: 100%;
+                display: block;
+                height: auto;
+                overflow: auto;
+                margin-top: -3px;
+                .main-nav-item {
+                    border-top: 3px solid lighten(@header, 10%);
+                    width: 50%;
+                    float: left;
+                    position: relative;
+                    a {
+                        line-height: @mobile-nav-height;
+                    }
+                }
+            }
+            #nav-mobile {
+                text-align: left;
+                width: 100%;
+                text-indent: 25px;
+                line-height: @mobile-nav-height;
+                &:after {
+                    top: 0.9em;
+                }
+            }
+        }
+    }
+
+}

@@ -4,123 +4,105 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; ølsmaking &ndash; vurdering
+&ndash; tasting
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Ølsmaking <small>&ndash; {% if event.finished %}{% if rating %}{{ rating.beer }}{% else %}detaljer{% endif %}{% else %}vurdering{% endif %}</small></h1>
-            </div>
-        </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
+{% block content %}
+<div class="grid">
+    <div class="unit whole">
         {% if breadcrumbs %}
-        <ol class="breadcrumb">
-            {% for name, link in breadcrumbs %}
-                {% if not forloop.last %}
-                    <li class="active"><a href="{{ link }}">{{ name }}</a></li>
-                {% else %}
-                    <li class="active">{{ name }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
+            <ol class="breadcrumb">
+                {% for name, link in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% else %}
+                        <li>{{ name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
         {% endif %}
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
+<div class="grid">
+    <div class="unit two-thirds">
         {% if event.finished %}
             {% if rating %}
-                <h4 class="ratingheader">Du ga <strong>{{ rating.beer }}</strong> følgende:</h4>
-                <div class="well well-sm">
-                    Karakter: <strong>{{ rating.rating|floatformat:0 }}</strong>
+                <h2>You gave {{ rating.beer }} the following:</h2>
+                <div class="beer-rating">
+                    Grade: <strong>{{ rating.rating|floatformat:0 }}</strong>
                     <br/>
                     <br/>
                     {% if rating.comment|length < 1 %}
-                    <strong>Du ga ingen kommentar</strong>
+                    <strong>You gave no comment.</strong>
                     {% else %}
                     {{ rating.comment }}
                     {% endif %}
                 </div>     
             {% else %}
-                <h4>Du ga ikke denne ølen noen vurdering.</h4>
+                <h2>You didn't give this beer any rating</h2>
             {% endif %}
-            <hr>
+            <br>
             {% if comments %}
-            <h4>Andre ga følgende:</h4>
+                <h2>Others gave the follwing:</h2>
             {% for comment in comments %}
-                <div class="well well-sm">
-                    Karakter: <strong>{{ comment.rating|floatformat:0 }}</strong>
+                <div class="beer-rating">
+                    Grade: <strong>{{ comment.rating|floatformat:0 }}</strong>
                     <br/>
                     <br/>
                     {% if comment.comment|length < 1 %}
-                        <strong>Denne brukeren ga ingen kommentar.</strong>
+                        <strong>This user gave no comment.</strong>
                     {% else %}
                         {{ comment.comment }}
                     {% endif %}
                 </div>
             {% endfor %}
             {% else %}
-            <h4>Ingen andre ga noen vurdering.</h4>
+                <h2>No one else rated this beer.</h2>
             {% endif %}
-            <hr>
-            <a class="btn btn-danger ratingbutton" href="{% url 'tasting:beer_stats' beerid %}">Statistikk</a>
+            <br>
+            <a class="button button-default" href="{% url 'tasting:beer_stats' beer.id %}">Statistics</a>
         {% else %}
-        <form class="form-horizontal" action="{% url 'tasting:beer_rating' event.id beercode %}" method="POST">
+        <form class="form" action="{% url 'tasting:beer_rating' event.id beer.code %}" method="POST">
                 {% csrf_token %}
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-md-1">Karakter:</label>
-                        <div class="col-md-12">
-                            <select name="ratingvalue" id="ratingvalue">
+                    <div>
+                         <label for="ratingvalue">Grade:</label>
+                         <select id="ratingvalue" name="ratingvalue">
                                 {% autoescape off %}
                                    {{ rating.rating|print_select_form }}
                                 {% endautoescape %}
-                            </select>
-                        </div>
+                         </select>
                     </div>
-                    
-                    <div class="form-group">
-                        <label class="col-md-1 control-label" for="comment">Kommentar:</label>
-                        <div class="col-md-12">
-                            {% if rating %}
-                                
-                                <div class="well well-sm">
-                                    {% if rating.comment|length_is:"0" %}
-                                        <strong>Du ga ikke denne ølen noen kommentar.</strong>
-                                    {% else %}
+                    <div>
+                        <label for="comment">Comment:</label>
+                        {% if rating %}
+                            <div class="beer-rating">
+                                {% if rating.comment|length_is:"0" %}
+                                    <strong>You didn't give this beer any comment.</strong>
+                                {% else %}
                                     {{ rating.comment }}
-                                    {% endif %}
-                                <small><i><br><br>Sist vurdert: {{ rating.rated|date:"d.m.Y H:i" }}</i></small>
-                                </div>
-                            {% else %}
-                                <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=5></textarea>
                                 {% endif %}
-                                <hr>
-                                <div class="alert alert-dismissable alert-warning">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <h4>Advarsel!</h4>
-                                    <p>Du kan ikke endre kommentar etter å ha avgitt vurdering, men du kan fortsatt endre karakter.</p>
-                                </div>
-                        </div>
+                                <small><i><br><br>Last rated: {{ rating.rated|date:"d.m.Y H:i" }}</i></small>
+                            </div>
+                        {% else %}
+                            <textarea class="form-control" id="comment" name="comment" maxlength=350 rows=6></textarea>
+                        {% endif %}
                     </div>
-                {% if rating %}
-                <input class="btn btn-lg btn-danger btn-block ratingbutton" type="submit" value="Endre din karakter"/>
-                {% else %}
-                 <input class="btn btn-lg btn-danger btn-block ratingbutton" type="submit" value="Gi din vurdering"/>
-                {% endif %}
-                <input type="hidden" name="next" value="{{ next }}">
-                </fieldset>
+                    <div class="submit">
+                    {% if rating %}
+                        <input class="button button-default ratingbutton" type="submit" value="Change your grade"/>
+                    {% else %}
+                         <input class="button button-default ratingbutton" type="submit" value="Rate"/>
+                    {% endif %}
+                    </div>
+                    <small>You can't change your comment after you've rated, but you can still change the grade.</small>
+                    <input type="hidden" name="next" value="{{ next }}">
             </form>
             {% endif %}
     </div>
     {% include 'beertasting/sidebar.html' %}
 </div>
 {% endblock %}
-{% block script_block %}
+{% block scriptblock %}
 <script src="/static/js/beertasting.js"></script>
 {% endblock %}

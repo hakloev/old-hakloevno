@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }}
+    &ndash; login
+{% endblock %}
+
+{% block content %}
+<div class="grid">
+    <div class="unit whole">
+        <form class="form login-form" name="login-form" action="/auth/login/" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.REQUEST.next }}"/>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Username">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password">
+            </div>
+            <div class="submit">
+                <input type="submit" class="button button-default" value="Login">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

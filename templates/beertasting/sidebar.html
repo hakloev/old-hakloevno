@@ -1,51 +1,50 @@
 {% load filters %}
 
-<div class="col-md-4">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Ølmeny for {{ request.user.first_name }}:</h3>
+<div class="unit one-third">
+    <div class="cube cube-default">
+        <div class="cube-header">
+            <h3 class="cube-title">Menu for {{ request.user.username }}:</h3>
         </div>
         <div class="panel-body">
             {% if event.finished %}
-                <a href="{% url 'tasting:event_stats' event.id %}" class="btn btn-md btn-danger btn-block resultbutton">Resultat</a>
+                <a href="{% url 'tasting:event_stats' event.id %}" class="button button-default button-block">Result</a>
                 {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all %}
-                    <p><a href="{% url 'tasting:beer_rating' event.id beer.code %}">{{ beer.name}} fra {{ beer.brewery }}</a></p>
+                       <p><a href="{% url 'tasting:beer_rating' event.id beer.code %}"><i class="fa fa-beer"></i> &ndash; {{ beer }}</a></p>
                     {% endfor %}
                 {% else %}
                 {% endif %}
             {% else %}
-                <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ ratings.count|get_percent }}" aria-valuemin="0" aria-valuemax="{{ event.beers.all.count|get_percent }}" style="width: {{ ratings.count|get_how_long:event.beers.all.count }}%">
-                        {{ ratings.count|get_how_long:event.beers.all.count }}%
+                {% with percent=ratings.count|get_percent:event.beers.all.count %}
+                    <div class="progressbar">
+                        <span style="width: {{ percent }}%">{% if percent > 0 %}{{ percent }}%{% endif %}</span>
                     </div>
-                </div>
+                {% endwith %}
                 {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all|shuffle_beers %}
                         {% autoescape off %}
-                        {% if beer.code == beercode %}<p id="activebeer">{% else %}<p>{% endif %}{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'tasting:beer_rating' event.id beer.code %}">Ølnummer {{ forloop.counter}}</a></p>
+                        {% if beer.code == beercode %}<p>{% else %}<p>{% endif %}{{ ratings|print_rating_icon:beer.id }} &ndash; <a href="{% url 'tasting:beer_rating' event.id beer.code %}">Beer {{ forloop.counter}}</a></p>
                         {% endautoescape %}
                     {% endfor %}
                 {% else %}
-                    <p>Ingen øl tilgjengelig..</p>
+                    <p>No beers available.</p>
                 {% endif %}
             {% endif %}
-            <p class="infotext">Din bruker-ID er: {{ request.user.id }}</p>
         </div>
-        {% if user.is_superuser %}
-        <div class="panel-heading">
-            <h3 class="panel-title">Administrator:<span id="adminbutton"><i class="fa fa-expand"></i></span></h3>
+        {% if perms.beertasting.view_admin %}
+        <div class="cube-header beer-admin-toggle">
+            <h3 class="cube-title">Administrator:</h3>
         </div>
-        <div class="panel-body adminpanel">
-            <a href="{% url 'tasting:event_list' event.id %}" class="btn btn-md btn-danger btn-block">Øloversikt</a>
-            <p class="infotext">Event-ID: {{ event.id }}</p>
+        <div class="panel-body beer-admin-panel" style="display:none">
+            <a href="{% url 'tasting:event_list' event.id %}" class="button button-default button-block">Beer list</a>
+            <p>Event-ID: {{ event.id }}</p>
             {% if beer %}
-                <p class="infotext">Ølkode: <strong>{{ beer.code }}</strong></p>
-                <p class="infotext">Øl-ID: <strong>{{ beer.id }}</strong></p>
-                <p class="infotext">Øl: <strong>{{ beer }}</strong></p>
+                <p>Beer code: {{ beer.code }}</p>
+                <p>Beer-ID: {{ beer.id }}</p>
+                <p>Beer: {{ beer }}</p>
             {% endif %}
-            <p class="infotext">Dato: {{ event.date|date:"d.m.Y" }}</p>
-            <p class="infotext">Antall øl: {{ event.beers.all|length }}</p>
+            <p>Date: {{ event.date|date:"d.m.Y" }}</p>
+            <p>Total beers: {{ event.beers.all|length }}</p>
             </div>
         {% endif %}
     </div>

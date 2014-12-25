@@ -26,13 +26,19 @@ class Beer(models.Model):
         super(Beer, self).save()
 
     def __unicode__(self):
-        return (u'%s fra %s' % (self.name, self.brewery))
+        return (u'%s, %s' % (self.name, self.brewery))
 
 class TastingEvent(models.Model):
+    
+    class Meta:
+        permissions = (
+            ('view_admin', 'Can see admin list'),
+        )
+
     name = models.CharField(max_length=50, blank=False, unique=True)
     date = models.DateTimeField(auto_now_add=True)
     beers = models.ManyToManyField('beertasting.Beer', null=True, blank=True)
-    finished = models.BooleanField()
+    finished = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
@@ -54,7 +60,7 @@ class BeerRating(models.Model):
     rated = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return (u'Bruker: %s, Øl: %s, Karakter: %s' % (self.user, self.beer, self.rating))
+        return (u'%s: %s --> %s' % (self.event, self.beer, self.user))
 
 class Style(models.Model):
     style = models.CharField(max_length=50)

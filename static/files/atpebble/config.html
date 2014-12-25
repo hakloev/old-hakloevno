@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Config for atpebble</title>
+        <meta charset="utf-8">
+        <meta name="author" content="Håkon Ødegård Løvdal">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    </head>
+    <body>  
+        <div data-role="page" id="main">
+            <div data-role="header" class="jqm-header">
+                <h1>Settings:</h1>
+            </div>
+            
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <label for="stopName1">First stop:</label>
+                    <form class="ui-filterable">
+                        <input type="text" name="stopName1" id="stopName1" class="search" placeholder="Type to search..." />
+                        <input type="hidden" id="stopId1" value="" />
+                    </form>
+                    <ul id="stops1" data-role="listview"></ul>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="stopName2">Second stop:</label>
+                    <form class="ui-filterable">
+                        <input type="text" name="stopName2" id="stopName2" class="search" placeholder="Type to search..." />
+                        <input type="hidden" id="stopId2" value="" />
+                    </form>
+                    <ul id="stops2" data-role="listview"></ul>
+                </div>
+                <div data-role="ui-body ui-body-b">
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a"><button type="reset" data-theme-"d" class="reset" id="reset1">Clear first</button></div>
+                        <div class="ui-block-b"><button type="reset" data-theme-"a" class="reset" id="reset2">Clear second</button></div>
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="route">Prefered routes:</label>
+                    <input type="text" name="route" id="route" placeholder="Enter prefered routes, comma-seperated..." /> 
+                </div>        
+            </div> 
+            <div class="ui-body ui-body-b">
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a"><button type="submit" data-theme-"d" id="b-cancel">Cancel</button></div>
+                    <div class="ui-block-b"><button type="submit" data-theme-"a" id="b-submit">Submit</button></div>
+                </fieldset>
+            </div>
+        </div>
+        <script src="settings.js"></script>
+        <script src="stops.js"></script>
+        <script>
+            window.atpebble = window.atpebble || {}
+                                  
+            $().ready(function() {
+                
+                atpebble.settings.initAll; // Not a function, ajax with callback to init all
+    
+                $("#b-cancel").click(function() {
+                    console.log("cancel config html");
+                    document.location = "pebblejs://close";
+                });
+
+                $("#b-submit").click(function() {
+                    console.log("submit button html");
+                    var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(atpebble.settings.saveOptions()));
+                    console.log("moving to: " + location);
+                    console.log(location);
+                    document.location = location;
+                });
+
+                $(".reset").click(function(){
+                    buttonId = this.id.match(/(\d+)/)[1]
+                    console.log(buttonId)
+                    $("#stopId" + buttonId).val(''); 
+                    $("#stopName" + buttonId).val('')
+                    $("#stops" + buttonId).empty()
+                });
+
+                $(".ui-filterable").submit(function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    document.activeElement.blur();
+                    // Should we clear the current list also?
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -2,39 +2,52 @@
 
 {% block title %}
 {{ block.super }}
-&ndash; blogg
+&ndash; blog
 {% endblock %}
 
-{% block body_block %}
- <div class="row">
-        <div class="col-md-8">
-                {% if posts %}
-                    <div class="main">
-                        {% for post in posts %}
-                            <section>
+{% block content %}
+ <div class="grid">
+        <div class="unit two-thirds">
+            {% if posts %}
+                    {% for post in posts %}
+                        <section class="blog-post-short">
+                            <span class="blog-post-date">
+                                {{ post.posted|date:"M" }}
+                                <span>{{ post.posted|date:"d"}}</span>
+                            </span>
                             <h2>{{ post.title }}</h2>
-                            <small><span class="glyphicon glyphicon-time"></span>  Skrevet den {{ post.posted|date:'d.m.Y' }}</small>
-                            <p class="ingress">
-                               {{ post.ingress|safe }}
-                            </p>
-                            <a class="btn btn-danger" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Les mer</a>
-                            <span><a class="btn btn-warning disabled" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}#disqus_thread"></a></span>
-                            {% if not forloop.last %}
-                            <hr>     
-                            {% endif %}
-                            </section>
-                       {% endfor %}
-                   </div>
-                {% else %}
-                    <h3>Fant ingen artikler.</h3>
-                {% endif %}
+                            <p class="blog-post-ingress">{{ post.ingress|safe }}</p>
+                            <a class="button button-default" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Read more</a>
+                        </section>
+                        {% if not forloop.last %}
+                            <hr>
+                        {% endif %}
+                   {% endfor %}
+            {% else %}
+                <h1>No articles found</h1>
+            {% endif %}
         </div>
-        {% include 'sidebar.html' %}
+        <div class="unit one-third">
+            <div class="panel panel-default">
+                <div class="panel-header">
+                    <h1 class="panel-title">Categories</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-content">
+                        {% for category in categories.all %}
+                            <a href="{% url 'blog:category_by_slug' category.title|slugify %}">{{ category.title }}</a><br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <h1 class="panel-title">{{ categories.all|length }} categories in this blog</h1>
+                </div>
+            </div> 
+        </div>
     </div>
 {% endblock %}
 
-{% block script_block %}
-<script src="/static/js/weather.js"></script>
+{% block scriptblock %}
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = 'loevdalnet'; // required: replace example with your forum shortname

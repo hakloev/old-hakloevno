@@ -30,14 +30,14 @@ def get_number_of_ratings(ratings, id):
     for rating in ratings:
         if rating['beer'] == id:
             return rating['total']
-    return 'Ingen'
+    return 'None'
 
 @register.filter(name='print_rating_icon')
 def print_rating_icon(ratings, id):
     for rating in ratings:
         if rating.beer.id == id:
-            return '<span class="glyphicon glyphicon-ok"></span>'
-    return '<span class="glyphicon glyphicon-remove"></span>'
+            return '<i class="fa fa-check"></i>'
+    return '<i class="fa fa-close"></i>'
 
 @register.filter(name='shuffle_beers')
 def shuffle_beers(arg):
@@ -46,11 +46,6 @@ def shuffle_beers(arg):
     return sorted(beers, key=lambda x: x.code, reverse=False)
 
 @register.filter(name='get_percent')
-def get_percent(number):
-    return int(number * 10)
-
-@register.filter(name='get_how_long')
-def get_how_long(number, total):
-    if number == 0 or total == 0:
-        return 0
-    return int(((float(number) / float(total)) * 100))
+def get_percent(ratings, number):
+    return int((float(ratings) / float(number)) * 100)
+   
