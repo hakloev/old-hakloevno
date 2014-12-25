@@ -17,7 +17,7 @@
             {% else %}
                 {% with percent=ratings.count|get_percent:event.beers.all.count %}
                     <div class="progressbar">
-                        <span style="width: {{ percent }}%">{{ percent }}%</span>
+                        <span style="width: {{ percent }}%">{% if percent > 0 %}{{ percent }}%{% endif %}</span>
                     </div>
                 {% endwith %}
                 {% if event.beers.all|length > 0 %}

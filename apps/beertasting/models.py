@@ -60,7 +60,7 @@ class BeerRating(models.Model):
     rated = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return (u'Bruker: %s, Øl: %s, Karakter: %s' % (self.user, self.beer, self.rating))
+        return (u'%s: %s --> %s' % (self.event, self.beer, self.user))
 
 class Style(models.Model):
     style = models.CharField(max_length=50)
