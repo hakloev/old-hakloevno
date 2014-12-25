@@ -15,9 +15,11 @@
                 {% else %}
                 {% endif %}
             {% else %}
-                <progress value="{{ ratings.count|get_percent }}" max="{{ event.beers.all.count|get_percent }}"><span>
-                {{ ratings.count|get_how_long:event.beers.all.count }}%
-                </span>%</progress>
+                {% with percent=ratings.count|get_percent:event.beers.all.count %}
+                    <div class="progressbar">
+                        <span style="width: {{ percent }}%">{{ percent }}%</span>
+                    </div>
+                {% endwith %}
                 {% if event.beers.all|length > 0 %}
                     {% for beer in event.beers.all|shuffle_beers %}
                         {% autoescape off %}

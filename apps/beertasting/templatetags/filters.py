@@ -46,15 +46,6 @@ def shuffle_beers(arg):
     return sorted(beers, key=lambda x: x.code, reverse=False)
 
 @register.filter(name='get_percent')
-def get_percent(number):
-    return int(number * 10)
-
-@register.filter(name='get_how_long')
-def get_how_long(number, total):
-    if number == 0 or total == 0:
-        return 0
-    return int(((float(number) / float(total)) * 100))
-
-@register.filter(name='lookup')
-def cut(value, arg):
-    return value[str(arg)]
+def get_percent(ratings, number):
+    return int((float(ratings) / float(number)) * 100)
+   

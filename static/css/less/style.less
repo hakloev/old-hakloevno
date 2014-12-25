@@ -50,23 +50,22 @@ a, p, blockquote {
 hr {
     margin-top: 21px;
     margin-bottom: 21px;
-    border-top: 1px solid @green;
+    border-top: 1px solid @lightgrey;
 }
 
-progress {
-    .appearance();
+.progressbar {
+    background: @white;
+    height: 20px;
+    position: relative;
     display: block;
-    height: 1.2em;
-    width: 100%;
-    vertical-align: -0.2em;
-    &::-webkit-progress-bar {
-        background: @white;
-        border-radius: 4px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5) inset;
-    }
-    &::-webkit-progress-value {
-        background: @green;
-        border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.5) inset, 0px -2px 2px rgba(0,0,0,0.5) inset;
+    span {
+        display: block;
+        background-color: @orange;
+        height: 100%;
+        text-align: center;
+        color: @white;
+        position: relative;
     }
 }
 
@@ -148,7 +147,7 @@ pre {
     word-wrap: break-word;
     word-break: break-all;
     line-height: 1;
-    background-color: rgba(210, 210, 210, 0.2);
+    background-color: @lightgrey;
     border: 0;
     border-radius: 0;
 }
@@ -158,7 +157,7 @@ pre {
     display: block;
     line-height: @line-height;
     padding: 8px 15px;
-    background-color: rgba(240, 240, 240, 0.8);
+    background-color: @lightgrey;
     li {
         display: inline-block;
         &+ li:before {
@@ -191,7 +190,7 @@ pre {
     margin-bottom: 20px;
     overflow: auto;
     padding: 20px;
-    background-color: rgba(210, 210, 210, 0.2);
+    background-color: @lightgrey;
     p {
         margin: 0;
         overflow: auto;

@@ -19,6 +19,9 @@
                             <p class="blog-post-ingress">{{ post.ingress|safe }}</p>
                             <a class="button button-default" href="{% url 'blog:post_by_slug' post.posted.year post.posted.month post.posted.day post.title|slugify %}">Read more</a>
                         </section>
+                        {% if not forloop.last %}
+                            <hr>
+                        {% endif %}
                    {% endfor %}
             {% else %}
                 <h1>No articles found</h1>
@@ -37,7 +40,7 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <h1 class="panel-title">There are {{ categories.all|length }} categories in this blog</h1>
+                    <h1 class="panel-title">{{ categories.all|length }} categories in this blog</h1>
                 </div>
             </div> 
         </div>
