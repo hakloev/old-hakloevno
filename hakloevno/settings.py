@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'apps.pages',
     'apps.blog',
     'apps.beertasting',
+    'apps.movies',
 )
 
 MIDDLEWARE_CLASSES = (

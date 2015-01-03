@@ -199,8 +199,12 @@ pre {
     }
 }
 
+.cv-grid {
+    max-width: 940px;
+    margin: 0 auto;
+}
+
 .cv-table {
-    
     th {
         vertical-align: baseline;
         width: 140px;
@@ -209,22 +213,20 @@ pre {
 }
 
 .cv-experience {
+    border-top: 2px solid @lightgrey;
+    padding: 40px 0;
     .cv-experience-list {
         list-style-type: none;
-        margin: 0 0 0 25px;
+        margin: 0;
+        padding: 0;
         li {
-            h3 {
-                display: block;
-            }
             span {
                 float: right;
-                margin: 0 15px 0 0;
                 font-style: italic;
-                font-size: 12px;
+                font-size: 14px;
             }
             p {
                 margin: 0 0 5px 0;
-                color: #000;
             }
         }
     }

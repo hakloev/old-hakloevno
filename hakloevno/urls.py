@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^cv/$', cv_view),
     url(r'^blog/', include('apps.blog.urls', namespace='blog')),
     url(r'^tasting/', include('apps.beertasting.urls', namespace='tasting')),
+    url(r'^movies/', include('apps.movies.urls', namespace='movies')),
     ) 
