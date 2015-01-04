@@ -3,4 +3,4 @@
 hakloevno/local_settings.py
 static/files/varsel.xml
 static/cache/*
-
+media/*
