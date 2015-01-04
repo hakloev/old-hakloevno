@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
-from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from apps.movies.models import Movie
 from django.utils.decorators import method_decorator
 from hakloevno import settings
-#from apps.movies.forms import MovieForm
+from apps.movies.forms import MovieForm
 # Create your views here.
 
 #Mixins
@@ -34,10 +34,25 @@ class MovieDetailView(DetailView):
         context = super(MovieDetailView, self).get_context_data(**kwargs)
         return context
 
-#class AddMovie(CheckPermMixin, CreateView):
-#    model = Movie
-#    form_class = MovieForm
-#    permission_required = 'movies.add_movie'
+class AddMovie(CheckPermMixin, CreateView):
+    model = Movie
+    form_class = MovieForm
+    template_name_suffix = '_create_form'
+    permission_required = 'movies.add_movie'
+    def form_valid(self, form):
+        self.object = form.save()
+        return HttpResponseRedirect(reverse('movies:movie_detail', args=(self.object.slug,)))
+
+class EditMovie(CheckPermMixin, UpdateView):
+    model = Movie
+    template_name_suffix = '_update_form'
+    fields = ['title', 'year']
+    permission_required = 'movies.edit_movie'
+    def form_valid(self, form):
+        self.object = form.save()
+        return HttpResponseRedirect(reverse('movies:movie_detail', args=(self.object.slug,)))
+
+    
 
 class DeleteMovie(CheckPermMixin, DeleteView):
     model = Movie
