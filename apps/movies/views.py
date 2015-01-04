@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from apps.movies.models import Movie
 from django.utils.decorators import method_decorator
 from hakloevno import settings
+#from apps.movies.forms import MovieForm
 # Create your views here.
 
 #Mixins
@@ -24,4 +26,20 @@ class IndexView(CheckPermMixin, ListView):
     template_name = 'movies/index.html'
     model = Movie
     # Required fields for CheckPermMixin
-    permission_required = 'movie.view_movie'
+    permission_required = 'movies.view_movie'
+
+class MovieDetailView(DetailView):
+    model = Movie
+    def get_context_data(self, **kwargs):
+        context = super(MovieDetailView, self).get_context_data(**kwargs)
+        return context
+
+#class AddMovie(CheckPermMixin, CreateView):
+#    model = Movie
+#    form_class = MovieForm
+#    permission_required = 'movies.add_movie'
+
+class DeleteMovie(CheckPermMixin, DeleteView):
+    model = Movie
+    permission_required = 'movies.delete_movie'
+    success_url = reverse_lazy('movies:index') 

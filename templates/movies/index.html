@@ -3,41 +3,15 @@
 {% block content %}
     <div class="grid">
         <div class="unit whole">
-            <h1>This will be the movie database</h1>
-            <a href="#" class="button button-default">Add movie</a>
-            <div class="cube cube-default">
-                <div class="cube-header">
-                    <h1 class="cube-title">Movies</h1>
-                </div>
-                <div class="cube-body">
-                    <div class="table-responsive">
-                        <table class="beer-table">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Year</th>
-                                    <th>IMDb</th>
-                                    <th colspan="2">Added</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for movie in object_list %}
-                                    <tr>
-                                        <td><a href="http://www.imdb.com/title/{{ movie.imdb }}">{{ movie.title }}</a></td>
-                                        <td>{{ movie.year }}</td>
-                                        <td>{{ movie.imdb }}</td>
-                                        <td>{{ movie.added|date:"d.m.Y" }}</td>
-                                        <td style="text-align: center">
-                                            <a href="#" class="button button-default">Edit</a>
-                                            <a href="#" class="button button-red">Delete</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <a href="#" class="button button-default">Add movie</a><br>
+            {% for movie in object_list %}
+                    <a href="{% url 'movies:movie_detail' movie.slug %}">{{ movie.title }}</a><br>
+                    {{ movie.year }}<br>
+                    {{ movie.imdb }}<br>
+                    {{ movie.added|date:"d.m.Y" }}<br>
+                    {% if perms.movies.edit_movie %}<a href="#" class="button button-default">Edit</a><br>{% endif %}
+                    {% if perms.movies.delete_movie %}<a href="{% url 'movies:movie_delete' movie.slug %}" class="button button-red">Delete</a><br>{% endif %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
