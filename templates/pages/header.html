@@ -5,6 +5,7 @@
             <!--<li class="main-nav-item"><a href="/static/files/cv.pdf">/CV</a></li>-->
             <li class="main-nav-item{% if '/blog/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'blog:index' %}">/Blog</a>
             <li class="main-nav-item{% if '/tasting/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'tasting:index' %}">/Tasting</a></li>
+            <li class="main-nav-item{% if '/movies/' in request.path %} main-nav-item-active{% endif %}"><a href="{% url 'movies:index' %}">/Movies</a></li>
             <li class="main-nav-item"><a href="https://github.com/hakloev" target="_blank">/Code</a>
         </ul>
         <ul class="nav nav-fullscreen nav-right">
