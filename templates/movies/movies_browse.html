@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="grid">
+        <div class="unit whole">
+            {% if movie_list %}
+                <div class="table-responsive">
+                    <table class="beer-table">
+                        <thead>
+                            <th>Title</th>
+                            <th>Rating</th>
+                            <th>Watched</th>
+                            <th>Added</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                        {% for movie in movie_list %}
+                            <tr>
+                                <td>{{ movie.title }}</td>
+                                <td>{{ movie.rating }}</td>
+                                <td>{% if movie.seen %}Yes{% else %}No{% endif %}</td>
+                                <td>{{ movie.added|date:"d.m.Y" }}</td>
+                                <td><a href="{% url 'movies:movie_detail' movie.slug %}" class="button button-default">Details</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if is_paginated %}
+                    <div class="pagination">
+                        <span class="page-links">
+                            {% if page_obj.has_previous %}
+                                <a class="button button-default" href="/movies/browse?page={{ page_obj.previous_page_number }}">Prev</a>
+                            {% endif %}
+                            <span class="page-current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                            </span>
+                            {% if page_obj.has_next %}
+                                <a class="button button-default" href="/movies/browse?page={{ page_obj.next_page_number }}">Next</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+            {% else %}
+                <h1>Movies</h1>
+                <p>No movies found</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

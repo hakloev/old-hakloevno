@@ -3,6 +3,7 @@
 {% block content %}
     <div class="grid">
         <div class="unit whole">
+            <h1>Add movie</h1>
             <form action="" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
