@@ -82,6 +82,7 @@ class AddMovie(CheckPermMixin, CreateView):
                     self.object.runtime = data.get('Runtime', 'N/A')
                     self.object.poster_url = data.get('Poster', '')
                     self.object.from_api = True
+        messages.success(self.request, '%s added to collection' % movie.title)
         self.object.save()
         return HttpResponseRedirect(reverse('movies:movie_detail', args=(self.object.slug,)))
 
@@ -113,7 +114,7 @@ def add_imdb(request, id):
 class EditMovie(CheckPermMixin, UpdateView):
     model = Movie
     template_name_suffix = '_update_form'
-    fields = ['seen', 'last_seen',]
+    fields = ['last_seen',]
     permission_required = 'movies.change_movie'
     def form_valid(self, form):
         self.object = form.save()

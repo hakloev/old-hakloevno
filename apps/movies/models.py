@@ -18,7 +18,6 @@ class Movie(models.Model):
     seen = models.BooleanField(default=False)
     last_seen = models.DateField(null=True, blank=True)
     poster_url = models.URLField(blank=True, null=True)
-    poster_img = models.ImageField(upload_to='images/posters', null=True, blank=True)
     added = models.DateField(auto_now_add=True, null=False)
     class Meta:
         permissions = (('view_movie', 'Can view movie'),)
@@ -37,6 +36,8 @@ class Movie(models.Model):
                         break
                     handle.write(block)
             self.poster_url = '/' + file_save_dir + '%s.jpg' % self.slug
+        if self.last_seen:
+            self.seen = True
         return super(Movie, self).save(*args, **kwargs)
 
     @models.permalink
