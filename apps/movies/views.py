@@ -82,7 +82,7 @@ class AddMovie(CheckPermMixin, CreateView):
                     self.object.runtime = data.get('Runtime', 'N/A')
                     self.object.poster_url = data.get('Poster', '')
                     self.object.from_api = True
-        messages.success(self.request, '%s added to collection' % movie.title)
+        messages.success(self.request, '%s added to the collection' % movie.title)
         self.object.save()
         return HttpResponseRedirect(reverse('movies:movie_detail', args=(self.object.slug,)))
 
@@ -106,7 +106,7 @@ def add_imdb(request, id):
                 imdb=id
             )
             movie.save()
-            messages.success(request, '%s added to collection' % movie.title)
+            messages.success(request, '%s added to the collection' % movie.title)
             return HttpResponseRedirect(reverse('movies:movie_detail', args=(movie.slug,)))
     messages.error(request, 'Could not add movie, try again!')        
     return HttpResponseRedirect(reverse('movies:index'))
@@ -150,7 +150,3 @@ def search(request):
         else:
             messages.error(request, 'The search query must be larger than 3 characters.')
     return render(request, 'movies/movie_search.html', context)
-
-
-
-

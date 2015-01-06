@@ -65,7 +65,14 @@
 .button-red {
     .button(@darkpink);
     &:hover {
-        background-color: darken(@darkpink, 10%);
+        background-color: @green;
+    }
+}
+
+.button-green {
+    .button(@green);
+    &:hover {
+        background-color: @darkpink;
     }
 }
 

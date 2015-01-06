@@ -1,5 +1,4 @@
 import requests
-import tempfile
 from django.db import models
 from django.utils.text import slugify
 from django.core.files import File
@@ -25,9 +24,7 @@ class Movie(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        if self.poster_url and self.poster_img != '':
-            import shutil
-            import os
+        if not self.poster_url.startswith('/media/'):
             file_save_dir = 'media/images/posters/'
             r = requests.get(self.poster_url, stream=True)
             with open(file_save_dir + '%s.jpg' % self.slug, 'wb') as handle:

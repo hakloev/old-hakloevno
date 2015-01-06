@@ -4,10 +4,12 @@
     <div class="grid">
         <div class="unit whole">
             <h1>Update movie "{{ object }}"</h1>
-            <form action="" method="POST">
+            <form class="form" action="" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Update" />
+                <div class="submit">
+                    <input type="submit" value="Update" />
+                </div>
             </form>
         </div>
     </div>

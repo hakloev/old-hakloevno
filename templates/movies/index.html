@@ -7,33 +7,55 @@
             <div class="grid">
                 {% for movie in object_list %}
                     <div class="unit one-third">
-                        <a href="{% url 'movies:movie_detail' movie.slug %}"><img alt="{{ movie.title }}" src="{{ movie.poster_url }}" style="max-width: 100%"></a>
-                        {% if movie.seen %}Watched{% else %}Not watched{% endif %}<br>
+                        <a class="movie-poster-thumbnail" href="{% url 'movies:movie_detail' movie.slug %}"><img alt="{{ movie.title }}" src="{{ movie.poster_url }}" style="width: 230px; height: 325px"></a>
                     </div>
                 {% endfor %}
             </div>
+            <div class="grid">
+                <div class="unit whole">
+                     <form class="search-form" action="{% url 'movies:movie_search' %}" method="GET">
+                        <div>
+                            <input type="text" id="q" name="q" placeholder="Search in the collection...">
+                        </div>
+                        <div class="submit">
+                            <input class="button button-default" type="submit" value="Search collection">
+                        </div>
+                    </form> 
+                    <form class="search-form" action="{% url 'movies:movie_search_imdb' %}" method="GET">
+                        <div>
+                            <input type="text" id="q" name="q" placeholder="Search in IMDb...">
+                        </div>
+                        <div class="submit">
+                            <input class="button button-default" type="submit" value="Search IMDb">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </div>
         <div class="unit one-third">
-            <h2>Search collection:</h2>
-            <form class="form" action="{% url 'movies:movie_search' %}" method="GET">
-                <div>
-                    <input type="text" id="q" name="q" placeholder="Search for a movie...">
+            <div class="cube cube-default">
+                <div class="cube-header">
+                    <h1 class="cube-title">Movies</h1>
                 </div>
-                <div class="submit">
-                    <input class="button button-default" type="submit" value="Search">
+                <div class="cube-body">
+                    <div class="cube-container">
+                        <div class="cube-single">
+                            <span>13</span><br>
+                            movies
+                        </div>
+                        <div class="cube-single">
+                            what
+                        </div>
+                    </div>
+                    <div class="cube-row">
+                        <div class="panel-body">
+                            <a href="{% url 'movies:movie_browse' %}" class="button button-default">Browse collection</a>
+                            {% if perms.movies.add_movie %}<a href="{% url 'movies:movie_add' %}" class="button button-default">Add movie</a><br>{% endif %}
+                        </div>
+                    </div>
                 </div>
-            </form>
-            <h2>Search IMDb:</h2>
-            <form class="form" action="{% url 'movies:movie_search_imdb' %}" method="GET">
-                <div>
-                    <input type="text" id="q" name="q" placeholder="Search for a movie...">
-                </div>
-                <div class="submit">
-                    <input class="button button-default" type="submit" value="Search">
-                </div>
-            </form>
-            <a href="{% url 'movies:movie_browse' %}" class="button button-default">Browse collection</a><br>
-            {% if perms.movies.add_movie %}<a href="{% url 'movies:movie_add' %}" class="button button-default">Add movie</a><br>{% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}

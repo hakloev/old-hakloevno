@@ -5,20 +5,28 @@
         <div class="unit whole">
             <div class="grid">
                 <div class="unit one-third">
-                    <img src="{{ object.poster_url }}" alt="{{ object.title }}">
-                <a class="button button-default" href="http://www.imdb.com/title/{{ object.imdb }}" target="_blank">View on IMDb</a><br>
-                {% if perms.movies.change_movie %}<a href="{% url 'movies:movie_edit' movie.slug %}" class="button button-default">Edit</a>{% endif %}
-                {% if perms.movies.delete_movie %}<a href="{% url 'movies:movie_delete' movie.slug %}" class="button button-red">Delete</a><br>{% endif %}
+                    <div class="movie-poster">
+                        <img src="{{ object.poster_url }}" alt="{{ object.title }}">
+                    </div>
+                    <a class="button button-green" href="http://www.imdb.com/title/{{ object.imdb }}" target="_blank">View on IMDb</a><br>
                 </div>
                 <div class="unit two-thirds">
-                    <h1>{{ object.title }}</h1>
-                    <small>Released in {{ object.year }}</small><br><br>
-                    <span>IMDb's rating: {{ object.rating }}</span><br>
-                    <span>Runtime: {{ object.runtime }}</span><br>
-                    <span>Last seen: {% if object.last_seen %}{{ object.last_seen }}{% else %}Never{% endif %}</span><br>
-                    <h2>Plot:</h2>
-                    <p>{{ object.plot }}</p>
+                    <div class="movie-title">
+                        <h1>{{ object.title }}</h1>
+                        <small>Released in {{ object.year }}</small><br>
+                    </div>
+                    {% if perms.movies.change_movie %}<a href="{% url 'movies:movie_edit' movie.slug %}" class="button button-default">Edit</a>{% endif %}
+                    {% if perms.movies.delete_movie %}<a href="{% url 'movies:movie_delete' movie.slug %}" class="button button-red">Delete</a><br>{% endif %}
 
+                    <div class="movie-info">
+                        <span><b>IMDb's rating:</b> {{ object.rating }}</span><br>
+                        <span><b>Runtime:</b> {{ object.runtime }}</span><br>
+                        <span><b>Last seen:</b> {% if object.last_seen %}{{ object.last_seen }}{% else %}Never{% endif %}</span><br>
+                    </div>
+                    <div class="movie-plot">
+                        <h2>Plot:</h2>
+                        <p>{{ object.plot }}</p>
+                    </div>
                 </div>
             </div>
        </div>
