@@ -16,11 +16,11 @@
                         <tbody>
                         {% for movie in movie_list %}
                             <tr>
-                                <td>{{ movie.title }}</td>
-                                <td>{{ movie.rating }}</td>
+                                <td>{{ movie.movie.title }}</td>
+                                <td>{{ movie.movie.rating }}</td>
                                 <td>{% if movie.seen %}Yes{% else %}No{% endif %}</td>
-                                <td>{{ movie.added|date:"d.m.Y" }}</td>
-                                <td><a href="{% url 'movies:movie_detail' movie.slug %}" class="button button-default">Details</a></td>
+                                <td>{{ movie.movie.added|date:"d.m.Y" }}</td>
+                                <td><a href="{% url 'movies:movie_detail' movie.movie.slug %}" class="button button-default">Details</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

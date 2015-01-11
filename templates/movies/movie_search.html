@@ -10,6 +10,7 @@
                         <tr>
                             <th>Title</th>
                             <th>IMDb</th>
+                            <th>Watched</th>
                             <th>Added</th>
                             <th></th>
                         </tr>
@@ -17,10 +18,11 @@
                     <tbody>
                         {% for result in results %}
                             <tr>
-                                <td><a href="{% url 'movies:movie_detail' result.slug %}">{{ result.title }}</a></td>
-                                <td>{{ result.rating }}</td>
+                                <td><a href="{% url 'movies:movie_detail' result.movie.slug %}">{{ result.movie.title }}</a></td>
+                                <td>{{ result.movie.rating }}</td>
+                                <td>{% if result.seen %}Yes{% else %}No{% endif %}</td>
                                 <td>{{ result.added }}</td>
-                                <td><a class="button button-default" href="{% url 'movies:movie_detail' result.slug %}">Details</a></td>
+                                <td><a class="button button-default" href="{% url 'movies:movie_detail' result.movie.slug %}">Details</a></td>
                             </tr>
                         {% endfor %}
                     </tbody>

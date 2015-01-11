@@ -1,12 +1,12 @@
 import requests
 import json
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from apps.movies.models import Movie
+from apps.movies.models import Movie, UserMovie
 from django.utils.decorators import method_decorator
 from hakloevno import settings
 from apps.movies.forms import MovieForm
@@ -32,59 +32,28 @@ class IndexView(CheckPermMixin, ListView):
     # Required fields for CheckPermMixin
     permission_required = 'movies.view_movie'
     def get_queryset(self):
-        return Movie.objects.all().order_by('-id')[:3]
+        return UserMovie.objects.filter(user=self.request.user).order_by('-id')[:3]
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context.update({'unseen': UserMovie.objects.filter(user=self.request.user, seen=False).count()})
+        return context
 
 class MovieDetailView(DetailView):
-    model = Movie
+    model = UserMovie
     def get_object(self):
-        qs = self.get_queryset()
-        slug = self.kwargs.get('slug')
-        qs = qs.filter(slug=slug)
-        try:
-            movie = qs.get()
-        except Movie.DoesNotExist:
-            return Http404
-        except Movie.MultipleObjectsReturned:
-            messages.error(self.request, 'Duplicates of this movie exists in the database')
-            movie = qs[0]
-        return movie
+        return get_object_or_404(UserMovie, user=self.request.user, movie=Movie.objects.get(slug=self.kwargs.get('movie')))
     def get_context_data(self, **kwargs):
         context = super(MovieDetailView, self).get_context_data(**kwargs)
         return context
 
 class BrowseView(CheckPermMixin, ListView):
     template_name = 'movies/movies_browse.html'
-    model = Movie
+    model = UserMovie
     permission_required = 'movies.view_movie'
     context_object_name = 'movie_list'
     paginate_by = 10
-
-class AddMovie(CheckPermMixin, CreateView):
-    model = Movie
-    form_class = MovieForm
-    template_name_suffix = '_create_form'
-    permission_required = 'movies.add_movie'
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        if self.object.imdb:
-            # Get from IMDb ID
-            api_request = requests.get(API_URL + "i=%s&plot=full&r=json" % (self.object.imdb))
-            if (api_request.status_code == requests.codes.ok):
-                data = json.loads(api_request.text)
-                if data.get('Response') == 'False':
-                    messages.error(self.request, 'No movie with the ID: %s found in the API' % (self.object.imdb))
-                    return HttpResponseRedirect(reverse('movies:index'))
-                else:
-                    self.object.title = data.get('Title', 'Unknown')
-                    self.object.year = data.get('Year', 'N/A')
-                    self.object.plot = data.get('Plot', 'N/A')
-                    self.object.rating = data.get('imdbRating', 'N/A')
-                    self.object.runtime = data.get('Runtime', 'N/A')
-                    self.object.poster_url = data.get('Poster', '')
-                    self.object.from_api = True
-        messages.success(self.request, '%s added to the collection' % movie.title)
-        self.object.save()
-        return HttpResponseRedirect(reverse('movies:movie_detail', args=(self.object.slug,)))
+    def get_queryset(self):
+        return UserMovie.objects.filter(user=self.request.user)
 
 @permission_required('movies.add_movie')
 def add_imdb(request, id):
@@ -95,35 +64,58 @@ def add_imdb(request, id):
             messages.error(self.request, 'No movie with the ID: %s found in the API' % (id))
             return HttpResponseRedirect(reverse('movies:index'))
         else:
-            movie = Movie(
-                title=data.get('Title', 'Unknown'),
-                year=data.get('Year', 'N/A'),
-                plot=data.get('Plot', 'N/A'),
-                rating=data.get('imdbRating', 'N/A'),
-                runtime=data.get('Runtime', 'N/A'),
-                poster_url=data.get('Poster', ''),
-                from_api=True,
-                imdb=id
-            )
-            movie.save()
+            if Movie.objects.filter(title=data.get('Title', 'Unknown')).count():
+                movie = Movie.objects.get(title=data.get('Title', 'Unknown'))
+            else:
+                movie = Movie(
+                    title=data.get('Title', 'Unknown'),
+                    year=data.get('Year', 'N/A'),
+                    plot=data.get('Plot', 'N/A'),
+                    rating=data.get('imdbRating', 'N/A'),
+                    runtime=data.get('Runtime', 'N/A'),
+                    poster_url=data.get('Poster', ''),
+                    imdb=id
+                )
+                movie.save()
             messages.success(request, '%s added to the collection' % movie.title)
+            if not UserMovie.objects.filter(movie=movie, user=request.user).count():
+                user_movie = UserMovie(
+                    movie = movie,
+                    user = request.user
+                )
+                user_movie.save()
+            else:
+                messages.error(request, 'You already have this movie in your collection')
             return HttpResponseRedirect(reverse('movies:movie_detail', args=(movie.slug,)))
     messages.error(request, 'Could not add movie, try again!')        
     return HttpResponseRedirect(reverse('movies:index'))
 
 class EditMovie(CheckPermMixin, UpdateView):
-    model = Movie
+    model = UserMovie
     template_name_suffix = '_update_form'
     fields = ['last_seen',]
     permission_required = 'movies.change_movie'
+    def get_object(self):
+        return get_object_or_404(UserMovie, id=self.kwargs.get('id'))
     def form_valid(self, form):
         self.object = form.save()
-        return HttpResponseRedirect(reverse('movies:movie_detail', args=(self.object.slug,)))
+        return HttpResponseRedirect(reverse('movies:movie_detail', args=(self.object.movie.slug,)))
 
 class DeleteMovie(CheckPermMixin, DeleteView):
-    model = Movie
+    model = UserMovie
     permission_required = 'movies.delete_movie'
     success_url = reverse_lazy('movies:index') 
+    def get_object(self):
+        return get_object_or_404(UserMovie, id=self.kwargs.get('id'))
+    # Check possiblity to move the delete function to the model and remove UserMovie objects from there
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if UserMovie.objects.filter(movie=self.object.movie).count() == 1:
+            Movie.objects.get(slug=self.object.movie.slug).delete()
+            # Automatically removes UserMovie-object
+        else:
+            UserMovie.objects.get(id=self.object.id).delete()          
+        return HttpResponseRedirect(self.get_success_url())
 
 def search_imdb(request):
     context = {}
@@ -146,7 +138,7 @@ def search(request):
     if query:
         context.update({'query': query})
         if len(query) > 3:
-            context.update({'results': Movie.objects.filter(title__icontains=query)})
+            context.update({'results': UserMovie.objects.filter(movie__title__icontains=query, user=request.user)})
         else:
             messages.error(request, 'The search query must be larger than 3 characters.')
     return render(request, 'movies/movie_search.html', context)

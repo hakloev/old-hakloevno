@@ -1,8 +1,11 @@
 import requests
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 from django.core.files import File
 from hakloevno import settings
+
+POSTER_SAVE_URL = 'media/images/posters/'
 
 # Create your models here.
 class Movie(models.Model):
@@ -12,12 +15,8 @@ class Movie(models.Model):
     imdb = models.CharField(max_length=10, null=False, blank=False, db_index=True)
     plot = models.TextField(blank=True)
     rating = models.FloatField(null=True, blank=True)
-    from_api = models.BooleanField(default=False)
     runtime = models.CharField(max_length=10, null=True, blank=True)
-    seen = models.BooleanField(default=False)
-    last_seen = models.DateField(null=True, blank=True)
     poster_url = models.URLField(blank=True, null=True)
-    added = models.DateField(auto_now_add=True, null=False)
     class Meta:
         permissions = (('view_movie', 'Can view movie'),)
         ordering = ['title']
@@ -25,16 +24,13 @@ class Movie(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         if not self.poster_url.startswith('/media/'):
-            file_save_dir = 'media/images/posters/'
             r = requests.get(self.poster_url, stream=True)
-            with open(file_save_dir + '%s.jpg' % self.slug, 'wb') as handle:
+            with open(POSTER_SAVE_URL + '%s.jpg' % self.slug, 'wb') as handle:
                 for block in r.iter_content(1024):
                     if not block:
                         break
                     handle.write(block)
-            self.poster_url = '/' + file_save_dir + '%s.jpg' % self.slug
-        if self.last_seen:
-            self.seen = True
+            self.poster_url = '/' + POSTER_SAVE_URL + '%s.jpg' % self.slug
         return super(Movie, self).save(*args, **kwargs)
 
     @models.permalink
@@ -43,3 +39,18 @@ class Movie(models.Model):
 
     def __unicode__(self):
         return self.title
+
+class UserMovie(models.Model):
+    movie = models.ForeignKey(Movie)
+    user = models.ForeignKey(User)
+    seen = models.BooleanField(default=False)
+    last_seen = models.DateField(null=True, blank=True)
+    added = models.DateField(auto_now_add=True, null=False)
+
+    def save(self, *args, **kwargs):
+        if self.last_seen:
+            self.seen = True
+        return super(UserMovie, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return '%s --> %s' % (self.user, self.movie)

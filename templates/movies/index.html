@@ -3,13 +3,16 @@
 {% block content %}
     <div class="grid">
         <div class="unit two-thirds">
-            <h1>Latest movies</h1>
             <div class="grid">
-                {% for movie in object_list %}
-                    <div class="unit one-third">
-                        <a class="movie-poster-thumbnail" href="{% url 'movies:movie_detail' movie.slug %}"><img alt="{{ movie.title }}" src="{{ movie.poster_url }}" style="width: 230px; height: 325px"></a>
-                    </div>
-                {% endfor %}
+                {% if object_list.all.count < 1 %}
+                    <h1>You have no movies in your collection</h1>
+                {% else %}
+                    {% for movie in object_list %}
+                        <div class="unit one-third">
+                            <a class="movie-poster-thumbnail" href="{% url 'movies:movie_detail' movie.movie.slug %}"><img alt="{{ movie.movie.title }}" src="{{ movie.movie.poster_url }}" style="width: 230px; height: 325px"></a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="grid">
                 <div class="unit whole">
@@ -41,17 +44,18 @@
                 <div class="cube-body">
                     <div class="cube-container">
                         <div class="cube-single">
-                            <span>13</span><br>
+                            <span>{{ object_list.all.count }}</span><br>
                             movies
                         </div>
                         <div class="cube-single">
-                            what
+                            <span>{{ unseen }}</span><br>
+                            unseen
                         </div>
                     </div>
                     <div class="cube-row">
                         <div class="panel-body">
-                            <a href="{% url 'movies:movie_browse' %}" class="button button-default">Browse collection</a>
-                            {% if perms.movies.add_movie %}<a href="{% url 'movies:movie_add' %}" class="button button-default">Add movie</a><br>{% endif %}
+                            <a href="{% url 'movies:movie_browse' %}" class="button button-default">Browse collection</a><br>
+                            <a href="#" class="button button-default">Watchlist</a>
                         </div>
                     </div>
                 </div>
