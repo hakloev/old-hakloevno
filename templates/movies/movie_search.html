@@ -9,7 +9,8 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>IMDb</th>
+                            <th>ID</th>
+                            <th>Rating</th>
                             <th>Watched</th>
                             <th>Added</th>
                             <th></th>
@@ -19,6 +20,7 @@
                         {% for result in results %}
                             <tr>
                                 <td><a href="{% url 'movies:movie_detail' result.movie.slug %}">{{ result.movie.title }}</a></td>
+                                <td>{{ result.um_id }}</td>
                                 <td>{{ result.movie.rating }}</td>
                                 <td>{% if result.seen %}Yes{% else %}No{% endif %}</td>
                                 <td>{{ result.added }}</td>

@@ -20,6 +20,7 @@
                     {% if perms.movies.delete_movie %}<a href="{% url 'movies:movie_delete' object.id %}" class="button button-red">Delete</a><br>{% endif %}
 
                     <div class="movie-info">
+                        <span><b>ID:</b> {{ object.um_id }}</span><br>
                         <span><b>IMDb's rating:</b> {{ object.movie.rating }}</span><br>
                         <span><b>Runtime:</b> {{ object.movie.runtime }}</span><br>
                         <span><b>Last seen:</b> {% if object.last_seen %}{{ object.last_seen }}{% else %}Never{% endif %}</span><br>

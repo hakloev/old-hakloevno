@@ -8,18 +8,20 @@
                     <table class="beer-table">
                         <thead>
                             <th>Title</th>
-                            <th>Rating</th>
+                            <th>ID</th>
+                            <th id="rating-button">Rating</th>
                             <th>Watched</th>
                             <th>Added</th>
                             <th></th>
                         </thead>
-                        <tbody>
+                        <tbody id="table-body">
                         {% for movie in movie_list %}
                             <tr>
-                                <td>{{ movie.movie.title }}</td>
+                                <td><a href="{% url 'movies:movie_detail' movie.movie.slug %}">{{ movie.movie.title }}</a></td>
+                                <td>{{ movie.um_id }}</td>
                                 <td>{{ movie.movie.rating }}</td>
                                 <td>{% if movie.seen %}Yes{% else %}No{% endif %}</td>
-                                <td>{{ movie.movie.added|date:"d.m.Y" }}</td>
+                                <td>{{ movie.added|date:"d.m.Y" }}</td>
                                 <td><a href="{% url 'movies:movie_detail' movie.movie.slug %}" class="button button-default">Details</a></td>
                             </tr>
                         {% endfor %}
@@ -47,4 +49,8 @@
             {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block scriptblock %}
+    <script type="text/javascript" src="/static/js/sorter.js"></script>
 {% endblock %}

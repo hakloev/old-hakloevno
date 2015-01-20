@@ -32,9 +32,11 @@ class IndexView(CheckPermMixin, ListView):
     # Required fields for CheckPermMixin
     permission_required = 'movies.view_movie'
     def get_queryset(self):
-        return UserMovie.objects.filter(user=self.request.user).order_by('-id')[:3]
+        # .order_by('?') is really expensive in large dbs, need fix
+        return UserMovie.objects.filter(user=self.request.user).order_by('?')[:3]
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        context.update({'movies': UserMovie.objects.filter(user=self.request.user).count()})
         context.update({'unseen': UserMovie.objects.filter(user=self.request.user, seen=False).count()})
         return context
 
@@ -77,13 +79,13 @@ def add_imdb(request, id):
                     imdb=id
                 )
                 movie.save()
-            messages.success(request, '%s added to the collection' % movie.title)
             if not UserMovie.objects.filter(movie=movie, user=request.user).count():
                 user_movie = UserMovie(
                     movie = movie,
                     user = request.user
                 )
                 user_movie.save()
+                messages.success(request, '%s added to the collection' % movie.title)
             else:
                 messages.error(request, 'You already have this movie in your collection')
             return HttpResponseRedirect(reverse('movies:movie_detail', args=(movie.slug,)))

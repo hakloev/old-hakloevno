@@ -1,5 +1,6 @@
 import requests
 from django.db import models
+from django.db.models import Max
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.core.files import File
@@ -41,13 +42,19 @@ class Movie(models.Model):
         return self.title
 
 class UserMovie(models.Model):
+    um_id = models.IntegerField(editable=False, blank=True, null=True)
     movie = models.ForeignKey(Movie)
     user = models.ForeignKey(User)
     seen = models.BooleanField(default=False)
     last_seen = models.DateField(null=True, blank=True)
     added = models.DateField(auto_now_add=True, null=False)
 
+    class Meta:
+        unique_together = ('um_id', 'movie')
+
     def save(self, *args, **kwargs):
+        um_id = UserMovie.objects.filter(user=self.user).aggregate(Max('um_id')).get('um_id__max')
+        self.um_id = 1 if um_id is None else um_id + 1
         if self.last_seen:
             self.seen = True
         return super(UserMovie, self).save(*args, **kwargs)

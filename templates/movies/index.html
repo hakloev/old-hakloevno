@@ -44,7 +44,7 @@
                 <div class="cube-body">
                     <div class="cube-container">
                         <div class="cube-single">
-                            <span>{{ object_list.all.count }}</span><br>
+                            <span>{{ movies }}</span><br>
                             movies
                         </div>
                         <div class="cube-single">
@@ -52,14 +52,10 @@
                             unseen
                         </div>
                     </div>
-                    <div class="cube-row">
-                        <div class="panel-body">
-                            <a href="{% url 'movies:movie_browse' %}" class="button button-default">Browse collection</a><br>
-                            <a href="#" class="button button-default">Watchlist</a>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <a href="{% url 'movies:movie_browse' %}" class="button button-default">Browse collection</a><br>
+            <a href="#" class="button button-default">Watchlist</a>
         </div>
     </div>
 {% endblock %}
