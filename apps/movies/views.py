@@ -63,7 +63,7 @@ def add_imdb(request, id):
     if (api_request.status_code == requests.codes.ok):
         data = json.loads(api_request.text)
         if data.get('Response') == 'False':
-            messages.error(self.request, 'No movie with the ID: %s found in the API' % (id))
+            messages.error(self.request, 'No movie with the ID: %s found in the OMDb API' % (id))
             return HttpResponseRedirect(reverse('movies:index'))
         else:
             if Movie.objects.filter(title=data.get('Title', 'Unknown')).count():
@@ -137,7 +137,7 @@ def search_imdb(request):
         if (api_request.status_code == requests.codes.ok):
             data = json.loads(api_request.text)
             if data.get('Response') == 'False':
-                messages.error(request, 'No search result from API')
+                messages.error(request, 'No search result from OBMb API')
                 return HttpResponseRedirect(reverse('movies:index'))
             else:
                 context.update({'movies': data.get('Search')})
