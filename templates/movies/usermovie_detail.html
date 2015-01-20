@@ -16,8 +16,8 @@
                         <h1>{{ object.movie.title }}</h1>
                         <small>Released in {{ object.movie.year }}</small><br>
                     </div>
-                    {% if perms.movies.change_movie %}<a href="{% url 'movies:movie_edit' object.id %}" class="button button-default">Edit</a>{% endif %}
-                    {% if perms.movies.delete_movie %}<a href="{% url 'movies:movie_delete' object.id %}" class="button button-red">Delete</a><br>{% endif %}
+                    {% if perms.movies.change_movie %}<a href="{% url 'movies:movie_edit' object.movie.slug object.id %}" class="button button-default">Edit</a>{% endif %}
+                    {% if perms.movies.delete_movie %}<a href="{% url 'movies:movie_delete' object.movie.slug object.id %}" class="button button-red">Delete</a><br>{% endif %}
 
                     <div class="movie-info">
                         <span><b>ID:</b> {{ object.um_id }}</span><br>

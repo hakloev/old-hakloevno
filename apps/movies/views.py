@@ -100,7 +100,11 @@ class EditMovie(CheckPermMixin, UpdateView):
     def get_object(self):
         return get_object_or_404(UserMovie, id=self.kwargs.get('id'))
     def form_valid(self, form):
-        self.object = form.save()
+        if self.get_object().user.id == self.request.user.id:
+            self.object = form.save()
+            messages.success(self.request, '%s updated' % self.object.movie.title)
+        else:
+            messages.error(self.request, 'This is not your movie to edit')
         return HttpResponseRedirect(reverse('movies:movie_detail', args=(self.object.movie.slug,)))
 
 class DeleteMovie(CheckPermMixin, DeleteView):
@@ -112,11 +116,16 @@ class DeleteMovie(CheckPermMixin, DeleteView):
     # Check possiblity to move the delete function to the model and remove UserMovie objects from there
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        if UserMovie.objects.filter(movie=self.object.movie).count() == 1:
-            Movie.objects.get(slug=self.object.movie.slug).delete()
-            # Automatically removes UserMovie-object
+        if self.object.user.id == request.user.id:
+            movie = self.object.movie.title
+            if UserMovie.objects.filter(movie=self.object.movie).count() == 1:
+                Movie.objects.get(slug=self.object.movie.slug).delete()
+                # Automatically removes UserMovie-object
+            else:
+                UserMovie.objects.get(id=self.object.id).delete()          
+            messages.success(request, '%s successfully removed from collection' % movie)
         else:
-            UserMovie.objects.get(id=self.object.id).delete()          
+            messages.error(request, 'This is not your movie to delete')
         return HttpResponseRedirect(self.get_success_url())
 
 def search_imdb(request):

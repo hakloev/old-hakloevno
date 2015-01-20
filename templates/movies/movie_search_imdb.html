@@ -12,6 +12,7 @@
                             <th>Year</th>
                             <th>Type</th>
                             <th>Add to collection</th>
+                            <th>Add to watchlist</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,6 +22,7 @@
                                 <td>{{ movie.Year }}</td>
                                 <td>{{ movie.Type }}</td>
                                 <td><a href="{% url 'movies:movie_add_imdb' movie.imdbID %}" class="button button-default">Add</a></td>
+                                <td><a href="#" class="button button-default">Add</a></td>
                             </tr>
                         {% endfor %}
                     </tbody>
