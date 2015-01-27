@@ -4,21 +4,25 @@ from django.contrib.messages import constants as messages
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
 COMPRESS_ENABLED = not DEBUG # Set to True in prod
 
 TEMPLATE_DIRS = (
-    BASE_DIR + '/templates/'
+    BASE_DIR + '/templates/',
 )
 
-ADMINS = (
-    ('name', 'email@email.com'),
-)
-
-DEFAULT_FROM_EMAIL = "noreply@domain.com"
-
-ALLOWED_HOSTS = ['.DOMAIN.NO']
+ALLOWED_HOSTS = ['*']
 
 SECRET_KEY = ''
+
+ADMINS = (
+    ('you', 'you@domain.no'),
+)
+
+MANAGERS = ADMINS
+
+DEFAULT_FROM_EMAIL = 'dev@domain.no'
+SERVER_EMAIL = 'dev-error@domain.no'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -26,13 +30,16 @@ SECRET_KEY = ''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DB_NAME',
-        'USER': 'DB_USER',
-        'PASSWORD': 'DB_PASSWORD',
-        'HOST': 'localhost',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': '',
     }
 }
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/ABSOLUTE_PATH/'
+STATIC_ROOT = '/path/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/path/'
