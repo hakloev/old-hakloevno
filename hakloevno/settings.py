@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -27,7 +28,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'compressor',
     'apps.pages',
     'apps.blog',
     'apps.beertasting',
@@ -43,19 +43,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'hakloevno.context_processors.google_analytics_processor',
+)
+
 ROOT_URLCONF = 'hakloevno.urls'
 
 WSGI_APPLICATION = 'hakloevno.wsgi.application'
-
-COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
-)
-
-COMPRESS_OUTPUT_DIR = 'cache'
-
-STATICFILES_FINDERS = (
-    'compressor.finders.CompressorFinder',
-)
 
 INTERNAL_IPS = ('127.0.0.1',)
 
