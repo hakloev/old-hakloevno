@@ -1,4 +1,8 @@
-hakloevno
+*NB: This is the repository that hosted my first personal webpage. The code quality is not very good, since this is the project I used in order to learn web technologies.*
+
+---
+
+old-hakloevno
 =======
 
 Repo for hosting my Django-powered [website](https://hakloev.no).
