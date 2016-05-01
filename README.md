@@ -1,4 +1,4 @@
-*NB: This is the repository that hosted my first personal webpage. The code quality is not very good, since this is the project I used in order to learn web technologies.*
+*NB: This is the repository that hosted my first personal webpage. The code quality is not very good, since this is the project I used in order to learn web technologies. I'm sorry for all the bad commits and poor code :p But I learned a lot from it :)*
 
 ---
 
